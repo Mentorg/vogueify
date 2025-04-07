@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+.hero {
+    background: url('../../public/images/hero.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.profile-header {
+    background: url('../../public/images/profile-header.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

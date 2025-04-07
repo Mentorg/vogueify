@@ -1,0 +1,6470 @@
+[
+  {
+    "id": 0,
+    "name": "Urban Explorer",
+    "description": "A sleek, stylish backpack designed for the modern traveler. Perfect for carrying your essentials while exploring the city or going on short trips.",
+    "features": [
+      {
+        "title": "Style",
+        "description": "Sport"
+      },
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Water-resistant polyester"
+      },
+      {
+        "title": "Capacity",
+        "description": "25L"
+      },
+      {
+        "title": "Pockets",
+        "description": "3"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 1,
+    "name": "Mountain Trekker",
+    "description": "A durable, rugged backpack made for hiking and outdoor adventures. Features a spacious main compartment and a comfortable padded back.",
+    "features": [
+      {
+        "title": "Style",
+        "description": "Sport"
+      },
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Nylon and mesh"
+      },
+      {
+        "title": "Capacity",
+        "description": "40L"
+      },
+      {
+        "title": "Pockets",
+        "description": "5"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 2,
+    "name": "Tech Traveler",
+    "description": "A modern backpack designed for tech-savvy individuals. Offers a dedicated laptop compartment and various pockets for gadgets and accessories.",
+    "features": [
+      {
+        "title": "Style",
+        "description": "Sport"
+      },
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Synthetic leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "18L"
+      },
+      {
+        "title": "Pockets",
+        "description": "6"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 3,
+    "name": "Sporty Pro",
+    "description": "A high-performance backpack tailored for athletes. It features a ventilated back and multiple compartments to keep sports gear organized.",
+    "features": [
+      {
+        "title": "Style",
+        "description": "Sport"
+      },
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Durable nylon"
+      },
+      {
+        "title": "Capacity",
+        "description": "30L"
+      },
+      {
+        "title": "Pockets",
+        "description": "4"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 4,
+    "name": "Nomad Rucksack",
+    "description": "A classic, versatile rucksack perfect for daily use or weekend getaways. Offers a comfortable fit and plenty of space for your essentials.",
+    "features": [
+      {
+        "title": "Style",
+        "description": "V Icon"
+      },
+      {
+        "title": "Made In",
+        "description": "Mexico"
+      },
+      {
+        "title": "Material",
+        "description": "Canvas"
+      },
+      {
+        "title": "Capacity",
+        "description": "28L"
+      },
+      {
+        "title": "Pockets",
+        "description": "3"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 5,
+    "name": "City Commute",
+    "description": "A sleek, professional backpack designed for commuters. Features a dedicated compartment for laptops, tablets, and other office essentials.",
+    "features": [
+      {
+        "title": "Style",
+        "description": "V Icon"
+      },
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Polyester"
+      },
+      {
+        "title": "Capacity",
+        "description": "22L"
+      },
+      {
+        "title": "Pockets",
+        "description": "4"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 6,
+    "name": "Adventure Pro",
+    "description": "The ultimate backpack for outdoor enthusiasts. Built for extended treks with waterproof material and multiple storage options for all your adventure gear.",
+    "features": [
+      {
+        "title": "Style",
+        "description": "V Icon"
+      },
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Waterproof fabric"
+      },
+      {
+        "title": "Capacity",
+        "description": "50L"
+      },
+      {
+        "title": "Pockets",
+        "description": "7"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 7,
+    "name": "Vibrant Street",
+    "description": "A trendy, eye-catching backpack perfect for urban explorers. Made with bold colors and high-quality materials, it's designed to turn heads.",
+    "features": [
+      {
+        "title": "Style",
+        "description": "V Icon"
+      },
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Polyester with PVC coating"
+      },
+      {
+        "title": "Capacity",
+        "description": "20L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 8,
+    "name": "Classic Leather Satchel",
+    "description": "A timeless leather satchel bag, perfect for both casual and professional settings. With a spacious interior and premium finish.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "12L"
+      },
+      {
+        "title": "Pockets",
+        "description": "3"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 9,
+    "name": "Vintage Messenger Bag",
+    "description": "A rugged, vintage-inspired messenger bag with a spacious main compartment and adjustable shoulder strap for comfort.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Canvas and leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "18L"
+      },
+      {
+        "title": "Pockets",
+        "description": "4"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 10,
+    "name": "Urban Courier Satchel",
+    "description": "A modern satchel bag designed for city commuters, featuring a sleek design with quick-access compartments and a padded shoulder strap.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Water-resistant nylon"
+      },
+      {
+        "title": "Capacity",
+        "description": "14L"
+      },
+      {
+        "title": "Pockets",
+        "description": "5"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 11,
+    "name": "Executive Brief Satchel",
+    "description": "A sophisticated satchel bag for professionals, combining style and functionality with multiple compartments for work essentials.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "16L"
+      },
+      {
+        "title": "Pockets",
+        "description": "6"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 12,
+    "name": "Traveler Satchel",
+    "description": "A versatile satchel designed for travelers, featuring a durable exterior and spacious interior for all your essentials.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Heavy-duty canvas"
+      },
+      {
+        "title": "Capacity",
+        "description": "20L"
+      },
+      {
+        "title": "Pockets",
+        "description": "4"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 13,
+    "name": "Minimalist Satchel",
+    "description": "A sleek, compact satchel bag with a minimal design, perfect for those who prefer simple and functional accessories.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Thailand"
+      },
+      {
+        "title": "Material",
+        "description": "Eco-friendly fabric"
+      },
+      {
+        "title": "Capacity",
+        "description": "10L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 14,
+    "name": "Heritage Satchel",
+    "description": "A durable and stylish satchel bag with a classic design, made for those who appreciate timeless fashion and practicality.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "England"
+      },
+      {
+        "title": "Material",
+        "description": "Tweed and leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "15L"
+      },
+      {
+        "title": "Pockets",
+        "description": "3"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 15,
+    "name": "Outdoor Expedition Satchel",
+    "description": "A rugged satchel made for outdoor adventures, featuring water-resistant material and adjustable straps for easy carrying.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Waterproof nylon"
+      },
+      {
+        "title": "Capacity",
+        "description": "22L"
+      },
+      {
+        "title": "Pockets",
+        "description": "4"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 16,
+    "name": "Elegance Clutch",
+    "description": "A sleek and sophisticated clutch bag, perfect for evening events or formal occasions. Features a minimalist design with a metallic finish.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather with metallic accents"
+      },
+      {
+        "title": "Capacity",
+        "description": "1L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 17,
+    "name": "Classic Satin Clutch",
+    "description": "A timeless satin clutch with a fold-over design, ideal for weddings, galas, or other special occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Satin"
+      },
+      {
+        "title": "Capacity",
+        "description": "0.8L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 18,
+    "name": "Studded Evening Clutch",
+    "description": "A bold and stylish clutch bag adorned with studded details, perfect for adding an edge to your evening look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Vegan leather with studs"
+      },
+      {
+        "title": "Capacity",
+        "description": "1.5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 19,
+    "name": "Velvet Glam Clutch",
+    "description": "A luxurious velvet clutch with a soft finish, ideal for adding a touch of glamour to your night out or formal event.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Turkey"
+      },
+      {
+        "title": "Material",
+        "description": "Velvet"
+      },
+      {
+        "title": "Capacity",
+        "description": "1.2L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 20,
+    "name": "Metallic Frame Clutch",
+    "description": "A modern metallic frame clutch that adds sophistication and shine to any evening outfit. Features a structured design with a clasp closure.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Metal frame with fabric lining"
+      },
+      {
+        "title": "Capacity",
+        "description": "1L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 21,
+    "name": "Beaded Clutch Bag",
+    "description": "A chic and eye-catching clutch with intricate beaded details, ideal for those seeking a unique accessory for special occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Beaded fabric"
+      },
+      {
+        "title": "Capacity",
+        "description": "1L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 22,
+    "name": "Leather Snap Clutch",
+    "description": "A stylish leather clutch with a snap closure, designed for those who want a functional yet fashionable accessory for a night out.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "1.3L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 23,
+    "name": "Floral Embroidered Clutch",
+    "description": "A delicate clutch featuring beautiful floral embroidery, perfect for adding a feminine touch to your ensemble.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Mexico"
+      },
+      {
+        "title": "Material",
+        "description": "Embroidered fabric"
+      },
+      {
+        "title": "Capacity",
+        "description": "0.9L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 24,
+    "name": "Sporty Fanny Pack",
+    "description": "A lightweight and comfortable fanny pack designed for active lifestyles. Ideal for running, hiking, or traveling.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Water-resistant nylon"
+      },
+      {
+        "title": "Capacity",
+        "description": "2L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 25,
+    "name": "Urban Street Fanny Bag",
+    "description": "A sleek, urban-style fanny bag perfect for city commutes and casual outings. Features a minimalist design with plenty of space for essentials.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Eco-friendly polyester"
+      },
+      {
+        "title": "Capacity",
+        "description": "3L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 26,
+    "name": "Retro Nylon Fanny Pack",
+    "description": "A throwback to the '90s, this nylon fanny pack offers both style and functionality with adjustable straps and multiple compartments.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Nylon"
+      },
+      {
+        "title": "Capacity",
+        "description": "4L"
+      },
+      {
+        "title": "Pockets",
+        "description": "3"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 27,
+    "name": "Outdoor Adventure Fanny Pack",
+    "description": "Designed for outdoor enthusiasts, this fanny pack features a durable, water-resistant exterior and ample storage for your hiking or biking essentials.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Ripstop fabric"
+      },
+      {
+        "title": "Capacity",
+        "description": "5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "4"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 28,
+    "name": "Leather Waist Bag",
+    "description": "A stylish and sophisticated leather fanny bag, perfect for those who want to combine fashion with function on casual outings.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "2.5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 29,
+    "name": "Compact Travel Fanny Pack",
+    "description": "Perfect for travelers, this compact fanny pack offers security and convenience for carrying your phone, wallet, and passport while on the go.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Thailand"
+      },
+      {
+        "title": "Material",
+        "description": "Waterproof nylon"
+      },
+      {
+        "title": "Capacity",
+        "description": "1.5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "3"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 30,
+    "name": "Streetwear Fanny Pack",
+    "description": "A trendy fanny pack with a streetwear vibe, designed with bold colors and a modern design. A must-have accessory for casual style lovers.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Polyester"
+      },
+      {
+        "title": "Capacity",
+        "description": "3L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 31,
+    "name": "Luxury Leather Fanny Pack",
+    "description": "A high-end leather fanny pack with a sleek design, offering both elegance and practicality for formal events or nights out.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "3L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "men",
+    "category_id": 0
+  },
+  {
+    "id": 32,
+    "name": "Classic Quilted Shoulder Bag",
+    "description": "A timeless quilted shoulder bag with a refined design, perfect for both casual outings and evening events.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "6L"
+      },
+      {
+        "title": "Pockets",
+        "description": "3"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 33,
+    "name": "Quilted Chain Handle Bag",
+    "description": "A luxurious quilted handbag with a signature chain handle, combining elegance with a touch of glam for any occasion.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "4.5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 34,
+    "name": "Boho Fringe Handbag",
+    "description": "A trendy and free-spirited handbag adorned with fringe details, perfect for casual and summer styles.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Mexico"
+      },
+      {
+        "title": "Material",
+        "description": "Suede"
+      },
+      {
+        "title": "Capacity",
+        "description": "5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 35,
+    "name": "Classic Structured Tote",
+    "description": "A timeless structured tote bag, crafted for both business and casual use, offering style and ample storage.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Saffiano leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "8L"
+      },
+      {
+        "title": "Pockets",
+        "description": "3"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 36,
+    "name": "Chic Crossbody Bag",
+    "description": "A sleek and practical crossbody bag with an adjustable strap, designed for hands-free convenience while keeping your essentials organized.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Spain"
+      },
+      {
+        "title": "Material",
+        "description": "Pebbled leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "3L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 37,
+    "name": "Vintage Leather Hobo Bag",
+    "description": "A stylish and roomy leather hobo bag, with a vintage appeal, offering comfort and functionality for everyday use.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "7L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 38,
+    "name": "Floral Embroidered Handbag",
+    "description": "A charming handbag with intricate floral embroidery, perfect for adding a feminine and artistic touch to any outfit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Cotton blend"
+      },
+      {
+        "title": "Capacity",
+        "description": "4L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 39,
+    "name": "Sophisticated Box Bag",
+    "description": "A unique and classy box-shaped handbag, perfect for evening events or stylish day outings, made with attention to detail.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "3.5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 40,
+    "name": "Vintage Canvas Bucket Bag",
+    "description": "A retro-inspired bucket bag made from durable canvas, perfect for casual outings and everyday use.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Canvas"
+      },
+      {
+        "title": "Capacity",
+        "description": "5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "3"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 41,
+    "name": "Sleek Black Leather Bucket Bag",
+    "description": "A minimalist black leather bucket bag, combining style with functionality for both work and leisure.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "4L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 42,
+    "name": "Boho Chic Straw Bucket Bag",
+    "description": "A light and breezy straw bucket bag, perfect for summer days and beach trips.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Spain"
+      },
+      {
+        "title": "Material",
+        "description": "Straw"
+      },
+      {
+        "title": "Capacity",
+        "description": "6L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 43,
+    "name": "Eco-Friendly Vegan Leather Bucket Bag",
+    "description": "A stylish and sustainable bucket bag made from high-quality vegan leather, combining fashion with eco-consciousness.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Vegan leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "4.5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "3"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 44,
+    "name": "Sophisticated Brown Leather Bucket Bag",
+    "description": "A luxurious brown leather bucket bag with a timeless design, perfect for both casual and semi-formal occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 45,
+    "name": "Colorful Fabric Bucket Bag",
+    "description": "A vibrant, eye-catching bucket bag crafted from durable fabric, ideal for adding a pop of color to your look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Fabric"
+      },
+      {
+        "title": "Capacity",
+        "description": "3.5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 46,
+    "name": "Luxury Crocodile Print Bucket Bag",
+    "description": "An elegant bucket bag with a striking crocodile print, made of premium leather for a sophisticated finish.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "4L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 47,
+    "name": "Sporty Nylon Bucket Bag",
+    "description": "A functional and durable bucket bag made from high-quality nylon, designed for a sporty and active lifestyle.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Nylon"
+      },
+      {
+        "title": "Capacity",
+        "description": "7L"
+      },
+      {
+        "title": "Pockets",
+        "description": "4"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 48,
+    "name": "Soft Leather Hobo Bag",
+    "description": "A luxuriously soft leather hobo bag with a slouchy design, offering comfort and ample space for daily essentials.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "8L"
+      },
+      {
+        "title": "Pockets",
+        "description": "3"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 49,
+    "name": "Boho Chic Suede Hobo Bag",
+    "description": "A bohemian-inspired hobo bag made from soft suede, perfect for casual outings and adding a laid-back vibe to your style.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Suede"
+      },
+      {
+        "title": "Capacity",
+        "description": "7L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 50,
+    "name": "Modern Canvas Hobo Bag",
+    "description": "A contemporary take on the classic hobo, crafted from durable canvas with leather accents for a stylish yet practical look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Canvas, leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "9L"
+      },
+      {
+        "title": "Pockets",
+        "description": "4"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 51,
+    "name": "Elegant Patent Leather Hobo",
+    "description": "A sleek patent leather hobo bag that adds a touch of elegance and sophistication to any outfit, ideal for both day and night.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Patent leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "6L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 52,
+    "name": "Classic Black Leather Hobo Bag",
+    "description": "A timeless black leather hobo bag with a minimalist design, offering both style and practicality for everyday use.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "8L"
+      },
+      {
+        "title": "Pockets",
+        "description": "3"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 53,
+    "name": "Colorful Woven Hobo Bag",
+    "description": "A vibrant woven hobo bag, designed with colorful threads for a fun, eye-catching look perfect for casual or beach outings.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Mexico"
+      },
+      {
+        "title": "Material",
+        "description": "Woven fabric"
+      },
+      {
+        "title": "Capacity",
+        "description": "7L"
+      },
+      {
+        "title": "Pockets",
+        "description": "2"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 54,
+    "name": "Vintage Leather Hobo Bag",
+    "description": "A vintage-inspired hobo bag crafted from distressed leather, offering a unique, worn-in look that pairs perfectly with boho or casual styles.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Distressed leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "8L"
+      },
+      {
+        "title": "Pockets",
+        "description": "3"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 55,
+    "name": "Tote-Style Hobo Bag",
+    "description": "A spacious hobo bag that doubles as a tote, perfect for carrying everything from work essentials to weekend necessities.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Spain"
+      },
+      {
+        "title": "Material",
+        "description": "Leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "10L"
+      },
+      {
+        "title": "Pockets",
+        "description": "4"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 56,
+    "name": "Classic Black Leather Envelope Bag",
+    "description": "A sleek and sophisticated black leather envelope bag, perfect for evening events or as a chic accessory for formal occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "2L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 57,
+    "name": "Metallic Gold Envelope Clutch",
+    "description": "A glamorous metallic gold envelope bag, ideal for adding a touch of sparkle to your night-out outfit or formal event.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Metallic leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "1.5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 58,
+    "name": "Embroidered Velvet Envelope Bag",
+    "description": "A luxurious velvet envelope bag with intricate floral embroidery, perfect for making a statement at weddings or special gatherings.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Velvet"
+      },
+      {
+        "title": "Capacity",
+        "description": "2L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 59,
+    "name": "Satin Envelope Bag with Chain Strap",
+    "description": "An elegant satin envelope bag featuring a delicate chain strap, perfect for pairing with formal gowns and cocktail dresses.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Satin"
+      },
+      {
+        "title": "Capacity",
+        "description": "1.5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 60,
+    "name": "Minimalist White Envelope Bag",
+    "description": "A clean and minimalist white envelope bag, perfect for those who prefer simple yet stylish accessories for evening events.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Spain"
+      },
+      {
+        "title": "Material",
+        "description": "Leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "2L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 61,
+    "name": "Nude Patent Leather Envelope Bag",
+    "description": "A sophisticated nude patent leather envelope bag, ideal for adding a neutral tone to any outfit while maintaining elegance.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Patent leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "2L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 62,
+    "name": "Criss-Cross Pattern Envelope Bag",
+    "description": "A modern and stylish envelope bag featuring a criss-cross pattern design, perfect for adding texture and dimension to your look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Synthetic leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "1.5L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 63,
+    "name": "Peach Leather Envelope Clutch",
+    "description": "A soft peach leather envelope clutch, offering a subtle yet chic pop of color for formal and semi-formal occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Leather"
+      },
+      {
+        "title": "Capacity",
+        "description": "2L"
+      },
+      {
+        "title": "Pockets",
+        "description": "1"
+      }
+    ],
+    "gender": "women",
+    "category_id": 0
+  },
+  {
+    "id": 64,
+    "name": "Classic White Leather Sneakers",
+    "description": "Timeless white leather sneakers that offer a clean and minimalist style, perfect for casual wear or pairing with a variety of outfits.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Leather"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-13"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 65,
+    "name": "Sporty Mesh Running Sneakers",
+    "description": "High-performance running sneakers designed with breathable mesh and lightweight construction for maximum comfort and support during exercise.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Mesh, synthetic leather"
+      },
+      {
+        "title": "Sole",
+        "description": "EVA rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-14"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 66,
+    "name": "Slip-On Casual Sneakers",
+    "description": "Stylish and easy-to-wear slip-on sneakers, perfect for casual outings and everyday comfort without the hassle of laces.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Canvas"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "7-12"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 67,
+    "name": "High-Top Urban Sneakers",
+    "description": "Street-style high-top sneakers offering both comfort and durability, designed with a bold design for urban wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Suede, leather"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-13"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 68,
+    "name": "Retro Running Sneakers",
+    "description": "A throwback design inspired by classic running shoes, these retro sneakers combine vintage style with modern comfort for everyday use.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Suede, mesh"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "7-12"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 69,
+    "name": "Luxury Designer Sneakers",
+    "description": "Premium designer sneakers crafted with high-quality leather and intricate detailing, perfect for elevating your casual style.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Leather, suede"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-13"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 70,
+    "name": "Outdoor Trail Running Sneakers",
+    "description": "Durable and rugged sneakers designed for outdoor activities and trail running, featuring a grippy sole for superior traction on rough terrain.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Mesh, synthetic leather"
+      },
+      {
+        "title": "Sole",
+        "description": "Traction rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-14"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 71,
+    "name": "Sleek Black Athletic Sneakers",
+    "description": "Sleek black athletic sneakers designed for both sports and casual wear, offering a modern look with breathable mesh and a lightweight build.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Mesh, synthetic leather"
+      },
+      {
+        "title": "Sole",
+        "description": "EVA rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-12"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 72,
+    "name": "Classic Brown Leather Chelsea Boots",
+    "description": "A timeless pair of brown leather Chelsea boots, offering a sleek, comfortable fit for both casual and semi-formal occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-13"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 73,
+    "name": "Heavy-Duty Work Boots",
+    "description": "Durable work boots designed for tough environments, featuring steel toe protection and slip-resistant soles for safety and comfort.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Leather, steel toe"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-14"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 74,
+    "name": "Rugged Hiking Boots",
+    "description": "Sturdy hiking boots with excellent grip and ankle support, perfect for outdoor adventures in rugged terrains.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Suede, mesh"
+      },
+      {
+        "title": "Sole",
+        "description": "Traction rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-13"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 75,
+    "name": "Military-Style Combat Boots",
+    "description": "Tough, military-style combat boots designed for ultimate durability and support, suitable for outdoor and tactical wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Leather, nylon"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-14"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 76,
+    "name": "Chukka Boots",
+    "description": "Classic chukka boots with a soft suede finish, offering a versatile design that transitions effortlessly from casual to smart-casual attire.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Suede"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-12"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 77,
+    "name": "Winter Insulated Boots",
+    "description": "Heavy-duty winter boots designed to keep feet warm and dry in extreme cold conditions, featuring a waterproof exterior and insulated lining.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Canada"
+      },
+      {
+        "title": "Material",
+        "description": "Waterproof leather, insulation"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-13"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 78,
+    "name": "Classic Black Leather Booties",
+    "description": "Elegant black leather booties with a sleek design, perfect for formal events or pairing with business attire for a polished look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Spain"
+      },
+      {
+        "title": "Material",
+        "description": "Leather"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-12"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 79,
+    "name": "Lace-Up Desert Boots",
+    "description": "Lightweight lace-up desert boots with a breathable design, ideal for warm weather and casual everyday wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Mexico"
+      },
+      {
+        "title": "Material",
+        "description": "Suede"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Size Range",
+        "description": "8-13"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 80,
+    "name": "Classic Brown Leather Belt",
+    "description": "A timeless brown leather belt with a simple, elegant design, perfect for both casual and formal outfits.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Buckle Type",
+        "description": "Metal"
+      },
+      {
+        "title": "Size Range",
+        "description": "32-38 inches"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 81,
+    "name": "Black Leather Dress Belt",
+    "description": "A sleek and sophisticated black leather dress belt, ideal for pairing with suits or dress trousers for formal occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Buckle Type",
+        "description": "Silver-tone"
+      },
+      {
+        "title": "Size Range",
+        "description": "30-36 inches"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 82,
+    "name": "Reversible Leather Belt",
+    "description": "A versatile reversible leather belt with two color options, providing flexibility for both casual and business wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Buckle Type",
+        "description": "Gold-tone"
+      },
+      {
+        "title": "Size Range",
+        "description": "32-40 inches"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 83,
+    "name": "Canvas Casual Belt",
+    "description": "A durable canvas belt, perfect for everyday casual wear, featuring a metal buckle and easy-to-use design.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Canvas"
+      },
+      {
+        "title": "Buckle Type",
+        "description": "Metal"
+      },
+      {
+        "title": "Size Range",
+        "description": "30-38 inches"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 84,
+    "name": "Nylon Webbing Belt",
+    "description": "A sporty nylon webbing belt with a sturdy buckle, ideal for outdoor activities and casual wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Nylon"
+      },
+      {
+        "title": "Buckle Type",
+        "description": "Plastic"
+      },
+      {
+        "title": "Size Range",
+        "description": "28-36 inches"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 85,
+    "name": "Braided Leather Belt",
+    "description": "A stylish braided leather belt that adds a textured touch to your outfit, perfect for both casual and smart-casual looks.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Braided leather"
+      },
+      {
+        "title": "Buckle Type",
+        "description": "Silver-tone"
+      },
+      {
+        "title": "Size Range",
+        "description": "30-40 inches"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 86,
+    "name": "Luxury Designer Belt",
+    "description": "A high-end designer belt crafted from premium leather, featuring a distinctive gold-tone buckle and perfect for formal and upscale occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Premium leather"
+      },
+      {
+        "title": "Buckle Type",
+        "description": "Gold-tone"
+      },
+      {
+        "title": "Size Range",
+        "description": "32-38 inches"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 87,
+    "name": "Casual Leather Belt with Distressed Finish",
+    "description": "A casual leather belt with a distressed finish, giving it a rugged, vintage look that pairs perfectly with jeans or chinos.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Mexico"
+      },
+      {
+        "title": "Material",
+        "description": "Distressed leather"
+      },
+      {
+        "title": "Buckle Type",
+        "description": "Antique brass"
+      },
+      {
+        "title": "Size Range",
+        "description": "30-36 inches"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 88,
+    "name": "Cashmere Blend Scarf",
+    "description": "A luxurious cashmere blend scarf, offering warmth and comfort with a soft touch, perfect for colder months.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Cashmere, wool blend"
+      },
+      {
+        "title": "Dimensions",
+        "description": "70 x 12 inches"
+      },
+      {
+        "title": "Color Options",
+        "description": "Charcoal, Navy, Beige"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 89,
+    "name": "Classic Wool Scarf",
+    "description": "A classic wool scarf, ideal for everyday wear, providing warmth and style with a timeless design.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Scotland"
+      },
+      {
+        "title": "Material",
+        "description": "100% Wool"
+      },
+      {
+        "title": "Dimensions",
+        "description": "72 x 14 inches"
+      },
+      {
+        "title": "Color Options",
+        "description": "Gray, Black, Burgundy"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 90,
+    "name": "Plaid Flannel Scarf",
+    "description": "A cozy plaid flannel scarf with a bold checkered pattern, perfect for casual wear or adding a pop of color to your outfit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Flannel"
+      },
+      {
+        "title": "Dimensions",
+        "description": "74 x 16 inches"
+      },
+      {
+        "title": "Color Options",
+        "description": "Red, Blue, Green"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 91,
+    "name": "Cashmere Scarf with Fringe",
+    "description": "A soft cashmere scarf with elegant fringe detailing, offering both luxury and sophistication for formal or casual wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Nepal"
+      },
+      {
+        "title": "Material",
+        "description": "100% Cashmere"
+      },
+      {
+        "title": "Dimensions",
+        "description": "72 x 14 inches"
+      },
+      {
+        "title": "Color Options",
+        "description": "Black, Camel, Navy"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 92,
+    "name": "Knit Thermal Scarf",
+    "description": "A thick knit thermal scarf designed for extreme cold weather, ensuring warmth and protection during winter outdoor activities.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Canada"
+      },
+      {
+        "title": "Material",
+        "description": "Acrylic, Wool Blend"
+      },
+      {
+        "title": "Dimensions",
+        "description": "80 x 16 inches"
+      },
+      {
+        "title": "Color Options",
+        "description": "Dark Gray, Black, Forest Green"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 93,
+    "name": "Lightweight Cotton Scarf",
+    "description": "A breathable and lightweight cotton scarf, ideal for layering in the spring and fall for a casual yet stylish look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "100% Cotton"
+      },
+      {
+        "title": "Dimensions",
+        "description": "72 x 18 inches"
+      },
+      {
+        "title": "Color Options",
+        "description": "White, Navy, Light Gray"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 94,
+    "name": "Geometric Pattern Silk Scarf",
+    "description": "A luxurious silk scarf with a modern geometric pattern, perfect for adding a sophisticated touch to both formal and casual outfits.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "100% Silk"
+      },
+      {
+        "title": "Dimensions",
+        "description": "60 x 12 inches"
+      },
+      {
+        "title": "Color Options",
+        "description": "Silver, Blue, Red"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 95,
+    "name": "Houndstooth Wool Scarf",
+    "description": "A stylish houndstooth-patterned wool scarf that combines classic design with modern comfort, suitable for both business and casual wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "England"
+      },
+      {
+        "title": "Material",
+        "description": "Wool"
+      },
+      {
+        "title": "Dimensions",
+        "description": "75 x 15 inches"
+      },
+      {
+        "title": "Color Options",
+        "description": "Black and White, Navy and Gray"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 96,
+    "name": "Classic Aviator Sunglasses",
+    "description": "Timeless aviator sunglasses with a metal frame and dark lenses, offering both style and UV protection for everyday wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Metal frame, Polycarbonate lenses"
+      },
+      {
+        "title": "Lens Type",
+        "description": "UV400 Protection"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Gold, Silver"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Gray, Brown"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 97,
+    "name": "Round Retro Sunglasses",
+    "description": "Vintage-inspired round sunglasses with a sleek black frame, perfect for adding a touch of retro style to your look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Acetate frame, Polycarbonate lenses"
+      },
+      {
+        "title": "Lens Type",
+        "description": "UV400 Protection"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Black"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Black, Green"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 98,
+    "name": "Sports Performance Sunglasses",
+    "description": "Lightweight and durable sunglasses designed for athletes, offering enhanced clarity and UV protection for outdoor sports.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Nylon frame, Polycarbonate lenses"
+      },
+      {
+        "title": "Lens Type",
+        "description": "Polarized, UV400 Protection"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Matte Black, Blue"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Gray, Yellow"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 99,
+    "name": "Wooden Frame Sunglasses",
+    "description": "Eco-friendly sunglasses featuring a unique wooden frame, combining natural materials with modern design for a stylish and sustainable look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Wood frame, Polarized lenses"
+      },
+      {
+        "title": "Lens Type",
+        "description": "UV400 Protection, Polarized"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Natural Wood, Dark Walnut"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Brown, Green"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 100,
+    "name": "Polarized Wayfarer Sunglasses",
+    "description": "Classic Wayfarer-style sunglasses with polarized lenses for reduced glare and enhanced clarity, perfect for everyday use and outdoor activities.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Plastic frame, Polycarbonate lenses"
+      },
+      {
+        "title": "Lens Type",
+        "description": "Polarized, UV400 Protection"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Black, Tortoise"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Gray, Blue"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 101,
+    "name": "Sporty Wraparound Sunglasses",
+    "description": "Aerodynamic wraparound sunglasses designed for active outdoor enthusiasts, providing full coverage and enhanced protection against the sun's rays.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Germany"
+      },
+      {
+        "title": "Material",
+        "description": "Plastic frame, Polycarbonate lenses"
+      },
+      {
+        "title": "Lens Type",
+        "description": "UV400 Protection"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Black, Red"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Gray, Mirror Blue"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 102,
+    "name": "Luxury Designer Sunglasses",
+    "description": "Premium designer sunglasses with a sleek frame and high-quality lenses, offering superior style and protection for the fashion-conscious.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Metal frame, Polarized lenses"
+      },
+      {
+        "title": "Lens Type",
+        "description": "UV400 Protection, Polarized"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Gold, Silver"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Gray, Green"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 103,
+    "name": "Modern Square Sunglasses",
+    "description": "Contemporary square-shaped sunglasses with a bold frame, designed for a sharp, stylish look while offering full UV protection.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Acetate frame, Polycarbonate lenses"
+      },
+      {
+        "title": "Lens Type",
+        "description": "UV400 Protection"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Black, Tortoise"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Brown, Blue"
+      }
+    ],
+    "gender": "men",
+    "category_id": 2
+  },
+  {
+    "id": 104,
+    "name": "Leather Combat Ankle Boots",
+    "description": "Rugged leather combat ankle boots with a chunky sole and lace-up design, perfect for an edgy and practical look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Poland"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "2 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "5-10"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 105,
+    "name": "Pointed Toe Velvet Ankle Boots",
+    "description": "Elegant velvet ankle boots with a pointed toe, ideal for adding a luxurious touch to both day and evening outfits.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Velvet"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "3 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "6-10"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 106,
+    "name": "Chunky Heel Suede Ankle Boots",
+    "description": "Stylish suede ankle boots with a chunky block heel, perfect for everyday wear, providing both comfort and a modern look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Suede"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "3.5 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "5-9"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 107,
+    "name": "Knit Stretch Ankle Boots",
+    "description": "Flexible knit stretch ankle boots, offering a sock-like fit and comfort while providing a sleek, streamlined look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Knit fabric"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "2 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "6-10"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 108,
+    "name": "Western Fringe Ankle Boots",
+    "description": "Western-inspired ankle boots with fringe detailing, perfect for creating a laid-back boho vibe while maintaining a stylish silhouette.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Mexico"
+      },
+      {
+        "title": "Material",
+        "description": "Leather"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "2 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "6-9"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 109,
+    "name": "Faux Leather Zipper Ankle Boots",
+    "description": "Faux leather ankle boots with a sleek zipper design, offering both style and comfort for everyday wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Faux leather"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "2.5 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "5-10"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 110,
+    "name": "Ankle Boots with Metal Detailing",
+    "description": "Chic ankle boots with metal detailing on the sides, adding a contemporary twist to a classic design for a fashion-forward look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Leather"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "3 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "6-10"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 111,
+    "name": "Slip-On Ankle Boots with Tassels",
+    "description": "Easy slip-on ankle boots with a stylish tassel detail, perfect for a comfortable yet chic look on casual outings.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Turkey"
+      },
+      {
+        "title": "Material",
+        "description": "Faux suede"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "1.5 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "6-9"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 112,
+    "name": "Classic Strappy Sandals",
+    "description": "Elegant strappy sandals with adjustable ankle straps, perfect for adding a feminine touch to any summer outfit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Leather"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "2 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "5-10"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 113,
+    "name": "Flat Gladiator Sandals",
+    "description": "Trendy gladiator sandals with adjustable straps, ideal for casual outings or beach days with a bold, statement-making look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Greece"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "Flat"
+      },
+      {
+        "title": "Size Range",
+        "description": "6-11"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 114,
+    "name": "Wedge Heel Sandals",
+    "description": "Stylish wedge sandals with a comfortable height and a chic design, perfect for both casual and semi-formal occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Spain"
+      },
+      {
+        "title": "Material",
+        "description": "Fabric upper, Cork wedge"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "3.5 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "5-9"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 115,
+    "name": "Slide Sandals with Metal Accents",
+    "description": "Minimalistic slide sandals with a stylish metal accent across the straps, adding a modern touch to a casual look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Faux leather"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "Flat"
+      },
+      {
+        "title": "Size Range",
+        "description": "6-10"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 116,
+    "name": "Espadrille Sandals with Jute Sole",
+    "description": "Chic espadrille sandals featuring a jute-wrapped sole, ideal for summer days and warm-weather outings.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Spain"
+      },
+      {
+        "title": "Material",
+        "description": "Canvas upper, Jute sole"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "2 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "6-10"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 117,
+    "name": "Thong Sandals with Beaded Detail",
+    "description": "Elegant thong sandals featuring beaded accents, perfect for beach trips or pairing with casual summer dresses.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Faux leather"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "Flat"
+      },
+      {
+        "title": "Size Range",
+        "description": "5-9"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 118,
+    "name": "Platform Sandals with Ankle Strap",
+    "description": "Stylish platform sandals with a secure ankle strap, offering both height and comfort for all-day wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Faux suede"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "4 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "6-10"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 119,
+    "name": "Sporty Sandals with Adjustable Straps",
+    "description": "Sporty sandals with adjustable straps, designed for comfort and durability during outdoor activities and casual wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Synthetic fabric"
+      },
+      {
+        "title": "Sole",
+        "description": "Rubber"
+      },
+      {
+        "title": "Heel Height",
+        "description": "Flat"
+      },
+      {
+        "title": "Size Range",
+        "description": "5-10"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 120,
+    "name": "Wide Leather Belt with Gold Buckle",
+    "description": "A bold wide leather belt featuring a gold-tone buckle, perfect for cinching your waist and adding a sophisticated touch to any outfit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Buckle Material",
+        "description": "Gold-tone"
+      },
+      {
+        "title": "Width",
+        "description": "3 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "S-XL"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 121,
+    "name": "Slim Black Patent Belt",
+    "description": "A sleek black patent belt with a minimalistic silver buckle, designed to add a glossy, modern touch to your outfits.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Patent leather"
+      },
+      {
+        "title": "Buckle Material",
+        "description": "Silver-tone"
+      },
+      {
+        "title": "Width",
+        "description": "1 inch"
+      },
+      {
+        "title": "Size Range",
+        "description": "S-L"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 122,
+    "name": "Braided Leather Belt",
+    "description": "A timeless braided leather belt, offering both flexibility and style, perfect for casual and semi-casual outfits.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Spain"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Buckle Material",
+        "description": "Brass-tone"
+      },
+      {
+        "title": "Width",
+        "description": "1.5 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "M-XL"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 123,
+    "name": "Fashionable Studded Belt",
+    "description": "A trendy studded belt with silver studs along the strap, perfect for adding an edgy and bold vibe to any outfit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Faux leather"
+      },
+      {
+        "title": "Buckle Material",
+        "description": "Nickel-tone"
+      },
+      {
+        "title": "Width",
+        "description": "2 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "S-M"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 124,
+    "name": "Reversible Belt with Double Buckle",
+    "description": "A versatile reversible belt featuring a double buckle design, perfect for wearing with both black and brown outfits.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Buckle Material",
+        "description": "Silver-tone"
+      },
+      {
+        "title": "Width",
+        "description": "1.25 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "S-XL"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 125,
+    "name": "Metallic Belt with Oval Buckle",
+    "description": "A stylish metallic belt with a chic oval buckle, perfect for adding a statement piece to dresses or tunics.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Metallic faux leather"
+      },
+      {
+        "title": "Buckle Material",
+        "description": "Gold-tone"
+      },
+      {
+        "title": "Width",
+        "description": "1.5 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "S-L"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 126,
+    "name": "Elastic Waist Belt with Decorative Bow",
+    "description": "A comfortable elastic waist belt featuring a decorative bow at the front, adding a feminine touch to any dress or high-waisted outfit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Elastic fabric"
+      },
+      {
+        "title": "Buckle Material",
+        "description": "Fabric bow"
+      },
+      {
+        "title": "Width",
+        "description": "2.5 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "S-M"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 127,
+    "name": "Double Loop Belt with Pin Buckle",
+    "description": "A classic double loop belt with a pin buckle, offering a polished and timeless look that pairs well with both formal and casual attire.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Buckle Material",
+        "description": "Silver-tone"
+      },
+      {
+        "title": "Width",
+        "description": "1.5 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "M-XL"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 128,
+    "name": "Cashmere Blend Infinity Scarf",
+    "description": "A luxurious cashmere blend infinity scarf that offers warmth and comfort while adding a soft, elegant touch to any outfit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Cashmere blend"
+      },
+      {
+        "title": "Dimensions",
+        "description": "60 inches"
+      },
+      {
+        "title": "Care Instructions",
+        "description": "Dry clean only"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 129,
+    "name": "Floral Print Silk Scarf",
+    "description": "A lightweight silk scarf with a vibrant floral print, perfect for adding a pop of color and elegance to your spring and summer outfits.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "100% Silk"
+      },
+      {
+        "title": "Dimensions",
+        "description": "40 x 40 inches"
+      },
+      {
+        "title": "Care Instructions",
+        "description": "Hand wash cold"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 130,
+    "name": "Plaid Wool Scarf",
+    "description": "A cozy plaid wool scarf, perfect for layering during the colder months to keep you warm and stylish.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Scotland"
+      },
+      {
+        "title": "Material",
+        "description": "100% Wool"
+      },
+      {
+        "title": "Dimensions",
+        "description": "70 x 12 inches"
+      },
+      {
+        "title": "Care Instructions",
+        "description": "Dry clean only"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 131,
+    "name": "Chunky Knit Infinity Scarf",
+    "description": "A thick, chunky knit infinity scarf that provides ultimate warmth and a cozy texture, ideal for winter weather.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Acrylic"
+      },
+      {
+        "title": "Dimensions",
+        "description": "30 x 10 inches"
+      },
+      {
+        "title": "Care Instructions",
+        "description": "Machine wash cold"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 132,
+    "name": "Geometric Print Cotton Scarf",
+    "description": "A lightweight cotton scarf featuring a bold geometric print, perfect for casual outfits or adding a stylish layer during warmer months.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "100% Cotton"
+      },
+      {
+        "title": "Dimensions",
+        "description": "50 x 50 inches"
+      },
+      {
+        "title": "Care Instructions",
+        "description": "Machine wash cold"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 133,
+    "name": "Solid Color Cashmere Scarf",
+    "description": "A soft, solid-colored cashmere scarf that adds warmth and sophistication to any ensemble, perfect for both casual and formal wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Nepal"
+      },
+      {
+        "title": "Material",
+        "description": "100% Cashmere"
+      },
+      {
+        "title": "Dimensions",
+        "description": "70 x 14 inches"
+      },
+      {
+        "title": "Care Instructions",
+        "description": "Dry clean only"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 134,
+    "name": "Houndstooth Pattern Scarf",
+    "description": "A classic houndstooth pattern scarf made of lightweight fabric, perfect for adding a chic, timeless pattern to your outfit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Turkey"
+      },
+      {
+        "title": "Material",
+        "description": "Polyester"
+      },
+      {
+        "title": "Dimensions",
+        "description": "60 x 18 inches"
+      },
+      {
+        "title": "Care Instructions",
+        "description": "Machine wash cold"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 135,
+    "name": "Boho Fringe Scarf",
+    "description": "A bohemian-style scarf with fringed edges and a unique print, perfect for layering with casual or beach outfits.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Mexico"
+      },
+      {
+        "title": "Material",
+        "description": "Cotton"
+      },
+      {
+        "title": "Dimensions",
+        "description": "55 x 15 inches"
+      },
+      {
+        "title": "Care Instructions",
+        "description": "Hand wash cold"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 136,
+    "name": "Oversized Round Sunglasses",
+    "description": "Fashion-forward oversized round sunglasses with a bold frame, offering maximum UV protection and a chic, retro look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Acetate frame"
+      },
+      {
+        "title": "Lens Type",
+        "description": "UV400 protection"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Gradient brown"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Tortoise shell"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 137,
+    "name": "Cat-Eye Sunglasses with Gold Accents",
+    "description": "Elegant cat-eye sunglasses with gold detailing on the frame, designed for a sophisticated and timeless look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Metal frame"
+      },
+      {
+        "title": "Lens Type",
+        "description": "UV400 protection"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Black"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Gold"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 138,
+    "name": "Vintage Square Sunglasses",
+    "description": "Classic square sunglasses with a vintage feel, offering a sleek look and excellent sun protection for everyday wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Plastic frame"
+      },
+      {
+        "title": "Lens Type",
+        "description": "UV400 protection"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Smoke"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Black"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 139,
+    "name": "Sporty Wrap-Around Sunglasses",
+    "description": "Sporty wrap-around sunglasses designed for outdoor activities, providing full coverage and protection from the sun.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Germany"
+      },
+      {
+        "title": "Material",
+        "description": "Rubber frame"
+      },
+      {
+        "title": "Lens Type",
+        "description": "Polarized UV400 protection"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Gray"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Matte black"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 140,
+    "name": "Aviator Sunglasses with Mirrored Lenses",
+    "description": "Classic aviator sunglasses with mirrored lenses, combining a timeless design with modern reflective technology.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Metal frame"
+      },
+      {
+        "title": "Lens Type",
+        "description": "Mirrored UV400 protection"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Silver"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Gold"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 141,
+    "name": "Round Metal Frame Sunglasses",
+    "description": "Trendy round metal frame sunglasses that add a stylish retro flair to any outfit, perfect for casual wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Japan"
+      },
+      {
+        "title": "Material",
+        "description": "Metal frame"
+      },
+      {
+        "title": "Lens Type",
+        "description": "UV400 protection"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Blue"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Silver"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 142,
+    "name": "Geometric Pattern Sunglasses",
+    "description": "Unique geometric-patterned sunglasses with an edgy and modern frame, ideal for fashion-forward individuals.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Spain"
+      },
+      {
+        "title": "Material",
+        "description": "Plastic frame"
+      },
+      {
+        "title": "Lens Type",
+        "description": "UV400 protection"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Brown"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Black and White"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 143,
+    "name": "Browline Sunglasses with Tortoise Shell",
+    "description": "Stylish browline sunglasses with tortoiseshell accents, offering a sophisticated and retro look with modern UV protection.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Acetate and metal frame"
+      },
+      {
+        "title": "Lens Type",
+        "description": "UV400 protection"
+      },
+      {
+        "title": "Lens Color",
+        "description": "Green"
+      },
+      {
+        "title": "Frame Color",
+        "description": "Tortoise shell"
+      }
+    ],
+    "gender": "women",
+    "category_id": 2
+  },
+  {
+    "id": 144,
+    "name": "Gold-Plated Cuff Bracelet",
+    "description": "A sleek gold-plated cuff bracelet with a minimalist design, perfect for adding a touch of elegance to any outfit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Gold-plated metal"
+      },
+      {
+        "title": "Width",
+        "description": "1.5 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "One size"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 145,
+    "name": "Leather Wrap Bracelet with Silver Charm",
+    "description": "A stylish leather wrap bracelet featuring a silver charm, offering a chic and casual look for everyday wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Genuine leather"
+      },
+      {
+        "title": "Charm Material",
+        "description": "Sterling silver"
+      },
+      {
+        "title": "Size Range",
+        "description": "S-M"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 146,
+    "name": "Bohemian Beaded Bracelet",
+    "description": "A boho-inspired bracelet made with colorful beads and an adjustable string, perfect for layering or wearing solo.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Glass beads, Thread"
+      },
+      {
+        "title": "Size Range",
+        "description": "Adjustable"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 147,
+    "name": "Diamond Tennis Bracelet",
+    "description": "An exquisite tennis bracelet featuring round-cut diamonds, offering a sophisticated and timeless piece for special occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Switzerland"
+      },
+      {
+        "title": "Material",
+        "description": "14k White gold"
+      },
+      {
+        "title": "Stone Type",
+        "description": "Diamonds"
+      },
+      {
+        "title": "Carat Weight",
+        "description": "1.5 carats"
+      },
+      {
+        "title": "Size Range",
+        "description": "6.5-7.5 inches"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 148,
+    "name": "Silver Bangle Bracelet Set",
+    "description": "A set of three polished silver bangles, perfect for stacking and creating a chic, layered look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Turkey"
+      },
+      {
+        "title": "Material",
+        "description": "Sterling silver"
+      },
+      {
+        "title": "Set Count",
+        "description": "3"
+      },
+      {
+        "title": "Size Range",
+        "description": "One size"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 149,
+    "name": "Turquoise Beaded Stretch Bracelet",
+    "description": "A vibrant stretch bracelet made with turquoise beads, offering a pop of color and a laid-back, beachy vibe.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Mexico"
+      },
+      {
+        "title": "Material",
+        "description": "Turquoise beads, Elastic"
+      },
+      {
+        "title": "Size Range",
+        "description": "Adjustable"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 150,
+    "name": "Gold Link Chain Bracelet",
+    "description": "A bold gold link chain bracelet, adding a statement piece to your wrist for a chic, sophisticated look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Gold-plated metal"
+      },
+      {
+        "title": "Chain Length",
+        "description": "7.5 inches"
+      },
+      {
+        "title": "Size Range",
+        "description": "One size"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 151,
+    "name": "Rose Gold Infinity Bracelet",
+    "description": "A delicate rose gold infinity bracelet, symbolizing eternity and perfect for adding a romantic touch to any outfit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Rose gold-plated metal"
+      },
+      {
+        "title": "Size Range",
+        "description": "One size"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 152,
+    "name": "Gold Hoop Earrings",
+    "description": "Classic gold hoop earrings that add a timeless and elegant touch to any outfit, perfect for both casual and formal occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "14k Gold"
+      },
+      {
+        "title": "Diameter",
+        "description": "2 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Hinged"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 153,
+    "name": "Diamond Stud Earrings",
+    "description": "Exquisite diamond stud earrings set in 18k white gold, offering a sparkling and sophisticated addition to any jewelry collection.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Switzerland"
+      },
+      {
+        "title": "Material",
+        "description": "18k White gold"
+      },
+      {
+        "title": "Stone Type",
+        "description": "Diamonds"
+      },
+      {
+        "title": "Carat Weight",
+        "description": "0.5 carats"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Push-back"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 154,
+    "name": "Pearl Drop Earrings",
+    "description": "Elegant drop earrings featuring lustrous freshwater pearls, perfect for formal events or adding sophistication to any outfit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Japan"
+      },
+      {
+        "title": "Material",
+        "description": "Freshwater pearls"
+      },
+      {
+        "title": "Metal Type",
+        "description": "Sterling silver"
+      },
+      {
+        "title": "Length",
+        "description": "1.5 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Fishhook"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 155,
+    "name": "Chandelier Crystal Earrings",
+    "description": "Glamorous chandelier earrings adorned with sparkling crystals, perfect for adding a touch of drama and elegance to your evening look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Crystal, Brass"
+      },
+      {
+        "title": "Length",
+        "description": "3 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "French hook"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 156,
+    "name": "Silver Hoops with Turquoise Inlay",
+    "description": "Stylish silver hoop earrings with turquoise inlay, offering a pop of color and a southwestern-inspired vibe.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Mexico"
+      },
+      {
+        "title": "Material",
+        "description": "Sterling silver, Turquoise"
+      },
+      {
+        "title": "Diameter",
+        "description": "1.5 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Hinged"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 157,
+    "name": "Geometric Gold Earrings",
+    "description": "Modern geometric-shaped gold earrings that add a contemporary touch to your style, ideal for everyday wear or special occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Gold-plated metal"
+      },
+      {
+        "title": "Shape",
+        "description": "Triangle"
+      },
+      {
+        "title": "Length",
+        "description": "2 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Post back"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 158,
+    "name": "Bohemian Feather Earrings",
+    "description": "Bohemian-style feather earrings with a mix of natural feathers and metal accents, perfect for adding a carefree, earthy look to your ensemble.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Feathers, Brass"
+      },
+      {
+        "title": "Length",
+        "description": "4 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Fishhook"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 159,
+    "name": "Teardrop Gemstone Earrings",
+    "description": "Elegant teardrop earrings featuring colorful gemstones, offering a vibrant and eye-catching accessory for any occasion.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Brazil"
+      },
+      {
+        "title": "Material",
+        "description": "Gemstones (Amethyst, Citrine, and Garnet)"
+      },
+      {
+        "title": "Metal Type",
+        "description": "Sterling silver"
+      },
+      {
+        "title": "Length",
+        "description": "2.5 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Post back"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 160,
+    "name": "Gold Plated Heart Pendant Necklace",
+    "description": "A delicate gold-plated necklace with a heart-shaped pendant, perfect for a romantic and timeless look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Gold-plated metal"
+      },
+      {
+        "title": "Pendant Shape",
+        "description": "Heart"
+      },
+      {
+        "title": "Chain Length",
+        "description": "18 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Lobster clasp"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 161,
+    "name": "Diamond Solitaire Pendant Necklace",
+    "description": "A sophisticated diamond solitaire pendant necklace set in platinum, offering a sparkling and elegant statement piece.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Switzerland"
+      },
+      {
+        "title": "Material",
+        "description": "Platinum"
+      },
+      {
+        "title": "Stone Type",
+        "description": "Diamond"
+      },
+      {
+        "title": "Carat Weight",
+        "description": "0.5 carats"
+      },
+      {
+        "title": "Chain Length",
+        "description": "16 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Spring ring clasp"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 162,
+    "name": "Bohemian Layered Necklace Set",
+    "description": "A trendy layered necklace set with multiple chains and pendants, featuring a combination of beads and metal accents, perfect for a boho-chic look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Beads, Alloy"
+      },
+      {
+        "title": "Chain Length",
+        "description": "16-20 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Lobster clasp"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 163,
+    "name": "Silver Bar Necklace",
+    "description": "A minimalist silver bar necklace, perfect for a modern, sleek, and versatile accessory that can be dressed up or down.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Sterling silver"
+      },
+      {
+        "title": "Pendant Shape",
+        "description": "Bar"
+      },
+      {
+        "title": "Chain Length",
+        "description": "18 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Spring ring clasp"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 164,
+    "name": "Pearl Choker Necklace",
+    "description": "An elegant pearl choker necklace featuring freshwater pearls, ideal for formal events or adding sophistication to your everyday attire.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Japan"
+      },
+      {
+        "title": "Material",
+        "description": "Freshwater pearls"
+      },
+      {
+        "title": "Chain Length",
+        "description": "14 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Lobster clasp"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 165,
+    "name": "Rose Gold Infinity Necklace",
+    "description": "A stunning rose gold infinity symbol pendant necklace, symbolizing eternity and love, perfect for meaningful gifts.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Rose gold-plated metal"
+      },
+      {
+        "title": "Pendant Shape",
+        "description": "Infinity"
+      },
+      {
+        "title": "Chain Length",
+        "description": "18 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Spring ring clasp"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 166,
+    "name": "Turquoise and Silver Pendant Necklace",
+    "description": "A beautifully crafted necklace featuring a turquoise stone set in sterling silver, offering a natural and earthy vibe.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Mexico"
+      },
+      {
+        "title": "Material",
+        "description": "Turquoise, Sterling silver"
+      },
+      {
+        "title": "Pendant Shape",
+        "description": "Round"
+      },
+      {
+        "title": "Chain Length",
+        "description": "20 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Lobster clasp"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 167,
+    "name": "Crystal Statement Necklace",
+    "description": "A bold statement necklace with large, sparkling crystals arranged in a dramatic design, perfect for adding glamour to your evening wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Crystal, Alloy"
+      },
+      {
+        "title": "Chain Length",
+        "description": "18 inches"
+      },
+      {
+        "title": "Closure Type",
+        "description": "Lobster clasp"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 168,
+    "name": "Gold-Plated Stackable Rings",
+    "description": "A set of three gold-plated stackable rings, perfect for mixing and matching to create a custom look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Gold-plated metal"
+      },
+      {
+        "title": "Set Count",
+        "description": "3"
+      },
+      {
+        "title": "Ring Sizes",
+        "description": "5-9"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 169,
+    "name": "Sapphire and Diamond Ring",
+    "description": "An elegant sapphire and diamond ring set in 18k white gold, featuring a deep blue sapphire center stone surrounded by sparkling diamonds.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Switzerland"
+      },
+      {
+        "title": "Material",
+        "description": "18k White gold"
+      },
+      {
+        "title": "Stone Type",
+        "description": "Sapphire, Diamonds"
+      },
+      {
+        "title": "Carat Weight",
+        "description": "1.2 carats"
+      },
+      {
+        "title": "Ring Size",
+        "description": "6"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 170,
+    "name": "Silver Solitaire Engagement Ring",
+    "description": "A classic solitaire engagement ring featuring a round-cut diamond set in a sleek sterling silver band.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Sterling silver"
+      },
+      {
+        "title": "Stone Type",
+        "description": "Diamond"
+      },
+      {
+        "title": "Carat Weight",
+        "description": "0.75 carats"
+      },
+      {
+        "title": "Ring Size",
+        "description": "7"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 171,
+    "name": "Vintage Emerald and Pearl Ring",
+    "description": "A vintage-inspired ring featuring an emerald center stone surrounded by delicate freshwater pearls, perfect for a unique, old-world charm.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Sterling silver"
+      },
+      {
+        "title": "Stone Type",
+        "description": "Emerald, Freshwater pearls"
+      },
+      {
+        "title": "Ring Size",
+        "description": "6"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 172,
+    "name": "Rose Gold Knotted Ring",
+    "description": "A stylish and modern rose gold ring with a knotted design, perfect for adding a subtle touch of elegance to your daily look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Rose gold-plated metal"
+      },
+      {
+        "title": "Ring Size",
+        "description": "6-8"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 173,
+    "name": "Pearl and Diamond Halo Ring",
+    "description": "An exquisite pearl ring featuring a central freshwater pearl surrounded by a halo of diamonds, set in 14k white gold.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "14k White gold"
+      },
+      {
+        "title": "Stone Type",
+        "description": "Freshwater pearl, Diamonds"
+      },
+      {
+        "title": "Carat Weight",
+        "description": "0.5 carats"
+      },
+      {
+        "title": "Ring Size",
+        "description": "7"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 174,
+    "name": "Tungsten Comfort Fit Wedding Band",
+    "description": "A sleek and durable tungsten wedding band with a brushed finish, offering a modern and masculine design.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Tungsten"
+      },
+      {
+        "title": "Width",
+        "description": "8mm"
+      },
+      {
+        "title": "Ring Size",
+        "description": "10"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 175,
+    "name": "Opal and Gold Ring",
+    "description": "A beautiful opal ring set in 14k yellow gold, featuring a vivid opal stone that shifts colors in the light, adding a touch of mystique.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Australia"
+      },
+      {
+        "title": "Material",
+        "description": "14k Yellow gold"
+      },
+      {
+        "title": "Stone Type",
+        "description": "Opal"
+      },
+      {
+        "title": "Ring Size",
+        "description": "6"
+      }
+    ],
+    "gender": "women",
+    "category_id": 3
+  },
+  {
+    "id": 176,
+    "name": "Classic Leather Strap Watch",
+    "description": "A timeless watch with a minimalist design, featuring a sleek silver-tone case and a genuine leather strap for a sophisticated look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Switzerland"
+      },
+      {
+        "title": "Material",
+        "description": "Stainless steel case, Leather strap"
+      },
+      {
+        "title": "Dial Color",
+        "description": "White"
+      },
+      {
+        "title": "Strap Color",
+        "description": "Black"
+      },
+      {
+        "title": "Water Resistant",
+        "description": "30 meters"
+      }
+    ],
+    "gender": "men",
+    "category_id": 4
+  },
+  {
+    "id": 177,
+    "name": "Rose Gold Mesh Watch",
+    "description": "A modern rose gold mesh watch with a subtle, elegant design, ideal for both casual and formal occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Germany"
+      },
+      {
+        "title": "Material",
+        "description": "Rose gold-plated stainless steel"
+      },
+      {
+        "title": "Dial Color",
+        "description": "Champagne"
+      },
+      {
+        "title": "Strap Type",
+        "description": "Mesh"
+      },
+      {
+        "title": "Water Resistant",
+        "description": "50 meters"
+      }
+    ],
+    "gender": "men",
+    "category_id": 4
+  },
+  {
+    "id": 178,
+    "name": "Luxury Diamond Watch",
+    "description": "A luxurious watch adorned with diamonds around the bezel and set in a stainless steel case, providing a glamorous statement piece.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Switzerland"
+      },
+      {
+        "title": "Material",
+        "description": "Stainless steel, Diamonds"
+      },
+      {
+        "title": "Dial Color",
+        "description": "Black"
+      },
+      {
+        "title": "Strap Color",
+        "description": "Silver"
+      },
+      {
+        "title": "Diamond Count",
+        "description": "20 diamonds"
+      },
+      {
+        "title": "Water Resistant",
+        "description": "100 meters"
+      }
+    ],
+    "gender": "men",
+    "category_id": 4
+  },
+  {
+    "id": 179,
+    "name": "Sporty Chronograph Watch",
+    "description": "A sporty chronograph watch with a durable rubber strap and multiple subdials, perfect for those who enjoy an active lifestyle.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Japan"
+      },
+      {
+        "title": "Material",
+        "description": "Stainless steel case, Rubber strap"
+      },
+      {
+        "title": "Dial Color",
+        "description": "Blue"
+      },
+      {
+        "title": "Water Resistant",
+        "description": "200 meters"
+      },
+      {
+        "title": "Features",
+        "description": "Chronograph, Date function"
+      }
+    ],
+    "gender": "men",
+    "category_id": 4
+  },
+  {
+    "id": 180,
+    "name": "Slim Black Ceramic Watch",
+    "description": "A sleek, slim black ceramic watch with a minimalist design, ideal for those who prefer a modern, elegant look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Ceramic case and strap"
+      },
+      {
+        "title": "Dial Color",
+        "description": "Black"
+      },
+      {
+        "title": "Water Resistant",
+        "description": "50 meters"
+      }
+    ],
+    "gender": "men",
+    "category_id": 4
+  },
+  {
+    "id": 181,
+    "name": "Vintage Gold-Plated Watch",
+    "description": "A vintage-inspired gold-plated watch with a delicate mesh band and classic Roman numerals on the dial, offering a timeless elegance.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Gold-plated stainless steel"
+      },
+      {
+        "title": "Dial Color",
+        "description": "White"
+      },
+      {
+        "title": "Strap Type",
+        "description": "Mesh"
+      },
+      {
+        "title": "Water Resistant",
+        "description": "30 meters"
+      }
+    ],
+    "gender": "men",
+    "category_id": 4
+  },
+  {
+    "id": 182,
+    "name": "Sapphire Crystal Watch",
+    "description": "A sophisticated watch featuring a sapphire crystal face, offering scratch resistance and a luxurious appearance with a stainless steel bracelet.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Switzerland"
+      },
+      {
+        "title": "Material",
+        "description": "Stainless steel, Sapphire crystal"
+      },
+      {
+        "title": "Dial Color",
+        "description": "Silver"
+      },
+      {
+        "title": "Strap Color",
+        "description": "Silver"
+      },
+      {
+        "title": "Water Resistant",
+        "description": "100 meters"
+      }
+    ],
+    "gender": "men",
+    "category_id": 4
+  },
+  {
+    "id": 183,
+    "name": "Leather Strap Dual Time Zone Watch",
+    "description": "A versatile leather strap watch with dual time zone functionality, perfect for frequent travelers and those who need to track multiple time zones.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Stainless steel, Leather strap"
+      },
+      {
+        "title": "Dial Color",
+        "description": "Black"
+      },
+      {
+        "title": "Strap Color",
+        "description": "Brown"
+      },
+      {
+        "title": "Water Resistant",
+        "description": "50 meters"
+      },
+      {
+        "title": "Features",
+        "description": "Dual time zone"
+      }
+    ],
+    "gender": "men",
+    "category_id": 4
+  },
+  {
+    "id": 184,
+    "name": "Floral Essence Eau de Parfum",
+    "description": "A delicate floral fragrance with notes of rose, jasmine, and lily of the valley, perfect for an elegant and feminine scent.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Rose, Jasmine, Lily of the Valley"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "50ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Parfum"
+      }
+    ],
+    "gender": "women",
+    "category_id": 5
+  },
+  {
+    "id": 185,
+    "name": "Citrus Breeze Perfume",
+    "description": "A fresh and invigorating scent with vibrant citrus notes of lemon, orange, and grapefruit, ideal for daytime wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Lemon, Orange, Grapefruit"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "100ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Toilette"
+      }
+    ],
+    "gender": "women",
+    "category_id": 5
+  },
+  {
+    "id": 186,
+    "name": "Vanilla Dream Eau de Parfum",
+    "description": "A warm and comforting fragrance with sweet notes of vanilla, amber, and musk, perfect for cozy evenings or a romantic night out.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Vanilla, Amber, Musk"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "75ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Parfum"
+      }
+    ],
+    "gender": "women",
+    "category_id": 5
+  },
+  {
+    "id": 187,
+    "name": "Gourmand Blossom Perfume",
+    "description": "A seductive gourmand fragrance with rich notes of caramel, chocolate, and almond, balanced with a touch of floral sweetness.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Caramel, Chocolate, Almond, Floral"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "50ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Parfum"
+      }
+    ],
+    "gender": "women",
+    "category_id": 5
+  },
+  {
+    "id": 188,
+    "name": "Oriental Spice Perfume",
+    "description": "A bold and exotic fragrance featuring spicy notes of cinnamon, clove, and sandalwood, ideal for evening wear and special occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "United Arab Emirates"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Cinnamon, Clove, Sandalwood"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "60ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Parfum"
+      }
+    ],
+    "gender": "women",
+    "category_id": 5
+  },
+  {
+    "id": 189,
+    "name": "Tropical Oasis Perfume",
+    "description": "A refreshing tropical fragrance with notes of coconut, pineapple, and mango, evoking the feeling of a sunny island getaway.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Hawaii"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Coconut, Pineapple, Mango"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "100ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Toilette"
+      }
+    ],
+    "gender": "women",
+    "category_id": 5
+  },
+  {
+    "id": 190,
+    "name": "Mystic Woods Eau de Parfum",
+    "description": "A rich and earthy fragrance featuring notes of cedarwood, patchouli, and vetiver, perfect for those who enjoy a deep and mysterious scent.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Cedarwood, Patchouli, Vetiver"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "80ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Parfum"
+      }
+    ],
+    "gender": "women",
+    "category_id": 5
+  },
+  {
+    "id": 191,
+    "name": "Cherry Blossom Eau de Toilette",
+    "description": "A light and airy floral fragrance with soft cherry blossom, peach, and green tea notes, offering a refreshing and delicate scent for everyday wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Japan"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Cherry Blossom, Peach, Green Tea"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "50ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Toilette"
+      }
+    ],
+    "gender": "women",
+    "category_id": 5
+  },
+  {
+    "id": 192,
+    "name": "Leather & Oud Eau de Parfum",
+    "description": "A bold and sophisticated fragrance with the rich, smoky scent of oud paired with luxurious leather notes, perfect for evening wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Oud, Leather, Amber"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "100ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Parfum"
+      }
+    ],
+    "gender": "men",
+    "category_id": 5
+  },
+  {
+    "id": 193,
+    "name": "Citrus & Spice Cologne",
+    "description": "A fresh and invigorating blend of citrus fruits and spicy undertones, offering a vibrant and energizing fragrance for daytime wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Lemon, Bergamot, Cinnamon"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "100ml"
+      },
+      {
+        "title": "Type",
+        "description": "Cologne"
+      }
+    ],
+    "gender": "men",
+    "category_id": 5
+  },
+  {
+    "id": 194,
+    "name": "Woodland Musk Eau de Toilette",
+    "description": "A masculine fragrance with deep woody notes of sandalwood, cedar, and musk, giving it an earthy and outdoorsy feel.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Sandalwood, Cedarwood, Musk"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "75ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Toilette"
+      }
+    ],
+    "gender": "men",
+    "category_id": 5
+  },
+  {
+    "id": 195,
+    "name": "Fresh Aqua Perfume",
+    "description": "A clean and aquatic fragrance with fresh marine notes, complemented by a touch of citrus and floral elements, ideal for a refreshing scent on warm days.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Marine, Citrus, Jasmine"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "80ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Parfum"
+      }
+    ],
+    "gender": "men",
+    "category_id": 5
+  },
+  {
+    "id": 196,
+    "name": "Spiced Amber Cologne",
+    "description": "A warm and spicy fragrance with rich amber, vanilla, and cinnamon notes, creating an inviting and sensual scent perfect for colder weather.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "United Arab Emirates"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Amber, Vanilla, Cinnamon"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "100ml"
+      },
+      {
+        "title": "Type",
+        "description": "Cologne"
+      }
+    ],
+    "gender": "men",
+    "category_id": 5
+  },
+  {
+    "id": 197,
+    "name": "Bergamot & Musk Perfume",
+    "description": "A refined fragrance that blends the fresh, citrusy scent of bergamot with the earthy depth of musk, offering an elegant scent for all occasions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Germany"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Bergamot, Musk, Vetiver"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "75ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Toilette"
+      }
+    ],
+    "gender": "men",
+    "category_id": 5
+  },
+  {
+    "id": 198,
+    "name": "Tobacco & Vanilla Eau de Parfum",
+    "description": "A rich and sensual fragrance featuring the smooth blend of tobacco and vanilla, accented with a touch of caramel for a sweet and smoky experience.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Switzerland"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Tobacco, Vanilla, Caramel"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "80ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Parfum"
+      }
+    ],
+    "gender": "men",
+    "category_id": 5
+  },
+  {
+    "id": 199,
+    "name": "Green Spice Perfume",
+    "description": "A vibrant and energizing fragrance with a blend of green herbal notes and a touch of spice, perfect for an active, outdoorsy lifestyle.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Spain"
+      },
+      {
+        "title": "Fragrance Notes",
+        "description": "Basil, Mint, Pepper"
+      },
+      {
+        "title": "Bottle Size",
+        "description": "90ml"
+      },
+      {
+        "title": "Type",
+        "description": "Eau de Toilette"
+      }
+    ],
+    "gender": "men",
+    "category_id": 5
+  },
+  {
+    "id": 200,
+    "name": "Sleek Runner 3000",
+    "description": "A stylish and comfortable running shoe designed for women, featuring a lightweight mesh upper and responsive cushioning.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Mesh, Rubber"
+      },
+      {
+        "title": "Sole Type",
+        "description": "Rubber"
+      },
+      {
+        "title": "Shoe Type",
+        "description": "Running"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 201,
+    "name": "Luxe Performance Sneaker",
+    "description": "A premium sneaker designed for ultimate comfort and style, with breathable leather and memory foam insoles.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Leather, Memory Foam"
+      },
+      {
+        "title": "Sole Type",
+        "description": "EVA"
+      },
+      {
+        "title": "Shoe Type",
+        "description": "Lifestyle"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 202,
+    "name": "Urban Chase",
+    "description": "Versatile and durable sneakers perfect for urban exploration, with a high-traction rubber sole and cushioned ankle support.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Synthetic, Rubber"
+      },
+      {
+        "title": "Sole Type",
+        "description": "High-Traction Rubber"
+      },
+      {
+        "title": "Shoe Type",
+        "description": "Casual"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 203,
+    "name": "Sporty Glide",
+    "description": "A sleek, performance-focused sneaker designed for everyday wear, featuring a flexible sole and ventilated mesh upper.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Mesh, Rubber"
+      },
+      {
+        "title": "Sole Type",
+        "description": "Flexible EVA"
+      },
+      {
+        "title": "Shoe Type",
+        "description": "Sports"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 204,
+    "name": "City Breeze",
+    "description": "A chic and trendy sneaker with a minimalist design, perfect for casual outings, featuring soft suede and a cushioned midsole.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Portugal"
+      },
+      {
+        "title": "Material",
+        "description": "Suede, Rubber"
+      },
+      {
+        "title": "Sole Type",
+        "description": "Rubber"
+      },
+      {
+        "title": "Shoe Type",
+        "description": "Casual"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 205,
+    "name": "Active Pulse",
+    "description": "An athletic sneaker that offers superior support for intense workouts, with a breathable mesh upper and durable outsole.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Mesh, Rubber"
+      },
+      {
+        "title": "Sole Type",
+        "description": "Durable Rubber"
+      },
+      {
+        "title": "Shoe Type",
+        "description": "Training"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 206,
+    "name": "On-the-Go Flex",
+    "description": "A versatile sneaker that combines comfort and style, ideal for walking and light sports activities, featuring a memory foam insole.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Mexico"
+      },
+      {
+        "title": "Material",
+        "description": "Mesh, EVA"
+      },
+      {
+        "title": "Sole Type",
+        "description": "Cushioned EVA"
+      },
+      {
+        "title": "Shoe Type",
+        "description": "Walking"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 207,
+    "name": "Classic Jogger",
+    "description": "A timeless jogging sneaker with a retro design, equipped with a padded collar and soft rubber sole for comfort during runs.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Nylon, Rubber"
+      },
+      {
+        "title": "Sole Type",
+        "description": "Soft Rubber"
+      },
+      {
+        "title": "Shoe Type",
+        "description": "Running"
+      }
+    ],
+    "gender": "women",
+    "category_id": 1
+  },
+  {
+    "id": 208,
+    "name": "Elegant Timepiece",
+    "description": "A refined and sophisticated watch with a stainless steel band, perfect for formal occasions, featuring a minimalist dial design.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Switzerland"
+      },
+      {
+        "title": "Material",
+        "description": "Stainless Steel, Sapphire Glass"
+      },
+      {
+        "title": "Movement Type",
+        "description": "Quartz"
+      },
+      {
+        "title": "Water Resistance",
+        "description": "50 meters"
+      }
+    ],
+    "gender": "women",
+    "category_id": 4
+  },
+  {
+    "id": 209,
+    "name": "Sporty Chic",
+    "description": "A dynamic and durable watch for active women, featuring a rubber strap and an easy-to-read digital display with multiple functions.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Japan"
+      },
+      {
+        "title": "Material",
+        "description": "Rubber, Plastic"
+      },
+      {
+        "title": "Movement Type",
+        "description": "Digital"
+      },
+      {
+        "title": "Water Resistance",
+        "description": "100 meters"
+      }
+    ],
+    "gender": "women",
+    "category_id": 4
+  },
+  {
+    "id": 210,
+    "name": "Classic Rose Gold",
+    "description": "A timeless rose gold watch designed with an elegant touch, featuring a leather strap and a classic analog dial with Roman numerals.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Leather, Rose Gold-Plated Stainless Steel"
+      },
+      {
+        "title": "Movement Type",
+        "description": "Quartz"
+      },
+      {
+        "title": "Water Resistance",
+        "description": "30 meters"
+      }
+    ],
+    "gender": "women",
+    "category_id": 4
+  },
+  {
+    "id": 211,
+    "name": "Luxury Diamond",
+    "description": "A luxurious watch adorned with sparkling diamonds on the bezel, offering a blend of high-end style and precise Swiss movement.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Switzerland"
+      },
+      {
+        "title": "Material",
+        "description": "Stainless Steel, Diamond"
+      },
+      {
+        "title": "Movement Type",
+        "description": "Swiss Automatic"
+      },
+      {
+        "title": "Water Resistance",
+        "description": "50 meters"
+      }
+    ],
+    "gender": "women",
+    "category_id": 4
+  },
+  {
+    "id": 212,
+    "name": "Vintage Glam",
+    "description": "A retro-inspired watch with a vintage feel, featuring a mesh stainless steel band and an intricate dial design with vintage hands.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Germany"
+      },
+      {
+        "title": "Material",
+        "description": "Stainless Steel, Mesh"
+      },
+      {
+        "title": "Movement Type",
+        "description": "Quartz"
+      },
+      {
+        "title": "Water Resistance",
+        "description": "30 meters"
+      }
+    ],
+    "gender": "women",
+    "category_id": 4
+  },
+  {
+    "id": 213,
+    "name": "Tech Smart Watch",
+    "description": "A sleek and functional smart watch designed for women, equipped with fitness tracking, heart rate monitoring, and smartphone connectivity.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Silicone, Aluminum"
+      },
+      {
+        "title": "Movement Type",
+        "description": "Smart"
+      },
+      {
+        "title": "Water Resistance",
+        "description": "50 meters"
+      }
+    ],
+    "gender": "women",
+    "category_id": 4
+  },
+  {
+    "id": 214,
+    "name": "Minimalist Charm",
+    "description": "A simple yet elegant watch with a clean design, featuring a slim stainless steel band and a dial with just the essential hour markers.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Japan"
+      },
+      {
+        "title": "Material",
+        "description": "Stainless Steel, Glass"
+      },
+      {
+        "title": "Movement Type",
+        "description": "Quartz"
+      },
+      {
+        "title": "Water Resistance",
+        "description": "30 meters"
+      }
+    ],
+    "gender": "women",
+    "category_id": 4
+  },
+  {
+    "id": 215,
+    "name": "Golden Grace",
+    "description": "A luxurious gold-tone watch with a delicate bracelet and a classic dial, ideal for both everyday wear and formal events.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Gold-Plated Stainless Steel"
+      },
+      {
+        "title": "Movement Type",
+        "description": "Quartz"
+      },
+      {
+        "title": "Water Resistance",
+        "description": "20 meters"
+      }
+    ],
+    "gender": "women",
+    "category_id": 4
+  },
+  {
+    "id": 216,
+    "name": "Beach Cruiser Sandal",
+    "description": "A comfortable sandal designed for the beach, featuring a durable rubber sole and an adjustable strap for a secure fit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Indonesia"
+      },
+      {
+        "title": "Material",
+        "description": "Rubber, Synthetic"
+      },
+      {
+        "title": "Sole Type",
+        "description": "Durable Rubber"
+      },
+      {
+        "title": "Strap Type",
+        "description": "Adjustable"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 217,
+    "name": "Urban Slide",
+    "description": "A stylish slide sandal perfect for casual outings, with a soft cushioned footbed and a wide strap for easy wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "EVA, Rubber"
+      },
+      {
+        "title": "Sole Type",
+        "description": "Cushioned EVA"
+      },
+      {
+        "title": "Strap Type",
+        "description": "Wide, Slip-On"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 218,
+    "name": "Leather Comfort Sandal",
+    "description": "A sophisticated leather sandal with a sleek design, featuring an ergonomic footbed and sturdy sole for all-day comfort.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Mexico"
+      },
+      {
+        "title": "Material",
+        "description": "Leather, Rubber"
+      },
+      {
+        "title": "Sole Type",
+        "description": "Rubber"
+      },
+      {
+        "title": "Strap Type",
+        "description": "Adjustable Buckle"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 219,
+    "name": "Active Outdoors Sandal",
+    "description": "A rugged sandal designed for outdoor activities, featuring a thick, grippy sole and multiple adjustable straps for a secure fit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Synthetic, Rubber"
+      },
+      {
+        "title": "Sole Type",
+        "description": "Grippy Rubber"
+      },
+      {
+        "title": "Strap Type",
+        "description": "Multiple Adjustable Straps"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 220,
+    "name": "Classic Flip-Flop",
+    "description": "A timeless flip-flop sandal made with a soft footbed and durable rubber sole, perfect for relaxed summer days.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Thailand"
+      },
+      {
+        "title": "Material",
+        "description": "Rubber"
+      },
+      {
+        "title": "Sole Type",
+        "description": "Rubber"
+      },
+      {
+        "title": "Strap Type",
+        "description": "Thong"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 221,
+    "name": "Sporty Hiking Sandal",
+    "description": "A functional hiking sandal designed for adventure, offering extra grip and stability with adjustable straps and a breathable upper.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Mesh, Rubber"
+      },
+      {
+        "title": "Sole Type",
+        "description": "Anti-Slip Rubber"
+      },
+      {
+        "title": "Strap Type",
+        "description": "Adjustable Velcro"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 222,
+    "name": "Casual Comfort Sandal",
+    "description": "A casual yet stylish sandal with a soft footbed and an easy-to-adjust buckle, perfect for both indoor and outdoor wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Suede, EVA"
+      },
+      {
+        "title": "Sole Type",
+        "description": "EVA"
+      },
+      {
+        "title": "Strap Type",
+        "description": "Buckle"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 223,
+    "name": "Summer Breeze Sandal",
+    "description": "A light and airy sandal made for hot weather, featuring a breathable mesh upper and a flexible sole for all-day comfort.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Brazil"
+      },
+      {
+        "title": "Material",
+        "description": "Mesh, Rubber"
+      },
+      {
+        "title": "Sole Type",
+        "description": "Flexible Rubber"
+      },
+      {
+        "title": "Strap Type",
+        "description": "Slip-On"
+      }
+    ],
+    "gender": "men",
+    "category_id": 1
+  },
+  {
+    "id": 224,
+    "name": "Leather Braided Bracelet",
+    "description": "A stylish braided leather bracelet, perfect for adding a rugged touch to any outfit, featuring a stainless steel clasp.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Leather, Stainless Steel"
+      },
+      {
+        "title": "Clasp Type",
+        "description": "Magnetic"
+      },
+      {
+        "title": "Length",
+        "description": "21 cm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 225,
+    "name": "Beaded Stone Bracelet",
+    "description": "A handcrafted bracelet with natural stone beads, offering a unique look that adds a touch of earthy elegance to your style.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Stone, Elastic Cord"
+      },
+      {
+        "title": "Clasp Type",
+        "description": "Elastic"
+      },
+      {
+        "title": "Bead Size",
+        "description": "8mm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 226,
+    "name": "Silver Cuff Bracelet",
+    "description": "A minimalist sterling silver cuff bracelet with a smooth finish, designed for a sleek and modern look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Sterling Silver"
+      },
+      {
+        "title": "Clasp Type",
+        "description": "Open Cuff"
+      },
+      {
+        "title": "Width",
+        "description": "8 mm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 227,
+    "name": "Titanium Link Bracelet",
+    "description": "A durable and strong titanium bracelet with a sleek design, featuring interlocking links for a modern and masculine appearance.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Japan"
+      },
+      {
+        "title": "Material",
+        "description": "Titanium"
+      },
+      {
+        "title": "Clasp Type",
+        "description": "Fold-Over"
+      },
+      {
+        "title": "Length",
+        "description": "22 cm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 228,
+    "name": "Wooden Bead Bracelet",
+    "description": "A rustic wooden bead bracelet with a natural, earthy aesthetic, perfect for adding a unique touch to casual outfits.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Brazil"
+      },
+      {
+        "title": "Material",
+        "description": "Wood, Elastic Cord"
+      },
+      {
+        "title": "Clasp Type",
+        "description": "Elastic"
+      },
+      {
+        "title": "Bead Size",
+        "description": "6mm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 229,
+    "name": "Hematite Bracelet",
+    "description": "A bracelet made from smooth hematite beads, known for their sleek metallic finish and believed to have grounding properties.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Hematite, Elastic Cord"
+      },
+      {
+        "title": "Clasp Type",
+        "description": "Elastic"
+      },
+      {
+        "title": "Bead Size",
+        "description": "6mm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 230,
+    "name": "Gold-Plated Chain Bracelet",
+    "description": "A luxurious gold-plated chain bracelet with a classic link design, adding a touch of sophistication and elegance to any outfit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Gold-Plated Stainless Steel"
+      },
+      {
+        "title": "Clasp Type",
+        "description": "Lobster Clasp"
+      },
+      {
+        "title": "Length",
+        "description": "20 cm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 231,
+    "name": "Paracord Survival Bracelet",
+    "description": "A functional and stylish paracord bracelet, ideal for outdoor enthusiasts, featuring a durable cord that can be unraveled in emergency situations.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Paracord, Plastic"
+      },
+      {
+        "title": "Clasp Type",
+        "description": "Plastic Buckle"
+      },
+      {
+        "title": "Length",
+        "description": "22 cm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 232,
+    "name": "Silver Signet Ring",
+    "description": "A classic silver signet ring with a polished finish, perfect for adding a bold and refined touch to your style.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Sterling Silver"
+      },
+      {
+        "title": "Ring Size",
+        "description": "10"
+      },
+      {
+        "title": "Finish",
+        "description": "Polished"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 233,
+    "name": "Titanium Black Ring",
+    "description": "A sleek black titanium ring with a brushed matte finish, combining modern elegance and strength in one piece.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Japan"
+      },
+      {
+        "title": "Material",
+        "description": "Titanium"
+      },
+      {
+        "title": "Ring Size",
+        "description": "11"
+      },
+      {
+        "title": "Finish",
+        "description": "Brushed Matte"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 234,
+    "name": "Gold-Plated Band Ring",
+    "description": "A luxurious gold-plated band ring with a smooth finish, ideal for those looking to add sophistication and class to their collection.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Gold-Plated Stainless Steel"
+      },
+      {
+        "title": "Ring Size",
+        "description": "9"
+      },
+      {
+        "title": "Finish",
+        "description": "Smooth"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 235,
+    "name": "Onyx Stone Ring",
+    "description": "A bold ring featuring a black onyx stone at the center, surrounded by polished silver, offering a striking contrast and refined look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Onyx, Sterling Silver"
+      },
+      {
+        "title": "Ring Size",
+        "description": "10.5"
+      },
+      {
+        "title": "Stone Size",
+        "description": "12mm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 236,
+    "name": "Leather-Wrapped Ring",
+    "description": "A unique ring with a leather-wrapped band and metal accents, perfect for a rugged, bohemian style.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Leather, Stainless Steel"
+      },
+      {
+        "title": "Ring Size",
+        "description": "11"
+      },
+      {
+        "title": "Finish",
+        "description": "Matte"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 237,
+    "name": "Vintage Skull Ring",
+    "description": "A statement ring featuring a detailed skull design, made from durable stainless steel, perfect for those seeking an edgy, bold look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "China"
+      },
+      {
+        "title": "Material",
+        "description": "Stainless Steel"
+      },
+      {
+        "title": "Ring Size",
+        "description": "9.5"
+      },
+      {
+        "title": "Finish",
+        "description": "Antique"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 238,
+    "name": "Stainless Steel Spinner Ring",
+    "description": "A modern spinner ring made of stainless steel with a rotating inner band, offering a unique design that’s both stylish and functional.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Vietnam"
+      },
+      {
+        "title": "Material",
+        "description": "Stainless Steel"
+      },
+      {
+        "title": "Ring Size",
+        "description": "10"
+      },
+      {
+        "title": "Finish",
+        "description": "Polished"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 239,
+    "name": "Carbon Fiber Ring",
+    "description": "A lightweight and durable ring made from carbon fiber, offering a sleek, modern look with a high-tech appeal.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Germany"
+      },
+      {
+        "title": "Material",
+        "description": "Carbon Fiber"
+      },
+      {
+        "title": "Ring Size",
+        "description": "10"
+      },
+      {
+        "title": "Finish",
+        "description": "Glossy"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 240,
+    "name": "Sterling Silver Pendant Necklace",
+    "description": "A sleek sterling silver necklace with a minimalist pendant, perfect for adding a subtle yet stylish touch to your outfit.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Sterling Silver"
+      },
+      {
+        "title": "Chain Length",
+        "description": "50 cm"
+      },
+      {
+        "title": "Pendant Size",
+        "description": "2 cm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 241,
+    "name": "Leather Cord Necklace with Dog Tag",
+    "description": "A rugged leather cord necklace featuring a stainless steel dog tag pendant, ideal for a casual and masculine look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Leather, Stainless Steel"
+      },
+      {
+        "title": "Chain Length",
+        "description": "55 cm"
+      },
+      {
+        "title": "Pendant Size",
+        "description": "4 cm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 242,
+    "name": "Gold-Plated Chain Necklace",
+    "description": "A luxurious gold-plated chain necklace designed with a sleek, modern look, perfect for formal or casual wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "France"
+      },
+      {
+        "title": "Material",
+        "description": "Gold-Plated Stainless Steel"
+      },
+      {
+        "title": "Chain Length",
+        "description": "60 cm"
+      },
+      {
+        "title": "Link Type",
+        "description": "Curb"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 243,
+    "name": "Onyx Stone Pendant Necklace",
+    "description": "A striking necklace featuring a black onyx stone pendant, set in a polished silver frame, offering an elegant, bold design.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "India"
+      },
+      {
+        "title": "Material",
+        "description": "Onyx, Sterling Silver"
+      },
+      {
+        "title": "Chain Length",
+        "description": "50 cm"
+      },
+      {
+        "title": "Pendant Size",
+        "description": "3 cm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 244,
+    "name": "Titanium Chain Necklace",
+    "description": "A durable and lightweight titanium chain necklace designed for a sleek, industrial look, perfect for everyday wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Japan"
+      },
+      {
+        "title": "Material",
+        "description": "Titanium"
+      },
+      {
+        "title": "Chain Length",
+        "description": "55 cm"
+      },
+      {
+        "title": "Link Type",
+        "description": "Box"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 245,
+    "name": "Rope Chain Necklace",
+    "description": "A classic rope chain necklace, crafted from stainless steel, offering a bold and sophisticated look.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "USA"
+      },
+      {
+        "title": "Material",
+        "description": "Stainless Steel"
+      },
+      {
+        "title": "Chain Length",
+        "description": "60 cm"
+      },
+      {
+        "title": "Link Type",
+        "description": "Rope"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 246,
+    "name": "Cross Pendant Necklace",
+    "description": "A timeless cross pendant necklace, crafted with sterling silver, perfect for expressing personal faith and style.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Italy"
+      },
+      {
+        "title": "Material",
+        "description": "Sterling Silver"
+      },
+      {
+        "title": "Chain Length",
+        "description": "55 cm"
+      },
+      {
+        "title": "Pendant Size",
+        "description": "3.5 cm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  },
+  {
+    "id": 247,
+    "name": "Beaded Necklace with Metal Accents",
+    "description": "A trendy beaded necklace with metal accent beads, offering a casual, bohemian style for everyday wear.",
+    "features": [
+      {
+        "title": "Made In",
+        "description": "Brazil"
+      },
+      {
+        "title": "Material",
+        "description": "Wood, Metal, Elastic Cord"
+      },
+      {
+        "title": "Chain Length",
+        "description": "45 cm"
+      },
+      {
+        "title": "Bead Size",
+        "description": "6mm"
+      }
+    ],
+    "gender": "men",
+    "category_id": 3
+  }
+]
