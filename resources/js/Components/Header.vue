@@ -49,7 +49,7 @@ const emit = defineEmits(['toggleMenu']);
         </button>
         <div class="bg-white w-40 border border-slate-300 flex-col py-2 absolute right-0 z-10"
           :class="{ 'flex': isUserMenuOpen, 'hidden': !isUserMenuOpen }">
-          <Link :href="user?.role === 'admin' || user?.role === 'staff' ? route('product.create') : route('dashboard')"
+          <Link :href="user?.role === 'admin' || user?.role === 'staff' ? route('admin.products') : route('dashboard')"
             class="py-2 px-4 text-sm w-full transition-all hover:bg-slate-200">
           Dashboard</Link>
           <div class="border-t border-gray-200" />

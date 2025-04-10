@@ -40,7 +40,7 @@ class ProductController extends Controller
     {
         $this->authorize('modify', Product::class);
 
-        return Inertia::render('Profile/ProductForm', [
+        return Inertia::render('Admin/ProductForm', [
             'categories' => ProductCategory::all()
         ]);
     }
