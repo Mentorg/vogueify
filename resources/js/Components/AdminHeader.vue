@@ -28,11 +28,6 @@ const emit = defineEmits(['toggleMenu']);
         <PhList :size="24" />
         <span class="hidden md:flex">Menu</span>
       </button>
-      <Link v-if="user?.role !== 'admin' || user?.role !== 'staff'" :href="route('search')"
-        class="flex items-center gap-2">
-      <PhMagnifyingGlass :size="24" />
-      <span class="hidden md:flex">Search</span>
-      </Link>
     </div>
     <div>
       <Link href="/" class="text-lg font-medium md:text-3xl">Vogueify</Link>

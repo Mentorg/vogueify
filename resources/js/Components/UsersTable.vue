@@ -10,7 +10,7 @@ const props = defineProps({
 
 <template>
   <div class="relative overflow-x-auto bg-white h-[350px] overflow-y-scroll">
-    <div class="bg-white w-full">
+    <div class="bg-white w-fit">
       <table class="text-left text-sm w-full">
         <thead
           class="bg-white uppercase tracking-wider sticky top-0 border-b-2 outline outline-2 outline-neutral-300 border-neutral-300">
@@ -26,9 +26,7 @@ const props = defineProps({
               Role
             </th>
             <th scope="col" class="px-6 py-4">Created</th>
-            <th scope="col" class="px-6 py-4">
-              Actions
-            </th>
+            <th scope="col" class="px-6 py-4">&nbsp;</th>
           </tr>
         </thead>
         <tbody>

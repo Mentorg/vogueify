@@ -79,10 +79,10 @@ onBeforeUnmount(() => {
       <Header :isMenuOpen="isMenuOpen" :isUserMenuOpen="isUserMenuOpen" :openUserMenu="openUserMenu"
         @toggleMenu="toggleMenu" />
       <div :class="{ 'opacity-100': isMenuOpen, 'opacity-0': !isMenuOpen }"
-        class="main-menu absolute top-0 left-0 w-full px-4 h-dvh bg-white py-2 transition-all duration-300 ease-in-out transform z-20 border-r md:px-16 md:w-[16rem] lg:w-[30rem]"
+        class="main-menu absolute top-0 left-0 w-full px-4 h-dvh bg-white py-2 transition-all duration-300 ease-in-out transform z-20 border-r md:px-[20px] md:py-[24px] md:w-[16rem] lg:w-[30rem]"
         :style="isMenuOpen ? 'transform: translateX(0);' : 'transform: translateX(-100%);'">
         <nav class="flex flex-col w-full">
-          <div class="flex justify-between py-5">
+          <div class="flex justify-between">
             <button @click="closeMenu" class="flex items-center gap-2">
               <PhX :size="24" />Close
             </button>
