@@ -1,11 +1,9 @@
 <script setup>
-import { defineProps, ref } from 'vue';
+import { defineProps } from 'vue';
 import {
   PhX,
-  PhGlobe,
-  PhCaretRight,
 } from "@phosphor-icons/vue";
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 
 const props = defineProps({
   toggleMenu: Function,
@@ -13,18 +11,7 @@ const props = defineProps({
   closeMenu: Function
 })
 
-const subMenus = ref({
-  level1: false,
-  level2: false,
-});
-
-const toggleSubMenu = (level) => {
-  subMenus.value[level] = !subMenus.value[level];
-}
-
-const isSubMenuOpen = (level) => {
-  return subMenus.value[level];
-}
+const user = usePage().props.auth.user;
 </script>
 
 <template>
@@ -36,6 +23,11 @@ const isSubMenuOpen = (level) => {
       </button>
     </div>
     <ul class="ml-2">
+      <li v-if="user.role === 'admin'">
+        <Link href="/admin/overview" class="flex gap-y-4 w-full text-left px-4 py-2">
+        Overview
+        </Link>
+      </li>
       <li>
         <Link href="/admin/products" class="flex gap-y-4 w-full text-left px-4 py-2">
         Products
@@ -46,7 +38,7 @@ const isSubMenuOpen = (level) => {
         Create Product
         </Link>
       </li>
-      <li>
+      <li v-if="user.role === 'admin'">
         <Link href="/admin/users" class="flex gap-y-4 w-full text-left px-4 py-2">
         Users
         </Link>

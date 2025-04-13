@@ -48,7 +48,7 @@ onBeforeUnmount(() => {
   <div class="flex">
     <MobileSidebar v-if="isMobile" :isMenuOpen="isMenuOpen" :toggleMenu="toggleMenu" :closeMenu="closeMenu" />
     <Sidebar v-else />
-    <section class="flex flex-col container py-8 px-6 w-full">
+    <section class="flex flex-col py-8 px-6 w-full">
       <slot />
     </section>
   </div>

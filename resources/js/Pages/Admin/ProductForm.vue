@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import { PhCheck, PhX } from '@phosphor-icons/vue';
 import AdminDashboard from '@/Layouts/AdminDashboard.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -75,6 +75,8 @@ const submitForm = () => {
 </script>
 
 <template>
+
+  <Head title="Create Product" />
   <AdminDashboard>
     <h1 class="text-2xl font-medium">Add New Product</h1>
     <div class="grid grid-cols-1 w-full h-screen gap-x-8 py-8 md:grid-cols-2">

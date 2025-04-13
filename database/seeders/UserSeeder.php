@@ -19,7 +19,9 @@ class UserSeeder extends Seeder
     {
         $this->createAdminUser();
         $this->createStaffUser();
-        $this->createCustomerUser();
+        $this->createCustomerUser('John Brown', 'johnbrown@customer.com');
+        $this->createCustomerUser('Jane Smith', 'janesmith@customer.com');
+        $this->createCustomerUser('Bob Marley', 'bobmarley@customer.com');
     }
 
     public function createAdminUser()
@@ -42,13 +44,17 @@ class UserSeeder extends Seeder
         ])->roles()->sync(Role::where('name', RoleName::STAFF->value)->first());
     }
 
-    public function createCustomerUser()
+    public function createCustomerUser(string $name, string $email)
     {
-        User::create([
-            'name'      => 'John Doe',
-            'email'     => 'johndoe@customer.com',
-            'password'  => Hash::make('johndoe1234'),
+        $user = User::create([
+            'name'      => $name,
+            'email'     => $email,
+            'password'  => Hash::make('password123'),
             'role'      => 'customer'
-        ])->roles()->sync(Role::where('name', RoleName::CUSTOMER->value)->first());
+        ]);
+
+        $user->roles()->sync([
+            Role::where('name', RoleName::CUSTOMER->value)->first()->id
+        ]);
     }
 }

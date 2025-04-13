@@ -10,12 +10,12 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="relative overflow-x-auto bg-white h-[350px] overflow-y-scroll">
+  <div class="relative overflow-x-auto bg-white h-[350px] overflow-y-auto">
     <div class="bg-white w-fit">
       <table class="text-left text-sm w-full">
         <thead
           class="bg-white uppercase tracking-wider sticky top-0 border-b-2 outline outline-2 outline-neutral-300 border-neutral-300">
-          <tr class="grid grid-cols-[0.5fr,3fr,2fr,2fr,3fr,3fr,1fr]">
+          <tr class="grid grid-cols-[0.5fr,4fr,2fr,2fr,3fr,3fr,1fr]">
             <th scope="col" class="px-6 py-4">#</th>
             <th scope="col" class="px-6 py-4">
               Product
@@ -35,7 +35,7 @@ const props = defineProps({
         </thead>
         <tbody>
           <tr v-for="product in products.data" :key="product.id"
-            class="grid grid-cols-[0.5fr,3fr,2fr,2fr,3fr,3fr,1fr] border-b dark:border-neutral-200 even:bg-slate-100">
+            class="grid grid-cols-[0.5fr,4fr,2fr,2fr,3fr,3fr,1fr] border-b dark:border-neutral-200 even:bg-slate-100">
             <th class="px-6 py-4">{{ product.id + 1 }}</th>
             <th scope="row" class="px-6 py-4">
               {{ product.name }}

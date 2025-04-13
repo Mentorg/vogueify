@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionController;
@@ -57,7 +58,12 @@ Route::controller(ProductController::class)->group(function () {
 });
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('/admin/users', 'index')->name('admin.users');
-    Route::get('/admin/products', 'getProducts')->name('admin.products');
+
     Route::get('/dashboard', 'getWishlist')->name('dashboard');
+});
+
+Route::controller(DashboardController::class)->group(function () {
+    Route::get('/admin/overview', 'index')->name('admin.overview');
+    Route::get('/admin/users', 'getUsers')->name('admin.users');
+    Route::get('/admin/products', 'getProducts')->name('admin.products');
 });
