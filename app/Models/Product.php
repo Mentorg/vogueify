@@ -15,7 +15,7 @@ class Product extends Model
         'features' => 'array',
     ];
 
-    protected $guarded = [];
+    protected $fillable = ['id', 'name', 'description', 'features', 'gender', 'category_id'];
 
     public function productVariations()
     {

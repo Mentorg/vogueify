@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->json('features')->nullable();
             $table->enum('gender', ['men', 'women', 'unisex'])->default('unisex');
             $table->timestamps();
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id')->index();
             $table->foreign('category_id')->references('id')->on('product_categories')->cascadeOnDelete();
         });
 
@@ -27,9 +27,9 @@ return new class extends Migration
             $table->string('image');
             $table->string('color');
             $table->string('type');
-            $table->decimal('price', 5, 2);
+            $table->decimal('price', 6, 2);
             $table->integer('stock')->default(0);
-            $table->string('sku');
+            $table->string('sku')->unique();
             $table->timestamps();
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
@@ -39,6 +39,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('image');
+            $table->timestamps();
         });
 
         Schema::create('wishlists', function (Blueprint $table) {

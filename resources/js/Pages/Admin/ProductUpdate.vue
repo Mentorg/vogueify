@@ -1,89 +1,117 @@
 <script setup>
-import { ref, watch } from 'vue';
-import { Head, useForm } from '@inertiajs/vue3';
-import { PhCheck, PhX } from '@phosphor-icons/vue';
-import AdminDashboard from '@/Layouts/AdminDashboard.vue';
+import { onMounted, ref } from 'vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import TextInput from '@/Components/TextInput.vue';
-import TextareaInput from '@/Components/TextareaInput.vue';
 import SelectInput from '@/Components/SelectInput.vue';
+import TextareaInput from '@/Components/TextareaInput.vue';
+import TextInput from '@/Components/TextInput.vue';
+import AdminDashboard from '@/Layouts/AdminDashboard.vue';
+import { Head, router, useForm } from '@inertiajs/vue3';
+import axios from 'axios';
 
 const props = defineProps({
+  product: Object,
   categories: Array
-})
+});
 
 const form = useForm({
-  name: '',
-  description: '',
-  gender: '',
-  features: [{ title: '', description: '' }],
-  category_id: '',
-  image: null,
-  color: '',
-  type: '',
-  price: '',
-  stock: '',
-  sku: ''
+  id: props.product.id,
+  name: props.product.name,
+  description: props.product.description,
+  gender: props.product.gender,
+  features: props.product.features ?? [],
+  category_id: props.product.category_id,
+  image: props.product.product_variations[0].image,
+  color: props.product.product_variations[0].color,
+  type: props.product.product_variations[0].type,
+  price: props.product.product_variations[0].price,
+  stock: props.product.product_variations[0].stock,
+  sku: props.product.product_variations[0].sku
 });
 
 const imagePreview = ref(null);
 
-const addFeature = () => {
-  form.features.push({ title: '', description: '' })
-}
-
-const removeFeature = (index) => {
-  form.features.splice(index, 1)
-}
+onMounted(() => {
+  if (typeof form.image === 'string') {
+    imagePreview.value = form.image.startsWith('/storage') ? form.image : `/storage/${form.image}`
+  }
+})
 
 const handleImageChange = (event) => {
-  form.image = event.target.files[0]
+  const file = event.target.files[0];
+  if (file) {
+    form.image = file;
+    imagePreview.value = URL.createObjectURL(file);
+  }
 }
 
-watch(
-  () => form.image,
-  (newImage) => {
-    if (newImage) {
-      imagePreview.value = URL.createObjectURL(newImage);
-    } else {
-      imagePreview.value = null;
-    }
-  }
-);
+const addFeature = () => {
+  form.features.push({ title: '', description: '' });
+};
+
+const removeFeature = (index) => {
+  form.features.splice(index, 1);
+};
+
 
 const submitForm = () => {
-  const formData = new FormData()
+  const formData = new FormData();
 
-  for (const key in form) {
-    if (Array.isArray(form[key])) {
-      form[key].forEach((item, index) => {
-        formData.append(`${key}[${index}]`, JSON.stringify(item))
-      })
-    } else {
-      formData.append(key, form[key])
-    }
+  // Append all primitive fields
+  formData.append('id', form.id);
+  formData.append('name', form.name);
+  formData.append('description', form.description);
+  formData.append('gender', form.gender);
+  formData.append('category_id', form.category_id);
+  formData.append('color', form.color);
+  formData.append('type', form.type);
+  formData.append('price', form.price);
+  formData.append('stock', form.stock);
+  formData.append('sku', form.sku);
+
+  // If it's a File object, append it — otherwise skip or send null
+  if (form.image instanceof File) {
+    formData.append('image', form.image);
   }
 
-  form.post('/products', {
-    headers: { 'Content-Type': 'multipart/form-data' },
-    onSuccess: () => {
-      console.log('Product created successfully.')
-    }
+  // Append features as array of objects (Laravel-compatible)
+  form.features.forEach((feature, index) => {
+    formData.append(`features[${index}][title]`, feature.title);
+    formData.append(`features[${index}][description]`, feature.description);
+  });
+
+  // Log the FormData contents for debugging
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}:`, value);
+  }
+
+  axios.post(route('product.update', form.id), formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'X-HTTP-Method-Override': 'PUT',
+    },
   })
-}
+    .then(() => {
+      router.visit(route('product.show', form.id))
+    })
+    .catch(error => {
+      if (error.response?.status === 422) {
+        form.setError(error.response.data.errors);
+        console.warn('⚠️ Validation failed', error.response.data.errors);
+      } else {
+        console.error('❌ Update error:', error);
+      }
+    });
+};
 
 </script>
 
 <template>
 
-  <Head title="Create Product" />
+  <Head :title="product ? `Update ${product.name}` : `Update Product`" />
   <AdminDashboard>
-    <h1 class="text-2xl font-medium">Add New Product</h1>
+    <h1 class="text-2xl font-medium">Update {{ product.name }}</h1>
     <div class="grid grid-cols-1 w-full h-screen gap-x-8 py-8 md:grid-cols-2">
       <div>
-        <div>
-          <h2 class="text-xl font-medium">Base Information</h2>
-        </div>
         <form @submit.prevent="submitForm" class="flex flex-col gap-y-4 my-4">
           <div>
             <InputLabel for="name" value="Name" />
@@ -143,15 +171,6 @@ const submitForm = () => {
               <option value="yellow">Yellow</option>
               <option value="white">White</option>
             </SelectInput>
-            <!-- <div class="flex gap-x-2 mt-1">
-                <div class="bg-black border border-black w-8 h-8 rounded-full"></div>
-                <div class="bg-red-500 border border-red-500 w-8 h-8 rounded-full"></div>
-                <div class="bg-blue-500 border border-blue-500 w-8 h-8 rounded-full"></div>
-                <div class="bg-green-500 border border-green-500 w-8 h-8 rounded-full"></div>
-                <div class="bg-orange-500 border border-orange-500 w-8 h-8 rounded-full"></div>
-                <div class="bg-yellow-500 border border-yellow-500 w-8 h-8 rounded-full"></div>
-                <div class="bg-white border border-black w-8 h-8 rounded-full"></div>
-              </div> -->
           </div>
           <div>
             <InputLabel for="type" value="Type" />
@@ -186,8 +205,11 @@ const submitForm = () => {
           <h2 class="text-xl font-medium">Preview</h2>
         </div>
         <div class="my-4">
-          <div v-if="imagePreview">
-            <img :src="imagePreview" alt="Selected Image Preview" class="mt-4 max-w-full" />
+          <div class="my-4">
+            <div v-if="imagePreview">
+              <img :src="imagePreview" alt="Image Preview" class="mt-2 rounded border shadow max-w-full max-h-80" />
+            </div>
+            <p v-else class="text-gray-400">No image selected</p>
           </div>
           <div class="flex justify-between mt-4">
             <h3 class="text-lg font-medium">{{ form.name || "No name provided" }}</h3>
@@ -269,7 +291,7 @@ const submitForm = () => {
             <div>
               <h3 class="font-medium text-base">Category</h3>
               <p class="mt-4">{{categories.find(c => c.id == form.category_id)?.name.charAt(0).toUpperCase()
-                + categories.find(c => c.id == form.category_id)?.name.slice(1) }}</p>
+                + categories.find(c => c.id == form.category_id)?.name.slice(1)}}</p>
             </div>
             <div>
               <h3 class="font-medium text-base">Type</h3>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\FIlters\Search;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class ProductService
 {
@@ -73,7 +74,70 @@ class ProductService
             return $product;
         } catch (Exception $e) {
             DB::rollBack();
-            throw new Exception('Failed to store the product' . $e->getMessage(), $e->getCode(), $e);
+            throw new Exception(
+                'Failed to store the product. Reason: ' . $e->getMessage(),
+                $e->getCode(),
+                $e
+            );
+        }
+    }
+
+    public function update(Product $product, $request, $image = null)
+    {
+        $validated = $request->validated();
+
+        DB::beginTransaction();
+
+        try {
+            $variation = $product->productVariations->first();
+
+            if (!$variation) {
+                throw new Exception('Product variation not found for product ID: ' . $product->id);
+            }
+
+            if ($request->hasFile('image')) {
+                // Safely delete old image if it exists
+                if (!empty($variation->image)) {
+                    $oldImagePath = str_replace('/storage/', '', $variation->image);
+                    Storage::disk('public')->delete($oldImagePath);
+                }
+
+                $imagePath = $request->file('image')->store('products', 'public');
+                $imagePath = Storage::url($imagePath);
+            } else {
+                $imagePath = $variation->image; // use existing image if not updated
+            }
+
+            // Update product
+            $product->update([
+                'name' => $validated['name'],
+                'description' => $validated['description'],
+                'features' => $validated['features'],
+                'gender' => $validated['gender'],
+                'category_id' => $validated['category_id'],
+            ]);
+
+            // Update variation
+            $variation->update([
+                'image' => $imagePath,
+                'color' => $validated['color'],
+                'type' => $validated['type'],
+                'price' => $validated['price'],
+                'stock' => $validated['stock'],
+                'sku' => $validated['sku'],
+            ]);
+
+            DB::commit();
+
+            return $product->load('productVariations');
+
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::error('Failed to update the product: ' . $e->getMessage(), [
+                'product_id' => $product->id,
+                'exception' => $e
+            ]);
+            throw new Exception('Failed to update the product: ' . $e->getMessage(), $e->getCode(), $e);
         }
     }
 

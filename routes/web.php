@@ -55,6 +55,8 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/products/{product}', 'show')->name('product.show');
     Route::get('/admin/product/create', 'create')->name('product.create');
     Route::post('/admin/products', 'store')->name('product.store');
+    Route::get('/admin/products/{product}/update', 'edit')->name('product.edit');
+    Route::put('/admin/products/{id}', 'update')->name('product.update');
 });
 
 Route::controller(UserController::class)->group(function () {

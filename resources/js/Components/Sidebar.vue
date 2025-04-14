@@ -22,7 +22,7 @@ const user = usePage().props.auth.user;
       <li>
         <Link :href="route('product.create')"
           class="flex w-full py-2 px-4 rounded-md transition-all hover:bg-black hover:text-white"
-          :class="{ 'bg-black text-white': currentPath === '/product/create' }">
+          :class="{ 'bg-black text-white': currentPath === '/admin/product/create' }">
         Create Product
         </Link>
       </li>

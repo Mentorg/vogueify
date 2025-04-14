@@ -4,7 +4,7 @@
     "image": "men-backpack-1.jpg",
     "color": "brown",
     "type": "backpack",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B515153",
     "product_id": 0
@@ -14,7 +14,7 @@
     "image": "men-backpack-2.jpg",
     "color": "brown",
     "type": "backpack",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B656579",
     "product_id": 1
@@ -24,7 +24,7 @@
     "image": "men-backpack-3.jpg",
     "color": "brown",
     "type": "backpack",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B218384",
     "product_id": 2
@@ -34,7 +34,7 @@
     "image": "men-backpack-4.jpg",
     "color": "brown",
     "type": "backpack",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B345265",
     "product_id": 3
@@ -44,7 +44,7 @@
     "image": "men-backpack-5.jpg",
     "color": "grey",
     "type": "backpack",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B874686",
     "product_id": 4
@@ -54,7 +54,7 @@
     "image": "men-backpack-6.jpg",
     "color": "grey",
     "type": "backpack",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B788111",
     "product_id": 5
@@ -64,7 +64,7 @@
     "image": "men-backpack-7.jpg",
     "color": "grey",
     "type": "backpack",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B788746",
     "product_id": 6
@@ -74,7 +74,7 @@
     "image": "men-backpack-8.jpg",
     "color": "grey",
     "type": "backpack",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B232346",
     "product_id": 7
@@ -84,7 +84,7 @@
     "image": "men-satchel-1.jpg",
     "color": "black",
     "type": "satchel",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B421324",
     "product_id": 8
@@ -94,7 +94,7 @@
     "image": "men-satchel-2.jpg",
     "color": "black",
     "type": "satchel",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B757545",
     "product_id": 9
@@ -104,7 +104,7 @@
     "image": "men-satchel-3.jpg",
     "color": "green",
     "type": "satchel",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B456465",
     "product_id": 10
@@ -114,7 +114,7 @@
     "image": "men-satchel-4.jpg",
     "color": "black",
     "type": "satchel",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B789878",
     "product_id": 11
@@ -124,7 +124,7 @@
     "image": "men-satchel-5.jpg",
     "color": "blue",
     "type": "satchel",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B151515",
     "product_id": 12
@@ -134,7 +134,7 @@
     "image": "men-satchel-6.jpg",
     "color": "blue",
     "type": "satchel",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B156165",
     "product_id": 13
@@ -144,7 +144,7 @@
     "image": "men-satchel-7.jpg",
     "color": "brown",
     "type": "satchel",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B879456",
     "product_id": 14
@@ -154,7 +154,7 @@
     "image": "men-satchel-8.jpg",
     "color": "black",
     "type": "satchel",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B516543",
     "product_id": 15
@@ -164,7 +164,7 @@
     "image": "men-clutch-1.jpg",
     "color": "brown",
     "type": "clutch",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B156133",
     "product_id": 16
@@ -174,7 +174,7 @@
     "image": "men-clutch-2.jpg",
     "color": "brown",
     "type": "clutch",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B015443",
     "product_id": 17
@@ -184,7 +184,7 @@
     "image": "men-clutch-3.jpg",
     "color": "black",
     "type": "clutch",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B987856",
     "product_id": 18
@@ -194,7 +194,7 @@
     "image": "men-clutch-4.jpg",
     "color": "black",
     "type": "clutch",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B181855",
     "product_id": 19
@@ -204,7 +204,7 @@
     "image": "men-clutch-5.jpg",
     "color": "dark brown",
     "type": "clutch",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B561654",
     "product_id": 20
@@ -214,7 +214,7 @@
     "image": "men-clutch-6.jpg",
     "color": "light brown",
     "type": "clutch",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B825464",
     "product_id": 21
@@ -224,7 +224,7 @@
     "image": "men-clutch-7.jpg",
     "color": "black",
     "type": "clutch",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B535548",
     "product_id": 22
@@ -234,7 +234,7 @@
     "image": "men-clutch-8.jpg",
     "color": "dark brown",
     "type": "clutch",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B181814",
     "product_id": 23
@@ -244,7 +244,7 @@
     "image": "men-fanny-1.jpg",
     "color": "black",
     "type": "fanny",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B543881",
     "product_id": 24
@@ -254,7 +254,7 @@
     "image": "men-fanny-2.jpg",
     "color": "black",
     "type": "fanny",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B335448",
     "product_id": 25
@@ -264,7 +264,7 @@
     "image": "men-fanny-3.jpg",
     "color": "black",
     "type": "fanny",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B449667",
     "product_id": 26
@@ -274,7 +274,7 @@
     "image": "men-fanny-4.jpg",
     "color": "black",
     "type": "fanny",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B666999",
     "product_id": 27
@@ -284,7 +284,7 @@
     "image": "men-fanny-5.jpg",
     "color": "black",
     "type": "fanny",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B125449",
     "product_id": 28
@@ -294,7 +294,7 @@
     "image": "men-fanny-6.jpg",
     "color": "black",
     "type": "fanny",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B663549",
     "product_id": 29
@@ -304,7 +304,7 @@
     "image": "men-fanny-7.jpg",
     "color": "black",
     "type": "fanny",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B115679",
     "product_id": 30
@@ -314,7 +314,7 @@
     "image": "men-fanny-8.jpg",
     "color": "black",
     "type": "fanny",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B323225",
     "product_id": 31
@@ -324,7 +324,7 @@
     "image": "women-handbag-1.jpg",
     "color": "black",
     "type": "handbag",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B323211",
     "product_id": 32
@@ -334,7 +334,7 @@
     "image": "women-handbag-2.jpg",
     "color": "black",
     "type": "handbag",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B323226",
     "product_id": 33
@@ -344,7 +344,7 @@
     "image": "women-handbag-3.jpg",
     "color": "black",
     "type": "handbag",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B323227",
     "product_id": 34
@@ -354,7 +354,7 @@
     "image": "women-handbag-4.jpg",
     "color": "black",
     "type": "handbag",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B323228",
     "product_id": 35
@@ -364,7 +364,7 @@
     "image": "women-handbag-5.jpg",
     "color": "black",
     "type": "handbag",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B323229",
     "product_id": 36
@@ -374,7 +374,7 @@
     "image": "women-handbag-6.jpg",
     "color": "black",
     "type": "handbag",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B323230",
     "product_id": 37
@@ -384,7 +384,7 @@
     "image": "women-handbag-7.jpg",
     "color": "black",
     "type": "handbag",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B323231",
     "product_id": 38
@@ -394,7 +394,7 @@
     "image": "women-handbag-8.jpg",
     "color": "black",
     "type": "handbag",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 10,
     "sku": "B323232",
     "product_id": 39
@@ -404,7 +404,7 @@
     "image": "women-bucket-1.jpg",
     "color": "red",
     "type": "bucket",
-    "price": "$1,150",
+    "price": 1150,
     "stock": 8,
     "sku": "B323233",
     "product_id": 40
@@ -414,7 +414,7 @@
     "image": "women-bucket-2.jpg",
     "color": "blue",
     "type": "bucket",
-    "price": "$1,300",
+    "price": 1300,
     "stock": 12,
     "sku": "B323234",
     "product_id": 41
@@ -424,7 +424,7 @@
     "image": "women-bucket-3.jpg",
     "color": "green",
     "type": "bucket",
-    "price": "$1,100",
+    "price": 1100,
     "stock": 9,
     "sku": "B323235",
     "product_id": 42
@@ -434,7 +434,7 @@
     "image": "women-bucket-4.jpg",
     "color": "brown",
     "type": "bucket",
-    "price": "$1,250",
+    "price": 1250,
     "stock": 6,
     "sku": "B323236",
     "product_id": 43
@@ -444,7 +444,7 @@
     "image": "women-bucket-5.jpg",
     "color": "pink",
     "type": "bucket",
-    "price": "$1,180",
+    "price": 1180,
     "stock": 7,
     "sku": "B323237",
     "product_id": 44
@@ -454,7 +454,7 @@
     "image": "women-bucket-6.jpg",
     "color": "purple",
     "type": "bucket",
-    "price": "$1,220",
+    "price": 1220,
     "stock": 5,
     "sku": "B323238",
     "product_id": 45
@@ -464,7 +464,7 @@
     "image": "women-bucket-7.jpg",
     "color": "yellow",
     "type": "bucket",
-    "price": "$1,170",
+    "price": 1170,
     "stock": 10,
     "sku": "B323239",
     "product_id": 46
@@ -474,7 +474,7 @@
     "image": "women-bucket-8.jpg",
     "color": "orange",
     "type": "bucket",
-    "price": "$1,190",
+    "price": 1190,
     "stock": 8,
     "sku": "B323240",
     "product_id": 47
@@ -484,7 +484,7 @@
     "image": "women-hobo-1.jpg",
     "color": "red",
     "type": "hobo",
-    "price": "$1,150",
+    "price": 1150,
     "stock": 9,
     "sku": "B323241",
     "product_id": 48
@@ -494,7 +494,7 @@
     "image": "women-hobo-2.jpg",
     "color": "black",
     "type": "hobo",
-    "price": "$1,300",
+    "price": 1300,
     "stock": 6,
     "sku": "B323242",
     "product_id": 49
@@ -504,7 +504,7 @@
     "image": "women-hobo-3.jpg",
     "color": "blue",
     "type": "hobo",
-    "price": "$1,220",
+    "price": 1220,
     "stock": 8,
     "sku": "B323243",
     "product_id": 50
@@ -514,7 +514,7 @@
     "image": "women-hobo-4.jpg",
     "color": "brown",
     "type": "hobo",
-    "price": "$1,180",
+    "price": 1180,
     "stock": 7,
     "sku": "B323244",
     "product_id": 51
@@ -524,7 +524,7 @@
     "image": "women-hobo-5.jpg",
     "color": "green",
     "type": "hobo",
-    "price": "$1,250",
+    "price": 1250,
     "stock": 5,
     "sku": "B323245",
     "product_id": 52
@@ -534,7 +534,7 @@
     "image": "women-hobo-6.jpg",
     "color": "pink",
     "type": "hobo",
-    "price": "$1,190",
+    "price": 1190,
     "stock": 10,
     "sku": "B323246",
     "product_id": 53
@@ -544,7 +544,7 @@
     "image": "women-hobo-7.jpg",
     "color": "yellow",
     "type": "hobo",
-    "price": "$1,270",
+    "price": 1270,
     "stock": 8,
     "sku": "B323247",
     "product_id": 54
@@ -554,7 +554,7 @@
     "image": "women-hobo-8.jpg",
     "color": "purple",
     "type": "hobo",
-    "price": "$1,230",
+    "price": 1230,
     "stock": 6,
     "sku": "B323248",
     "product_id": 55
@@ -564,7 +564,7 @@
     "image": "women-envelope-1.jpg",
     "color": "gold",
     "type": "envelope",
-    "price": "$950",
+    "price": 950,
     "stock": 7,
     "sku": "B323249",
     "product_id": 56
@@ -574,7 +574,7 @@
     "image": "women-envelope-2.jpg",
     "color": "silver",
     "type": "envelope",
-    "price": "$1,000",
+    "price": 1000,
     "stock": 5,
     "sku": "B323250",
     "product_id": 57
@@ -584,7 +584,7 @@
     "image": "women-envelope-3.jpg",
     "color": "black",
     "type": "envelope",
-    "price": "$1,100",
+    "price": 1100,
     "stock": 8,
     "sku": "B323251",
     "product_id": 58
@@ -594,7 +594,7 @@
     "image": "women-envelope-4.jpg",
     "color": "white",
     "type": "envelope",
-    "price": "$950",
+    "price": 950,
     "stock": 6,
     "sku": "B323252",
     "product_id": 59
@@ -604,7 +604,7 @@
     "image": "women-envelope-5.jpg",
     "color": "red",
     "type": "envelope",
-    "price": "$1,150",
+    "price": 1150,
     "stock": 10,
     "sku": "B323253",
     "product_id": 60
@@ -614,7 +614,7 @@
     "image": "women-envelope-6.jpg",
     "color": "blue",
     "type": "envelope",
-    "price": "$1,200",
+    "price": 1200,
     "stock": 8,
     "sku": "B323254",
     "product_id": 61
@@ -624,7 +624,7 @@
     "image": "women-envelope-7.jpg",
     "color": "green",
     "type": "envelope",
-    "price": "$1,180",
+    "price": 1180,
     "stock": 5,
     "sku": "B323255",
     "product_id": 62
@@ -634,7 +634,7 @@
     "image": "women-envelope-8.jpg",
     "color": "pink",
     "type": "envelope",
-    "price": "$1,050",
+    "price": 1050,
     "stock": 9,
     "sku": "B323256",
     "product_id": 63
@@ -644,7 +644,7 @@
     "image": "men-sneakers-1.jpg",
     "color": "black",
     "type": "sneakers",
-    "price": "$120",
+    "price": 120,
     "stock": 15,
     "sku": "M323257",
     "product_id": 64
@@ -654,7 +654,7 @@
     "image": "men-sneakers-2.jpg",
     "color": "white",
     "type": "sneakers",
-    "price": "$110",
+    "price": 110,
     "stock": 20,
     "sku": "M323258",
     "product_id": 65
@@ -664,7 +664,7 @@
     "image": "men-sneakers-3.jpg",
     "color": "blue",
     "type": "sneakers",
-    "price": "$130",
+    "price": 130,
     "stock": 12,
     "sku": "M323259",
     "product_id": 66
@@ -674,7 +674,7 @@
     "image": "men-sneakers-4.jpg",
     "color": "grey",
     "type": "sneakers",
-    "price": "$125",
+    "price": 125,
     "stock": 18,
     "sku": "M323260",
     "product_id": 67
@@ -684,7 +684,7 @@
     "image": "men-sneakers-5.jpg",
     "color": "red",
     "type": "sneakers",
-    "price": "$140",
+    "price": 140,
     "stock": 10,
     "sku": "M323261",
     "product_id": 68
@@ -694,7 +694,7 @@
     "image": "men-sneakers-6.jpg",
     "color": "green",
     "type": "sneakers",
-    "price": "$115",
+    "price": 115,
     "stock": 22,
     "sku": "M323262",
     "product_id": 69
@@ -704,7 +704,7 @@
     "image": "men-sneakers-7.jpg",
     "color": "yellow",
     "type": "sneakers",
-    "price": "$135",
+    "price": 135,
     "stock": 14,
     "sku": "M323263",
     "product_id": 70
@@ -714,7 +714,7 @@
     "image": "men-sneakers-8.jpg",
     "color": "orange",
     "type": "sneakers",
-    "price": "$125",
+    "price": 125,
     "stock": 16,
     "sku": "M323264",
     "product_id": 71
@@ -724,7 +724,7 @@
     "image": "men-boots-1.jpg",
     "color": "brown",
     "type": "dress-boots",
-    "price": "$180",
+    "price": 180,
     "stock": 10,
     "sku": "M323265",
     "product_id": 72
@@ -734,7 +734,7 @@
     "image": "men-boots-2.jpg",
     "color": "black",
     "type": "dress-boots",
-    "price": "$200",
+    "price": 200,
     "stock": 8,
     "sku": "M323266",
     "product_id": 73
@@ -744,7 +744,7 @@
     "image": "men-boots-3.jpg",
     "color": "grey",
     "type": "dress-boots",
-    "price": "$190",
+    "price": 190,
     "stock": 12,
     "sku": "M323267",
     "product_id": 74
@@ -754,7 +754,7 @@
     "image": "men-boots-4.jpg",
     "color": "olive",
     "type": "dress-boots",
-    "price": "$210",
+    "price": 210,
     "stock": 15,
     "sku": "M323268",
     "product_id": 75
@@ -764,7 +764,7 @@
     "image": "men-boots-5.jpg",
     "color": "tan",
     "type": "dress-boots",
-    "price": "$220",
+    "price": 220,
     "stock": 10,
     "sku": "M323269",
     "product_id": 76
@@ -774,7 +774,7 @@
     "image": "men-boots-6.jpg",
     "color": "navy",
     "type": "dress-boots",
-    "price": "$230",
+    "price": 230,
     "stock": 7,
     "sku": "M323270",
     "product_id": 77
@@ -784,7 +784,7 @@
     "image": "men-boots-7.jpg",
     "color": "camel",
     "type": "dress-boots",
-    "price": "$240",
+    "price": 240,
     "stock": 6,
     "sku": "M323271",
     "product_id": 78
@@ -794,7 +794,7 @@
     "image": "men-boots-8.jpg",
     "color": "chocolate",
     "type": "dress-boots",
-    "price": "$215",
+    "price": 215,
     "stock": 9,
     "sku": "M323272",
     "product_id": 79
@@ -804,7 +804,7 @@
     "image": "men-belt-1.jpg",
     "color": "black",
     "type": "belt",
-    "price": "$45",
+    "price": 45,
     "stock": 20,
     "sku": "M323281",
     "product_id": 80
@@ -814,7 +814,7 @@
     "image": "men-belt-2.jpg",
     "color": "brown",
     "type": "belt",
-    "price": "$50",
+    "price": 50,
     "stock": 18,
     "sku": "M323282",
     "product_id": 81
@@ -824,7 +824,7 @@
     "image": "men-belt-3.jpg",
     "color": "navy",
     "type": "belt",
-    "price": "$55",
+    "price": 55,
     "stock": 15,
     "sku": "M323283",
     "product_id": 82
@@ -834,7 +834,7 @@
     "image": "men-belt-4.jpg",
     "color": "tan",
     "type": "belt",
-    "price": "$48",
+    "price": 48,
     "stock": 25,
     "sku": "M323284",
     "product_id": 83
@@ -844,7 +844,7 @@
     "image": "men-belt-5.jpg",
     "color": "grey",
     "type": "belt",
-    "price": "$60",
+    "price": 60,
     "stock": 12,
     "sku": "M323285",
     "product_id": 84
@@ -854,7 +854,7 @@
     "image": "men-belt-6.jpg",
     "color": "red",
     "type": "belt",
-    "price": "$52",
+    "price": 52,
     "stock": 22,
     "sku": "M323286",
     "product_id": 85
@@ -864,7 +864,7 @@
     "image": "men-belt-7.jpg",
     "color": "olive",
     "type": "belt",
-    "price": "$58",
+    "price": 58,
     "stock": 14,
     "sku": "M323287",
     "product_id": 86
@@ -874,7 +874,7 @@
     "image": "men-belt-8.jpg",
     "color": "chocolate",
     "type": "belt",
-    "price": "$50",
+    "price": 50,
     "stock": 30,
     "sku": "M323288",
     "product_id": 87
@@ -884,7 +884,7 @@
     "image": "men-scarf-1.jpg",
     "color": "black",
     "type": "scarf",
-    "price": "$40",
+    "price": 40,
     "stock": 18,
     "sku": "M323289",
     "product_id": 88
@@ -894,7 +894,7 @@
     "image": "men-scarf-2.jpg",
     "color": "grey",
     "type": "scarf",
-    "price": "$45",
+    "price": 45,
     "stock": 22,
     "sku": "M323290",
     "product_id": 89
@@ -904,7 +904,7 @@
     "image": "men-scarf-3.jpg",
     "color": "navy",
     "type": "scarf",
-    "price": "$50",
+    "price": 50,
     "stock": 15,
     "sku": "M323291",
     "product_id": 90
@@ -914,7 +914,7 @@
     "image": "men-scarf-4.jpg",
     "color": "brown",
     "type": "scarf",
-    "price": "$42",
+    "price": 42,
     "stock": 20,
     "sku": "M323292",
     "product_id": 91
@@ -924,7 +924,7 @@
     "image": "men-scarf-5.jpg",
     "color": "red",
     "type": "scarf",
-    "price": "$48",
+    "price": 48,
     "stock": 18,
     "sku": "M323293",
     "product_id": 92
@@ -934,7 +934,7 @@
     "image": "men-scarf-6.jpg",
     "color": "green",
     "type": "scarf",
-    "price": "$46",
+    "price": 46,
     "stock": 17,
     "sku": "M323294",
     "product_id": 93
@@ -944,7 +944,7 @@
     "image": "men-scarf-7.jpg",
     "color": "blue",
     "type": "scarf",
-    "price": "$55",
+    "price": 55,
     "stock": 12,
     "sku": "M323295",
     "product_id": 94
@@ -954,7 +954,7 @@
     "image": "men-scarf-8.jpg",
     "color": "orange",
     "type": "scarf",
-    "price": "$50",
+    "price": 50,
     "stock": 10,
     "sku": "M323296",
     "product_id": 95
@@ -964,7 +964,7 @@
     "image": "men-sunglasses-1.jpg",
     "color": "black",
     "type": "sunglasses",
-    "price": "$150",
+    "price": 150,
     "stock": 10,
     "sku": "M323297",
     "product_id": 96
@@ -974,7 +974,7 @@
     "image": "men-sunglasses-2.jpg",
     "color": "brown",
     "type": "sunglasses",
-    "price": "$120",
+    "price": 120,
     "stock": 15,
     "sku": "M323298",
     "product_id": 97
@@ -984,7 +984,7 @@
     "image": "men-sunglasses-3.jpg",
     "color": "grey",
     "type": "sunglasses",
-    "price": "$135",
+    "price": 135,
     "stock": 12,
     "sku": "M323299",
     "product_id": 98
@@ -994,7 +994,7 @@
     "image": "men-sunglasses-4.jpg",
     "color": "blue",
     "type": "sunglasses",
-    "price": "$145",
+    "price": 145,
     "stock": 10,
     "sku": "M323300",
     "product_id": 99
@@ -1004,7 +1004,7 @@
     "image": "men-sunglasses-5.jpg",
     "color": "green",
     "type": "sunglasses",
-    "price": "$155",
+    "price": 155,
     "stock": 18,
     "sku": "M323301",
     "product_id": 100
@@ -1014,7 +1014,7 @@
     "image": "men-sunglasses-6.jpg",
     "color": "yellow",
     "type": "sunglasses",
-    "price": "$130",
+    "price": 130,
     "stock": 14,
     "sku": "M323302",
     "product_id": 101
@@ -1024,7 +1024,7 @@
     "image": "men-sunglasses-7.jpg",
     "color": "red",
     "type": "sunglasses",
-    "price": "$140",
+    "price": 140,
     "stock": 16,
     "sku": "M323303",
     "product_id": 102
@@ -1034,7 +1034,7 @@
     "image": "men-sunglasses-8.jpg",
     "color": "grey",
     "type": "sunglasses",
-    "price": "$125",
+    "price": 125,
     "stock": 11,
     "sku": "M323304",
     "product_id": 103
@@ -1044,7 +1044,7 @@
     "image": "women-ankle-1.jpg",
     "color": "black",
     "type": "ankle-boots",
-    "price": "$130",
+    "price": 130,
     "stock": 10,
     "sku": "W323305",
     "product_id": 104
@@ -1054,7 +1054,7 @@
     "image": "women-ankle-2.jpg",
     "color": "brown",
     "type": "ankle-boots",
-    "price": "$145",
+    "price": 145,
     "stock": 8,
     "sku": "W323306",
     "product_id": 105
@@ -1064,7 +1064,7 @@
     "image": "women-ankle-3.jpg",
     "color": "grey",
     "type": "ankle-boots",
-    "price": "$135",
+    "price": 135,
     "stock": 12,
     "sku": "W323307",
     "product_id": 106
@@ -1074,7 +1074,7 @@
     "image": "women-ankle-4.jpg",
     "color": "tan",
     "type": "ankle-boots",
-    "price": "$140",
+    "price": 140,
     "stock": 9,
     "sku": "W323308",
     "product_id": 107
@@ -1084,7 +1084,7 @@
     "image": "women-ankle-5.jpg",
     "color": "burgundy",
     "type": "ankle-boots",
-    "price": "$150",
+    "price": 150,
     "stock": 14,
     "sku": "W323309",
     "product_id": 108
@@ -1094,7 +1094,7 @@
     "image": "women-ankle-6.jpg",
     "color": "navy",
     "type": "ankle-boots",
-    "price": "$160",
+    "price": 160,
     "stock": 6,
     "sku": "W323310",
     "product_id": 109
@@ -1104,7 +1104,7 @@
     "image": "women-ankle-7.jpg",
     "color": "olive",
     "type": "ankle-boots",
-    "price": "$155",
+    "price": 155,
     "stock": 11,
     "sku": "W323311",
     "product_id": 110
@@ -1114,7 +1114,7 @@
     "image": "women-ankle-8.jpg",
     "color": "chocolate",
     "type": "ankle-boots",
-    "price": "$165",
+    "price": 165,
     "stock": 13,
     "sku": "W323312",
     "product_id": 111
@@ -1124,7 +1124,7 @@
     "image": "women-sandals-1.jpg",
     "color": "black",
     "type": "sandals",
-    "price": "$50",
+    "price": 50,
     "stock": 15,
     "sku": "W323313",
     "product_id": 112
@@ -1134,7 +1134,7 @@
     "image": "women-sandals-2.jpg",
     "color": "brown",
     "type": "sandals",
-    "price": "$55",
+    "price": 55,
     "stock": 18,
     "sku": "W323314",
     "product_id": 113
@@ -1144,7 +1144,7 @@
     "image": "women-sandals-3.jpg",
     "color": "white",
     "type": "sandals",
-    "price": "$45",
+    "price": 45,
     "stock": 12,
     "sku": "W323315",
     "product_id": 114
@@ -1154,7 +1154,7 @@
     "image": "women-sandals-4.jpg",
     "color": "beige",
     "type": "sandals",
-    "price": "$50",
+    "price": 50,
     "stock": 20,
     "sku": "W323316",
     "product_id": 115
@@ -1164,7 +1164,7 @@
     "image": "women-sandals-5.jpg",
     "color": "pink",
     "type": "sandals",
-    "price": "$60",
+    "price": 60,
     "stock": 10,
     "sku": "W323317",
     "product_id": 116
@@ -1174,7 +1174,7 @@
     "image": "women-sandals-6.jpg",
     "color": "gold",
     "type": "sandals",
-    "price": "$65",
+    "price": 65,
     "stock": 13,
     "sku": "W323318",
     "product_id": 117
@@ -1184,7 +1184,7 @@
     "image": "women-sandals-7.jpg",
     "color": "navy",
     "type": "sandals",
-    "price": "$58",
+    "price": 58,
     "stock": 8,
     "sku": "W323319",
     "product_id": 118
@@ -1194,7 +1194,7 @@
     "image": "women-sandals-8.jpg",
     "color": "red",
     "type": "sandals",
-    "price": "$55",
+    "price": 55,
     "stock": 17,
     "sku": "W323320",
     "product_id": 119
@@ -1204,7 +1204,7 @@
     "image": "women-belt-1.jpg",
     "color": "black",
     "type": "belt",
-    "price": "$35",
+    "price": 35,
     "stock": 18,
     "sku": "W323321",
     "product_id": 120
@@ -1214,7 +1214,7 @@
     "image": "women-belt-2.jpg",
     "color": "brown",
     "type": "belt",
-    "price": "$40",
+    "price": 40,
     "stock": 20,
     "sku": "W323322",
     "product_id": 121
@@ -1224,7 +1224,7 @@
     "image": "women-belt-3.jpg",
     "color": "red",
     "type": "belt",
-    "price": "$38",
+    "price": 38,
     "stock": 15,
     "sku": "W323323",
     "product_id": 122
@@ -1234,7 +1234,7 @@
     "image": "women-belt-4.jpg",
     "color": "tan",
     "type": "belt",
-    "price": "$42",
+    "price": 42,
     "stock": 12,
     "sku": "W323324",
     "product_id": 123
@@ -1244,7 +1244,7 @@
     "image": "women-belt-5.jpg",
     "color": "white",
     "type": "belt",
-    "price": "$36",
+    "price": 36,
     "stock": 22,
     "sku": "W323325",
     "product_id": 124
@@ -1254,7 +1254,7 @@
     "image": "women-belt-6.jpg",
     "color": "navy",
     "type": "belt",
-    "price": "$39",
+    "price": 39,
     "stock": 18,
     "sku": "W323326",
     "product_id": 125
@@ -1264,7 +1264,7 @@
     "image": "women-belt-7.jpg",
     "color": "green",
     "type": "belt",
-    "price": "$41",
+    "price": 41,
     "stock": 14,
     "sku": "W323327",
     "product_id": 126
@@ -1274,7 +1274,7 @@
     "image": "women-belt-8.jpg",
     "color": "gold",
     "type": "belt",
-    "price": "$45",
+    "price": 45,
     "stock": 10,
     "sku": "W323328",
     "product_id": 127
@@ -1284,7 +1284,7 @@
     "image": "women-scarf-1.jpg",
     "color": "black",
     "type": "scarf",
-    "price": "$30",
+    "price": 30,
     "stock": 18,
     "sku": "W323329",
     "product_id": 128
@@ -1294,7 +1294,7 @@
     "image": "women-scarf-2.jpg",
     "color": "red",
     "type": "scarf",
-    "price": "$35",
+    "price": 35,
     "stock": 15,
     "sku": "W323330",
     "product_id": 129
@@ -1304,7 +1304,7 @@
     "image": "women-scarf-3.jpg",
     "color": "navy",
     "type": "scarf",
-    "price": "$40",
+    "price": 40,
     "stock": 12,
     "sku": "W323331",
     "product_id": 130
@@ -1314,7 +1314,7 @@
     "image": "women-scarf-4.jpg",
     "color": "beige",
     "type": "scarf",
-    "price": "$28",
+    "price": 28,
     "stock": 20,
     "sku": "W323332",
     "product_id": 131
@@ -1324,7 +1324,7 @@
     "image": "women-scarf-5.jpg",
     "color": "green",
     "type": "scarf",
-    "price": "$32",
+    "price": 32,
     "stock": 14,
     "sku": "W323333",
     "product_id": 132
@@ -1334,7 +1334,7 @@
     "image": "women-scarf-6.jpg",
     "color": "purple",
     "type": "scarf",
-    "price": "$38",
+    "price": 38,
     "stock": 10,
     "sku": "W323334",
     "product_id": 133
@@ -1344,7 +1344,7 @@
     "image": "women-scarf-7.jpg",
     "color": "grey",
     "type": "scarf",
-    "price": "$34",
+    "price": 34,
     "stock": 22,
     "sku": "W323335",
     "product_id": 134
@@ -1354,7 +1354,7 @@
     "image": "women-scarf-8.jpg",
     "color": "pink",
     "type": "scarf",
-    "price": "$36",
+    "price": 36,
     "stock": 18,
     "sku": "W323336",
     "product_id": 135
@@ -1364,7 +1364,7 @@
     "image": "women-sunglasses-1.jpg",
     "color": "black",
     "type": "sunglasses",
-    "price": "$120",
+    "price": 120,
     "stock": 14,
     "sku": "W323337",
     "product_id": 136
@@ -1374,7 +1374,7 @@
     "image": "women-sunglasses-2.jpg",
     "color": "brown",
     "type": "sunglasses",
-    "price": "$125",
+    "price": 125,
     "stock": 10,
     "sku": "W323338",
     "product_id": 137
@@ -1384,7 +1384,7 @@
     "image": "women-sunglasses-3.jpg",
     "color": "gold",
     "type": "sunglasses",
-    "price": "$140",
+    "price": 140,
     "stock": 18,
     "sku": "W323339",
     "product_id": 138
@@ -1394,7 +1394,7 @@
     "image": "women-sunglasses-4.jpg",
     "color": "pink",
     "type": "sunglasses",
-    "price": "$130",
+    "price": 130,
     "stock": 15,
     "sku": "W323340",
     "product_id": 139
@@ -1404,7 +1404,7 @@
     "image": "women-sunglasses-5.jpg",
     "color": "blue",
     "type": "sunglasses",
-    "price": "$135",
+    "price": 135,
     "stock": 12,
     "sku": "W323341",
     "product_id": 140
@@ -1414,7 +1414,7 @@
     "image": "women-sunglasses-6.jpg",
     "color": "red",
     "type": "sunglasses",
-    "price": "$145",
+    "price": 145,
     "stock": 10,
     "sku": "W323342",
     "product_id": 141
@@ -1424,7 +1424,7 @@
     "image": "women-sunglasses-7.jpg",
     "color": "purple",
     "type": "sunglasses",
-    "price": "$150",
+    "price": 150,
     "stock": 8,
     "sku": "W323343",
     "product_id": 142
@@ -1434,7 +1434,7 @@
     "image": "women-sunglasses-8.jpg",
     "color": "green",
     "type": "sunglasses",
-    "price": "$120",
+    "price": 120,
     "stock": 16,
     "sku": "W323344",
     "product_id": 143
@@ -1444,7 +1444,7 @@
     "image": "women-bracelet-1.jpg",
     "color": "gold",
     "type": "bracelet",
-    "price": "$50",
+    "price": 50,
     "stock": 20,
     "sku": "W323345",
     "product_id": 144
@@ -1454,7 +1454,7 @@
     "image": "women-bracelet-2.jpg",
     "color": "silver",
     "type": "bracelet",
-    "price": "$45",
+    "price": 45,
     "stock": 18,
     "sku": "W323346",
     "product_id": 145
@@ -1464,7 +1464,7 @@
     "image": "women-bracelet-3.jpg",
     "color": "rose gold",
     "type": "bracelet",
-    "price": "$60",
+    "price": 60,
     "stock": 15,
     "sku": "W323347",
     "product_id": 146
@@ -1474,7 +1474,7 @@
     "image": "women-bracelet-4.jpg",
     "color": "black",
     "type": "bracelet",
-    "price": "$40",
+    "price": 40,
     "stock": 12,
     "sku": "W323348",
     "product_id": 147
@@ -1484,7 +1484,7 @@
     "image": "women-bracelet-5.jpg",
     "color": "white",
     "type": "bracelet",
-    "price": "$55",
+    "price": 55,
     "stock": 10,
     "sku": "W323349",
     "product_id": 148
@@ -1494,7 +1494,7 @@
     "image": "women-bracelet-6.jpg",
     "color": "blue",
     "type": "bracelet",
-    "price": "$52",
+    "price": 52,
     "stock": 14,
     "sku": "W323350",
     "product_id": 149
@@ -1504,7 +1504,7 @@
     "image": "women-bracelet-7.jpg",
     "color": "green",
     "type": "bracelet",
-    "price": "$48",
+    "price": 48,
     "stock": 16,
     "sku": "W323351",
     "product_id": 150
@@ -1514,7 +1514,7 @@
     "image": "women-bracelet-8.jpg",
     "color": "pink",
     "type": "bracelet",
-    "price": "$58",
+    "price": 58,
     "stock": 11,
     "sku": "W323352",
     "product_id": 151
@@ -1524,7 +1524,7 @@
     "image": "women-earrings-1.jpg",
     "color": "gold",
     "type": "earrings",
-    "price": "$40",
+    "price": 40,
     "stock": 18,
     "sku": "W323353",
     "product_id": 152
@@ -1534,7 +1534,7 @@
     "image": "women-earrings-2.jpg",
     "color": "silver",
     "type": "earrings",
-    "price": "$35",
+    "price": 35,
     "stock": 20,
     "sku": "W323354",
     "product_id": 153
@@ -1544,7 +1544,7 @@
     "image": "women-earrings-3.jpg",
     "color": "rose gold",
     "type": "earrings",
-    "price": "$50",
+    "price": 50,
     "stock": 14,
     "sku": "W323355",
     "product_id": 154
@@ -1554,7 +1554,7 @@
     "image": "women-earrings-4.jpg",
     "color": "black",
     "type": "earrings",
-    "price": "$38",
+    "price": 38,
     "stock": 16,
     "sku": "W323356",
     "product_id": 155
@@ -1564,7 +1564,7 @@
     "image": "women-earrings-5.jpg",
     "color": "blue",
     "type": "earrings",
-    "price": "$45",
+    "price": 45,
     "stock": 12,
     "sku": "W323357",
     "product_id": 156
@@ -1574,7 +1574,7 @@
     "image": "women-earrings-6.jpg",
     "color": "green",
     "type": "earrings",
-    "price": "$42",
+    "price": 42,
     "stock": 18,
     "sku": "W323358",
     "product_id": 157
@@ -1584,7 +1584,7 @@
     "image": "women-earrings-7.jpg",
     "color": "pink",
     "type": "earrings",
-    "price": "$48",
+    "price": 48,
     "stock": 10,
     "sku": "W323359",
     "product_id": 158
@@ -1594,7 +1594,7 @@
     "image": "women-earrings-8.jpg",
     "color": "purple",
     "type": "earrings",
-    "price": "$55",
+    "price": 55,
     "stock": 14,
     "sku": "W323360",
     "product_id": 159
@@ -1604,7 +1604,7 @@
     "image": "women-necklace-1.jpg",
     "color": "gold",
     "type": "necklace",
-    "price": "$70",
+    "price": 70,
     "stock": 15,
     "sku": "W323361",
     "product_id": 160
@@ -1614,7 +1614,7 @@
     "image": "women-necklace-2.jpg",
     "color": "silver",
     "type": "necklace",
-    "price": "$65",
+    "price": 65,
     "stock": 18,
     "sku": "W323362",
     "product_id": 161
@@ -1624,7 +1624,7 @@
     "image": "women-necklace-3.jpg",
     "color": "rose gold",
     "type": "necklace",
-    "price": "$80",
+    "price": 80,
     "stock": 12,
     "sku": "W323363",
     "product_id": 162
@@ -1634,7 +1634,7 @@
     "image": "women-necklace-4.jpg",
     "color": "black",
     "type": "necklace",
-    "price": "$75",
+    "price": 75,
     "stock": 14,
     "sku": "W323364",
     "product_id": 163
@@ -1644,7 +1644,7 @@
     "image": "women-necklace-5.jpg",
     "color": "silver",
     "type": "necklace",
-    "price": "$85",
+    "price": 85,
     "stock": 10,
     "sku": "W323365",
     "product_id": 164
@@ -1654,7 +1654,7 @@
     "image": "women-necklace-6.jpg",
     "color": "white",
     "type": "necklace",
-    "price": "$90",
+    "price": 90,
     "stock": 20,
     "sku": "W323366",
     "product_id": 165
@@ -1664,7 +1664,7 @@
     "image": "women-necklace-7.jpg",
     "color": "blue",
     "type": "necklace",
-    "price": "$95",
+    "price": 95,
     "stock": 16,
     "sku": "W323367",
     "product_id": 166
@@ -1674,7 +1674,7 @@
     "image": "women-necklace-8.jpg",
     "color": "green",
     "type": "necklace",
-    "price": "$100",
+    "price": 100,
     "stock": 18,
     "sku": "W323368",
     "product_id": 167
@@ -1684,7 +1684,7 @@
     "image": "women-ring-1.jpg",
     "color": "gold",
     "type": "ring",
-    "price": "$50",
+    "price": 50,
     "stock": 18,
     "sku": "W323369",
     "product_id": 168
@@ -1694,7 +1694,7 @@
     "image": "women-ring-2.jpg",
     "color": "silver",
     "type": "ring",
-    "price": "$45",
+    "price": 45,
     "stock": 22,
     "sku": "W323370",
     "product_id": 169
@@ -1704,7 +1704,7 @@
     "image": "women-ring-3.jpg",
     "color": "rose gold",
     "type": "ring",
-    "price": "$60",
+    "price": 60,
     "stock": 14,
     "sku": "W323371",
     "product_id": 170
@@ -1714,7 +1714,7 @@
     "image": "women-ring-4.jpg",
     "color": "black",
     "type": "ring",
-    "price": "$55",
+    "price": 55,
     "stock": 12,
     "sku": "W323372",
     "product_id": 171
@@ -1724,7 +1724,7 @@
     "image": "women-ring-5.jpg",
     "color": "blue",
     "type": "ring",
-    "price": "$65",
+    "price": 65,
     "stock": 16,
     "sku": "W323373",
     "product_id": 172
@@ -1734,7 +1734,7 @@
     "image": "women-ring-6.jpg",
     "color": "green",
     "type": "ring",
-    "price": "$70",
+    "price": 70,
     "stock": 18,
     "sku": "W323374",
     "product_id": 173
@@ -1744,7 +1744,7 @@
     "image": "women-ring-7.jpg",
     "color": "pink",
     "type": "ring",
-    "price": "$75",
+    "price": 75,
     "stock": 10,
     "sku": "W323375",
     "product_id": 174
@@ -1754,7 +1754,7 @@
     "image": "women-ring-8.jpg",
     "color": "purple",
     "type": "ring",
-    "price": "$80",
+    "price": 80,
     "stock": 14,
     "sku": "W323376",
     "product_id": 175
@@ -1764,7 +1764,7 @@
     "image": "men-watch-1.jpg",
     "color": "gold",
     "type": "watch",
-    "price": "$150",
+    "price": 150,
     "stock": 15,
     "sku": "W323377",
     "product_id": 176
@@ -1774,7 +1774,7 @@
     "image": "men-watch-2.jpg",
     "color": "silver",
     "type": "watch",
-    "price": "$135",
+    "price": 135,
     "stock": 18,
     "sku": "W323378",
     "product_id": 177
@@ -1784,7 +1784,7 @@
     "image": "men-watch-3.jpg",
     "color": "rose gold",
     "type": "watch",
-    "price": "$160",
+    "price": 160,
     "stock": 14,
     "sku": "W323379",
     "product_id": 178
@@ -1794,7 +1794,7 @@
     "image": "men-watch-4.jpg",
     "color": "black",
     "type": "watch",
-    "price": "$140",
+    "price": 140,
     "stock": 12,
     "sku": "W323380",
     "product_id": 179
@@ -1804,7 +1804,7 @@
     "image": "men-watch-5.jpg",
     "color": "white",
     "type": "watch",
-    "price": "$120",
+    "price": 120,
     "stock": 16,
     "sku": "W323381",
     "product_id": 180
@@ -1814,7 +1814,7 @@
     "image": "men-watch-6.jpg",
     "color": "blue",
     "type": "watch",
-    "price": "$155",
+    "price": 155,
     "stock": 14,
     "sku": "W323382",
     "product_id": 181
@@ -1824,7 +1824,7 @@
     "image": "men-watch-7.jpg",
     "color": "pink",
     "type": "watch",
-    "price": "$145",
+    "price": 145,
     "stock": 10,
     "sku": "W323383",
     "product_id": 182
@@ -1834,7 +1834,7 @@
     "image": "men-watch-8.jpg",
     "color": "green",
     "type": "watch",
-    "price": "$150",
+    "price": 150,
     "stock": 18,
     "sku": "W323384",
     "product_id": 183
@@ -1844,7 +1844,7 @@
     "image": "women-perfume-1.jpg",
     "color": "floral",
     "type": "perfume",
-    "price": "$75",
+    "price": 75,
     "stock": 20,
     "sku": "W323385",
     "product_id": 184
@@ -1854,7 +1854,7 @@
     "image": "women-perfume-2.jpg",
     "color": "fruity",
     "type": "perfume",
-    "price": "$85",
+    "price": 85,
     "stock": 18,
     "sku": "W323386",
     "product_id": 185
@@ -1864,7 +1864,7 @@
     "image": "women-perfume-3.jpg",
     "color": "citrus",
     "type": "perfume",
-    "price": "$90",
+    "price": 90,
     "stock": 14,
     "sku": "W323387",
     "product_id": 186
@@ -1874,7 +1874,7 @@
     "image": "women-perfume-4.jpg",
     "color": "woody",
     "type": "perfume",
-    "price": "$95",
+    "price": 95,
     "stock": 12,
     "sku": "W323388",
     "product_id": 187
@@ -1884,7 +1884,7 @@
     "image": "women-perfume-5.jpg",
     "color": "amber",
     "type": "perfume",
-    "price": "$100",
+    "price": 100,
     "stock": 16,
     "sku": "W323389",
     "product_id": 188
@@ -1894,7 +1894,7 @@
     "image": "women-perfume-6.jpg",
     "color": "vanilla",
     "type": "perfume",
-    "price": "$80",
+    "price": 80,
     "stock": 20,
     "sku": "W323390",
     "product_id": 189
@@ -1904,7 +1904,7 @@
     "image": "women-perfume-7.jpg",
     "color": "oriental",
     "type": "perfume",
-    "price": "$110",
+    "price": 110,
     "stock": 10,
     "sku": "W323391",
     "product_id": 190
@@ -1914,7 +1914,7 @@
     "image": "women-perfume-8.jpg",
     "color": "musk",
     "type": "perfume",
-    "price": "$120",
+    "price": 120,
     "stock": 15,
     "sku": "W323392",
     "product_id": 191
@@ -1924,7 +1924,7 @@
     "image": "men-perfume-1.jpg",
     "color": "woody",
     "type": "perfume",
-    "price": "$85",
+    "price": 85,
     "stock": 18,
     "sku": "M323393",
     "product_id": 192
@@ -1934,7 +1934,7 @@
     "image": "men-perfume-2.jpg",
     "color": "citrus",
     "type": "perfume",
-    "price": "$90",
+    "price": 90,
     "stock": 20,
     "sku": "M323394",
     "product_id": 193
@@ -1944,7 +1944,7 @@
     "image": "men-perfume-3.jpg",
     "color": "amber",
     "type": "perfume",
-    "price": "$95",
+    "price": 95,
     "stock": 15,
     "sku": "M323395",
     "product_id": 194
@@ -1954,7 +1954,7 @@
     "image": "men-perfume-4.jpg",
     "color": "spicy",
     "type": "perfume",
-    "price": "$100",
+    "price": 100,
     "stock": 14,
     "sku": "M323396",
     "product_id": 195
@@ -1964,7 +1964,7 @@
     "image": "men-perfume-5.jpg",
     "color": "leather",
     "type": "perfume",
-    "price": "$110",
+    "price": 110,
     "stock": 18,
     "sku": "M323397",
     "product_id": 196
@@ -1974,7 +1974,7 @@
     "image": "men-perfume-6.jpg",
     "color": "musk",
     "type": "perfume",
-    "price": "$120",
+    "price": 120,
     "stock": 12,
     "sku": "M323398",
     "product_id": 197
@@ -1984,7 +1984,7 @@
     "image": "men-perfume-7.jpg",
     "color": "fresh",
     "type": "perfume",
-    "price": "$105",
+    "price": 105,
     "stock": 16,
     "sku": "M323399",
     "product_id": 198
@@ -1994,7 +1994,7 @@
     "image": "men-perfume-8.jpg",
     "color": "herbal",
     "type": "perfume",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 199
@@ -2004,7 +2004,7 @@
     "image": "women-sneakers-1.jpg",
     "color": "herbal",
     "type": "sneakers",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 200
@@ -2014,7 +2014,7 @@
     "image": "women-sneakers-2.jpg",
     "color": "herbal",
     "type": "sneakers",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 201
@@ -2024,7 +2024,7 @@
     "image": "women-sneakers-3.jpg",
     "color": "herbal",
     "type": "sneakers",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 202
@@ -2034,7 +2034,7 @@
     "image": "women-sneakers-4.jpg",
     "color": "herbal",
     "type": "sneakers",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 203
@@ -2044,7 +2044,7 @@
     "image": "women-sneakers-5.jpg",
     "color": "herbal",
     "type": "sneakers",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 204
@@ -2054,7 +2054,7 @@
     "image": "women-sneakers-6.jpg",
     "color": "herbal",
     "type": "sneakers",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 205
@@ -2064,7 +2064,7 @@
     "image": "women-sneakers-7.jpg",
     "color": "herbal",
     "type": "sneakers",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 206
@@ -2074,7 +2074,7 @@
     "image": "women-sneakers-8.jpg",
     "color": "herbal",
     "type": "sneakers",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 207
@@ -2084,7 +2084,7 @@
     "image": "women-watch-1.jpg",
     "color": "herbal",
     "type": "watch",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 208
@@ -2094,7 +2094,7 @@
     "image": "women-watch-2.jpg",
     "color": "herbal",
     "type": "watch",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 209
@@ -2104,7 +2104,7 @@
     "image": "women-watch-3.jpg",
     "color": "herbal",
     "type": "watch",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 210
@@ -2114,7 +2114,7 @@
     "image": "women-watch-4.jpg",
     "color": "herbal",
     "type": "watch",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 211
@@ -2124,7 +2124,7 @@
     "image": "women-watch-5.jpg",
     "color": "herbal",
     "type": "watch",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 212
@@ -2134,7 +2134,7 @@
     "image": "women-watch-6.jpg",
     "color": "herbal",
     "type": "watch",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 213
@@ -2144,7 +2144,7 @@
     "image": "women-watch-7.jpg",
     "color": "herbal",
     "type": "watch",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 214
@@ -2154,7 +2154,7 @@
     "image": "women-watch-8.jpg",
     "color": "herbal",
     "type": "watch",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 215
@@ -2164,7 +2164,7 @@
     "image": "men-sandals-1.jpg",
     "color": "herbal",
     "type": "sandals",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 216
@@ -2174,7 +2174,7 @@
     "image": "men-sandals-2.jpg",
     "color": "herbal",
     "type": "sandals",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 217
@@ -2184,7 +2184,7 @@
     "image": "men-sandals-3.jpg",
     "color": "herbal",
     "type": "sandals",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 218
@@ -2194,7 +2194,7 @@
     "image": "men-sandals-4.jpg",
     "color": "herbal",
     "type": "sandals",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 219
@@ -2204,7 +2204,7 @@
     "image": "men-sandals-5.jpg",
     "color": "herbal",
     "type": "sandals",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 220
@@ -2214,7 +2214,7 @@
     "image": "men-sandals-6.jpg",
     "color": "herbal",
     "type": "sandals",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 221
@@ -2224,7 +2224,7 @@
     "image": "men-sandals-7.jpg",
     "color": "herbal",
     "type": "sandals",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 222
@@ -2234,7 +2234,7 @@
     "image": "men-sandals-8.jpg",
     "color": "herbal",
     "type": "sandals",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 223
@@ -2244,7 +2244,7 @@
     "image": "men-bracelet-1.jpg",
     "color": "herbal",
     "type": "bracelet",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 224
@@ -2254,7 +2254,7 @@
     "image": "men-bracelet-2.jpg",
     "color": "herbal",
     "type": "bracelet",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 225
@@ -2264,7 +2264,7 @@
     "image": "men-bracelet-3.jpg",
     "color": "herbal",
     "type": "bracelet",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 226
@@ -2274,7 +2274,7 @@
     "image": "men-bracelet-4.jpg",
     "color": "herbal",
     "type": "bracelet",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 227
@@ -2284,7 +2284,7 @@
     "image": "men-bracelet-5.jpg",
     "color": "herbal",
     "type": "bracelet",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 228
@@ -2294,7 +2294,7 @@
     "image": "men-bracelet-6.jpg",
     "color": "herbal",
     "type": "bracelet",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 229
@@ -2304,7 +2304,7 @@
     "image": "men-bracelet-7.jpg",
     "color": "herbal",
     "type": "bracelet",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 230
@@ -2314,7 +2314,7 @@
     "image": "men-bracelet-8.jpg",
     "color": "herbal",
     "type": "bracelet",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 231
@@ -2324,7 +2324,7 @@
     "image": "men-ring-1.jpg",
     "color": "herbal",
     "type": "ring",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 232
@@ -2334,7 +2334,7 @@
     "image": "men-ring-2.jpg",
     "color": "herbal",
     "type": "ring",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 233
@@ -2344,7 +2344,7 @@
     "image": "men-ring-3.jpg",
     "color": "herbal",
     "type": "ring",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 234
@@ -2354,7 +2354,7 @@
     "image": "men-ring-4.jpg",
     "color": "herbal",
     "type": "ring",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 235
@@ -2364,7 +2364,7 @@
     "image": "men-ring-5.jpg",
     "color": "herbal",
     "type": "ring",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 236
@@ -2374,7 +2374,7 @@
     "image": "men-ring-6.jpg",
     "color": "herbal",
     "type": "ring",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 237
@@ -2384,7 +2384,7 @@
     "image": "men-ring-7.jpg",
     "color": "herbal",
     "type": "ring",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 238
@@ -2394,7 +2394,7 @@
     "image": "men-ring-8.jpg",
     "color": "herbal",
     "type": "ring",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 239
@@ -2404,7 +2404,7 @@
     "image": "men-necklace-1.jpg",
     "color": "herbal",
     "type": "necklace",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 240
@@ -2414,7 +2414,7 @@
     "image": "men-necklace-2.jpg",
     "color": "herbal",
     "type": "necklace",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 241
@@ -2424,7 +2424,7 @@
     "image": "men-necklace-3.jpg",
     "color": "herbal",
     "type": "necklace",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 242
@@ -2434,7 +2434,7 @@
     "image": "men-necklace-4.jpg",
     "color": "herbal",
     "type": "necklace",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 243
@@ -2444,7 +2444,7 @@
     "image": "men-necklace-5.jpg",
     "color": "herbal",
     "type": "necklace",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 244
@@ -2454,7 +2454,7 @@
     "image": "men-necklace-6.jpg",
     "color": "herbal",
     "type": "necklace",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 245
@@ -2464,7 +2464,7 @@
     "image": "men-necklace-7.jpg",
     "color": "herbal",
     "type": "necklace",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 246
@@ -2474,7 +2474,7 @@
     "image": "men-necklace-8.jpg",
     "color": "herbal",
     "type": "necklace",
-    "price": "$115",
+    "price": 115,
     "stock": 14,
     "sku": "M323400",
     "product_id": 247
