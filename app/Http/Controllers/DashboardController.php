@@ -18,6 +18,7 @@ class DashboardController extends Controller
 
         return Inertia::render('Admin/Overview', [
             'products' => Product::with(['productVariations', 'category'])->paginate(15),
+            'categories' => ProductCategory::all(),
             'users' => User::paginate(15)
         ]);
     }

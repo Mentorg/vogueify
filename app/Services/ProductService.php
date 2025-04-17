@@ -96,7 +96,6 @@ class ProductService
             }
 
             if ($request->hasFile('image')) {
-                // Safely delete old image if it exists
                 if (!empty($variation->image)) {
                     $oldImagePath = str_replace('/storage/', '', $variation->image);
                     Storage::disk('public')->delete($oldImagePath);
@@ -105,10 +104,9 @@ class ProductService
                 $imagePath = $request->file('image')->store('products', 'public');
                 $imagePath = Storage::url($imagePath);
             } else {
-                $imagePath = $variation->image; // use existing image if not updated
+                $imagePath = $variation->image;
             }
 
-            // Update product
             $product->update([
                 'name' => $validated['name'],
                 'description' => $validated['description'],
@@ -117,7 +115,6 @@ class ProductService
                 'category_id' => $validated['category_id'],
             ]);
 
-            // Update variation
             $variation->update([
                 'image' => $imagePath,
                 'color' => $validated['color'],
@@ -139,6 +136,12 @@ class ProductService
             ]);
             throw new Exception('Failed to update the product: ' . $e->getMessage(), $e->getCode(), $e);
         }
+    }
+
+    public function delete($product)
+    {
+        $product->delete();
+        return $product;
     }
 
     public function getSearchResults()

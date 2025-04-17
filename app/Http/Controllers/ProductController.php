@@ -88,6 +88,15 @@ class ProductController extends Controller
                          ->with(['success' => 'Product updated successfully.']);
     }
 
+    public function destroy(Product $product)
+    {
+        $this->authorize('modify', Product::class);
+
+        $this->productService->delete($product);
+
+        return redirect()->route('admin.products');
+    }
+
     public function searchResults()
     {
         return Inertia::render('Products', [

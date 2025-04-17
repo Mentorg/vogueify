@@ -1,15 +1,21 @@
 <script setup>
 import { defineProps, onBeforeUnmount, onMounted, ref } from 'vue';
-import { Link, router } from '@inertiajs/vue3';
+import { Link, router, useForm } from '@inertiajs/vue3';
 import { PhDotsThreeVertical, PhCaretLeft, PhCaretRight, PhPencilSimple, PhTrash } from '@phosphor-icons/vue';
 import { formatDate } from "@/utils/dateFormat.js";
+import DialogModal from './DialogModal.vue';
+import DangerButton from './DangerButton.vue';
+import SecondaryButton from './SecondaryButton.vue';
 
 const props = defineProps({
   products: Object,
   categories: Array
 });
 
+const form = useForm({});
+
 const openMenu = ref(null);
+const productToDelete = ref(null);
 
 const toggleMenu = (id) => {
   openMenu.value = openMenu.value === id ? null : id;
@@ -19,6 +25,24 @@ const handleClickOutside = (event) => {
   if (!event.target.closest('.context-menu-wrapper')) {
     openMenu.value = null;
   }
+}
+
+const confirmProductDeletion = (product) => {
+  productToDelete.value = product;
+}
+
+const destroy = (id) => {
+  form.delete(route('product.delete', id), {
+    preserveScroll: true,
+    onSuccess: () => closeModal(),
+    onFinish: () => form.reset()
+  });
+  console.log(id)
+}
+
+const closeModal = () => {
+  productToDelete.value = null;
+  form.reset()
 }
 
 onMounted(() => {
@@ -60,7 +84,7 @@ onBeforeUnmount(() => {
         <tbody>
           <tr v-for="product in products.data" :key="product.id"
             class="grid grid-cols-[0.5fr,4fr,2fr,2fr,3fr,3fr,3fr,1fr] border-b dark:border-neutral-200 even:bg-slate-100">
-            <th class="px-6 py-4">{{ product.id + 1 }}</th>
+            <th class="px-6 py-4">{{ product.id }}</th>
             <th scope="row" class="px-6 py-4 overflow-hidden text-ellipsis whitespace-nowrap">
               {{ product.name }}
             </th>
@@ -87,13 +111,30 @@ onBeforeUnmount(() => {
                 <PhPencilSimple :size="16" color="green" />
                 Update
                 </Link>
-                <Link class="flex items-center gap-x-2 transition-all hover:text-slate-500">
-                <PhTrash :size="16" color="red" />
-                Delete
-                </Link>
+                <div class="flex items-center gap-x-2 transition-all hover:text-slate-500">
+                  <button @click="confirmProductDeletion(product)" class="flex items-center gap-2">
+                    <PhTrash :size="16" color="red" />
+                    Delete
+                  </button>
+                </div>
               </div>
             </td>
           </tr>
+          <DialogModal :show="productToDelete !== null" @close="closeModal">
+            <template #title>
+              Delete '{{ productToDelete?.name }}' with an ID of '{{ productToDelete?.id }}'?
+            </template>
+            <template #content>
+              Are you sure you want to delete '{{ productToDelete?.name }}'?
+            </template>
+            <template #footer>
+              <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+              <DangerButton class="ms-3" @click="destroy(productToDelete.id)">
+                <PhTrash :size="16" color="red" />
+                Delete
+              </DangerButton>
+            </template>
+          </DialogModal>
         </tbody>
       </table>
       <nav class="bg-white sticky bottom-0 flex py-2 px-4 border-t-2 items-center justify-between text-sm"

@@ -68,18 +68,15 @@ const submitForm = () => {
   formData.append('stock', form.stock);
   formData.append('sku', form.sku);
 
-  // If it's a File object, append it — otherwise skip or send null
   if (form.image instanceof File) {
     formData.append('image', form.image);
   }
 
-  // Append features as array of objects (Laravel-compatible)
   form.features.forEach((feature, index) => {
     formData.append(`features[${index}][title]`, feature.title);
     formData.append(`features[${index}][description]`, feature.description);
   });
 
-  // Log the FormData contents for debugging
   for (const [key, value] of formData.entries()) {
     console.log(`${key}:`, value);
   }
