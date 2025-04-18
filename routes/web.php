@@ -61,7 +61,7 @@ Route::controller(ProductController::class)->group(function () {
 });
 
 Route::controller(UserController::class)->group(function () {
-
+    Route::delete('/admin/users/{user}', 'destroy')->name('user.destroy');
     Route::get('/dashboard', 'getWishlist')->name('dashboard');
 });
 

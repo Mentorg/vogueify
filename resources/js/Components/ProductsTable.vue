@@ -122,7 +122,7 @@ onBeforeUnmount(() => {
           </tr>
           <DialogModal :show="productToDelete !== null" @close="closeModal">
             <template #title>
-              Delete '{{ productToDelete?.name }}' with an ID of '{{ productToDelete?.id }}'?
+              Delete '{{ productToDelete?.name }}'?
             </template>
             <template #content>
               Are you sure you want to delete '{{ productToDelete?.name }}'?
@@ -130,7 +130,7 @@ onBeforeUnmount(() => {
             <template #footer>
               <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
               <DangerButton class="ms-3" @click="destroy(productToDelete.id)">
-                <PhTrash :size="16" color="red" />
+                <PhTrash :size="16" color="white" class="mr-2" />
                 Delete
               </DangerButton>
             </template>
