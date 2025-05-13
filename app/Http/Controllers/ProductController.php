@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\FIlters\Search;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductType;
+use App\Models\Size;
 use App\Services\ProductService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -36,7 +39,10 @@ class ProductController extends Controller
         $this->authorize('modify', Product::class);
 
         return Inertia::render('Admin/ProductForm', [
-            'categories' => ProductCategory::all()
+            'categories' => ProductCategory::all(),
+            'types' => ProductType::all(),
+            'sizes' => Size::all(),
+            'colors' => Color::all()
         ]);
     }
 
@@ -50,10 +56,19 @@ class ProductController extends Controller
                      ->with(['success' => 'Product created successfully.', 'product' => $createdProduct ]);
     }
 
-    public function show(Product $product)
+    public function show(Product $product, ?string $variation = null)
     {
+        if ($variation && !$product->productVariations()->where('sku', $variation)->exists()) {
+            throw ValidationException::withMessages([
+                'variation' => 'The selected variation is invalid for this product.',
+            ]);
+        }
+
+        $data = $this->productService->getProduct($product, $variation);
+
         return Inertia::render('Product', [
-            'product' => $this->productService->getProduct($product)
+            'product' => $data['product'],
+            'activeVariation' => $data['activeVariation'],
         ]);
     }
 
@@ -61,31 +76,32 @@ class ProductController extends Controller
     {
         $this->authorize('modify', Product::class);
 
-        $product->load(['productVariations', 'category']);
+        $product->load(['productVariations.sizes', 'productVariations.type', 'category']);
 
         return Inertia::render('Admin/ProductUpdate', [
-            'product' => $product->only([
-                'id', 'name', 'description', 'features', 'gender', 'category_id'
-            ]) + [
-                'product_variations' => $product->productVariations,
-                'category' => $product->category
-            ],
-            'categories' => ProductCategory::all()
+            'product' => $product,
+            'categories' => ProductCategory::all(),
+            'types' => ProductType::all(),
+            'sizes' => Size::all(),
+            'colors' => Color::all()
         ]);
     }
 
-    public function update(UpdateProductRequest $request, $id)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        $product = Product::with('productVariations')->findOrFail($id);
-        Log::info('ProductController@update - Product:', [$product]);
-        $this->authorize('modify', Product::class);
+        try {
+            $this->productService->update($request, $product);
 
-        $product->load('productVariations');
+            $defaultVariation = $product->productVariations()->first();
 
-        $updatedProduct = $this->productService->update($product, $request, $request->file('image'));
-
-        return redirect()->route('product.show', $updatedProduct->id)
-                         ->with(['success' => 'Product updated successfully.']);
+            return redirect()->route('product.show', [
+                'product' => $product->slug,
+                'variation' => optional($defaultVariation)->sku,
+            ])->with('success', 'Product updated successfully!');
+        } catch (\Exception $e) {
+            Log::error('Product update failed: ' . $e->getMessage());
+            return back()->withErrors(['error' => 'Product update failed.'])->withInput();
+        }
     }
 
     public function destroy(Product $product)

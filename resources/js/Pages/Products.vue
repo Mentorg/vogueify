@@ -43,19 +43,18 @@ const addToWishlist = async (productId) => {
     <Menu />
     <main>
       <section class="grid grid-cols-2 md:grid-cols-4">
-        <div v-for="product in products" :key="product.id" class="relative">
-          <Link :href="route('product.show', product.id)" class="relative">
-          <img v-if="product.product_variations && product.product_variations.length > 0"
-            :src="product.product_variations[0].image" :alt="product.name" />
+        <div v-for="variation in products" :key="variation.id" class="relative">
+          <Link :href="route('product.show', { product: variation.product.slug, variation: variation.sku })"
+            class="relative">
+          <img :src="variation.image" :alt="variation.product.name" />
           <div class="absolute top-0 right-0 mt-2 mr-2">
             <button @click.prevent="addToWishlist(product.id)">
               <PhHeart size="18" />
             </button>
           </div>
           <div class="absolute bottom-0 left-0 bg-white py-1 px-3 ml-2 mb-2">
-            <h2 class="line-clamp-1">{{ product.name }}</h2>
-            <p v-if="product.product_variations && product.product_variations.length > 0">{{
-              product.product_variations[0].price }}</p>
+            <h2 class="line-clamp-1">{{ variation.product.name }}</h2>
+            <p>${{ variation.price }}</p>
           </div>
           </Link>
         </div>

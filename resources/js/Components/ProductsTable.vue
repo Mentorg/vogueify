@@ -106,7 +106,7 @@ onBeforeUnmount(() => {
               </button>
               <div v-if="openMenu === product.id"
                 class="absolute z-10 right-6 px-4 py-4 bg-white border border-gray-200 shadow-md hs-dropdown-menu min-w-32 flex flex-col gap-y-3 rounded-md mt-2">
-                <Link :href="route('product.edit', product.id)"
+                <Link :href="route('product.edit', { product: product.slug })"
                   class="flex items-center gap-x-2 transition-all hover:text-slate-500">
                 <PhPencilSimple :size="16" color="green" />
                 Update

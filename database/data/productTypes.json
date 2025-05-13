@@ -1,0 +1,158 @@
+[
+  {
+    "id": 0,
+    "type": "backpack",
+    "label": "Backpack",
+    "category_id": 0
+  },
+  {
+    "id": 1,
+    "type": "satchel",
+    "label": "Satchel",
+    "category_id": 0
+  },
+  {
+    "id": 2,
+    "type": "clutch",
+    "label": "Clutch",
+    "category_id": 0
+  },
+  {
+    "id": 3,
+    "type": "fanny",
+    "label": "Fanny Pack",
+    "category_id": 0
+  },
+  {
+    "id": 4,
+    "type": "handbag",
+    "label": "Handbag",
+    "category_id": 0
+  },
+  {
+    "id": 5,
+    "type": "bucket",
+    "label": "Bucket Bag",
+    "category_id": 0
+  },
+  {
+    "id": 6,
+    "type": "hobo",
+    "label": "Hobo Bag",
+    "category_id": 0
+  },
+  {
+    "id": 7,
+    "type": "envelope",
+    "label": "Envelope Handbag",
+    "category_id": 0
+  },
+  {
+    "id": 8,
+    "type": "sneakers",
+    "label": "Sneakers",
+    "category_id": 1
+  },
+  {
+    "id": 9,
+    "type": "dress-boots",
+    "label": "Dress Boots",
+    "category_id": 1
+  },
+  {
+    "id": 10,
+    "type": "ankle-boots",
+    "label": "Ankle Boots",
+    "category_id": 1
+  },
+  {
+    "id": 11,
+    "type": "sandals",
+    "label": "Sandals",
+    "category_id": 1
+  },
+  {
+    "id": 12,
+    "type": "belt",
+    "label": "Belt",
+    "category_id": 2
+  },
+  {
+    "id": 13,
+    "type": "scarf",
+    "label": "Scarf",
+    "category_id": 2
+  },
+  {
+    "id": 14,
+    "type": "sunglasses",
+    "label": "Sunglasses",
+    "category_id": 2
+  },
+  {
+    "id": 15,
+    "type": "bracelet",
+    "label": "Bracelet",
+    "category_id": 3
+  },
+  {
+    "id": 16,
+    "type": "earrings",
+    "label": "Earrings",
+    "category_id": 3
+  },
+  {
+    "id": 17,
+    "type": "necklace",
+    "label": "Necklace",
+    "category_id": 3
+  },
+  {
+    "id": 18,
+    "type": "ring",
+    "label": "Ring",
+    "category_id": 3
+  },
+  {
+    "id": 19,
+    "type": "dress-watch",
+    "label": "Dress watch",
+    "category_id": 4
+  },
+  {
+    "id": 20,
+    "type": "luxury-watch",
+    "label": "Luxury Watch",
+    "category_id": 4
+  },
+  {
+    "id": 21,
+    "type": "eau-fraiche",
+    "label": "Eau Fraiche",
+    "category_id": 5
+  },
+  {
+    "id": 22,
+    "type": "eau-de-cologne",
+    "label": "Eau de Cologne",
+    "category_id": 5
+  },
+  {
+    "id": 23,
+    "type": "eau-de-toilette",
+    "label": "Eau de Toilette",
+    "category_id": 5
+  },
+  {
+    "id": 24,
+    "type": "eau-de-parfum",
+    "label": "Eau de Parfum",
+    "category_id": 5
+  },
+  {
+    "id": 25,
+    "type": "pure-perfume",
+    "label": "Pure Perfume",
+    "category_id": 5
+  }
+]

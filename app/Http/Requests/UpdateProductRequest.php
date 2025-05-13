@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -29,12 +31,53 @@ class UpdateProductRequest extends FormRequest
             'features.*.title' => 'required|string|max:255',
             'features.*.description' => 'required|string|max:255',
             'category_id' => 'required|exists:product_categories,id',
-            'image' => 'nullable|image|max:2048',
-            'color' => 'required|string',
-            'type' => 'required|string',
-            'price' => 'required|numeric',
-            'stock' => 'required|integer',
-            'sku' => 'required|string|max:255'
+
+            'variations' => 'required|array',
+            'variations.*.id' => 'nullable|integer|exists:product_variations,id',
+            'variations.*.image' => 'nullable', // handled below
+            'variations.*.product_type_id' => 'required|exists:product_types,id',
+            'variations.*.color_id' => 'nullable|exists:colors,id',
+            'variations.*.primary_color_id' => 'nullable|exists:colors,id',
+            'variations.*.secondary_color_id' => 'nullable|exists:colors,id',
+            'variations.*.price' => 'required|numeric',
+            'variations.*.sku' => 'required|string|max:255',
+
+            'variations.*.sizes' => 'required|array',
+            'variations.*.sizes.*.id' => 'required|exists:sizes,id',
+            'variations.*.sizes.*.stock' => 'required|integer|min:0',
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $product = $this->route('product');
+
+        $validator->after(function ($validator) use ($product) {
+            foreach ($this->input('variations', []) as $index => $variation) {
+                $variationId = $variation['id'] ?? null;
+
+                if (!empty($variation['sku'])) {
+                    $validator->addRules([
+                        "variations.$index.sku" => [
+                            'required',
+                            'string',
+                            'max:255',
+                            Rule::unique('product_variations', 'sku')
+                                ->ignore($variationId),
+                        ]
+                    ]);
+                }
+
+                $imageField = "variations.$index.image";
+
+                if ($this->hasFile($imageField)) {
+                    $validator->addRules([
+                        $imageField => 'file|image|max:2048',
+                    ]);
+                } elseif (isset($variation['image']) && !filter_var($variation['image'], FILTER_VALIDATE_URL)) {
+                    $validator->errors()->add($imageField, 'Invalid image URL.');
+                }
+            }
+        });
     }
 }

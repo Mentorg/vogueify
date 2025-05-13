@@ -52,11 +52,11 @@ Route::controller(HomeController::class)->group(function() {
 Route::controller(ProductController::class)->group(function () {
     Route::get('/products', 'index')->name('products.index');
     Route::get('/products/search', 'searchResults')->name('products.search');
-    Route::get('/products/{product}', 'show')->name('product.show');
+    Route::get('/products/{product:slug}/{variation?}', 'show')->name('product.show');
     Route::get('/admin/product/create', 'create')->name('product.create');
     Route::post('/admin/products', 'store')->name('product.store');
-    Route::get('/admin/products/{product}/update', 'edit')->name('product.edit');
-    Route::put('/admin/products/{id}', 'update')->name('product.update');
+    Route::get('/admin/products/{product:slug}/update', 'edit')->name('product.edit');
+    Route::put('/admin/products/{product}', 'update')->name('product.update');
     Route::delete('/admin/products/{product}', 'destroy')->name('product.delete');
 });
 

@@ -8,50 +8,61 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\FIlters\Search;
 use Exception;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Log;
 
 class ProductService
 {
     public function getProducts($request)
     {
-        $query = Product::query();
+        $query = ProductVariation::with(['product.category', 'type']);
 
         if ($request->has('gender')) {
-            $query->where('gender', $request->gender);
+            $query->whereHas('product', fn($q) => $q->where('gender', $request->gender));
         }
 
         if ($request->has('category')) {
-            $query->whereHas('category', function($q) use ($request) {
-                $q->where('name', $request->category);
-            });
+            $query->whereHas('product.category', fn($q) => $q->where('name', $request->category));
         }
 
         if ($request->has('type')) {
-            $query->whereHas('productVariations', function($q) use ($request) {
-                $q->where('type', $request->type);
-            });
+            $query->whereHas('type', fn($q) => $q->where('type', $request->type));
         }
 
-        return $query->with('productVariations', 'category')->get();
+        return $query->get();
     }
 
-    public function getProduct($product)
+    public function getProduct($product, ?string $variation = null)
     {
-        return $product->load('productVariations');
+        $product->load(
+            'productVariations.sizes',
+            'productVariations.color',
+            'productVariations.primaryColor',
+            'productVariations.secondaryColor',
+            'productVariations.type'
+        );
+
+        $activeVariation = null;
+
+        if ($variation) {
+            $activeVariation = $product->productVariations->firstWhere('sku', $variation)
+                ?? $product->productVariations->first();
+        } else {
+            $activeVariation = $product->productVariations->first();
+        }
+
+        return [
+            'product' => $product,
+            'activeVariation' => $activeVariation,
+        ];
     }
+
 
     public function create(array $validated, $request)
     {
         DB::beginTransaction();
 
         try {
-            if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('products', 'public');
-                $imagePath = Storage::url($imagePath);
-            } else {
-                $imagePath = null;
-            }
-
             $product = Product::create([
                 'name' => $validated['name'],
                 'description' => $validated['description'],
@@ -60,15 +71,33 @@ class ProductService
                 'category_id' => $validated['category_id'],
             ]);
 
-            ProductVariation::create([
-                'product_id' => $product->id,
-                'image' => $imagePath,
-                'color' => $validated['color'],
-                'type' => $validated['type'],
-                'price' => $validated['price'],
-                'stock' => $validated['stock'],
-                'sku' => $validated['sku']
-            ]);
+            foreach ($validated['variations'] as $index => $variationData) {
+                $imagePath = null;
+
+                if ($request->hasFile("variations.$index.image")) {
+                    $image = $request->file("variations.$index.image");
+                    $imagePath = Storage::url($image->store('products', 'public'));
+                }
+
+                $variation = ProductVariation::create([
+                    'product_id' => $product->id,
+                    'image' => $imagePath,
+                    'sku' => $variationData['sku'],
+                    'price' => $variationData['price'],
+                    'product_type_id' => $variationData['product_type_id'],
+                    'color_id' => $variationData['color_id'] ?? null,
+                    'primary_color_id' => $variationData['primary_color_id'] ?? null,
+                    'secondary_color_id' => $variationData['secondary_color_id'] ?? null,
+                ]);
+
+                if (!empty($variationData['sizes'])) {
+                    $pivotData = collect($variationData['sizes'])->mapWithKeys(fn($s) => [
+                        $s['id'] => ['stock' => $s['stock']]
+                    ])->toArray();
+
+                    $variation->sizes()->sync($pivotData);
+                }
+            }
 
             DB::commit();
             return $product;
@@ -82,59 +111,80 @@ class ProductService
         }
     }
 
-    public function update(Product $product, $request, $image = null)
+    public function update($request, Product $product): void
     {
-        $validated = $request->validated();
-
         DB::beginTransaction();
 
         try {
-            $variation = $product->productVariations->first();
-
-            if (!$variation) {
-                throw new Exception('Product variation not found for product ID: ' . $product->id);
-            }
-
-            if ($request->hasFile('image')) {
-                if (!empty($variation->image)) {
-                    $oldImagePath = str_replace('/storage/', '', $variation->image);
-                    Storage::disk('public')->delete($oldImagePath);
-                }
-
-                $imagePath = $request->file('image')->store('products', 'public');
-                $imagePath = Storage::url($imagePath);
-            } else {
-                $imagePath = $variation->image;
-            }
+            $features = collect($request->features)->map(function ($feature) {
+                return [
+                    'title' => $feature['title'],
+                    'description' => $feature['description'],
+                ];
+            })->all();
 
             $product->update([
-                'name' => $validated['name'],
-                'description' => $validated['description'],
-                'features' => $validated['features'],
-                'gender' => $validated['gender'],
-                'category_id' => $validated['category_id'],
+                'name' => $request->name,
+                'description' => $request->description,
+                'gender' => $request->gender,
+                'features' => $features,
+                'category_id' => $request->category_id,
             ]);
 
-            $variation->update([
-                'image' => $imagePath,
-                'color' => $validated['color'],
-                'type' => $validated['type'],
-                'price' => $validated['price'],
-                'stock' => $validated['stock'],
-                'sku' => $validated['sku'],
-            ]);
+            $imageMap = [];
+
+            if ($request->hasFile('variation_images')) {
+                foreach ($request->file('variation_images') as $index => $file) {
+                    $variationId = $request->input("variation_image_indices.$index");
+
+                    if ($variationId && $file instanceof UploadedFile) {
+                        $storedPath = $file->store('products', 'public');
+                        $imageUrl = Storage::url($storedPath);
+                        $imageMap[$variationId] = $imageUrl;
+                    }
+
+                    $existingVariation = $product->productVariations->firstWhere('id', $variationId);
+
+                    if ($existingVariation && $existingVariation->image) {
+                        $oldPath = str_replace('/storage/', '', $existingVariation->image);
+                        Storage::disk('public')->delete($oldPath);
+                    }
+                }
+            }
+
+            foreach ($request->variations as $variationData) {
+                $variationId = $variationData['id'] ?? null;
+
+                $variation = $product->productVariations()->updateOrCreate(
+                    ['id' => $variationId],
+                    [
+                        'product_type_id' => $variationData['product_type_id'],
+                        'color_id' => $variationData['color_id'] ?? null,
+                        'primary_color_id' => $variationData['primary_color_id'] ?? null,
+                        'secondary_color_id' => $variationData['secondary_color_id'] ?? null,
+                        'price' => $variationData['price'],
+                        'sku' => $variationData['sku'],
+                        'image' => $imageMap[$variationId] ?? ($variationId ? $product->productVariations->firstWhere('id', $variationId)?->image : null),
+                    ]
+                );
+
+                $pivotData = [];
+
+                foreach ($variationData['sizes'] as $sizeData) {
+                    $pivotData[$sizeData['id']] = ['stock' => $sizeData['stock']];
+                }
+
+                $variation->sizes()->sync($pivotData);
+            }
 
             DB::commit();
-
-            return $product->load('productVariations');
-
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
-            Log::error('Failed to update the product: ' . $e->getMessage(), [
+            Log::error('Failed to update product: ' . $e->getMessage(), [
                 'product_id' => $product->id,
-                'exception' => $e
+                'trace' => $e->getTraceAsString(),
             ]);
-            throw new Exception('Failed to update the product: ' . $e->getMessage(), $e->getCode(), $e);
+            throw $e;
         }
     }
 

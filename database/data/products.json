@@ -17,10 +17,6 @@
         "description": "Water-resistant polyester"
       },
       {
-        "title": "Capacity",
-        "description": "25L"
-      },
-      {
         "title": "Pockets",
         "description": "3"
       }
@@ -44,10 +40,6 @@
       {
         "title": "Material",
         "description": "Nylon and mesh"
-      },
-      {
-        "title": "Capacity",
-        "description": "40L"
       },
       {
         "title": "Pockets",
@@ -75,10 +67,6 @@
         "description": "Synthetic leather"
       },
       {
-        "title": "Capacity",
-        "description": "18L"
-      },
-      {
         "title": "Pockets",
         "description": "6"
       }
@@ -102,10 +90,6 @@
       {
         "title": "Material",
         "description": "Durable nylon"
-      },
-      {
-        "title": "Capacity",
-        "description": "30L"
       },
       {
         "title": "Pockets",
@@ -133,10 +117,6 @@
         "description": "Canvas"
       },
       {
-        "title": "Capacity",
-        "description": "28L"
-      },
-      {
         "title": "Pockets",
         "description": "3"
       }
@@ -160,10 +140,6 @@
       {
         "title": "Material",
         "description": "Polyester"
-      },
-      {
-        "title": "Capacity",
-        "description": "22L"
       },
       {
         "title": "Pockets",
@@ -191,10 +167,6 @@
         "description": "Waterproof fabric"
       },
       {
-        "title": "Capacity",
-        "description": "50L"
-      },
-      {
         "title": "Pockets",
         "description": "7"
       }
@@ -220,10 +192,6 @@
         "description": "Polyester with PVC coating"
       },
       {
-        "title": "Capacity",
-        "description": "20L"
-      },
-      {
         "title": "Pockets",
         "description": "2"
       }
@@ -243,10 +211,6 @@
       {
         "title": "Material",
         "description": "Genuine leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "12L"
       },
       {
         "title": "Pockets",
@@ -270,10 +234,6 @@
         "description": "Canvas and leather"
       },
       {
-        "title": "Capacity",
-        "description": "18L"
-      },
-      {
         "title": "Pockets",
         "description": "4"
       }
@@ -293,10 +253,6 @@
       {
         "title": "Material",
         "description": "Water-resistant nylon"
-      },
-      {
-        "title": "Capacity",
-        "description": "14L"
       },
       {
         "title": "Pockets",
@@ -320,10 +276,6 @@
         "description": "Genuine leather"
       },
       {
-        "title": "Capacity",
-        "description": "16L"
-      },
-      {
         "title": "Pockets",
         "description": "6"
       }
@@ -343,10 +295,6 @@
       {
         "title": "Material",
         "description": "Heavy-duty canvas"
-      },
-      {
-        "title": "Capacity",
-        "description": "20L"
       },
       {
         "title": "Pockets",
@@ -370,10 +318,6 @@
         "description": "Eco-friendly fabric"
       },
       {
-        "title": "Capacity",
-        "description": "10L"
-      },
-      {
         "title": "Pockets",
         "description": "2"
       }
@@ -393,10 +337,6 @@
       {
         "title": "Material",
         "description": "Tweed and leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "15L"
       },
       {
         "title": "Pockets",
@@ -420,10 +360,6 @@
         "description": "Waterproof nylon"
       },
       {
-        "title": "Capacity",
-        "description": "22L"
-      },
-      {
         "title": "Pockets",
         "description": "4"
       }
@@ -443,10 +379,6 @@
       {
         "title": "Material",
         "description": "Genuine leather with metallic accents"
-      },
-      {
-        "title": "Capacity",
-        "description": "1L"
       },
       {
         "title": "Pockets",
@@ -470,10 +402,6 @@
         "description": "Satin"
       },
       {
-        "title": "Capacity",
-        "description": "0.8L"
-      },
-      {
         "title": "Pockets",
         "description": "1"
       }
@@ -493,10 +421,6 @@
       {
         "title": "Material",
         "description": "Vegan leather with studs"
-      },
-      {
-        "title": "Capacity",
-        "description": "1.5L"
       },
       {
         "title": "Pockets",
@@ -520,10 +444,6 @@
         "description": "Velvet"
       },
       {
-        "title": "Capacity",
-        "description": "1.2L"
-      },
-      {
         "title": "Pockets",
         "description": "1"
       }
@@ -543,10 +463,6 @@
       {
         "title": "Material",
         "description": "Metal frame with fabric lining"
-      },
-      {
-        "title": "Capacity",
-        "description": "1L"
       },
       {
         "title": "Pockets",
@@ -570,10 +486,6 @@
         "description": "Beaded fabric"
       },
       {
-        "title": "Capacity",
-        "description": "1L"
-      },
-      {
         "title": "Pockets",
         "description": "1"
       }
@@ -593,10 +505,6 @@
       {
         "title": "Material",
         "description": "Genuine leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "1.3L"
       },
       {
         "title": "Pockets",
@@ -620,10 +528,6 @@
         "description": "Embroidered fabric"
       },
       {
-        "title": "Capacity",
-        "description": "0.9L"
-      },
-      {
         "title": "Pockets",
         "description": "1"
       }
@@ -643,10 +547,6 @@
       {
         "title": "Material",
         "description": "Water-resistant nylon"
-      },
-      {
-        "title": "Capacity",
-        "description": "2L"
       },
       {
         "title": "Pockets",
@@ -670,10 +570,6 @@
         "description": "Eco-friendly polyester"
       },
       {
-        "title": "Capacity",
-        "description": "3L"
-      },
-      {
         "title": "Pockets",
         "description": "2"
       }
@@ -693,10 +589,6 @@
       {
         "title": "Material",
         "description": "Nylon"
-      },
-      {
-        "title": "Capacity",
-        "description": "4L"
       },
       {
         "title": "Pockets",
@@ -720,10 +612,6 @@
         "description": "Ripstop fabric"
       },
       {
-        "title": "Capacity",
-        "description": "5L"
-      },
-      {
         "title": "Pockets",
         "description": "4"
       }
@@ -743,10 +631,6 @@
       {
         "title": "Material",
         "description": "Genuine leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "2.5L"
       },
       {
         "title": "Pockets",
@@ -770,10 +654,6 @@
         "description": "Waterproof nylon"
       },
       {
-        "title": "Capacity",
-        "description": "1.5L"
-      },
-      {
         "title": "Pockets",
         "description": "3"
       }
@@ -793,10 +673,6 @@
       {
         "title": "Material",
         "description": "Polyester"
-      },
-      {
-        "title": "Capacity",
-        "description": "3L"
       },
       {
         "title": "Pockets",
@@ -820,10 +696,6 @@
         "description": "Genuine leather"
       },
       {
-        "title": "Capacity",
-        "description": "3L"
-      },
-      {
         "title": "Pockets",
         "description": "2"
       }
@@ -843,10 +715,6 @@
       {
         "title": "Material",
         "description": "Genuine leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "6L"
       },
       {
         "title": "Pockets",
@@ -870,10 +738,6 @@
         "description": "Leather"
       },
       {
-        "title": "Capacity",
-        "description": "4.5L"
-      },
-      {
         "title": "Pockets",
         "description": "2"
       }
@@ -893,10 +757,6 @@
       {
         "title": "Material",
         "description": "Suede"
-      },
-      {
-        "title": "Capacity",
-        "description": "5L"
       },
       {
         "title": "Pockets",
@@ -920,10 +780,6 @@
         "description": "Saffiano leather"
       },
       {
-        "title": "Capacity",
-        "description": "8L"
-      },
-      {
         "title": "Pockets",
         "description": "3"
       }
@@ -943,10 +799,6 @@
       {
         "title": "Material",
         "description": "Pebbled leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "3L"
       },
       {
         "title": "Pockets",
@@ -970,10 +822,6 @@
         "description": "Genuine leather"
       },
       {
-        "title": "Capacity",
-        "description": "7L"
-      },
-      {
         "title": "Pockets",
         "description": "2"
       }
@@ -993,10 +841,6 @@
       {
         "title": "Material",
         "description": "Cotton blend"
-      },
-      {
-        "title": "Capacity",
-        "description": "4L"
       },
       {
         "title": "Pockets",
@@ -1020,10 +864,6 @@
         "description": "Leather"
       },
       {
-        "title": "Capacity",
-        "description": "3.5L"
-      },
-      {
         "title": "Pockets",
         "description": "1"
       }
@@ -1043,10 +883,6 @@
       {
         "title": "Material",
         "description": "Canvas"
-      },
-      {
-        "title": "Capacity",
-        "description": "5L"
       },
       {
         "title": "Pockets",
@@ -1070,10 +906,6 @@
         "description": "Genuine leather"
       },
       {
-        "title": "Capacity",
-        "description": "4L"
-      },
-      {
         "title": "Pockets",
         "description": "2"
       }
@@ -1093,10 +925,6 @@
       {
         "title": "Material",
         "description": "Straw"
-      },
-      {
-        "title": "Capacity",
-        "description": "6L"
       },
       {
         "title": "Pockets",
@@ -1120,10 +948,6 @@
         "description": "Vegan leather"
       },
       {
-        "title": "Capacity",
-        "description": "4.5L"
-      },
-      {
         "title": "Pockets",
         "description": "3"
       }
@@ -1143,10 +967,6 @@
       {
         "title": "Material",
         "description": "Genuine leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "5L"
       },
       {
         "title": "Pockets",
@@ -1170,10 +990,6 @@
         "description": "Fabric"
       },
       {
-        "title": "Capacity",
-        "description": "3.5L"
-      },
-      {
         "title": "Pockets",
         "description": "2"
       }
@@ -1193,10 +1009,6 @@
       {
         "title": "Material",
         "description": "Genuine leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "4L"
       },
       {
         "title": "Pockets",
@@ -1220,10 +1032,6 @@
         "description": "Nylon"
       },
       {
-        "title": "Capacity",
-        "description": "7L"
-      },
-      {
         "title": "Pockets",
         "description": "4"
       }
@@ -1243,10 +1051,6 @@
       {
         "title": "Material",
         "description": "Genuine leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "8L"
       },
       {
         "title": "Pockets",
@@ -1270,10 +1074,6 @@
         "description": "Suede"
       },
       {
-        "title": "Capacity",
-        "description": "7L"
-      },
-      {
         "title": "Pockets",
         "description": "2"
       }
@@ -1293,10 +1093,6 @@
       {
         "title": "Material",
         "description": "Canvas, leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "9L"
       },
       {
         "title": "Pockets",
@@ -1320,10 +1116,6 @@
         "description": "Patent leather"
       },
       {
-        "title": "Capacity",
-        "description": "6L"
-      },
-      {
         "title": "Pockets",
         "description": "2"
       }
@@ -1343,10 +1135,6 @@
       {
         "title": "Material",
         "description": "Genuine leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "8L"
       },
       {
         "title": "Pockets",
@@ -1370,10 +1158,6 @@
         "description": "Woven fabric"
       },
       {
-        "title": "Capacity",
-        "description": "7L"
-      },
-      {
         "title": "Pockets",
         "description": "2"
       }
@@ -1393,10 +1177,6 @@
       {
         "title": "Material",
         "description": "Distressed leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "8L"
       },
       {
         "title": "Pockets",
@@ -1420,10 +1200,6 @@
         "description": "Leather"
       },
       {
-        "title": "Capacity",
-        "description": "10L"
-      },
-      {
         "title": "Pockets",
         "description": "4"
       }
@@ -1443,10 +1219,6 @@
       {
         "title": "Material",
         "description": "Genuine leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "2L"
       },
       {
         "title": "Pockets",
@@ -1470,10 +1242,6 @@
         "description": "Metallic leather"
       },
       {
-        "title": "Capacity",
-        "description": "1.5L"
-      },
-      {
         "title": "Pockets",
         "description": "1"
       }
@@ -1493,10 +1261,6 @@
       {
         "title": "Material",
         "description": "Velvet"
-      },
-      {
-        "title": "Capacity",
-        "description": "2L"
       },
       {
         "title": "Pockets",
@@ -1520,10 +1284,6 @@
         "description": "Satin"
       },
       {
-        "title": "Capacity",
-        "description": "1.5L"
-      },
-      {
         "title": "Pockets",
         "description": "1"
       }
@@ -1543,10 +1303,6 @@
       {
         "title": "Material",
         "description": "Leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "2L"
       },
       {
         "title": "Pockets",
@@ -1570,10 +1326,6 @@
         "description": "Patent leather"
       },
       {
-        "title": "Capacity",
-        "description": "2L"
-      },
-      {
         "title": "Pockets",
         "description": "1"
       }
@@ -1595,10 +1347,6 @@
         "description": "Synthetic leather"
       },
       {
-        "title": "Capacity",
-        "description": "1.5L"
-      },
-      {
         "title": "Pockets",
         "description": "1"
       }
@@ -1618,10 +1366,6 @@
       {
         "title": "Material",
         "description": "Leather"
-      },
-      {
-        "title": "Capacity",
-        "description": "2L"
       },
       {
         "title": "Pockets",
@@ -1647,10 +1391,6 @@
       {
         "title": "Sole",
         "description": "Rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-13"
       }
     ],
     "gender": "men",
@@ -1672,10 +1412,6 @@
       {
         "title": "Sole",
         "description": "EVA rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-14"
       }
     ],
     "gender": "men",
@@ -1697,10 +1433,6 @@
       {
         "title": "Sole",
         "description": "Rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "7-12"
       }
     ],
     "gender": "men",
@@ -1722,10 +1454,6 @@
       {
         "title": "Sole",
         "description": "Rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-13"
       }
     ],
     "gender": "men",
@@ -1747,10 +1475,6 @@
       {
         "title": "Sole",
         "description": "Rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "7-12"
       }
     ],
     "gender": "men",
@@ -1772,10 +1496,6 @@
       {
         "title": "Sole",
         "description": "Rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-13"
       }
     ],
     "gender": "men",
@@ -1797,10 +1517,6 @@
       {
         "title": "Sole",
         "description": "Traction rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-14"
       }
     ],
     "gender": "men",
@@ -1822,10 +1538,6 @@
       {
         "title": "Sole",
         "description": "EVA rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-12"
       }
     ],
     "gender": "men",
@@ -1847,10 +1559,6 @@
       {
         "title": "Sole",
         "description": "Rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-13"
       }
     ],
     "gender": "men",
@@ -1872,10 +1580,6 @@
       {
         "title": "Sole",
         "description": "Rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-14"
       }
     ],
     "gender": "men",
@@ -1897,10 +1601,6 @@
       {
         "title": "Sole",
         "description": "Traction rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-13"
       }
     ],
     "gender": "men",
@@ -1922,10 +1622,6 @@
       {
         "title": "Sole",
         "description": "Rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-14"
       }
     ],
     "gender": "men",
@@ -1947,10 +1643,6 @@
       {
         "title": "Sole",
         "description": "Rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-12"
       }
     ],
     "gender": "men",
@@ -1972,10 +1664,6 @@
       {
         "title": "Sole",
         "description": "Rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-13"
       }
     ],
     "gender": "men",
@@ -1997,10 +1685,6 @@
       {
         "title": "Sole",
         "description": "Rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-12"
       }
     ],
     "gender": "men",
@@ -2022,10 +1706,6 @@
       {
         "title": "Sole",
         "description": "Rubber"
-      },
-      {
-        "title": "Size Range",
-        "description": "8-13"
       }
     ],
     "gender": "men",
@@ -2047,10 +1727,6 @@
       {
         "title": "Buckle Type",
         "description": "Metal"
-      },
-      {
-        "title": "Size Range",
-        "description": "32-38 inches"
       }
     ],
     "gender": "men",
@@ -2072,10 +1748,6 @@
       {
         "title": "Buckle Type",
         "description": "Silver-tone"
-      },
-      {
-        "title": "Size Range",
-        "description": "30-36 inches"
       }
     ],
     "gender": "men",
@@ -2097,10 +1769,6 @@
       {
         "title": "Buckle Type",
         "description": "Gold-tone"
-      },
-      {
-        "title": "Size Range",
-        "description": "32-40 inches"
       }
     ],
     "gender": "men",
@@ -2122,10 +1790,6 @@
       {
         "title": "Buckle Type",
         "description": "Metal"
-      },
-      {
-        "title": "Size Range",
-        "description": "30-38 inches"
       }
     ],
     "gender": "men",
@@ -2147,10 +1811,6 @@
       {
         "title": "Buckle Type",
         "description": "Plastic"
-      },
-      {
-        "title": "Size Range",
-        "description": "28-36 inches"
       }
     ],
     "gender": "men",
@@ -2172,10 +1832,6 @@
       {
         "title": "Buckle Type",
         "description": "Silver-tone"
-      },
-      {
-        "title": "Size Range",
-        "description": "30-40 inches"
       }
     ],
     "gender": "men",
@@ -2197,10 +1853,6 @@
       {
         "title": "Buckle Type",
         "description": "Gold-tone"
-      },
-      {
-        "title": "Size Range",
-        "description": "32-38 inches"
       }
     ],
     "gender": "men",
@@ -2222,10 +1874,6 @@
       {
         "title": "Buckle Type",
         "description": "Antique brass"
-      },
-      {
-        "title": "Size Range",
-        "description": "30-36 inches"
       }
     ],
     "gender": "men",
@@ -2243,10 +1891,6 @@
       {
         "title": "Material",
         "description": "Cashmere, wool blend"
-      },
-      {
-        "title": "Dimensions",
-        "description": "70 x 12 inches"
       },
       {
         "title": "Color Options",
@@ -2270,10 +1914,6 @@
         "description": "100% Wool"
       },
       {
-        "title": "Dimensions",
-        "description": "72 x 14 inches"
-      },
-      {
         "title": "Color Options",
         "description": "Gray, Black, Burgundy"
       }
@@ -2293,10 +1933,6 @@
       {
         "title": "Material",
         "description": "Flannel"
-      },
-      {
-        "title": "Dimensions",
-        "description": "74 x 16 inches"
       },
       {
         "title": "Color Options",
@@ -2320,10 +1956,6 @@
         "description": "100% Cashmere"
       },
       {
-        "title": "Dimensions",
-        "description": "72 x 14 inches"
-      },
-      {
         "title": "Color Options",
         "description": "Black, Camel, Navy"
       }
@@ -2343,10 +1975,6 @@
       {
         "title": "Material",
         "description": "Acrylic, Wool Blend"
-      },
-      {
-        "title": "Dimensions",
-        "description": "80 x 16 inches"
       },
       {
         "title": "Color Options",
@@ -2370,10 +1998,6 @@
         "description": "100% Cotton"
       },
       {
-        "title": "Dimensions",
-        "description": "72 x 18 inches"
-      },
-      {
         "title": "Color Options",
         "description": "White, Navy, Light Gray"
       }
@@ -2395,10 +2019,6 @@
         "description": "100% Silk"
       },
       {
-        "title": "Dimensions",
-        "description": "60 x 12 inches"
-      },
-      {
         "title": "Color Options",
         "description": "Silver, Blue, Red"
       }
@@ -2418,10 +2038,6 @@
       {
         "title": "Material",
         "description": "Wool"
-      },
-      {
-        "title": "Dimensions",
-        "description": "75 x 15 inches"
       },
       {
         "title": "Color Options",
@@ -2683,10 +2299,6 @@
       {
         "title": "Heel Height",
         "description": "2 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "5-10"
       }
     ],
     "gender": "women",
@@ -2712,10 +2324,6 @@
       {
         "title": "Heel Height",
         "description": "3 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "6-10"
       }
     ],
     "gender": "women",
@@ -2741,10 +2349,6 @@
       {
         "title": "Heel Height",
         "description": "3.5 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "5-9"
       }
     ],
     "gender": "women",
@@ -2770,10 +2374,6 @@
       {
         "title": "Heel Height",
         "description": "2 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "6-10"
       }
     ],
     "gender": "women",
@@ -2799,10 +2399,6 @@
       {
         "title": "Heel Height",
         "description": "2 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "6-9"
       }
     ],
     "gender": "women",
@@ -2828,10 +2424,6 @@
       {
         "title": "Heel Height",
         "description": "2.5 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "5-10"
       }
     ],
     "gender": "women",
@@ -2857,10 +2449,6 @@
       {
         "title": "Heel Height",
         "description": "3 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "6-10"
       }
     ],
     "gender": "women",
@@ -2886,10 +2474,6 @@
       {
         "title": "Heel Height",
         "description": "1.5 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "6-9"
       }
     ],
     "gender": "women",
@@ -2915,10 +2499,6 @@
       {
         "title": "Heel Height",
         "description": "2 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "5-10"
       }
     ],
     "gender": "women",
@@ -2944,10 +2524,6 @@
       {
         "title": "Heel Height",
         "description": "Flat"
-      },
-      {
-        "title": "Size Range",
-        "description": "6-11"
       }
     ],
     "gender": "women",
@@ -2973,10 +2549,6 @@
       {
         "title": "Heel Height",
         "description": "3.5 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "5-9"
       }
     ],
     "gender": "women",
@@ -3002,10 +2574,6 @@
       {
         "title": "Heel Height",
         "description": "Flat"
-      },
-      {
-        "title": "Size Range",
-        "description": "6-10"
       }
     ],
     "gender": "women",
@@ -3031,10 +2599,6 @@
       {
         "title": "Heel Height",
         "description": "2 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "6-10"
       }
     ],
     "gender": "women",
@@ -3060,10 +2624,6 @@
       {
         "title": "Heel Height",
         "description": "Flat"
-      },
-      {
-        "title": "Size Range",
-        "description": "5-9"
       }
     ],
     "gender": "women",
@@ -3089,10 +2649,6 @@
       {
         "title": "Heel Height",
         "description": "4 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "6-10"
       }
     ],
     "gender": "women",
@@ -3118,10 +2674,6 @@
       {
         "title": "Heel Height",
         "description": "Flat"
-      },
-      {
-        "title": "Size Range",
-        "description": "5-10"
       }
     ],
     "gender": "women",
@@ -3147,10 +2699,6 @@
       {
         "title": "Width",
         "description": "3 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "S-XL"
       }
     ],
     "gender": "women",
@@ -3176,10 +2724,6 @@
       {
         "title": "Width",
         "description": "1 inch"
-      },
-      {
-        "title": "Size Range",
-        "description": "S-L"
       }
     ],
     "gender": "women",
@@ -3205,10 +2749,6 @@
       {
         "title": "Width",
         "description": "1.5 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "M-XL"
       }
     ],
     "gender": "women",
@@ -3234,10 +2774,6 @@
       {
         "title": "Width",
         "description": "2 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "S-M"
       }
     ],
     "gender": "women",
@@ -3263,10 +2799,6 @@
       {
         "title": "Width",
         "description": "1.25 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "S-XL"
       }
     ],
     "gender": "women",
@@ -3292,10 +2824,6 @@
       {
         "title": "Width",
         "description": "1.5 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "S-L"
       }
     ],
     "gender": "women",
@@ -3321,10 +2849,6 @@
       {
         "title": "Width",
         "description": "2.5 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "S-M"
       }
     ],
     "gender": "women",
@@ -3350,10 +2874,6 @@
       {
         "title": "Width",
         "description": "1.5 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "M-XL"
       }
     ],
     "gender": "women",
@@ -3371,10 +2891,6 @@
       {
         "title": "Material",
         "description": "Cashmere blend"
-      },
-      {
-        "title": "Dimensions",
-        "description": "60 inches"
       },
       {
         "title": "Care Instructions",
@@ -3398,10 +2914,6 @@
         "description": "100% Silk"
       },
       {
-        "title": "Dimensions",
-        "description": "40 x 40 inches"
-      },
-      {
         "title": "Care Instructions",
         "description": "Hand wash cold"
       }
@@ -3421,10 +2933,6 @@
       {
         "title": "Material",
         "description": "100% Wool"
-      },
-      {
-        "title": "Dimensions",
-        "description": "70 x 12 inches"
       },
       {
         "title": "Care Instructions",
@@ -3448,10 +2956,6 @@
         "description": "Acrylic"
       },
       {
-        "title": "Dimensions",
-        "description": "30 x 10 inches"
-      },
-      {
         "title": "Care Instructions",
         "description": "Machine wash cold"
       }
@@ -3471,10 +2975,6 @@
       {
         "title": "Material",
         "description": "100% Cotton"
-      },
-      {
-        "title": "Dimensions",
-        "description": "50 x 50 inches"
       },
       {
         "title": "Care Instructions",
@@ -3498,10 +2998,6 @@
         "description": "100% Cashmere"
       },
       {
-        "title": "Dimensions",
-        "description": "70 x 14 inches"
-      },
-      {
         "title": "Care Instructions",
         "description": "Dry clean only"
       }
@@ -3523,10 +3019,6 @@
         "description": "Polyester"
       },
       {
-        "title": "Dimensions",
-        "description": "60 x 18 inches"
-      },
-      {
         "title": "Care Instructions",
         "description": "Machine wash cold"
       }
@@ -3546,10 +3038,6 @@
       {
         "title": "Material",
         "description": "Cotton"
-      },
-      {
-        "title": "Dimensions",
-        "description": "55 x 15 inches"
       },
       {
         "title": "Care Instructions",
@@ -3807,10 +3295,6 @@
       {
         "title": "Width",
         "description": "1.5 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "One size"
       }
     ],
     "gender": "women",
@@ -3832,10 +3316,6 @@
       {
         "title": "Charm Material",
         "description": "Sterling silver"
-      },
-      {
-        "title": "Size Range",
-        "description": "S-M"
       }
     ],
     "gender": "women",
@@ -3853,10 +3333,6 @@
       {
         "title": "Material",
         "description": "Glass beads, Thread"
-      },
-      {
-        "title": "Size Range",
-        "description": "Adjustable"
       }
     ],
     "gender": "women",
@@ -3882,10 +3358,6 @@
       {
         "title": "Carat Weight",
         "description": "1.5 carats"
-      },
-      {
-        "title": "Size Range",
-        "description": "6.5-7.5 inches"
       }
     ],
     "gender": "women",
@@ -3907,10 +3379,6 @@
       {
         "title": "Set Count",
         "description": "3"
-      },
-      {
-        "title": "Size Range",
-        "description": "One size"
       }
     ],
     "gender": "women",
@@ -3928,10 +3396,6 @@
       {
         "title": "Material",
         "description": "Turquoise beads, Elastic"
-      },
-      {
-        "title": "Size Range",
-        "description": "Adjustable"
       }
     ],
     "gender": "women",
@@ -3953,10 +3417,6 @@
       {
         "title": "Chain Length",
         "description": "7.5 inches"
-      },
-      {
-        "title": "Size Range",
-        "description": "One size"
       }
     ],
     "gender": "women",
@@ -3974,10 +3434,6 @@
       {
         "title": "Material",
         "description": "Rose gold-plated metal"
-      },
-      {
-        "title": "Size Range",
-        "description": "One size"
       }
     ],
     "gender": "women",
@@ -4439,10 +3895,6 @@
       {
         "title": "Set Count",
         "description": "3"
-      },
-      {
-        "title": "Ring Sizes",
-        "description": "5-9"
       }
     ],
     "gender": "women",
@@ -4468,10 +3920,6 @@
       {
         "title": "Carat Weight",
         "description": "1.2 carats"
-      },
-      {
-        "title": "Ring Size",
-        "description": "6"
       }
     ],
     "gender": "women",
@@ -4497,10 +3945,6 @@
       {
         "title": "Carat Weight",
         "description": "0.75 carats"
-      },
-      {
-        "title": "Ring Size",
-        "description": "7"
       }
     ],
     "gender": "women",
@@ -4522,10 +3966,6 @@
       {
         "title": "Stone Type",
         "description": "Emerald, Freshwater pearls"
-      },
-      {
-        "title": "Ring Size",
-        "description": "6"
       }
     ],
     "gender": "women",
@@ -4543,10 +3983,6 @@
       {
         "title": "Material",
         "description": "Rose gold-plated metal"
-      },
-      {
-        "title": "Ring Size",
-        "description": "6-8"
       }
     ],
     "gender": "women",
@@ -4572,10 +4008,6 @@
       {
         "title": "Carat Weight",
         "description": "0.5 carats"
-      },
-      {
-        "title": "Ring Size",
-        "description": "7"
       }
     ],
     "gender": "women",
@@ -4597,10 +4029,6 @@
       {
         "title": "Width",
         "description": "8mm"
-      },
-      {
-        "title": "Ring Size",
-        "description": "10"
       }
     ],
     "gender": "women",
@@ -4622,10 +4050,6 @@
       {
         "title": "Stone Type",
         "description": "Opal"
-      },
-      {
-        "title": "Ring Size",
-        "description": "6"
       }
     ],
     "gender": "women",
@@ -4869,7 +4293,7 @@
   },
   {
     "id": 184,
-    "name": "Floral Essence Eau de Parfum",
+    "name": "Floral Essence Eau Fraiche",
     "description": "A delicate floral fragrance with notes of rose, jasmine, and lily of the valley, perfect for an elegant and feminine scent.",
     "features": [
       {
@@ -4879,14 +4303,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Rose, Jasmine, Lily of the Valley"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "50ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Parfum"
       }
     ],
     "gender": "women",
@@ -4904,14 +4320,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Lemon, Orange, Grapefruit"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "100ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Toilette"
       }
     ],
     "gender": "women",
@@ -4919,7 +4327,7 @@
   },
   {
     "id": 186,
-    "name": "Vanilla Dream Eau de Parfum",
+    "name": "Vanilla Dream Eau de Toilette",
     "description": "A warm and comforting fragrance with sweet notes of vanilla, amber, and musk, perfect for cozy evenings or a romantic night out.",
     "features": [
       {
@@ -4929,14 +4337,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Vanilla, Amber, Musk"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "75ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Parfum"
       }
     ],
     "gender": "women",
@@ -4954,14 +4354,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Caramel, Chocolate, Almond, Floral"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "50ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Parfum"
       }
     ],
     "gender": "women",
@@ -4979,14 +4371,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Cinnamon, Clove, Sandalwood"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "60ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Parfum"
       }
     ],
     "gender": "women",
@@ -5004,14 +4388,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Coconut, Pineapple, Mango"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "100ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Toilette"
       }
     ],
     "gender": "women",
@@ -5019,7 +4395,7 @@
   },
   {
     "id": 190,
-    "name": "Mystic Woods Eau de Parfum",
+    "name": "Mystic Woods Eau de Cologne",
     "description": "A rich and earthy fragrance featuring notes of cedarwood, patchouli, and vetiver, perfect for those who enjoy a deep and mysterious scent.",
     "features": [
       {
@@ -5029,14 +4405,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Cedarwood, Patchouli, Vetiver"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "80ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Parfum"
       }
     ],
     "gender": "women",
@@ -5054,14 +4422,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Cherry Blossom, Peach, Green Tea"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "50ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Toilette"
       }
     ],
     "gender": "women",
@@ -5079,14 +4439,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Oud, Leather, Amber"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "100ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Parfum"
       }
     ],
     "gender": "men",
@@ -5104,14 +4456,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Lemon, Bergamot, Cinnamon"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "100ml"
-      },
-      {
-        "title": "Type",
-        "description": "Cologne"
       }
     ],
     "gender": "men",
@@ -5119,7 +4463,7 @@
   },
   {
     "id": 194,
-    "name": "Woodland Musk Eau de Toilette",
+    "name": "Woodland Musk Eau Fraiche",
     "description": "A masculine fragrance with deep woody notes of sandalwood, cedar, and musk, giving it an earthy and outdoorsy feel.",
     "features": [
       {
@@ -5129,14 +4473,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Sandalwood, Cedarwood, Musk"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "75ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Toilette"
       }
     ],
     "gender": "men",
@@ -5154,14 +4490,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Marine, Citrus, Jasmine"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "80ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Parfum"
       }
     ],
     "gender": "men",
@@ -5169,7 +4497,7 @@
   },
   {
     "id": 196,
-    "name": "Spiced Amber Cologne",
+    "name": "Spiced Amber Eau de Toilette",
     "description": "A warm and spicy fragrance with rich amber, vanilla, and cinnamon notes, creating an inviting and sensual scent perfect for colder weather.",
     "features": [
       {
@@ -5179,14 +4507,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Amber, Vanilla, Cinnamon"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "100ml"
-      },
-      {
-        "title": "Type",
-        "description": "Cologne"
       }
     ],
     "gender": "men",
@@ -5204,14 +4524,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Bergamot, Musk, Vetiver"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "75ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Toilette"
       }
     ],
     "gender": "men",
@@ -5219,7 +4531,7 @@
   },
   {
     "id": 198,
-    "name": "Tobacco & Vanilla Eau de Parfum",
+    "name": "Tobacco & Vanilla Pure Perfume",
     "description": "A rich and sensual fragrance featuring the smooth blend of tobacco and vanilla, accented with a touch of caramel for a sweet and smoky experience.",
     "features": [
       {
@@ -5229,14 +4541,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Tobacco, Vanilla, Caramel"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "80ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Parfum"
       }
     ],
     "gender": "men",
@@ -5254,14 +4558,6 @@
       {
         "title": "Fragrance Notes",
         "description": "Basil, Mint, Pepper"
-      },
-      {
-        "title": "Bottle Size",
-        "description": "90ml"
-      },
-      {
-        "title": "Type",
-        "description": "Eau de Toilette"
       }
     ],
     "gender": "men",
@@ -5283,10 +4579,6 @@
       {
         "title": "Sole Type",
         "description": "Rubber"
-      },
-      {
-        "title": "Shoe Type",
-        "description": "Running"
       }
     ],
     "gender": "women",
@@ -5308,10 +4600,6 @@
       {
         "title": "Sole Type",
         "description": "EVA"
-      },
-      {
-        "title": "Shoe Type",
-        "description": "Lifestyle"
       }
     ],
     "gender": "women",
@@ -5333,10 +4621,6 @@
       {
         "title": "Sole Type",
         "description": "High-Traction Rubber"
-      },
-      {
-        "title": "Shoe Type",
-        "description": "Casual"
       }
     ],
     "gender": "women",
@@ -5358,10 +4642,6 @@
       {
         "title": "Sole Type",
         "description": "Flexible EVA"
-      },
-      {
-        "title": "Shoe Type",
-        "description": "Sports"
       }
     ],
     "gender": "women",
@@ -5383,10 +4663,6 @@
       {
         "title": "Sole Type",
         "description": "Rubber"
-      },
-      {
-        "title": "Shoe Type",
-        "description": "Casual"
       }
     ],
     "gender": "women",
@@ -5408,10 +4684,6 @@
       {
         "title": "Sole Type",
         "description": "Durable Rubber"
-      },
-      {
-        "title": "Shoe Type",
-        "description": "Training"
       }
     ],
     "gender": "women",
@@ -5433,10 +4705,6 @@
       {
         "title": "Sole Type",
         "description": "Cushioned EVA"
-      },
-      {
-        "title": "Shoe Type",
-        "description": "Walking"
       }
     ],
     "gender": "women",
@@ -5458,10 +4726,6 @@
       {
         "title": "Sole Type",
         "description": "Soft Rubber"
-      },
-      {
-        "title": "Shoe Type",
-        "description": "Running"
       }
     ],
     "gender": "women",
@@ -5883,10 +5147,6 @@
       {
         "title": "Clasp Type",
         "description": "Magnetic"
-      },
-      {
-        "title": "Length",
-        "description": "21 cm"
       }
     ],
     "gender": "men",
@@ -5958,10 +5218,6 @@
       {
         "title": "Clasp Type",
         "description": "Fold-Over"
-      },
-      {
-        "title": "Length",
-        "description": "22 cm"
       }
     ],
     "gender": "men",
@@ -6033,10 +5289,6 @@
       {
         "title": "Clasp Type",
         "description": "Lobster Clasp"
-      },
-      {
-        "title": "Length",
-        "description": "20 cm"
       }
     ],
     "gender": "men",
@@ -6058,10 +5310,6 @@
       {
         "title": "Clasp Type",
         "description": "Plastic Buckle"
-      },
-      {
-        "title": "Length",
-        "description": "22 cm"
       }
     ],
     "gender": "men",
@@ -6079,10 +5327,6 @@
       {
         "title": "Material",
         "description": "Sterling Silver"
-      },
-      {
-        "title": "Ring Size",
-        "description": "10"
       },
       {
         "title": "Finish",
@@ -6106,10 +5350,6 @@
         "description": "Titanium"
       },
       {
-        "title": "Ring Size",
-        "description": "11"
-      },
-      {
         "title": "Finish",
         "description": "Brushed Matte"
       }
@@ -6129,10 +5369,6 @@
       {
         "title": "Material",
         "description": "Gold-Plated Stainless Steel"
-      },
-      {
-        "title": "Ring Size",
-        "description": "9"
       },
       {
         "title": "Finish",
@@ -6156,10 +5392,6 @@
         "description": "Onyx, Sterling Silver"
       },
       {
-        "title": "Ring Size",
-        "description": "10.5"
-      },
-      {
         "title": "Stone Size",
         "description": "12mm"
       }
@@ -6179,10 +5411,6 @@
       {
         "title": "Material",
         "description": "Leather, Stainless Steel"
-      },
-      {
-        "title": "Ring Size",
-        "description": "11"
       },
       {
         "title": "Finish",
@@ -6206,10 +5434,6 @@
         "description": "Stainless Steel"
       },
       {
-        "title": "Ring Size",
-        "description": "9.5"
-      },
-      {
         "title": "Finish",
         "description": "Antique"
       }
@@ -6229,10 +5453,6 @@
       {
         "title": "Material",
         "description": "Stainless Steel"
-      },
-      {
-        "title": "Ring Size",
-        "description": "10"
       },
       {
         "title": "Finish",
@@ -6256,10 +5476,6 @@
         "description": "Carbon Fiber"
       },
       {
-        "title": "Ring Size",
-        "description": "10"
-      },
-      {
         "title": "Finish",
         "description": "Glossy"
       }
@@ -6279,10 +5495,6 @@
       {
         "title": "Material",
         "description": "Sterling Silver"
-      },
-      {
-        "title": "Chain Length",
-        "description": "50 cm"
       },
       {
         "title": "Pendant Size",
@@ -6306,10 +5518,6 @@
         "description": "Leather, Stainless Steel"
       },
       {
-        "title": "Chain Length",
-        "description": "55 cm"
-      },
-      {
         "title": "Pendant Size",
         "description": "4 cm"
       }
@@ -6329,10 +5537,6 @@
       {
         "title": "Material",
         "description": "Gold-Plated Stainless Steel"
-      },
-      {
-        "title": "Chain Length",
-        "description": "60 cm"
       },
       {
         "title": "Link Type",
@@ -6356,10 +5560,6 @@
         "description": "Onyx, Sterling Silver"
       },
       {
-        "title": "Chain Length",
-        "description": "50 cm"
-      },
-      {
         "title": "Pendant Size",
         "description": "3 cm"
       }
@@ -6379,10 +5579,6 @@
       {
         "title": "Material",
         "description": "Titanium"
-      },
-      {
-        "title": "Chain Length",
-        "description": "55 cm"
       },
       {
         "title": "Link Type",
@@ -6406,10 +5602,6 @@
         "description": "Stainless Steel"
       },
       {
-        "title": "Chain Length",
-        "description": "60 cm"
-      },
-      {
         "title": "Link Type",
         "description": "Rope"
       }
@@ -6431,10 +5623,6 @@
         "description": "Sterling Silver"
       },
       {
-        "title": "Chain Length",
-        "description": "55 cm"
-      },
-      {
         "title": "Pendant Size",
         "description": "3.5 cm"
       }
@@ -6454,10 +5642,6 @@
       {
         "title": "Material",
         "description": "Wood, Metal, Elastic Cord"
-      },
-      {
-        "title": "Chain Length",
-        "description": "45 cm"
       },
       {
         "title": "Bead Size",

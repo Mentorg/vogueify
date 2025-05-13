@@ -1,28 +1,23 @@
 <script setup>
-import { onMounted, ref } from 'vue';
 
-defineProps({
-    modelValue: String,
+const props = defineProps({
+  modelValue: [String, Number],
+  type: {
+    type: String,
+    default: 'text'
+  }
 });
+const emit = defineEmits(['update:modelValue']);
 
-defineEmits(['update:modelValue']);
-
-const input = ref(null);
-
-onMounted(() => {
-    if (input.value.hasAttribute('autofocus')) {
-        input.value.focus();
-    }
-});
-
-defineExpose({ focus: () => input.value.focus() });
+const updateValue = (e) => {
+  const value = e.target.value;
+  const parsed = props.type === 'number' ? Number(value) : value;
+  emit('update:modelValue', parsed);
+};
 </script>
 
 <template>
-    <input
-        ref="input"
-        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
-    >
+  <input ref="input" :type="type"
+    class="mt-1 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" :value="modelValue"
+    @input="updateValue" />
 </template>

@@ -25,12 +25,13 @@ class ProductVariationSeeder extends Seeder
                 [
                     'id' => $item['id'],
                     'image' => $imagePath,
-                    'color' => $item['color'],
-                    'type' => $item['type'],
                     'price' => $item['price'],
-                    'stock' => $item['stock'],
                     'sku' => $item['sku'],
                     'product_id' => $item['product_id'],
+                    'color_id' => $item['color_id'],
+                    'primary_color_id' => $item['primary_color_id'],
+                    'secondary_color_id' => $item['secondary_color_id'],
+                    'product_type_id' => $item['product_type_id'],
                 ]
             );
         }

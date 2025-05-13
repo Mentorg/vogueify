@@ -24,17 +24,35 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'gender' => 'required|in:men,women,unisex',
             'features' => 'required|array',
             'features.*.title' => 'required|string|max:255',
             'features.*.description' => 'required|string|max:255',
+            'gender' => 'required|in:men,women,unisex',
             'category_id' => 'required|exists:product_categories,id',
-            'image' => 'nullable|image|max:2048',
-            'color' => 'required|string|in:black,red,blue,green,orange,yellow,white',
-            'type' => 'required|string|in:bag,shoe,accessory,jewelry,watch,perfume',
-            'price' => 'required|numeric|min:0.01',
-            'stock' => 'required|integer',
-            'sku' => 'required|string|max:255'
+
+            'variations' => 'required|array|min:1',
+            'variations.*.image' => 'nullable|image|max:2048',
+            'variations.*.color_id' => 'nullable|exists:colors,id',
+            'variations.*.primary_color_id' => 'nullable|exists:colors,id',
+            'variations.*.secondary_color_id' => 'nullable|exists:colors,id',
+            'variations.*.product_type_id' => 'required|exists:product_types,id',
+            'variations.*.price' => 'required|numeric|min:0.01',
+            'variations.*.sku' => 'required|string|max:255|distinct|unique:product_variations,sku',
+            'variations.*.sizes' => 'nullable|array',
+            'variations.*.sizes.*.id' => 'required|exists:sizes,id',
+            'variations.*.sizes.*.stock' => 'required|integer|min:0',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'features.*.title' => 'feature title',
+            'features.*.description' => 'feature description',
+            'variations.*.product_type_id' => 'product type',
+            'variations.*.price' => 'price',
+            'variations.*.sku' => 'sku',
+            'variations.*.sizes.*.stock' => 'stock',
         ];
     }
 }

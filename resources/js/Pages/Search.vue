@@ -66,7 +66,7 @@ const addToWishlist = async (productId) => {
     <div class="px-4 py-[8px] md:px-[60px] md:py-[17px]">
       <form :action="route('products.search')" method="get" class="flex gap-4">
         <input type="text" name="search" :value="query" @input="onInput" id="search" placeholder="Search for Biker Bag"
-          class="w-full rounded-full py-2 px-8 text-center">
+          class="w-full rounded-full py-2 px-8 text-center" autofocus>
         <button type="submit" class="p-4 border border-black rounded-full">
           <PhMagnifyingGlass />
         </button>

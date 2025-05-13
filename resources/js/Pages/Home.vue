@@ -47,7 +47,7 @@ const props = defineProps({
       </div>
       <div class="grid grid-cols-1 gap-x-4 gap-y-6 md:grid-cols-4 lg:grid-cols-4 justify-items-center">
         <div v-for="bag in props.latestWomenBags" :key="bag.id" class="flex flex-col items-center">
-          <Link :href="route('product.show', bag.id)">
+          <Link :href="route('product.show', bag.slug)">
           <img v-if="bag.product_variations && bag.product_variations.length > 0"
             :src="bag.product_variations[0]?.image" alt="Product Image" class="w-full h-auto" />
           </Link>

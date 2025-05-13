@@ -3,6 +3,7 @@ import { defineProps } from 'vue';
 import AdminDashboard from '@/Layouts/AdminDashboard.vue';
 import ProductsTable from '@/Components/ProductsTable.vue';
 import UsersTable from '@/Components/UsersTable.vue';
+import { Head } from '@inertiajs/vue3';
 
 defineProps({
   products: Array,
@@ -12,6 +13,8 @@ defineProps({
 </script>
 
 <template>
+
+  <Head title="Overview" />
   <AdminDashboard>
     <h1 class="text-2xl font-medium">Overview</h1>
     <div class="grid grid-cols-1 gap-6 py-8 md:gap-12 lg:grid-cols-2">
