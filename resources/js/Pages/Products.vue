@@ -33,7 +33,7 @@ const addToWishlist = async (productId) => {
     console.error('Error adding to wishlist:', error);
   }
 }
-
+console.log(props.products)
 </script>
 
 <template>

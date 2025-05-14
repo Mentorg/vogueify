@@ -196,10 +196,10 @@ class ProductService
 
     public function getSearchResults()
     {
-        $products = Product::queryFilter([
+        $products = ProductVariation::queryFilter([
             Search::class,
-        ])->get();
+        ])->with(['product.category', 'type'])->get();
 
-        return $products->load('productVariations', 'category');
+        return $products;
     }
 }

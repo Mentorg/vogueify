@@ -17,12 +17,30 @@ class Search extends Filter
     {
         return $builder->whereLike(
             [
-                'name',
-                'gender',
-                'productVariations.color',
-                'productVariations.type',
-                'productVariations.sku',
-                'category.name'
-            ], $this->getValue());
+                'product.name',
+                'product.gender',
+                'sku'
+            ],
+            $this->getValue()
+        )
+        ->orWhereHas('product.category', function($q) {
+            $q->where('name', 'like', '%' . $this->getValue() . '%');
+        })
+        ->orWhereHas('color', function($q) {
+            $q->where('name', 'like', '%' . $this->getValue() . '%');
+        })
+        ->orWhereHas('primaryColor', function($q) {
+            $q->where('name', 'like', '%' . $this->getValue() . '%');
+        })
+        ->orWhereHas('secondaryColor', function($q) {
+            $q->where('name', 'like', '%' . $this->getValue() . '%');
+        })
+        ->orWhereHas('type', function($q) {
+            $q->where('label', 'like', '%' . $this->getValue() . '%');
+        })
+        ->orWhereHas('color', function($q) {
+            $q->where('name', 'like', '%' . $this->getValue() . '%')
+            ->orWhereNull('name');
+        });
     }
 }
