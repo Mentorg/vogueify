@@ -23,8 +23,7 @@ const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute
     <div v-else class="grid grid-cols-4">
       <div v-for="item in wishlist" :key="item.id">
         <div class="relative">
-          <img v-if="item.product.product_variations && item.product.product_variations.length > 0"
-            :src="item.product.product_variations[0].image" :alt="item.product.name" />
+          <img :src="item.product_variation.image" :alt="item.product_variation.product.name" />
           <form :action="route('wishlist.destroy', item.id)" method="post" class="absolute top-0 right-0 mt-2 mr-2">
             <input type="hidden" name="_token" :value="csrfToken" />
             <input type="hidden" name="_method" value="DELETE">
@@ -33,9 +32,8 @@ const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute
             </button>
           </form>
           <div class="absolute bottom-0 left-0 bg-white py-1 px-3 ml-2 mb-2">
-            <h2>{{ item.product.name }}</h2>
-            <p v-if="item.product.product_variations && item.product.product_variations.length > 0">{{
-              item.product.product_variations[0].price }}</p>
+            <h2>{{ item.product_variation.product.name }}</h2>
+            <p>${{ item.product_variation.price }}</p>
           </div>
         </div>
       </div>

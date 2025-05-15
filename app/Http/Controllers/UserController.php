@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function getWishlist(Request $request)
     {
-        $wishlist = $request->user()->wishlist()->with(['product.productVariations'])->get();
+        $wishlist = $request->user()->wishlist()->with(['productVariation.product'])->get();
 
         return Inertia::render('Dashboard', [
             'wishlist' => $wishlist

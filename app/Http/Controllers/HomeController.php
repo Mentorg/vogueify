@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductVariation;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -46,11 +47,13 @@ class HomeController extends Controller
 
     public function getWomenSeasonalBags()
     {
-        $products = Product::with('productVariations')
-            ->whereHas('category', function ($query) {
-                $query->where('name', 'bags');
+        $products = ProductVariation::with(['product.category'])
+            ->whereHas('product', function ($query) {
+                $query->where('gender', 'women')
+                    ->whereHas('category', function ($q) {
+                        $q->where('name', 'bags');
+                    });
             })
-            ->where('gender', 'women')
             ->latest()
             ->take(6)
             ->get();
@@ -60,11 +63,13 @@ class HomeController extends Controller
 
     public function getMenSeasonalBags()
     {
-        $products = Product::with('productVariations')
-            ->whereHas('category', function ($query) {
-                $query->where('name', 'bags');
+        $products = ProductVariation::with(['product.category'])
+            ->whereHas('product', function ($query) {
+                $query->where('gender', 'men')
+                    ->whereHas('category', function ($q) {
+                        $q->where('name', 'bags');
+                    });
             })
-            ->where('gender', 'men')
             ->latest()
             ->take(6)
             ->get();

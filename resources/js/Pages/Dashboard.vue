@@ -8,7 +8,6 @@ const user = usePage().props.auth.user;
 const props = defineProps({
   'wishlist': Array
 });
-
 </script>
 
 <template>
@@ -49,13 +48,12 @@ const props = defineProps({
               Start Shopping</Link>
             </div>
             <div v-else class="mt-8">
-              <div v-for="item in wishlist.slice(0, 3)" :key="item.product.id" class="flex my-4">
-                <img v-if="item.product.product_variations && item.product.product_variations.length > 0"
-                  :src="item.product.product_variations[0].image" :alt="item.product.name"
+              <div v-for="item in wishlist.slice(0, 3)" :key="item.product_variation.id" class="flex my-4">
+                <img :src="item.product_variation.image" :alt="item.product_variation.product.name"
                   class="w-[7.5%] rounded-full" />
                 <div class="flex flex-col gap-1 ml-4">
-                  <h4 class="font-medium">{{ item.product.name }}</h4>
-                  <p>{{ item.product.product_variations[0].price }}</p>
+                  <h4 class="font-medium">{{ item.product_variation.product.name }}</h4>
+                  <p>${{ item.product_variation.price }}</p>
                 </div>
               </div>
               <div v-if="wishlist.length > 3" class="mt-8">

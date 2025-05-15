@@ -9,13 +9,13 @@ import {
   PhBag,
 } from "@phosphor-icons/vue";
 
-const user = usePage().props.auth.user;
-
 const props = defineProps({
   isUserMenuOpen: Boolean,
   openUserMenu: Function
 });
 
+const user = usePage().props.auth.user;
+const wishlist = usePage().props.auth.wishlist;
 const emit = defineEmits(['toggleMenu']);
 </script>
 
@@ -38,9 +38,14 @@ const emit = defineEmits(['toggleMenu']);
       <Link href="/" class="text-lg font-medium md:text-3xl">Vogueify</Link>
     </div>
     <div class="flex gap-4">
-      <Link v-if="user?.role === 'customer'" :href="route('wishlist.index')">
-      <PhHeart :size="24" />
-      </Link>
+      <div v-if="user?.role === 'customer'" class="relative">
+        <Link :href="route('wishlist.index')">
+        <PhHeart :size="24" />
+        <span
+          class="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-black text-xs text-white">{{
+            wishlist.length < 9 ? wishlist.length : '+9' }}</span>
+            </Link>
+      </div>
       <div class="relative">
         <Link v-if="!user" :href="route('login')">
         <PhUser :size="24" />
@@ -66,7 +71,7 @@ const emit = defineEmits(['toggleMenu']);
       <button v-if="user?.role === 'customer'" class="relative">
         <PhBag :size="24" />
         <span
-          class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-black text-xs text-white">0</span>
+          class="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-black text-xs text-white">0</span>
       </button>
     </div>
   </header>
