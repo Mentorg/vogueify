@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductVariation;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Inertia\Inertia;
@@ -17,7 +18,7 @@ class DashboardController extends Controller
         $this->authorize('viewAll', User::class);
 
         return Inertia::render('Admin/Overview', [
-            'products' => Product::with(['productVariations', 'category'])->paginate(15),
+            'products' => ProductVariation::with(['product.category', 'sizes', 'type'])->paginate(15),
             'categories' => ProductCategory::all(),
             'users' => User::paginate(15)
         ]);
@@ -37,7 +38,7 @@ class DashboardController extends Controller
         $this->authorize('viewAll', Product::class);
 
         return Inertia::render('Admin/Products', [
-            'products' => Product::with(['productVariations', 'category'])->paginate(15),
+            'variations' => ProductVariation::with(['product.category', 'sizes', 'type'])->paginate(15),
             'categories' => ProductCategory::all()
         ]);
     }

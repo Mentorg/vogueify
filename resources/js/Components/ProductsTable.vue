@@ -8,42 +8,52 @@ import DangerButton from './DangerButton.vue';
 import SecondaryButton from './SecondaryButton.vue';
 
 const props = defineProps({
-  products: Object,
+  variations: Array,
   categories: Array
 });
 
 const form = useForm({});
-
 const openMenu = ref(null);
-const productToDelete = ref(null);
+const variationToDelete = ref(null);
+const errorMessage = ref(null);
 
 const toggleMenu = (id) => {
   openMenu.value = openMenu.value === id ? null : id;
-}
+};
 
 const handleClickOutside = (event) => {
   if (!event.target.closest('.context-menu-wrapper')) {
     openMenu.value = null;
   }
-}
+};
 
-const confirmProductDeletion = (product) => {
-  productToDelete.value = product;
-}
+const confirmVariationDeletion = (variation) => {
+  variationToDelete.value = variation;
+};
 
-const destroy = (id) => {
-  form.delete(route('product.delete', id), {
+const destroy = (id, type) => {
+  if (id === null || id === undefined) {
+    errorMessage.value = 'Invalid variation ID. Please try again.';
+    return;
+  }
+  form.delete(route('product.delete', { id }) + `?type=${type}`, {
     preserveScroll: true,
-    onSuccess: () => closeModal(),
+    onSuccess: () => {
+      closeModal();
+    },
+    onError: (errors) => {
+      errorMessage.value = errors.error || 'Failed to delete.';
+    },
     onFinish: () => form.reset()
   });
-  console.log(id)
-}
+
+};
 
 const closeModal = () => {
-  productToDelete.value = null;
-  form.reset()
-}
+  variationToDelete.value = null;
+  errorMessage.value = null;
+  form.reset();
+};
 
 onMounted(() => {
   window.addEventListener('click', handleClickOutside);
@@ -62,99 +72,107 @@ onBeforeUnmount(() => {
           class="bg-white uppercase tracking-wider sticky top-0 border-b-2 outline outline-2 outline-neutral-300 border-neutral-300">
           <tr class="grid grid-cols-[0.5fr,4fr,2fr,2fr,3fr,3fr,3fr,1fr]">
             <th scope="col" class="px-6 py-4">#</th>
-            <th scope="col" class="px-6 py-4">
-              Product
-            </th>
-            <th scope="col" class="px-6 py-4">
-              Price
-            </th>
-            <th scope="col" class="px-6 py-4">
-              Stock
-            </th>
-            <th scope="col" class="px-6 py-4">
-              SKU
-            </th>
-            <th scope="col" class="px-6 py-4">
-              Category
-            </th>
+            <th scope="col" class="px-6 py-4">Product</th>
+            <th scope="col" class="px-6 py-4">Price</th>
+            <th scope="col" class="px-6 py-4">Stock</th>
+            <th scope="col" class="px-6 py-4">SKU</th>
+            <th scope="col" class="px-6 py-4">Category</th>
             <th scope="col" class="px-6 py-4">Created</th>
-            <th scope="col" class="px-6 py-4">&nbsp;</th>
+            <th scope="col" class="px-6 py-4"></th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="product in products.data" :key="product.id"
+          <tr v-for="variation in variations.data" :key="variation.id"
             class="grid grid-cols-[0.5fr,4fr,2fr,2fr,3fr,3fr,3fr,1fr] border-b dark:border-neutral-200 even:bg-slate-100">
-            <th class="px-6 py-4">{{ product.id }}</th>
+            <th class="px-6 py-4">{{ variation.id }}</th>
             <th scope="row" class="px-6 py-4 overflow-hidden text-ellipsis whitespace-nowrap">
-              {{ product.name }}
+              {{ variation.product.name }}
             </th>
-            <td class="px-6 py-4">{{ product.product_variations[0].price }}</td>
-            <td class="px-6 py-4">{{ product.product_variations[0].stock }}</td>
-            <td class="px-6 py-4">{{ product.product_variations[0].sku }}</td>
+            <td class="px-6 py-4">${{ variation.price }}</td>
             <td class="px-6 py-4">
-              {{
-                categories && categories.find(category => category.id === product.category_id)?.name
-                  ? categories.find(category => category.id === product.category_id).name.charAt(0).toUpperCase() +
-                  categories.find(category => category.id === product.category_id).name.slice(1)
-                  : 'Uncategorized'
-              }}
+              {{variation.sizes.length > 0 ? variation.sizes.map(record => record.pivot.stock).reduce((result, item) =>
+                result + item, 0) : 0}}
             </td>
-            <td class="px-6 py-4">{{ formatDate(product.created_at, '.') }}</td>
-            <td class="px-6 py-4 justify-self-end">
-              <button class="relative" @click.stop="toggleMenu(product.id)">
+            <td class="px-6 py-4">{{ variation.sku }}</td>
+            <td class="px-6 py-4">
+              {{ variation.product.category.name.charAt(0).toUpperCase() + variation.product.category.name.slice(1) }}
+            </td>
+            <td class="px-6 py-4">{{ formatDate(variation.created_at, '.') }}</td>
+            <td class="px-6 py-4 justify-self-end context-menu-wrapper">
+              <button class="relative" @click.stop="toggleMenu(variation.id)">
                 <PhDotsThreeVertical :size="20" />
               </button>
-              <div v-if="openMenu === product.id"
+              <div v-if="openMenu === variation.id"
                 class="absolute z-10 right-6 px-4 py-4 bg-white border border-gray-200 shadow-md hs-dropdown-menu min-w-32 flex flex-col gap-y-3 rounded-md mt-2">
-                <Link :href="route('product.edit', { product: product.slug })"
+                <Link :href="route('product.edit', { product: variation.product.slug })"
                   class="flex items-center gap-x-2 transition-all hover:text-slate-500">
                 <PhPencilSimple :size="16" color="green" />
                 Update
                 </Link>
-                <div class="flex items-center gap-x-2 transition-all hover:text-slate-500">
-                  <button @click="confirmProductDeletion(product)" class="flex items-center gap-2">
-                    <PhTrash :size="16" color="red" />
-                    Delete
-                  </button>
-                </div>
+                <button @click="confirmVariationDeletion(variation)"
+                  class="flex items-center gap-x-2 transition-all hover:text-slate-500">
+                  <PhTrash :size="16" color="red" />
+                  Delete
+                </button>
               </div>
             </td>
           </tr>
-          <DialogModal :show="productToDelete !== null" @close="closeModal">
-            <template #title>
-              Delete '{{ productToDelete?.name }}'?
-            </template>
-            <template #content>
-              Are you sure you want to delete '{{ productToDelete?.name }}'?
-            </template>
-            <template #footer>
-              <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
-              <DangerButton class="ms-3" @click="destroy(productToDelete.id)">
-                <PhTrash :size="16" color="white" class="mr-2" />
-                Delete
-              </DangerButton>
-            </template>
-          </DialogModal>
         </tbody>
       </table>
+      <DialogModal :show="variationToDelete !== null" @close="closeModal">
+        <template #title>
+          Delete '{{ variationToDelete?.product.name }}' Variation?
+        </template>
+        <template #content>
+          Are you sure you want to delete the variation with SKU '{{ variationToDelete?.sku }}'?
+          <br />
+          You can also delete the entire product, including all its variations.
+          <div v-if="errorMessage" class="text-red-500 mt-2">
+            {{ errorMessage }}
+          </div>
+        </template>
+        <template #footer>
+          <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+          <DangerButton class="ms-3" @click="destroy(variationToDelete?.id, 'variation')">
+            <PhTrash :size="16" color="white" class="mr-2" />
+            Delete Variation
+          </DangerButton>
+          <DangerButton class="ms-3" @click="destroy(variationToDelete?.product_id, 'product')">
+            <PhTrash :size="16" color="white" class="mr-2" />
+            Delete Product
+          </DangerButton>
+        </template>
+      </DialogModal>
       <nav class="bg-white sticky bottom-0 flex py-2 px-4 border-t-2 items-center justify-between text-sm"
         aria-label="Page navigation example">
         <p>
-          Showing <strong>{{ products.from }}-{{ products.to }}</strong> of <strong>{{ products.total }}</strong>
+          Showing <strong>{{ variations.from }}-{{ variations.to }}</strong> of <strong>{{ variations.total }}</strong>
         </p>
         <ul class="list-style-none flex gap-x-4 mx-2">
-          <li v-if="products.prev_page_url">
+          <li v-if="variations.first_page_url">
             <button class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm"
-              @click="router.visit(products.prev_page_url)">
+              @click="router.visit(variations.first_page_url)">
+              First
+            </button>
+          </li>
+          <li v-if="variations.prev_page_url">
+            <button class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm"
+              @click="router.visit(variations.prev_page_url)">
               <PhCaretLeft :size="12" />
               Previous
             </button>
           </li>
-          <li v-if="products.next_page_url">
+          <li v-if="variations.next_page_url">
             <button class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm"
-              @click="router.visit(products.next_page_url)">
+              @click="router.visit(variations.next_page_url)">
               Next
               <PhCaretRight :size="12" />
+            </button>
+          </li>
+          <li v-if="variations.last_page_url">
+            <button class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm"
+              @click="router.visit(variations.last_page_url)">
+              Last
             </button>
           </li>
         </ul>

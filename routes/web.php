@@ -57,7 +57,7 @@ Route::controller(ProductController::class)->group(function () {
     Route::post('/admin/products', 'store')->name('product.store');
     Route::get('/admin/products/{product:slug}/update', 'edit')->name('product.edit');
     Route::put('/admin/products/{product}', 'update')->name('product.update');
-    Route::delete('/admin/products/{product}', 'destroy')->name('product.delete');
+    Route::delete('/admin/products/{id}', 'destroy')->name('product.delete');
 });
 
 Route::controller(UserController::class)->group(function () {

@@ -188,10 +188,20 @@ class ProductService
         }
     }
 
-    public function delete($product)
+    public function delete(Product $product)
     {
-        $product->delete();
-        return $product;
+        return tap($product)->delete();
+    }
+
+    public function deleteVariation(ProductVariation $variation)
+    {
+        $product = $variation->product;
+
+        if ($product->productVariations()->count() <= 1) {
+            return $this->delete($product);
+        }
+
+        return tap($variation)->delete();
     }
 
     public function getSearchResults()

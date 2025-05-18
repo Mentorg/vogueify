@@ -8,6 +8,7 @@ use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductType;
+use App\Models\ProductVariation;
 use App\Models\Size;
 use App\Services\ProductService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -104,13 +105,21 @@ class ProductController extends Controller
         }
     }
 
-    public function destroy(Product $product)
+    public function destroy(Request $request, $id)
     {
         $this->authorize('modify', Product::class);
 
-        $this->productService->delete($product);
+        $type = $request->query('type', 'product');
 
-        return redirect()->route('admin.products');
+        if ($type === 'variation') {
+            $variation = ProductVariation::findOrFail($id);
+            $this->productService->deleteVariation($variation);
+        } else {
+            $product = Product::findOrFail($id);
+            $this->productService->delete($product);
+        }
+
+        return redirect()->route('admin.products')->with('success', 'Deletion successful.');
     }
 
     public function searchResults()
