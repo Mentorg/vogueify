@@ -6,7 +6,7 @@ import UsersTable from '@/Components/UsersTable.vue';
 import { Head } from '@inertiajs/vue3';
 
 defineProps({
-  products: Array,
+  variations: Array,
   categories: Array,
   users: Object
 })
@@ -20,7 +20,7 @@ defineProps({
     <div class="grid grid-cols-1 gap-6 py-8 md:gap-12 lg:grid-cols-2">
       <div>
         <h2 class="text-lg font-medium my-4">Products</h2>
-        <ProductsTable :products="products" :categories="categories" />
+        <ProductsTable :variations="variations" :categories="categories" />
       </div>
       <div>
         <h2 class="text-lg font-medium my-4">Users</h2>

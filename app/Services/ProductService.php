@@ -83,6 +83,7 @@ class ProductService
                     'product_id' => $product->id,
                     'image' => $imagePath,
                     'sku' => $variationData['sku'],
+                    'stock' => $variationData['stock'],
                     'price' => $variationData['price'],
                     'product_type_id' => $variationData['product_type_id'],
                     'color_id' => $variationData['color_id'] ?? null,
@@ -164,6 +165,7 @@ class ProductService
                         'secondary_color_id' => $variationData['secondary_color_id'] ?? null,
                         'price' => $variationData['price'],
                         'sku' => $variationData['sku'],
+                        'stock' => $variationData['stock'],
                         'image' => $imageMap[$variationId] ?? ($variationId ? $product->productVariations->firstWhere('id', $variationId)?->image : null),
                     ]
                 );

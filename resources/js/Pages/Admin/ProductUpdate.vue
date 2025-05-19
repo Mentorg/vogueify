@@ -31,6 +31,7 @@ const form = reactive({
   variations: props.product.product_variations?.map((variation) => ({
     id: variation.id,
     sku: variation.sku,
+    stock: variation.stock,
     price: variation.price,
     image: variation.image,
     product_type_id: variation.product_type_id,
@@ -65,6 +66,7 @@ const addVariation = () => {
     secondary_color_id: null,
     price: '',
     sku: '',
+    stock: '',
     sizes: props.sizes.map(size => ({ id: size.id, stock: 0 })),
     collapsed: false,
   });
@@ -135,6 +137,7 @@ const submitForm = () => {
     formData.append(`variations[${vIndex}][secondary_color_id]`, variation.secondary_color_id ?? '');
     formData.append(`variations[${vIndex}][price]`, variation.price);
     formData.append(`variations[${vIndex}][sku]`, variation.sku);
+    formData.append(`variations[${vIndex}][stock]`, variation.stock);
 
     variation.sizes.forEach((size, sIndex) => {
       formData.append(`variations[${vIndex}][sizes][${sIndex}][id]`, size.id);
@@ -292,6 +295,11 @@ const submitForm = () => {
                     <TextInput v-model="variation.sku" />
                     <ErrorMessage :message="errors[`variations.${index}.sku`]" />
                   </div>
+                  <div>
+                    <InputLabel value="Stock" />
+                    <TextInput v-model="variation.stock" />
+                    <ErrorMessage :message="errors[`variations.${index}.stock`]" />
+                  </div>
                 </div>
                 <div class="mt-4">
                   <div class="flex items-center gap-2">
@@ -370,7 +378,7 @@ const submitForm = () => {
               <div>
                 <h3 class="font-medium text-base">Type</h3>
                 <p class="mt-4">{{types.find((t) => String(t.id) === String(variation.product_type_id))?.label || 'N/A'
-                }}</p>
+                  }}</p>
               </div>
               <div>
                 <h3 class="font-medium text-base">SKU</h3>

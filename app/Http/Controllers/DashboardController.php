@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $this->authorize('viewAll', User::class);
 
         return Inertia::render('Admin/Overview', [
-            'products' => ProductVariation::with(['product.category', 'sizes', 'type'])->paginate(15),
+            'variations' => ProductVariation::with(['product.category', 'sizes', 'type'])->paginate(15),
             'categories' => ProductCategory::all(),
             'users' => User::paginate(15)
         ]);

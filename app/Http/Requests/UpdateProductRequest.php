@@ -41,6 +41,7 @@ class UpdateProductRequest extends FormRequest
             'variations.*.secondary_color_id' => 'nullable|exists:colors,id',
             'variations.*.price' => 'required|numeric',
             'variations.*.sku' => 'required|string|max:255',
+            'variations.*.stock' => 'required|integer|min:0',
 
             'variations.*.sizes' => 'required|array',
             'variations.*.sizes.*.id' => 'required|exists:sizes,id',

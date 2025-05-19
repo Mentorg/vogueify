@@ -62,6 +62,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('click', handleClickOutside);
 });
+console.log(props.variations)
 </script>
 
 <template>
@@ -90,8 +91,9 @@ onBeforeUnmount(() => {
             </th>
             <td class="px-6 py-4">${{ variation.price }}</td>
             <td class="px-6 py-4">
-              {{variation.sizes.length > 0 ? variation.sizes.map(record => record.pivot.stock).reduce((result, item) =>
-                result + item, 0) : 0}}
+              {{variation.stock !== null ? variation.stock : variation.sizes.map(record =>
+                record.pivot.stock).reduce((result, item) =>
+                  result + item, 0)}}
             </td>
             <td class="px-6 py-4">{{ variation.sku }}</td>
             <td class="px-6 py-4">

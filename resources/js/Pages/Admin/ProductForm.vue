@@ -46,6 +46,7 @@ const addVariation = () => {
     secondary_color_id: null,
     price: '',
     sku: '',
+    stock: '',
     sizes: props.sizes.map(size => ({ id: size.id, stock: 0 })),
     collapsed: false
   });
@@ -108,6 +109,7 @@ const submitForm = () => {
     formData.append(`variations[${i}][secondary_color_id]`, variation.secondary_color_id);
     formData.append(`variations[${i}][price]`, variation.price);
     formData.append(`variations[${i}][sku]`, variation.sku);
+    formData.append(`variations[${i}][stock]`, variation.stock);
 
     variation.sizes.forEach((size, j) => {
       formData.append(`variations[${i}][sizes][${j}][id]`, size.id);
@@ -245,6 +247,15 @@ const submitForm = () => {
                     <InputLabel value="SKU" />
                     <TextInput v-model="variation.sku" />
                     <ErrorMessage :message="errors[`variations.${index}.sku`]" />
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <InputLabel value="Stock" />
+                      <Tooltip
+                        message="Provide stock only for types of bags, scarves, sunglasses, earrings, watches." />
+                    </div>
+                    <TextInput v-model="variation.stock" type="number" />
+                    <ErrorMessage :message="errors[`variations.${index}.stock`]" />
                   </div>
                 </div>
                 <div class="mt-4">

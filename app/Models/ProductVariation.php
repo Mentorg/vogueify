@@ -13,6 +13,7 @@ class ProductVariation extends Model
         'image',
         'price',
         'sku',
+        'stock',
         'product_id',
         'color_id',
         'primary_color_id',

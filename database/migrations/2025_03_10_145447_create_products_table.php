@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('image');
             $table->decimal('price', 6, 2);
             $table->string('sku')->unique();
+            $table->integer('stock')->nullable();
             $table->timestamps();
             $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
             $table->foreignId('color_id')->nullable()->constrained('colors')->nullOnDelete();

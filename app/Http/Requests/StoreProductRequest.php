@@ -38,6 +38,7 @@ class StoreProductRequest extends FormRequest
             'variations.*.product_type_id' => 'required|exists:product_types,id',
             'variations.*.price' => 'required|numeric|min:0.01',
             'variations.*.sku' => 'required|string|max:255|distinct|unique:product_variations,sku',
+            'variations.*.stock' => 'required|integer|min:0',
             'variations.*.sizes' => 'nullable|array',
             'variations.*.sizes.*.id' => 'required|exists:sizes,id',
             'variations.*.sizes.*.stock' => 'required|integer|min:0',
