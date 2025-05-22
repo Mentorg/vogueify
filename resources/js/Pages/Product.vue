@@ -24,9 +24,23 @@ const currentVariation = computed(() => {
 const sizeVariations = currentVariation.value.sizes.map(record => record);
 
 const form = useForm({
-  size: currentVariation.value.sizes[0]?.label,
-  quantity: '1'
+  quantity: '1',
+  price_at_time: currentVariation.value.price,
+  product_variation_id: currentVariation.value.id,
+  size_id: currentVariation.value.sizes
+    ? (currentVariation.value.sizes.find(item => item.pivot.stock > 0)?.id ?? null)
+    : null
 });
+
+const submitForm = () => {
+  form.transform(data => ({
+    ...data,
+  })).post(route('cart.store'), {
+    onSuccess: console.log('Item added successfully to the cart.'),
+    onError: console.log(form)
+  })
+}
+console.log(currentVariation.value.sizes)
 </script>
 
 <template>
@@ -39,36 +53,38 @@ const form = useForm({
         <img v-if="currentVariation && currentVariation.image" :src="'http://vogueify.test' + currentVariation.image"
           :alt="product.name" />
         <div class="w-[60%] m-auto">
-          <div class="my-4">
-            <div class="lg:my-8">
-              <p class="text-sm">{{ currentVariation.sku }}</p>
-              <h2 class="text-xl mt-4 md:text-3xl">{{ product.product_variations.length > 1 ? product.name + ' - ' +
-                currentVariation.color.name :
-                product.name }}</h2>
-              <h3 class="mt-2 md:text-lg">${{ currentVariation.price }}</h3>
-            </div>
-            <div class="flex gap-4">
-              <div class="w-full"
-                v-if="product.category_id === 1 || product.category_id === 5 || (currentVariation && ['belt', 'bracelet', 'necklace', 'ring'].includes(currentVariation.type.type))">
-                <InputLabel for="size"
-                  :value="`Size ${product.category_id === 0 ? '(L)' : product.category_id === 5 ? '(ml)' : '(in)'}`" />
-                <SelectInput name="size" id="size" v-model="form.size" key="product.id">
-                  <option :disabled="size.pivot.stock < 1" v-for="size in sizeVariations" :value="size.id"
-                    :key="size.id">
-                    {{ size.pivot.stock < 1 ? size.label + ' (not available)' : size.label }} </option>
-                </SelectInput>
+          <form @submit.prevent="submitForm">
+            <div class="my-4">
+              <div class="lg:my-8">
+                <p class="text-sm">{{ currentVariation.sku }}</p>
+                <h2 class="text-xl mt-4 md:text-3xl">{{ product.product_variations.length > 1 ? product.name + ' - ' +
+                  currentVariation.color.name :
+                  product.name }}</h2>
+                <h3 class="mt-2 md:text-lg">${{ currentVariation.price }}</h3>
               </div>
-              <div class="w-full">
-                <InputLabel for="quantity" value="Quantity" />
-                <TextInput id="quantity" type="number" name="quantity" v-model="form.quantity"
-                  class="mt-1 block w-full" />
+              <div class="flex gap-4">
+                <div class="w-full"
+                  v-if="product.category_id === 1 || product.category_id === 5 || (currentVariation && ['belt', 'bracelet', 'necklace', 'ring'].includes(currentVariation.type.type))">
+                  <InputLabel for="size_id"
+                    :value="`Size ${product.category_id === 0 ? '(L)' : product.category_id === 5 ? '(ml)' : '(in)'}`" />
+                  <SelectInput name="size_id" id="size_id" v-model="form.size_id" key="product.id">
+                    <option :disabled="size.pivot.stock < 1" v-for="size in sizeVariations" :value="size.id"
+                      :key="size.id">
+                      {{ size.pivot.stock < 1 ? size.label + ' (not available)' : size.label }} </option>
+                  </SelectInput>
+                </div>
+                <div class="w-full">
+                  <InputLabel for="quantity" value="Quantity" />
+                  <TextInput id="quantity" type="number" name="quantity" v-model="form.quantity"
+                    class="mt-1 block w-full" />
+                </div>
               </div>
             </div>
-          </div>
-          <button
-            class="bg-black border border-black py-2 w-full rounded-full text-white transition duration-500 ease-in-out hover:bg-white hover:text-black">
-            Place in Cart
-          </button>
+            <button
+              class="bg-black border border-black py-2 w-full rounded-full text-white transition duration-500 ease-in-out hover:bg-white hover:text-black">
+              Place in Cart
+            </button>
+          </form>
           <div class="my-8 lg:my-14">
             <div v-if="product.product_variations.length > 1" class="my-8">
               <h3 class="font-medium">Also available in</h3>

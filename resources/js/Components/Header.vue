@@ -16,6 +16,7 @@ const props = defineProps({
 
 const user = usePage().props.auth.user;
 const wishlist = usePage().props.auth.wishlist;
+const cart = usePage().props.auth.cart;
 const emit = defineEmits(['toggleMenu']);
 </script>
 
@@ -41,7 +42,7 @@ const emit = defineEmits(['toggleMenu']);
       <div v-if="user?.role === 'customer'" class="relative">
         <Link :href="route('wishlist.index')">
         <PhHeart :size="24" />
-        <span
+        <span v-if="wishlist.length > 0"
           class="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-black text-xs text-white">{{
             wishlist.length < 9 ? wishlist.length : '+9' }}</span>
             </Link>
@@ -68,11 +69,12 @@ const emit = defineEmits(['toggleMenu']);
           Log Out</Link>
         </div>
       </div>
-      <button v-if="user?.role === 'customer'" class="relative">
-        <PhBag :size="24" />
-        <span
-          class="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-black text-xs text-white">0</span>
-      </button>
+      <Link :href="route('cart.index')" v-if="user?.role === 'customer'" class="relative">
+      <PhBag :size="24" />
+      <span v-if="cart.length > 0"
+        class="absolute -right-2 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-black text-xs text-white">{{
+          cart.length }}</span>
+      </Link>
     </div>
   </header>
 </template>

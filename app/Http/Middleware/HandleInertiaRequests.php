@@ -37,10 +37,18 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'auth' => [
-            'user' => fn () => $request->user() ? $request->user() : null,
-            'wishlist' => fn () => $request->user()
-                ? $request->user()->wishlist()->with('productVariation.product')->get()
-                : [],
+                'user' => fn () => $request->user() ? $request->user() : null,
+                'cart' => fn () => $request->user()
+                    ? ($request->user()->cart
+                        ? $request->user()->cart->cartItems()->with([
+                            'productVariation.product',
+                            'size',
+                        ])->get()
+                        : [])
+                    : [],
+                'wishlist' => fn () => $request->user()
+                    ? $request->user()->wishlist()->with('productVariation.product')->get()
+                    : [],
             ],
         ]);
     }

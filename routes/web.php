@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -69,4 +70,10 @@ Route::controller(DashboardController::class)->group(function () {
     Route::get('/admin/overview', 'index')->name('admin.overview');
     Route::get('/admin/users', 'getUsers')->name('admin.users');
     Route::get('/admin/products', 'getProducts')->name('admin.products');
+});
+
+Route::controller(CartController::class)->group(function () {
+    Route::get('/cart', 'index')->name('cart.index');
+    Route::post('/cart', 'store')->name('cart.store');
+    Route::delete('/cart/{id}', 'destroy')->name('cart.delete');
 });
