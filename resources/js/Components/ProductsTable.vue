@@ -62,7 +62,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('click', handleClickOutside);
 });
-console.log(props.variations)
 </script>
 
 <template>

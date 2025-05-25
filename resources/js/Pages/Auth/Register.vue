@@ -7,9 +7,11 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import SelectInput from '@/Components/SelectInput.vue';
 
 const form = useForm({
   name: '',
+  title: '',
   email: '',
   password: '',
   password_confirmation: '',
@@ -38,6 +40,14 @@ const submit = () => {
         <TextInput id="name" v-model="form.name" type="text" class="mt-1 block w-full" required autofocus
           autocomplete="name" />
         <InputError class="mt-2" :message="form.errors.name" />
+      </div>
+
+      <div class="mt-4">
+        <InputLabel for="title" value="Title*" />
+        <SelectInput name="title" id="title" v-model="form.title" required>
+          <option value="mr">Mr.</option>
+          <option value="ms">Ms.</option>
+        </SelectInput>
       </div>
 
       <div class="mt-4">

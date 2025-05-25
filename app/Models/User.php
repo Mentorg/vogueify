@@ -30,8 +30,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'title',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -114,5 +116,10 @@ class User extends Authenticatable
     public function cart()
     {
         return $this->hasOne(Cart::class);
+    }
+
+    public function address()
+    {
+        return $this->hasOne(Address::class);
     }
 }

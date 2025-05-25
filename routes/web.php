@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
+use App\Models\Country;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,7 +17,7 @@ Route::get('/login', function () {
 
 Route::get('/register', function () {
     return Inertia::render('Auth/Register');
-})->name('register');
+})->name('auth.register');
 
 Route::post('/login', [SessionController::class, 'store']);
 
@@ -28,7 +29,11 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/profile', function () {
-        return Inertia::render('Profile/Profile');
+        $countries = Country::all(['id', 'name', 'iso_code']);
+
+        return Inertia::render('Profile/Profile', [
+            'countries' => $countries
+        ]);
     })->name('profile');
 
     Route::get('/show', function () {

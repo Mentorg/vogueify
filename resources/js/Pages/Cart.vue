@@ -304,7 +304,7 @@ onBeforeUnmount(() => {
               </div>
               <p class="text-xs text-slate-500">Will be calculated according to your delivery address</p>
             </li>
-            <li class="flex justify-between mt-4 :text-lg">
+            <li class="flex justify-between mt-4 text-lg">
               <p>Total</p>
               <span>
                 ${{cartItems.length > 0

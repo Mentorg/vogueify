@@ -19,15 +19,16 @@ class UserSeeder extends Seeder
     {
         $this->createAdminUser();
         $this->createStaffUser();
-        $this->createCustomerUser('John Brown', 'johnbrown@customer.com');
-        $this->createCustomerUser('Jane Smith', 'janesmith@customer.com');
-        $this->createCustomerUser('Bob Marley', 'bobmarley@customer.com');
+        $this->createCustomerUser('John Brown', 'mr', 'johnbrown@customer.com');
+        $this->createCustomerUser('Jane Smith', 'ms', 'janesmith@customer.com');
+        $this->createCustomerUser('Bob Marley', 'mr', 'bobmarley@customer.com');
     }
 
     public function createAdminUser()
     {
         User::create([
             'name'      => 'Admin User',
+            'title'     => 'mr',
             'email'     => 'admin@vogueify.com',
             'password'  => Hash::make('adminuser'),
             'role'      => 'admin',
@@ -38,16 +39,18 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name'      => 'Jane Doe',
+            'title'     => 'ms',
             'email'     => 'janedoe@vogueify.com',
             'password'  => Hash::make('janedoe1234'),
             'role'      => 'staff'
         ])->roles()->sync(Role::where('name', RoleName::STAFF->value)->first());
     }
 
-    public function createCustomerUser(string $name, string $email)
+    public function createCustomerUser(string $name, String $title, string $email)
     {
         $user = User::create([
             'name'      => $name,
+            'title'     => $title,
             'email'     => $email,
             'password'  => Hash::make('password123'),
             'role'      => 'customer'

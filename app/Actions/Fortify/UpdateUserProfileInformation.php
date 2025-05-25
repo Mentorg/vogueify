@@ -17,11 +17,28 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update(User $user, array $input): void
     {
-        Validator::make($input, [
+        $validator = Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+            'title' => ['required', 'in:mr,ms'],
+            'date_of_birth' => ['nullable', 'date'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
-        ])->validateWithBag('updateProfileInformation');
+            'has_address' => ['boolean'],
+        ]);
+
+        if (!empty($input['has_address'])) {
+            $validator->addRules([
+                'address_line_1' => ['nullable', 'string', 'max:255'],
+                'address_line_2' => ['nullable', 'string', 'max:255'],
+                'city' => ['nullable', 'string', 'max:255'],
+                'state' => ['nullable', 'string', 'max:255'],
+                'postcode' => ['nullable', 'string', 'max:20'],
+                'country_id' => ['nullable', 'exists:countries,id'],
+                'phone_number' => ['phone']
+            ]);
+        }
+
+        $validator->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
@@ -34,7 +51,26 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'title' => $input['title'],
+                'date_of_birth' => $input['date_of_birth'],
             ])->save();
+        }
+
+        if (!empty($input['has_address'])) {
+            $addressData = collect($input)->only([
+                'address_line_1',
+                'address_line_2',
+                'city',
+                'state',
+                'postcode',
+                'country_id',
+                'phone_number',
+            ])->toArray();
+
+            $user->address()->updateOrCreate(
+                ['user_id' => $user->id],
+                $addressData
+            );
         }
     }
 
@@ -48,6 +84,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         $user->forceFill([
             'name' => $input['name'],
             'email' => $input['email'],
+            'title' => $input['title'],
+            'date_of_birth' => $input['date_of_birth'],
             'email_verified_at' => null,
         ])->save();
 

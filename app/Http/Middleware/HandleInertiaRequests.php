@@ -37,7 +37,7 @@ class HandleInertiaRequests extends Middleware
     {
         return array_merge(parent::share($request), [
             'auth' => [
-                'user' => fn () => $request->user() ? $request->user() : null,
+                'user' => fn () => $request->user() ? $request->user()->load('address.country') : null,
                 'cart' => fn () => $request->user()
                     ? ($request->user()->cart
                         ? $request->user()->cart->cartItems()->with([

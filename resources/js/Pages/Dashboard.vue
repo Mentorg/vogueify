@@ -8,6 +8,7 @@ const user = usePage().props.auth.user;
 const props = defineProps({
   'wishlist': Array
 });
+console.log(user)
 </script>
 
 <template>
@@ -20,8 +21,19 @@ const props = defineProps({
         <div class="grid gap-2 bg-white p-6 w-full h-fit lg:gap-4 lg:p-10">
           <h3 class="text-xl">My Profile</h3>
           <div class="flex flex-col gap-2 my-4 lg:my-8">
-            <p>Login: {{ user.email }}</p>
-            <p>Address: {{ user.address || "No address provided" }}</p>
+            <p class="font-medium">Email: <span class="font-normal">{{ user.email }}</span></p>
+            <p v-if="user.address === null" class="font-medium">No address provided</p>
+            <div v-else class="flex flex-col gap-2">
+              <p class="font-medium">Address 1: <span class="font-normal">{{ user.address.address_line_1 }}</span></p>
+              <p class="font-medium">Address 2: <span class="font-normal">{{ user.address.address_line_2 }}</span></p>
+              <p class="font-medium">Location: <span class="font-normal">{{ user.address.city }}, {{ user.address.state
+                !== null ?
+                user.address.state + ', ' : '' }}
+                  {{
+                    user.address.country.iso_code }}</span></p>
+              <p class="font-medium">Postcode: <span class="font-normal">{{ user.address.postcode }}</span></p>
+              <p class="font-medium">Phone Number: <span class="font-normal">{{ user.address.phone_number }}</span></p>
+            </div>
           </div>
           <Link href="profile"
             class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">

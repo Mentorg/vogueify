@@ -1,6 +1,7 @@
 <script setup>
-import { computed, defineProps } from "vue";
-import { Head, Link, useForm } from "@inertiajs/vue3";
+import { computed, defineProps, ref } from "vue";
+import { Head, Link, useForm, usePage } from "@inertiajs/vue3";
+import { PhHeart } from "@phosphor-icons/vue";
 import Menu from '@Components/Menu.vue';
 import Footer from "@/Components/Footer.vue";
 import InputLabel from "@/Components/InputLabel.vue";
@@ -11,6 +12,11 @@ const props = defineProps({
   product: Object,
   activeVariation: Object,
 });
+
+const wishlist = usePage().props.auth.wishlist;
+const localWishlist = ref([...wishlist]);
+
+const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
 function capitalize(value) {
   if (!value) return '';
@@ -32,15 +38,59 @@ const form = useForm({
     : null
 });
 
+const addToWishlist = async (productVariationId) => {
+  const existing = localWishlist.value.find(item => item.product_variation_id === productVariationId);
+
+  if (existing) {
+    try {
+      const response = await fetch(route('wishlist.destroy', existing.id), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': csrfToken
+        },
+        body: JSON.stringify({ _method: 'DELETE' })
+      });
+
+      if (!response.ok) throw new Error('Failed to remove from wishlist');
+
+      localWishlist.value = localWishlist.value.filter(item => item.id !== existing.id);
+    } catch (error) {
+      console.error('Error removing from wishlist:', error);
+    }
+
+  } else {
+    try {
+      const response = await fetch(route('wishlist.store'), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': csrfToken
+        },
+        body: JSON.stringify({ product_variation_id: productVariationId })
+      });
+
+      if (!response.ok) throw new Error('Failed to add to wishlist');
+
+      const newItem = await response.json();
+
+      localWishlist.value.push(newItem);
+    } catch (error) {
+      console.error('Error adding to wishlist:', error);
+    }
+  }
+};
+
 const submitForm = () => {
   form.transform(data => ({
     ...data,
   })).post(route('cart.store'), {
     onSuccess: console.log('Item added successfully to the cart.'),
-    onError: console.log(form)
+    onError: (errors) => {
+      errorMessage.value = errors.error || 'Failed to submit form.';
+    },
   })
 }
-console.log(currentVariation.value.sizes)
 </script>
 
 <template>
@@ -56,10 +106,14 @@ console.log(currentVariation.value.sizes)
           <form @submit.prevent="submitForm">
             <div class="my-4">
               <div class="lg:my-8">
-                <p class="text-sm">{{ currentVariation.sku }}</p>
-                <h2 class="text-xl mt-4 md:text-3xl">{{ product.product_variations.length > 1 ? product.name + ' - ' +
-                  currentVariation.color.name :
-                  product.name }}</h2>
+                <div class="flex justify-between">
+                  <p class="text-sm">{{ currentVariation.sku }}</p>
+                  <button @click.prevent="addToWishlist(currentVariation.id)">
+                    <PhHeart size="18" color="black"
+                      :weight="localWishlist.some(record => record.product_variation_id === currentVariation.id) ? 'fill' : 'regular'" />
+                  </button>
+                </div>
+                <h2 class="text-xl mt-4 md:text-3xl">{{ product.name }}</h2>
                 <h3 class="mt-2 md:text-lg">${{ currentVariation.price }}</h3>
               </div>
               <div class="flex gap-4">

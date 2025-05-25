@@ -70,8 +70,8 @@ const addToWishlist = async (productVariationId) => {
             class="relative">
           <img :src="variation.image" :alt="variation.product.name" />
           <div class="absolute top-0 right-0 mt-2 mr-2">
-            <button @click.prevent="addToWishlist(variation.id)">
-              <PhHeart size="18" color="red"
+            <button @click.prevent="addToWishlist(variation.id)" class="bg-black p-2 rounded-full">
+              <PhHeart size="18" color="white"
                 :weight="localWishlist.some(record => record.product_variation_id === variation.id) ? 'fill' : 'regular'" />
             </button>
           </div>

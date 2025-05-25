@@ -34,16 +34,16 @@ class UpdateProductRequest extends FormRequest
 
             'variations' => 'required|array',
             'variations.*.id' => 'nullable|integer|exists:product_variations,id',
-            'variations.*.image' => 'nullable', // handled below
+            'variations.*.image' => 'nullable',
             'variations.*.product_type_id' => 'required|exists:product_types,id',
             'variations.*.color_id' => 'nullable|exists:colors,id',
             'variations.*.primary_color_id' => 'nullable|exists:colors,id',
             'variations.*.secondary_color_id' => 'nullable|exists:colors,id',
             'variations.*.price' => 'required|numeric',
             'variations.*.sku' => 'required|string|max:255',
-            'variations.*.stock' => 'required|integer|min:0',
+            'variations.*.stock' => 'nullable|integer|min:0',
 
-            'variations.*.sizes' => 'required|array',
+            'variations.*.sizes' => 'nullable|array',
             'variations.*.sizes.*.id' => 'required|exists:sizes,id',
             'variations.*.sizes.*.stock' => 'required|integer|min:0',
         ];
