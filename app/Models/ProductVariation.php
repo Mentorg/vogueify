@@ -56,4 +56,9 @@ class ProductVariation extends Model
     {
         return $this->hasMany(Wishlist::class);
     }
+
+    public function hasSufficientStock($quantity)
+    {
+        return is_null($this->stock) || $this->stock >= $quantity;
+    }
 }

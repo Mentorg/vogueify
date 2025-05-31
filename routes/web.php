@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
@@ -81,4 +82,9 @@ Route::controller(CartController::class)->group(function () {
     Route::get('/cart', 'index')->name('cart.index');
     Route::post('/cart', 'store')->name('cart.store');
     Route::delete('/cart/{id}', 'destroy')->name('cart.delete');
+});
+
+Route::controller(OrderController::class)->group(function() {
+    Route::get('/orders', 'index')->name('order.index');
+    Route::post('/orders', 'store')->name('order.store');
 });
