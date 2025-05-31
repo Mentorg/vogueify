@@ -8,7 +8,6 @@ const user = usePage().props.auth.user;
 const props = defineProps({
   'wishlist': Array
 });
-console.log(user)
 </script>
 
 <template>

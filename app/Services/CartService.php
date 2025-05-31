@@ -14,6 +14,10 @@ class CartService
         }
         $cart = Cart::where('user_id', auth()->id())->first();
 
+        if (!$cart) {
+            return collect();
+        }
+
         return $cart->cartItems()->with(['productVariation.product', 'productVariation.sizes', 'size'])->get();
     }
 

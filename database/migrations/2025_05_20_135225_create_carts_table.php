@@ -21,7 +21,7 @@ return new class extends Migration
         Schema::create('cart_items', function (Blueprint $table) {
             $table->id();
             $table->integer('quantity')->default(1);
-            $table->decimal('price_at_time', 6, 2); // Store the price when added to the cart to handle price changes over time
+            $table->decimal('price_at_time', 6, 2);
             $table->timestamps();
             $table->unsignedBigInteger('cart_id');
             $table->foreign('cart_id')->references('id')->on('carts')->cascadeOnDelete();

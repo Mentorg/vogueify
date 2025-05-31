@@ -96,7 +96,6 @@ const toggleAddressInputs = (addressValue) => {
   showAddressInputs.value = addressValue;
   form.has_address = addressValue;
 }
-console.log(props.user)
 </script>
 
 <template>
