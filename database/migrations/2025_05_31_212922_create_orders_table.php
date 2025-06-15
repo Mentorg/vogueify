@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\OrderStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -36,21 +37,7 @@ return new class extends Migration
             $table->string('billing_postcode')->nullable();
             $table->string('billing_country')->nullable();
             $table->string('billing_phone_number')->nullable();
-            $table->enum('order_status', [
-                'order-placed',
-                'order-confirmed',
-                'order-processing',
-                'shipped',
-                'in-transit',
-                'out-for-delivery',
-                'delivered',
-                'attempted-delivery',
-                'canceled',
-                'held-at-customs',
-                'awaiting-pickup',
-                'delayed',
-                'lost'
-            ])->default('order-placed');
+            $table->enum('order_status', OrderStatus::values())->default(OrderStatus::Pending->value);
             $table->timestamps();
         });
 

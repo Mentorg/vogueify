@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Order;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreOrderRequest extends FormRequest
@@ -23,7 +22,6 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'order_number' => 'required|unique:orders,order_number',
             'shipping_date' => 'nullable|date',
             'order_date' => 'required|date',
             'user_id' => 'required|exists:users,id',
@@ -43,22 +41,6 @@ class StoreOrderRequest extends FormRequest
             'billing_postcode' => 'nullable|string|max:10',
             'billing_country' => 'nullable|string|max:255',
             'billing_phone_number' => 'nullable|string|max:20',
-
-            'order_status' => 'required|in:' . implode(',', [
-                Order::STATUS_ORDER_PLACED,
-                Order::STATUS_ORDER_CONFIRMED,
-                Order::STATUS_ORDER_PROCESSING,
-                Order::STATUS_SHIPPED,
-                Order::STATUS_IN_TRANSIT,
-                Order::STATUS_OUT_FOR_DELIVERY,
-                Order::STATUS_DELIVERED,
-                Order::STATUS_ATTEMPTED_DELIVERY,
-                Order::STATUS_CANCELED,
-                Order::STATUS_HELD_AT_CUSTOMS,
-                Order::STATUS_AWAITING_PICKUP,
-                Order::STATUS_DELAYED,
-                Order::STATUS_LOST,
-            ]),
 
             'items' => 'required|array|min:1',
             'items.*.product_variation_id' => 'required|exists:product_variations,id',

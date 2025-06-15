@@ -117,8 +117,8 @@ onBeforeUnmount(() => {
   <Layout>
     <Menu />
     <main>
-      <section class="bg-slate-50 grid lg:grid-cols-[2fr,1fr] h-fit w-full gap-8">
-        <div v-if="cartItems.length > 0" class="px-4 md:px-8 lg:px-16">
+      <section v-if="cartItems.length > 0" class="bg-slate-50 grid lg:grid-cols-[2fr,1fr] h-fit w-full gap-8">
+        <div class="px-4 md:px-8 lg:px-16">
           <div class="flex flex-col gap-4">
             <div class="flex flex-col justify-between order-2 lg:order-1 lg:py-10 lg:flex-row">
               <h1 class="order-2 lg:order-1 lg:text-2xl">My Shopping Cart <span
@@ -271,15 +271,6 @@ onBeforeUnmount(() => {
             </template>
           </DialogModal>
         </div>
-        <div v-else class="w-full h-fit">
-          <div class="flex flex-col items-center w-full h-full py-[5rem] lg:py-[8rem]">
-            <img src="../../../public/images/empty-bag.png" alt="Empty bag" class="w-fit">
-            <p class="text-lg">Your shopping bag is empty</p>
-            <Link href="/"
-              class="bg-black flex justify-center border border-black rounded-full py-2 px-8 mt-4 w-fit text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-            Start Shopping</Link>
-          </div>
-        </div>
         <div class="bg-white py-10 px-6 md:px-10">
           <ul class="flex flex-col gap-2">
             <li class="flex justify-between lg:text-lg">
@@ -322,6 +313,15 @@ onBeforeUnmount(() => {
               class="bg-black flex justify-center border border-black rounded-full py-2 mt-8 w-full text-sm text-white transition-all hover:bg-white hover:text-black lg:text-base">
             Proceed to Checkout</Link>
           </div>
+        </div>
+      </section>
+      <section v-else class="w-full h-fit">
+        <div class="flex flex-col items-center w-full h-full py-[5rem] lg:py-[8rem]">
+          <img src="../../../public/images/empty-bag.png" alt="Empty bag" class="w-fit">
+          <p class="text-lg">Your shopping bag is empty</p>
+          <Link href="/"
+            class="bg-black flex justify-center border border-black rounded-full py-2 px-8 mt-4 w-fit text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
+          Start Shopping</Link>
         </div>
       </section>
       <Footer />

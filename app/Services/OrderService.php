@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
+use App\Enums\OrderStatus;
 use App\Models\Order;
-use App\Models\OrderItem;
 use App\Models\ProductVariation;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +13,6 @@ class OrderService
     protected function handleOrderAttributes(array $validated, float $subtotal, float $shippingCost, float $taxAmount, float $total): array
     {
         return [
-            'order_number' => $validated['order_number'],
             'shipping_date' => $validated['shipping_date'] ?? null,
             'order_date' => $validated['order_date'],
             'subtotal' => $subtotal,
@@ -38,7 +37,7 @@ class OrderService
             'billing_country' => $validated['billing_country'] ?? null,
             'billing_phone_number' => $validated['billing_phone_number'] ?? null,
 
-            'order_status' => $validated['order_status'],
+            'order_status' => OrderStatus::Pending,
         ];
     }
 

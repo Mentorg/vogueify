@@ -2,36 +2,26 @@
 
 namespace App\Models;
 
+use App\Enums\OrderStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Order extends Model
 {
     use HasFactory;
 
-    const STATUS_ORDER_PLACED = 'order-placed';
-    const STATUS_ORDER_CONFIRMED = 'order-confirmed';
-    const STATUS_ORDER_PROCESSING = 'order-processing';
-    const STATUS_SHIPPED = 'shipped';
-    const STATUS_IN_TRANSIT = 'in-transit';
-    const STATUS_OUT_FOR_DELIVERY = 'out-for-delivery';
-    const STATUS_DELIVERED = 'delivered';
-    const STATUS_ATTEMPTED_DELIVERY = 'attempted-delivery';
-    const STATUS_CANCELED = 'canceled';
-    const STATUS_HELD_AT_CUSTOMS = 'held-at-customs';
-    const STATUS_AWAITING_PICKUP = 'awaiting-pickup';
-    const STATUS_DELAYED = 'delayed';
-    const STATUS_LOST = 'lost';
+    protected $casts = [
+        'order_status' => OrderStatus::class,
+    ];
 
     protected $fillable = [
-        'order_number',
         'shipping_date',
         'order_date',
         'subtotal',
         'shipping_cost',
         'tax_amount',
         'total',
-        'order_status',
         'user_id',
         'shipping_address_line_1',
         'shipping_address_line_2',
@@ -49,6 +39,26 @@ class Order extends Model
         'billing_phone_number',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($order) {
+            if (empty($order->order_number)) {
+                $order->order_number = self::generateUniqueOrderNumber();
+            }
+        });
+    }
+
+    protected static function generateUniqueOrderNumber()
+    {
+        do {
+            $orderNumber = 'ORD-' . now()->format('Ymd') . '-' . strtoupper(Str::random(6));
+        } while (self::where('order_number', $orderNumber)->exists());
+
+        return $orderNumber;
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -59,13 +69,23 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-    public function shippingAddress()
+    public function shippingAddress(): string
     {
-        return "{$this->shipping_address_line_1}, {$this->shipping_city}, {$this->shipping_postcode}, {$this->shipping_country}";
+        return implode(', ', array_filter([
+            $this->shipping_address_line_1,
+            $this->shipping_city,
+            $this->shipping_postcode,
+            $this->shipping_country,
+        ]));
     }
 
-    public function billingAddress()
+    public function billingAddress(): string
     {
-        return "{$this->billing_address_line_1}, {$this->billing_city}, {$this->billing_postcode}, {$this->billing_country}";
+        return implode(', ', array_filter([
+            $this->billing_address_line_1,
+            $this->billing_city,
+            $this->billing_postcode,
+            $this->billing_country,
+        ]));
     }
 }
