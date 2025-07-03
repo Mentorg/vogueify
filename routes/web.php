@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -88,3 +89,5 @@ Route::controller(OrderController::class)->group(function() {
     Route::get('/orders', 'index')->name('order.index');
     Route::post('/orders', 'store')->name('order.store');
 });
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');

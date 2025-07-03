@@ -13,6 +13,7 @@ const props = defineProps({
 })
 const form = useForm({});
 
+const user = usePage().props.auth.user;
 const wishlist = usePage().props.auth.wishlist;
 const localWishlist = ref([...wishlist]);
 const openMenu = ref(null);
@@ -250,9 +251,10 @@ onBeforeUnmount(() => {
               </div>
             </div>
             <div class="flex order-1 mt-8 lg:order-3 lg:my-10">
-              <Link href="#!"
+              <Link :href="user === null ? route('login') : route('checkout')"
                 class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black lg:text-base">
-              Proceed to Checkout</Link>
+              Proceed to Checkout
+              </Link>
             </div>
           </div>
           <DialogModal :show="itemToDelete !== null" @close="closeModal">
@@ -309,7 +311,7 @@ onBeforeUnmount(() => {
             </li>
           </ul>
           <div>
-            <Link href="#!"
+            <Link :href="user === null ? route('login') : route('checkout')"
               class="bg-black flex justify-center border border-black rounded-full py-2 mt-8 w-full text-sm text-white transition-all hover:bg-white hover:text-black lg:text-base">
             Proceed to Checkout</Link>
           </div>
@@ -319,9 +321,10 @@ onBeforeUnmount(() => {
         <div class="flex flex-col items-center w-full h-full py-[5rem] lg:py-[8rem]">
           <img src="../../../public/images/empty-bag.png" alt="Empty bag" class="w-fit">
           <p class="text-lg">Your shopping bag is empty</p>
-          <Link href="/"
-            class="bg-black flex justify-center border border-black rounded-full py-2 px-8 mt-4 w-fit text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-          Start Shopping</Link>
+          <Link :href="user === null ? route('login') : route('checkout')"
+            class="bg-black flex justify-center border border-black rounded-full py-2 mt-8 w-full text-sm text-white transition-all hover:bg-white hover:text-black lg:text-base">
+          Proceed to Checkout
+          </Link>
         </div>
       </section>
       <Footer />
