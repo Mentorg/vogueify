@@ -2,13 +2,28 @@
 
 namespace App\Services;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class SessionService
 {
-    public function create (array $fields)
+    public function create ($request)
     {
+        $validated = $request->validate([
+            'email' => 'required|email|exists:users',
+            'password' => 'required'
+        ]);
 
+        if (Auth::attempt($validated)) {
+            $request->session()->regenerate();
+        }
+    }
+
+    public function delete($request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
     }
 }

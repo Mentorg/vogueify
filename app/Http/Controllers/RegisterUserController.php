@@ -16,12 +16,6 @@ class RegisterUserController extends Controller
 
     public function store (Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed'
-        ]);
-
-        return $this->registerUserService->create($validated, $request);
+        return $this->registerUserService->create($request);
     }
 }

@@ -19,11 +19,25 @@ class OrderController extends Controller
 
     public function store(StoreOrderRequest $request, Order $order)
     {
-        $createdOrder = $this->orderService->create($order, $request);
-        return response()->json([
-            'success' => true,
-            'message' => 'Order stored successfully.',
-            'order' => $createdOrder
+        $this->orderService->create($order, $request);
+    }
+
+    public function show(Order $order)
+    {
+        return Inertia::render('Order', [
+            'orderDetails' => $this->orderService->getOrder($order)
         ]);
+    }
+
+    public function getUserOrders(Request $request)
+    {
+        return Inertia::render('Orders', [
+            'orders' => $this->orderService->getUserOrders($request)
+        ]);
+    }
+
+    public function cancel(Order $order)
+    {
+        $this->orderService->cancel($order);
     }
 }

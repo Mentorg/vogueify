@@ -69,8 +69,8 @@ Route::controller(ProductController::class)->group(function () {
 });
 
 Route::controller(UserController::class)->group(function () {
+    Route::get('/dashboard', 'index')->name('dashboard');
     Route::delete('/admin/users/{user}', 'destroy')->name('user.destroy');
-    Route::get('/dashboard', 'getWishlist')->name('dashboard');
 });
 
 Route::controller(DashboardController::class)->group(function () {
@@ -86,8 +86,10 @@ Route::controller(CartController::class)->group(function () {
 });
 
 Route::controller(OrderController::class)->group(function() {
-    Route::get('/orders', 'index')->name('order.index');
     Route::post('/orders', 'store')->name('order.store');
+    Route::get('/order/{order}', 'show')->name('order.show');
+    Route::get('/orders', 'getUserOrders')->name('order.userOrders');
+    Route::put('/order/{order}/cancel', 'cancel')->name('order.cancel');
 });
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');

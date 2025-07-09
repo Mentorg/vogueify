@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 use App\FIlters\Search;
 use Exception;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Log;
 
 class ProductService
 {
@@ -31,32 +30,6 @@ class ProductService
 
         return $query->get();
     }
-
-    public function getProduct($product, ?string $variation = null)
-    {
-        $product->load(
-            'productVariations.sizes',
-            'productVariations.color',
-            'productVariations.primaryColor',
-            'productVariations.secondaryColor',
-            'productVariations.type'
-        );
-
-        $activeVariation = null;
-
-        if ($variation) {
-            $activeVariation = $product->productVariations->firstWhere('sku', $variation)
-                ?? $product->productVariations->first();
-        } else {
-            $activeVariation = $product->productVariations->first();
-        }
-
-        return [
-            'product' => $product,
-            'activeVariation' => $activeVariation,
-        ];
-    }
-
 
     public function create(array $validated, $request)
     {
@@ -106,13 +79,36 @@ class ProductService
             DB::rollBack();
             throw new Exception(
                 'Failed to store the product. Reason: ' . $e->getMessage(),
-                $e->getCode(),
-                $e
             );
         }
     }
 
-    public function update($request, Product $product): void
+    public function getProduct($product, ?string $variation = null)
+    {
+        $product->load(
+            'productVariations.sizes',
+            'productVariations.color',
+            'productVariations.primaryColor',
+            'productVariations.secondaryColor',
+            'productVariations.type'
+        );
+
+        $activeVariation = null;
+
+        if ($variation) {
+            $activeVariation = $product->productVariations->firstWhere('sku', $variation)
+                ?? $product->productVariations->first();
+        } else {
+            $activeVariation = $product->productVariations->first();
+        }
+
+        return [
+            'product' => $product,
+            'activeVariation' => $activeVariation,
+        ];
+    }
+
+    public function update($request, $product): void
     {
         DB::beginTransaction();
 
@@ -180,13 +176,11 @@ class ProductService
             }
 
             DB::commit();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollBack();
-            Log::error('Failed to update product: ' . $e->getMessage(), [
-                'product_id' => $product->id,
-                'trace' => $e->getTraceAsString(),
-            ]);
-            throw $e;
+            throw new Exception(
+                'Failed to update product. Reason: ' . $e->getMessage(),
+            );
         }
     }
 

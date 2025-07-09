@@ -12,17 +12,35 @@ class CartService
         if (!auth()->id()) {
             abort(404);
         }
+
         $cart = Cart::where('user_id', auth()->id())->first();
 
         if (!$cart) {
             return collect();
         }
 
-        return $cart->cartItems()->with(['productVariation.product', 'productVariation.sizes', 'size'])->get();
+        $cartItems = $cart->cartItems()->with(['productVariation.product', 'productVariation.sizes', 'size'])->get();
+
+        $subtotal = $cart->cartItems->sum(fn ($item) => $item->price_at_time * $item->quantity);
+        $shipping = 0.00;
+        $tax = 0.00;
+        $total = $subtotal + $shipping + $tax;
+
+        return [
+            'cartItems' => $cartItems,
+            'subtotal' => round($subtotal, 2),
+            'shipping' => round($shipping, 2),
+            'tax' => round($tax, 2),
+            'total' => round($total, 2),
+        ];
     }
 
     public function create($request)
     {
+        if (!$request->user()) {
+            abort(404);
+        }
+
         $validated = $request->validate([
             'quantity' => "numeric|min:1",
             'price_at_time' => "numeric|min:0.01",
@@ -35,6 +53,10 @@ class CartService
 
         if (!$cart) {
             $cart = Cart::create(['user_id' => auth()->id()]);
+        }
+
+        if ($cart->is_locked) {
+            abort(403, 'You cannot modify the cart until payment is completed.');
         }
 
         $cart_item = $cart->cartItems()->create([

@@ -9,8 +9,9 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 
 const props = defineProps({
-  cartItems: Array,
+  cart: Array,
 })
+
 const form = useForm({});
 
 const user = usePage().props.auth.user;
@@ -118,20 +119,20 @@ onBeforeUnmount(() => {
   <Layout>
     <Menu />
     <main>
-      <section v-if="cartItems.length > 0" class="bg-slate-50 grid lg:grid-cols-[2fr,1fr] h-fit w-full gap-8">
+      <section v-if="cart.cartItems.length > 0" class="bg-slate-50 grid lg:grid-cols-[2fr,1fr] h-fit w-full gap-8">
         <div class="px-4 md:px-8 lg:px-16">
           <div class="flex flex-col gap-4">
             <div class="flex flex-col justify-between order-2 lg:order-1 lg:py-10 lg:flex-row">
               <h1 class="order-2 lg:order-1 lg:text-2xl">My Shopping Cart <span
                   class="text-xs text-slate-500 lg:text-sm">({{
-                    cartItems.length
+                    cart.cartItems.length
                   }})</span>
               </h1>
               <Link href="/" class="order-1 mb-8 text-center lg:order-2 text-sm underline lg:text-base lg:mb-0">Continue
               Shopping
               </Link>
             </div>
-            <div v-if="isTablet" v-for="item in cartItems" class="bg-white order-3 lg:order-2">
+            <div v-if="isTablet" v-for="item in cart.cartItems" class="bg-white order-3 lg:order-2">
               <div class="flex justify-between items-center border-b">
                 <div class="grid grid-cols-[1fr,4fr]">
                   <div class="place-content-center place-items-center">
@@ -191,7 +192,7 @@ onBeforeUnmount(() => {
                 </button>
               </div>
             </div>
-            <div v-else v-for="item in cartItems" class="bg-white grid grid-cols-2 order-3 lg:order-2">
+            <div v-else v-for="item in cart.cartItems" class="bg-white grid grid-cols-2 order-3 lg:order-2">
               <div class="place-content-center place-items-center">
                 <img v-if="item.product_variation && item.product_variation.image"
                   :src="'http://vogueify.test' + item.product_variation.image"
@@ -278,35 +279,23 @@ onBeforeUnmount(() => {
             <li class="flex justify-between lg:text-lg">
               <p>Subtotal</p>
               <span>
-                ${{cartItems.length > 0
-                  ? cartItems
-                    .map(item => item.price_at_time * item.quantity)
-                    .reduce((total, current) => total + current, 0)
-                    .toFixed(2)
-                  : '0.00'
-                }}
+                ${{ cart.subtotal.toFixed(2) }}
               </span>
             </li>
             <li class="flex justify-between :text-lg">
-              <p>Shipping</p><span>$0.00</span>
+              <p>Shipping</p><span>${{ cart.shipping.toFixed(2) }}</span>
             </li>
             <li class="flex flex-col">
               <div class="flex justify-between">
                 <p class=":text-lg">Tax</p>
-                <span class=":text-lg">$0.00</span>
+                <span class=":text-lg">${{ cart.tax.toFixed(2) }}</span>
               </div>
               <p class="text-xs text-slate-500">Will be calculated according to your delivery address</p>
             </li>
             <li class="flex justify-between mt-4 text-lg">
               <p>Total</p>
               <span>
-                ${{cartItems.length > 0
-                  ? cartItems
-                    .map(item => item.price_at_time * item.quantity)
-                    .reduce((total, current) => total + current, 0)
-                    .toFixed(2)
-                  : '0.00'
-                }}
+                ${{ cart.total.toFixed(2) }}
               </span>
             </li>
           </ul>

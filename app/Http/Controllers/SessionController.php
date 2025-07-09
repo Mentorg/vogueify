@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\SessionService;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
@@ -18,29 +16,16 @@ class SessionController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'email' => 'required|email|exists:users',
-            'password' => 'required'
-        ]);
+        $this->sessionService->create($request);
 
-        if (Auth::attempt($validated)) {
-            $request->session()->regenerate();
-
-            return redirect('/');
-        }
-
-        return back()->withErrors([
+        return redirect('/')->withErrors([
             'email' => 'The provided credentials do not match our records'
-        ])->onlyInput('email');
+        ]);
     }
 
     public function destroy(Request $request)
     {
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
+        $this->sessionService->delete($request);
 
         return redirect('/login');
     }

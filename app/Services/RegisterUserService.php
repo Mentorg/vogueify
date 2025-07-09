@@ -6,12 +6,18 @@ use App\Models\User;
 
 class RegisterUserService
 {
-    public function create(array $fields, $request)
+    public function create($request)
     {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed'
+        ]);
+
         $user = User::create([
-            'name' => $fields['name'],
-            'email' => $fields['email'],
-            'password' => bcrypt($fields['password'])
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password'])
         ]);
 
         $token = $user->createToken($request->name);

@@ -29,7 +29,7 @@ const isWishlist = computed(() => usePage().url === '/wishlist');
         class="relative border-l w-full py-4 text-sm text-center md:py-4 md:px-8 md:text-base">My
       Profile <span :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isProfile }" />
       </Link>
-      <Link :href="route('orders')"
+      <Link :href="route('order.userOrders')"
         class="relative border-l w-full py-4 text-sm text-center md:py-4 md:px-8 md:text-base">My Orders
       <span :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isOrders }" />
       </Link>

@@ -11,9 +11,9 @@ use App\Models\ProductType;
 use App\Models\ProductVariation;
 use App\Models\Size;
 use App\Services\ProductService;
+use Exception;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
@@ -90,6 +90,8 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, Product $product)
     {
+        $this->authorize('modify', Product::class);
+
         try {
             $this->productService->update($request, $product);
 
@@ -99,8 +101,8 @@ class ProductController extends Controller
                 'product' => $product->slug,
                 'variation' => optional($defaultVariation)->sku,
             ])->with('success', 'Product updated successfully!');
-        } catch (\Exception $e) {
-            Log::error('Product update failed: ' . $e->getMessage());
+        } catch (Exception $e) {
+            throw new Exception('Product update failed: ' . $e->getMessage());
             return back()->withErrors(['error' => 'Product update failed.'])->withInput();
         }
     }

@@ -2,78 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\ProductCategory;
-use App\Models\ProductVariation;
+use App\Services\HomeService;
 use Inertia\Inertia;
 
 class HomeController extends Controller
 {
+    protected $homeService;
+
+    public function __construct(HomeService $homeService)
+    {
+        $this->homeService = $homeService;
+    }
+
     public function index()
     {
         return Inertia::render('Home', [
-            'categories' => $this->getCategories(),
-            'latestWomenBags' => $this->getLatestWomenBags(),
+            'categories' => $this->homeService->getCategories(),
+            'latestWomenBags' => $this->homeService->getLatestWomenBags(),
         ]);
     }
 
     public function search()
     {
         return Inertia::render('Search', [
-            'categories' => $this->getCategories(),
-            'womenSeasonalBags' => $this->getWomenSeasonalBags(),
-            'menSeasonalBags' => $this->getMenSeasonalBags(),
+            'categories' => $this->homeService->getCategories(),
+            'womenSeasonalBags' => $this->homeService->getWomenSeasonalBags(),
+            'menSeasonalBags' => $this->homeService->getMenSeasonalBags(),
         ]);
-    }
-
-    public function getCategories()
-    {
-        return ProductCategory::all();
-    }
-
-    public function getLatestWomenBags()
-    {
-        $products = Product::with('productVariations')
-            ->whereHas('category', function ($query) {
-                $query->where('name', 'bags');
-            })
-            ->where('gender', 'women')
-            ->latest()
-            ->take(4)
-            ->get();
-
-        return $products;
-    }
-
-    public function getWomenSeasonalBags()
-    {
-        $products = ProductVariation::with(['product.category'])
-            ->whereHas('product', function ($query) {
-                $query->where('gender', 'women')
-                    ->whereHas('category', function ($q) {
-                        $q->where('name', 'bags');
-                    });
-            })
-            ->latest()
-            ->take(6)
-            ->get();
-
-        return $products;
-    }
-
-    public function getMenSeasonalBags()
-    {
-        $products = ProductVariation::with(['product.category'])
-            ->whereHas('product', function ($query) {
-                $query->where('gender', 'men')
-                    ->whereHas('category', function ($q) {
-                        $q->where('name', 'bags');
-                    });
-            })
-            ->latest()
-            ->take(6)
-            ->get();
-
-        return $products;
     }
 }

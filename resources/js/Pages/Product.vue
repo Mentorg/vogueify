@@ -1,6 +1,6 @@
 <script setup>
 import { computed, defineProps, ref } from "vue";
-import { Head, Link, useForm, usePage } from "@inertiajs/vue3";
+import { Head, Link, router, useForm, usePage } from "@inertiajs/vue3";
 import { PhHeart } from "@phosphor-icons/vue";
 import Menu from '@Components/Menu.vue';
 import Footer from "@/Components/Footer.vue";
@@ -13,6 +13,7 @@ const props = defineProps({
   activeVariation: Object,
 });
 
+const user = usePage().props.auth.user;
 const wishlist = usePage().props.auth.wishlist;
 const localWishlist = ref([...wishlist]);
 
@@ -82,15 +83,25 @@ const addToWishlist = async (productVariationId) => {
 };
 
 const submitForm = () => {
-  form.transform(data => ({
-    ...data,
-  })).post(route('cart.store'), {
-    onSuccess: console.log('Item added successfully to the cart.'),
-    onError: (errors) => {
-      errorMessage.value = errors.error || 'Failed to submit form.';
-    },
-  })
-}
+  if (user === null) {
+    router.visit(route('login'));
+    return;
+  }
+
+  form
+    .transform(data => ({
+      ...data,
+    }))
+    .post(route('cart.store'), {
+      onSuccess: () => {
+        console.log('Item added successfully to the cart.');
+      },
+      onError: (errors) => {
+        errorMessage.value = errors.error || 'Failed to submit form.';
+      },
+    });
+};
+
 </script>
 
 <template>

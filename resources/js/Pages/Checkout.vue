@@ -14,8 +14,6 @@ const props = defineProps({
   countries: Array,
 })
 
-console.log(props.checkoutData)
-
 const isOrderFormOpen = ref(true);
 const checkoutIndex = ref(1);
 
@@ -58,7 +56,6 @@ const submitOrderForm = () => {
   router.post(route('order.store'), orderForm, {
     onError: (errors) => {
       console.error('Validation failed:', errors)
-      alert(JSON.stringify(errors));
     },
     onSuccess: () => {
       isOrderFormOpen.value = false;

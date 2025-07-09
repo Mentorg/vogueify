@@ -2,54 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Wishlist;
+use App\Services\WishlistService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class WishlistController extends Controller
 {
+    protected $wishlistService;
+
+    public function __construct(WishlistService $wishlistService)
+    {
+        $this->wishlistService = $wishlistService;
+    }
+
     public function index(Request $request)
     {
-        $wishlist = $request->user()->wishlist()->with(['productVariation.product'])->orderBy('created_at', 'desc')->get();
-
         return Inertia::render('Wishlist', [
-            'wishlist' => $wishlist
+            'wishlist' => $this->wishlistService->getWishlist($request),
         ]);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'product_variation_id' => 'required|exists:product_variations,id'
-        ]);
-
-        $exists = Wishlist::where('user_id', $request->user()->id)
-            ->where('product_variation_id', $request->product_variation_id)
-            ->exists();
-
-        if ($exists) {
-            if ($request->expectsJson()) {
-                return response()->json(['error' => 'This product is already in your wishlist'], 422);
-            }
-            return redirect()->back()->with('error', 'This product is already in your wishlist');
-        }
-
-        Wishlist::create([
-            'user_id' => $request->user()->id,
-            'product_variation_id' => $request->product_variation_id
-        ]);
-
-        if ($request->expectsJson()) {
-            return response()->json(['message' => 'Product added to wishlist.'], 201);
-        }
+        $this->wishlistService->create($request);
 
         return redirect()->back()->with('success', 'Product added to wishlist.');
     }
 
-
     public function destroy($id)
     {
-        Wishlist::where('id', $id)->where('user_id', request()->user()->id)->delete();
+        $this->wishlistService->delete($id);
+
         return redirect()->back()->with('success', 'Product removed from wishlist.');
     }
 }

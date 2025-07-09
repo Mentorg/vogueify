@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\OrderService;
+use App\Services\UserService;
+use App\Services\WishlistService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -11,26 +14,31 @@ class UserController extends Controller
 {
     use AuthorizesRequests;
 
+    protected $userService;
+    protected $orderService;
+    protected $wishlistService;
+
+    public function __construct(UserService $userService, OrderService $orderService, WishlistService $wishlistService)
+    {
+        $this->userService = $userService;
+        $this->orderService = $orderService;
+        $this->wishlistService = $wishlistService;
+    }
+
+    public function index(Request $request)
+    {
+        return Inertia::render('Dashboard', [
+            'orders' => $this->orderService->getUserOrders($request),
+            'wishlist' => $this->wishlistService->getWishlist($request),
+        ]);
+    }
+
     public function destroy(User $user)
     {
         $this->authorize('modify', $user);
 
-        $user->delete();
+        $this->userService->delete($user);
 
         return redirect()->route('admin.users');
-    }
-
-    public function getWishlist(Request $request)
-    {
-        $wishlist = $request->user()->wishlist()->with(['productVariation.product'])->get();
-        if (auth()->check()) {
-            $wishlist = $request->user()->wishlist()->with(['productVariation.product'])->get();
-        } else {
-            abort(404);
-        }
-
-        return Inertia::render('Dashboard', [
-            'wishlist' => $wishlist
-        ]);
     }
 }
