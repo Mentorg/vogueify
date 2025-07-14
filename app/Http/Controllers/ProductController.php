@@ -59,17 +59,11 @@ class ProductController extends Controller
 
     public function show(Product $product, ?string $variation = null)
     {
-        if ($variation && !$product->productVariations()->where('sku', $variation)->exists()) {
-            throw ValidationException::withMessages([
-                'variation' => 'The selected variation is invalid for this product.',
-            ]);
-        }
-
-        $data = $this->productService->getProduct($product, $variation);
+        $productData = $this->productService->getProduct($product, $variation);
 
         return Inertia::render('Product', [
-            'product' => $data['product'],
-            'activeVariation' => $data['activeVariation'],
+            'product' => $productData['product'],
+            'activeVariation' => $productData['activeVariation'],
         ]);
     }
 
@@ -92,19 +86,14 @@ class ProductController extends Controller
     {
         $this->authorize('modify', Product::class);
 
-        try {
-            $this->productService->update($request, $product);
+        $this->productService->update($request, $product);
 
-            $defaultVariation = $product->productVariations()->first();
+        $defaultVariation = $product->productVariations()->first();
 
-            return redirect()->route('product.show', [
-                'product' => $product->slug,
-                'variation' => optional($defaultVariation)->sku,
-            ])->with('success', 'Product updated successfully!');
-        } catch (Exception $e) {
-            throw new Exception('Product update failed: ' . $e->getMessage());
-            return back()->withErrors(['error' => 'Product update failed.'])->withInput();
-        }
+        return redirect()->route('product.show', [
+            'product' => $product->slug,
+            'variation' => optional($defaultVariation)->sku,
+        ])->with('success', 'Product updated successfully!');
     }
 
     public function destroy(Request $request, $id)

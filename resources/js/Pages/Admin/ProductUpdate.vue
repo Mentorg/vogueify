@@ -33,7 +33,8 @@ const form = reactive({
     sku: variation.sku,
     stock: variation.stock,
     price: variation.price,
-    image: variation.image,
+    image_url: variation.image,
+    image_file: null,
     product_type_id: variation.product_type_id,
     color_id: variation.color_id,
     primary_color_id: variation.primary_color_id,
@@ -44,10 +45,8 @@ const form = reactive({
       label: size.label,
       stock: size.pivot?.stock ?? 0,
     })),
-  })),
+  })) || [],
 });
-
-const imagePreviews = reactive({});
 
 const addFeature = () => {
   form.features.push({ title: '', description: '' });
@@ -59,7 +58,9 @@ const removeFeature = (index) => {
 
 const addVariation = () => {
   form.variations.push({
-    image: null,
+    id: null,
+    image_url: null,
+    image_file: null,
     product_type_id: props.types[0]?.id || '',
     color_id: null,
     primary_color_id: null,
@@ -74,7 +75,6 @@ const addVariation = () => {
 
 const removeVariation = (index) => {
   form.variations.splice(index, 1);
-  delete imagePreviews[index];
 };
 
 const toggleCollapse = index => {
@@ -84,24 +84,25 @@ const toggleCollapse = index => {
 const handleImageChange = (event, index) => {
   const file = event.target.files[0];
   if (file) {
-    form.variations[index].image = file;
-    imagePreviews[index] = URL.createObjectURL(file);
+    form.variations[index].image_file = file;
+    form.variations[index].image_url = URL.createObjectURL(file);
+  } else {
+    form.variations[index].image_file = null;
+    form.variations[index].image_url = null;
   }
 };
 
-const getImageUrl = (image, index) => {
-  if (imagePreviews[index]) {
-    return imagePreviews[index];
+const getImageUrl = (imageUrlFromVariation) => {
+  if (imageUrlFromVariation) {
+    if (imageUrlFromVariation.startsWith('blob:')) {
+      return imageUrlFromVariation;
+    }
+    if (imageUrlFromVariation.startsWith('http')) {
+      return imageUrlFromVariation;
+    }
+    return `${window.location.origin}${imageUrlFromVariation.startsWith('/') ? '' : '/'}${imageUrlFromVariation}`;
   }
-
-  if (image instanceof File) {
-    return URL.createObjectURL(image);
-  }
-
-  if (!image) return '';
-  if (image.startsWith('http')) return image;
-
-  return `${window.location.origin}${image.startsWith('/') ? '' : '/'}${image}`;
+  return '';
 };
 
 const getColorHex = (colorId) => {
@@ -124,12 +125,18 @@ const submitForm = () => {
   });
 
   form.variations.forEach((variation, vIndex) => {
-    formData.append(`variations[${vIndex}][id]`, variation.id);
+    formData.append(`variations[${vIndex}][id]`, variation.id ?? '');
 
-    if (variation.image instanceof File) {
-      formData.append(`variation_images[${vIndex}]`, variation.image);
+    if (variation.image_file instanceof File) {
+      formData.append(`variations[${vIndex}][image]`, variation.image_file);
+    } else if (variation.image_url && !variation.image_url.startsWith('blob:')) {
+      const originalImagePath = props.product.product_variations.find(v => v.id === variation.id)?.image;
+      if (originalImagePath) {
+        formData.append(`variations[${vIndex}][image]`, originalImagePath);
+      } else {
+      }
     }
-    formData.append(`variation_image_indices[${vIndex}]`, variation.id);
+
 
     formData.append(`variations[${vIndex}][product_type_id]`, variation.product_type_id);
     formData.append(`variations[${vIndex}][color_id]`, variation.color_id ?? '');
@@ -137,7 +144,7 @@ const submitForm = () => {
     formData.append(`variations[${vIndex}][secondary_color_id]`, variation.secondary_color_id ?? '');
     formData.append(`variations[${vIndex}][price]`, variation.price);
     formData.append(`variations[${vIndex}][sku]`, variation.sku);
-    formData.append(`variations[${vIndex}][stock]`, variation.stock);
+    formData.append(`variations[${vIndex}][stock]`, variation.stock ?? '');
 
     variation.sizes.forEach((size, sIndex) => {
       formData.append(`variations[${vIndex}][sizes][${sIndex}][id]`, size.id);
@@ -145,10 +152,11 @@ const submitForm = () => {
     });
   });
 
+  formData.append('_method', 'PUT');
+
   axios.post(route('product.update', form.slug), formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
-      'X-HTTP-Method-Override': 'PUT',
     },
   })
     .then(() => {
@@ -165,7 +173,7 @@ const submitForm = () => {
       }
     });
 };
-
+console.log(props.product)
 </script>
 
 <template>
@@ -366,7 +374,7 @@ const submitForm = () => {
           <div v-for="(variation, index) in form.variations" :key="index" class="my-8 py-4 border-t">
             <h3 class="text-xl font-medium">Variation {{ index + 1 }}</h3>
             <div>
-              <img v-if="variation.image" :src="getImageUrl(variation.image, index)" alt="Selected Image Preview"
+              <img v-if="variation.image_url" :src="getImageUrl(variation.image_url)" alt="Selected Image Preview"
                 class="mt-4 max-w-full rounded" />
               <p v-else class="text-gray-500 italic">No image selected</p>
             </div>
@@ -397,10 +405,13 @@ const submitForm = () => {
               </div>
             </div>
             <div class="flex gap-8 my-8">
-              <div v-if="variation.color_id !== 'None' && variation.color_id !== null" class="flex flex-col gap-y-2">
+              <div
+                v-if="variation.color_id !== null && variation.color_id !== 'None' && variation.color_id !== undefined"
+                class="flex flex-col gap-y-2">
                 <h3 class="font-medium text-base">Color</h3>
                 <div class="flex gap-x-2 flex-wrap mt-1">
-                  <div v-if="variation.color_id">
+                  <div
+                    v-if="variation.color_id !== null && variation.color_id !== 'None' && variation.color_id !== undefined">
                     <div class="w-8 h-8 border border-slate-300 rounded-full"
                       :style="{ backgroundColor: getColorHex(variation.color_id) }" />
                   </div>

@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -52,10 +53,10 @@ class UpdateProductRequest extends FormRequest
     public function withValidator($validator)
     {
         $product = $this->route('product');
-
         $validator->after(function ($validator) use ($product) {
             foreach ($this->input('variations', []) as $index => $variation) {
                 $variationId = $variation['id'] ?? null;
+                $imageField = "variations.$index.image";
 
                 if (!empty($variation['sku'])) {
                     $validator->addRules([
@@ -69,14 +70,20 @@ class UpdateProductRequest extends FormRequest
                     ]);
                 }
 
-                $imageField = "variations.$index.image";
-
                 if ($this->hasFile($imageField)) {
                     $validator->addRules([
                         $imageField => 'file|image|max:2048',
                     ]);
-                } elseif (isset($variation['image']) && !filter_var($variation['image'], FILTER_VALIDATE_URL)) {
-                    $validator->errors()->add($imageField, 'Invalid image URL.');
+                } else {
+                    if (isset($variation['image']) && is_string($variation['image'])) {
+                        if (str_starts_with($variation['image'], 'blob:')) {
+                            $validator->errors()->add($imageField, 'Invalid image data for existing variation. Please re-upload or clear.');
+                        } elseif (isset($variation['image']) && is_string($variation['image'])) {
+                            if (!filter_var($variation['image'], FILTER_VALIDATE_URL) && !Str::startsWith($variation['image'], '/storage/')) {
+                                $validator->errors()->add($imageField, 'Invalid image URL format or path.');
+                            }
+                        }
+                    }
                 }
             }
         });

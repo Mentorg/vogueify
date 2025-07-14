@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\Storage;
 use App\FIlters\Search;
 use Exception;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Validation\ValidationException;
 
 class ProductService
 {
-    public function getProducts($request)
+    public function getProducts($request, bool $paginate = false)
     {
-        $query = ProductVariation::with(['product.category', 'type']);
+        $query = ProductVariation::with(['product.category', 'sizes', 'type']);
 
         if ($request->has('gender')) {
             $query->whereHas('product', fn($q) => $q->where('gender', $request->gender));
@@ -28,7 +29,7 @@ class ProductService
             $query->whereHas('type', fn($q) => $q->where('type', $request->type));
         }
 
-        return $query->get();
+        return $paginate ? $query->paginate(15) : $query->get();
     }
 
     public function create(array $validated, $request)
@@ -93,13 +94,18 @@ class ProductService
             'productVariations.type'
         );
 
-        $activeVariation = null;
+        $variations = $product->productVariations;
 
         if ($variation) {
-            $activeVariation = $product->productVariations->firstWhere('sku', $variation)
-                ?? $product->productVariations->first();
+            $activeVariation = $variations->firstWhere('sku', $variation);
+
+            if (!$activeVariation) {
+                throw ValidationException::withMessages([
+                    'variation' => 'The selected variation is invalid for this product.',
+                ]);
+            }
         } else {
-            $activeVariation = $product->productVariations->first();
+            $activeVariation = $variations->first();
         }
 
         return [
@@ -128,29 +134,48 @@ class ProductService
                 'category_id' => $request->category_id,
             ]);
 
-            $imageMap = [];
 
-            if ($request->hasFile('variation_images')) {
-                foreach ($request->file('variation_images') as $index => $file) {
-                    $variationId = $request->input("variation_image_indices.$index");
+            $existingVariationIds = $product->productVariations->pluck('id')->toArray();
 
-                    if ($variationId && $file instanceof UploadedFile) {
-                        $storedPath = $file->store('products', 'public');
-                        $imageUrl = Storage::url($storedPath);
-                        $imageMap[$variationId] = $imageUrl;
-                    }
+            $incomingVariationIds = collect($request->variations)
+                                    ->pluck('id')
+                                    ->filter()
+                                    ->toArray();
 
-                    $existingVariation = $product->productVariations->firstWhere('id', $variationId);
+            $variationsToDelete = array_diff($existingVariationIds, $incomingVariationIds);
 
-                    if ($existingVariation && $existingVariation->image) {
-                        $oldPath = str_replace('/storage/', '', $existingVariation->image);
-                        Storage::disk('public')->delete($oldPath);
+            if (!empty($variationsToDelete)) {
+                $variationsWithImagesToDelete = $product->productVariations()->whereIn('id', $variationsToDelete)->get();
+                foreach ($variationsWithImagesToDelete as $var) {
+                    if ($var->image) {
+                        $oldPath = str_replace('/storage/', '', $var->image);
+                        if (Storage::disk('public')->exists($oldPath)) {
+                            Storage::disk('public')->delete($oldPath);
+                        }
                     }
                 }
+                $product->productVariations()->whereIn('id', $variationsToDelete)->delete();
             }
 
-            foreach ($request->variations as $variationData) {
+            foreach ($request->variations as $vIndex => $variationData) {
                 $variationId = $variationData['id'] ?? null;
+                $imageToStore = null;
+
+                if (isset($variationData['image']) && $variationData['image'] instanceof UploadedFile) {
+                    $file = $variationData['image'];
+                    $storedPath = $file->store('products', 'public');
+                    $imageToStore = Storage::url($storedPath);
+
+                    if ($variationId) {
+                        $existingVariation = $product->productVariations->firstWhere('id', $variationId);
+                        if ($existingVariation && $existingVariation->image) {
+                            $oldPath = str_replace('/storage/', '', $existingVariation->image);
+                            Storage::disk('public')->delete($oldPath);
+                        }
+                    }
+                } elseif (isset($variationData['image']) && is_string($variationData['image'])) {
+                    $imageToStore = $variationData['image'];
+                }
 
                 $variation = $product->productVariations()->updateOrCreate(
                     ['id' => $variationId],
@@ -161,23 +186,22 @@ class ProductService
                         'secondary_color_id' => $variationData['secondary_color_id'] ?? null,
                         'price' => $variationData['price'],
                         'sku' => $variationData['sku'],
-                        'stock' => $variationData['stock'],
-                        'image' => $imageMap[$variationId] ?? ($variationId ? $product->productVariations->firstWhere('id', $variationId)?->image : null),
+                        'stock' => $variationData['stock'] ?? null,
+                        'image' => $imageToStore,
                     ]
                 );
 
                 $pivotData = [];
-
-                foreach ($variationData['sizes'] as $sizeData) {
+                foreach ($variationData['sizes'] ?? [] as $sizeData) {
                     $pivotData[$sizeData['id']] = ['stock' => $sizeData['stock']];
                 }
-
                 $variation->sizes()->sync($pivotData);
             }
 
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
+            logger()->error('Product update failed: ' . $e->getMessage(), ['exception' => $e]);
             throw new Exception(
                 'Failed to update product. Reason: ' . $e->getMessage(),
             );

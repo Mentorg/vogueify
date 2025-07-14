@@ -157,7 +157,8 @@ const submitForm = () => {
                 <div v-for="variation in product.product_variations" :key="variation.id">
                   <Link v-if="variation.id !== currentVariation.id"
                     :href="route('product.show', { product: product.slug, variation: variation.sku })" class="contents">
-                  <img :src="variation.image" :alt="product.name" class="w-[15%]" />
+                  <img :src="variation.image" :alt="product.name" class="w-[15%]"
+                    @error="console.error('Image failed to load:', $event.target.src)" />
                   </Link>
                 </div>
               </div>

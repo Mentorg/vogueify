@@ -23,8 +23,7 @@ class StoreOrderRequest extends FormRequest
     {
         return [
             'shipping_date' => 'nullable|date',
-            'order_date' => 'required|date',
-            'user_id' => 'required|exists:users,id',
+            'order_date' => 'nullable|date',
 
             'shipping_address_line_1' => 'required|string|max:255',
             'shipping_address_line_2' => 'nullable|string|max:255',

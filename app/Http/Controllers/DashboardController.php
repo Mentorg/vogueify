@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\ProductCategory;
-use App\Models\ProductVariation;
 use App\Models\User;
+use App\Services\HomeService;
+use App\Services\ProductService;
+use App\Services\UserService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Inertia\Inertia;
 
@@ -13,14 +14,25 @@ class DashboardController extends Controller
 {
     use AuthorizesRequests;
 
+    protected $productService;
+    protected $homeService;
+    protected $userService;
+
+    public function __construct(ProductService $productService, HomeService $homeService, UserService $userService)
+    {
+        $this->productService = $productService;
+        $this->homeService = $homeService;
+        $this->userService = $userService;
+    }
+
     public function index()
     {
         $this->authorize('viewAll', User::class);
 
         return Inertia::render('Admin/Overview', [
-            'variations' => ProductVariation::with(['product.category', 'sizes', 'type'])->paginate(15),
-            'categories' => ProductCategory::all(),
-            'users' => User::paginate(15)
+            'variations' => $this->productService->getProducts(request(), true),
+            'categories' => $this->homeService->getCategories(),
+            'users' => $this->userService->getUsers(true)
         ]);
     }
 
@@ -29,7 +41,7 @@ class DashboardController extends Controller
         $this->authorize('viewAll', User::class);
 
         return Inertia::render('Admin/Users', [
-            'users' => User::paginate(15)
+            'users' => $this->userService->getUsers(true)
         ]);
     }
 
@@ -38,8 +50,8 @@ class DashboardController extends Controller
         $this->authorize('viewAll', Product::class);
 
         return Inertia::render('Admin/Products', [
-            'variations' => ProductVariation::with(['product.category', 'sizes', 'type'])->paginate(15),
-            'categories' => ProductCategory::all()
+            'variations' => $this->productService->getProducts(request(), true),
+            'categories' => $this->homeService->getCategories()
         ]);
     }
 }

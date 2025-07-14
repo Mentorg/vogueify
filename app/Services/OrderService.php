@@ -13,13 +13,12 @@ class OrderService
     protected function handleOrderAttributes(array $validated, float $subtotal, float $shippingCost, float $taxAmount, float $total): array
     {
         return [
-            'shipping_date' => $validated['shipping_date'] ?? null,
-            'order_date' => $validated['order_date'],
+            'order_date' => now()->format('d-m-Y H:i'),
             'subtotal' => $subtotal,
             'shipping_cost' => $shippingCost,
             'tax_amount' => $taxAmount,
             'total' => $total,
-            'user_id' => $validated['user_id'],
+            'user_id' => auth()->id(),
 
             'shipping_address_line_1' => $validated['shipping_address_line_1'],
             'shipping_address_line_2' => $validated['shipping_address_line_2'] ?? null,
@@ -55,7 +54,7 @@ class OrderService
 
         try {
             if ($user->orders()->where('order_status', OrderStatus::Pending)->exists()) {
-                throw new \Exception('You already have a pending order. Please complete it before placing a new one.');
+                throw new Exception('You already have a pending order. Please complete it before placing a new one.');
             }
 
             $cart = $user->cart;
@@ -104,7 +103,7 @@ class OrderService
             return $order->load('items.productVariation', 'items.size');
         } catch (Exception $e) {
             DB::rollBack();
-            throw new \Exception('Failed to store the order. Reason: ' . $e->getMessage(), $e->getCode(), $e);
+            throw new Exception('Failed to store the order. Reason: ' . $e->getMessage(), $e->getCode(), $e);
         }
     }
 

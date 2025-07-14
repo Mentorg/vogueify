@@ -18,9 +18,6 @@ const isOrderFormOpen = ref(true);
 const checkoutIndex = ref(1);
 
 const orderForm = reactive({
-  order_date: getCurrentDate(),
-  user_id: props.checkoutData.user.id,
-
   shipping_address_line_1: props.checkoutData.address.address_line_1,
   shipping_address_line_2: props.checkoutData.address.address_line_2,
   shipping_city: props.checkoutData.address.city,
