@@ -7,7 +7,9 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { useToast } from 'vue-toast-notification';
 
+const toast = useToast();
 const passwordInput = ref(null);
 const currentPasswordInput = ref(null);
 
@@ -21,14 +23,34 @@ const updatePassword = () => {
   form.put(route('user-password.update'), {
     errorBag: 'updatePassword',
     preserveScroll: true,
-    onSuccess: () => form.reset(),
+    onSuccess: () => {
+      toast.open({
+        message: 'Your password updated successfully.',
+        type: 'success',
+        position: 'top',
+        duration: 4000,
+      });
+      form.reset()
+    },
     onError: () => {
       if (form.errors.password) {
+        toast.open({
+          message: 'Failed to update your password! ' + errors.error,
+          type: 'error',
+          position: 'top',
+          duration: 4000,
+        });
         form.reset('password', 'password_confirmation');
         passwordInput.value.focus();
       }
 
       if (form.errors.current_password) {
+        toast.open({
+          message: 'Failed to update your password! ' + errors.error,
+          type: 'error',
+          position: 'top',
+          duration: 4000,
+        });
         form.reset('current_password');
         currentPasswordInput.value.focus();
       }

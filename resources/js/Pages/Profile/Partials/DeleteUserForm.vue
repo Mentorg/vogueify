@@ -7,7 +7,9 @@ import DialogModal from '@/Components/DialogModal.vue';
 import InputError from '@/Components/InputError.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { useToast } from 'vue-toast-notification';
 
+const toast = useToast();
 const confirmingUserDeletion = ref(false);
 const passwordInput = ref(null);
 
@@ -24,8 +26,24 @@ const confirmUserDeletion = () => {
 const deleteUser = () => {
   form.delete(route('current-user.destroy'), {
     preserveScroll: true,
-    onSuccess: () => closeModal(),
-    onError: () => passwordInput.value.focus(),
+    onSuccess: () => {
+      toast.open({
+        message: 'Account deleted successfully.',
+        type: 'success',
+        position: 'top',
+        duration: 4000,
+      });
+      closeModal()
+    },
+    onError: () => {
+      toast.open({
+        message: 'Failed to delete account! ' + errors.error,
+        type: 'error',
+        position: 'top',
+        duration: 4000,
+      });
+      passwordInput.value.focus()
+    },
     onFinish: () => form.reset(),
   });
 };

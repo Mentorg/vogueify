@@ -9,11 +9,13 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { useToast } from 'vue-toast-notification';
 
 const props = defineProps({
   requiresConfirmation: Boolean,
 });
 
+const toast = useToast();
 const page = usePage();
 const enabling = ref(false);
 const confirming = ref(false);
@@ -42,11 +44,19 @@ const enableTwoFactorAuthentication = () => {
 
   router.post(route('two-factor.enable'), {}, {
     preserveScroll: true,
-    onSuccess: () => Promise.all([
-      showQrCode(),
-      showSetupKey(),
-      showRecoveryCodes(),
-    ]),
+    onSuccess: () => {
+      toast.open({
+        message: 'You have successfully enabled two factor authentication.',
+        type: 'success',
+        position: 'top',
+        duration: 4000,
+      });
+      Promise.all([
+        showQrCode(),
+        showSetupKey(),
+        showRecoveryCodes(),
+      ])
+    },
     onFinish: () => {
       enabling.value = false;
       confirming.value = props.requiresConfirmation;
@@ -78,6 +88,12 @@ const confirmTwoFactorAuthentication = () => {
     preserveScroll: true,
     preserveState: true,
     onSuccess: () => {
+      toast.open({
+        message: 'You have successfully confirmed two factor authentication.',
+        type: 'success',
+        position: 'top',
+        duration: 4000,
+      });
       confirming.value = false;
       qrCode.value = null;
       setupKey.value = null;

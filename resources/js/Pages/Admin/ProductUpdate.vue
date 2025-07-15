@@ -10,6 +10,7 @@ import TextInput from '@/Components/TextInput.vue';
 import AdminDashboard from '@/Layouts/AdminDashboard.vue';
 import ErrorMessage from '@/Components/ErrorMessage.vue';
 import Tooltip from '@/Components/Tooltip.vue';
+import { useToast } from 'vue-toast-notification';
 
 const props = defineProps({
   product: Object,
@@ -19,6 +20,8 @@ const props = defineProps({
   colors: Array,
   errors: Object
 });
+
+const toast = useToast();
 
 const form = reactive({
   id: props.product.id,
@@ -160,6 +163,12 @@ const submitForm = () => {
     },
   })
     .then(() => {
+      toast.open({
+        message: 'Product updated successfully.',
+        type: 'success',
+        position: 'top',
+        duration: 4000,
+      });
       router.visit(route('product.show', {
         product: form.slug,
         variation: form.variations?.[0]?.sku ?? null,
@@ -167,13 +176,22 @@ const submitForm = () => {
     })
     .catch(error => {
       if (error.response?.status === 422) {
-        console.warn('⚠️ Validation failed', error.response.data.errors);
+        toast.open({
+          message: 'Failed to update product! Validation failed: ' + error.response.data.errors,
+          type: 'warning',
+          position: 'top',
+          duration: 4000,
+        });
       } else {
-        console.error('❌ Unexpected error:', error);
+        toast.open({
+          message: 'Failed to update product! Unexpected error:' + error,
+          type: 'error',
+          position: 'top',
+          duration: 4000,
+        });
       }
     });
 };
-console.log(props.product)
 </script>
 
 <template>
@@ -386,7 +404,7 @@ console.log(props.product)
               <div>
                 <h3 class="font-medium text-base">Type</h3>
                 <p class="mt-4">{{types.find((t) => String(t.id) === String(variation.product_type_id))?.label || 'N/A'
-                  }}</p>
+                }}</p>
               </div>
               <div>
                 <h3 class="font-medium text-base">SKU</h3>

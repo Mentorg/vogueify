@@ -6,11 +6,14 @@ import { formatDate } from "@/utils/dateFormat.js";
 import DialogModal from './DialogModal.vue';
 import DangerButton from './DangerButton.vue';
 import SecondaryButton from './SecondaryButton.vue';
+import { useToast } from 'vue-toast-notification';
 
 const props = defineProps({
   variations: Array,
   categories: Array
 });
+
+const toast = useToast();
 
 const form = useForm({});
 const openMenu = ref(null);
@@ -33,16 +36,34 @@ const confirmVariationDeletion = (variation) => {
 
 const destroy = (id, type) => {
   if (id === null || id === undefined) {
-    errorMessage.value = 'Invalid variation ID. Please try again.';
+    toast.open({
+      message: 'Invalid variation ID! Please try again.',
+      type: 'error',
+      position: 'top',
+      duration: 4000,
+    });
+    errorMessage.value = 'Invalid variation ID! Please try again.';
     return;
   }
   form.delete(route('product.delete', { id }) + `?type=${type}`, {
     preserveScroll: true,
     onSuccess: () => {
+      toast.open({
+        message: 'Product deleted successfully.',
+        type: 'success',
+        position: 'top',
+        duration: 4000,
+      });
       closeModal();
     },
     onError: (errors) => {
-      errorMessage.value = errors.error || 'Failed to delete.';
+      toast.open({
+        message: 'Failed to delete product! ' + errors.error,
+        type: 'error',
+        position: 'top',
+        duration: 4000,
+      });
+      errorMessage.value = errors.error || 'Failed to delete product!';
     },
     onFinish: () => form.reset()
   });

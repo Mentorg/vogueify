@@ -12,11 +12,14 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import SelectInput from '@/Components/SelectInput.vue';
+import { useToast } from 'vue-toast-notification';
 
 const props = defineProps({
   user: Object,
   countries: Array
 });
+
+const toast = useToast();
 
 const form = useForm({
   _method: 'PUT',
@@ -50,7 +53,23 @@ const updateProfileInformation = () => {
   form.post(route('user-profile-information.update'), {
     errorBag: 'updateProfileInformation',
     preserveScroll: true,
-    onSuccess: () => clearPhotoFileInput(),
+    onSuccess: () => {
+      toast.open({
+        message: 'Your information updated successfully.',
+        type: 'success',
+        position: 'top',
+        duration: 4000,
+      });
+      clearPhotoFileInput()
+    },
+    onError: (errors) => {
+      toast.open({
+        message: 'Failed to update your information! ' + errors.error,
+        type: 'error',
+        position: 'top',
+        duration: 4000,
+      });
+    }
   });
 };
 

@@ -7,13 +7,14 @@ import Footer from '@/Components/Footer.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
+import { useToast } from 'vue-toast-notification';
 
 const props = defineProps({
-  cart: Array,
+  cart: Object,
 })
 
+const toast = useToast();
 const form = useForm({});
-
 const user = usePage().props.auth.user;
 const wishlist = usePage().props.auth.wishlist;
 const localWishlist = ref([...wishlist]);
@@ -72,8 +73,23 @@ const confirmItemDeletion = (item) => {
 const destroy = (id) => {
   form.delete(route('cart.delete', id), {
     preserveScroll: true,
-    onSuccess: () => closeModal(),
-    onError: () => console.log('Failed to delete cart item!')
+    onSuccess: () => {
+      toast.open({
+        message: 'Cart items deleted successfully.',
+        type: 'success',
+        position: 'top',
+        duration: 4000,
+      });
+      closeModal()
+    },
+    onError: (errors) => {
+      toast.open({
+        message: 'Failed to delete cart items! ' + errors.error,
+        type: 'error',
+        position: 'top',
+        duration: 4000,
+      });
+    }
   })
 }
 
@@ -310,10 +326,6 @@ onBeforeUnmount(() => {
         <div class="flex flex-col items-center w-full h-full py-[5rem] lg:py-[8rem]">
           <img src="../../../public/images/empty-bag.png" alt="Empty bag" class="w-fit">
           <p class="text-lg">Your shopping bag is empty</p>
-          <Link :href="user === null ? route('login') : route('checkout')"
-            class="bg-black flex justify-center border border-black rounded-full py-2 mt-8 w-full text-sm text-white transition-all hover:bg-white hover:text-black lg:text-base">
-          Proceed to Checkout
-          </Link>
         </div>
       </section>
       <Footer />

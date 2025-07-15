@@ -9,6 +9,7 @@ import TextareaInput from '@/Components/TextareaInput.vue';
 import SelectInput from '@/Components/SelectInput.vue';
 import ErrorMessage from '@/Components/ErrorMessage.vue';
 import Tooltip from '@/Components/Tooltip.vue';
+import { useToast } from 'vue-toast-notification';
 
 const props = defineProps({
   categories: Array,
@@ -17,6 +18,8 @@ const props = defineProps({
   colors: Array,
   errors: Object
 })
+
+const toast = useToast();
 
 const form = reactive({
   name: '',
@@ -117,7 +120,25 @@ const submitForm = () => {
     });
   });
 
-  router.post('/admin/products', form)
+  router.post('/admin/products', formData, {
+    forceFormData: true,
+    onSuccess: () => {
+      toast.open({
+        message: 'Product created successfully.',
+        type: 'success',
+        position: 'top',
+        duration: 4000,
+      });
+    },
+    onError: () => {
+      toast.open({
+        message: 'Failed to create product! Please check the form for errors.',
+        type: 'error',
+        position: 'top',
+        duration: 4000,
+      });
+    }
+  })
 }
 </script>
 

@@ -1,17 +1,19 @@
 <script setup>
+import { ref } from 'vue';
+import { Link, useForm } from '@inertiajs/vue3';
+import { PhXCircle } from '@phosphor-icons/vue';
+import { useToast } from 'vue-toast-notification';
 import DangerButton from '@/Components/DangerButton.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import { formatDate } from '@/utils/dateFormat';
-import { Link, useForm } from '@inertiajs/vue3';
-import { PhXCircle } from '@phosphor-icons/vue';
-import { ref } from 'vue';
 
 const props = defineProps({
   orders: Array
 });
 
+const toast = useToast();
 const form = useForm({});
 const itemToCancel = ref(null);
 const errorMessage = ref(null);
@@ -40,9 +42,21 @@ const cancel = (id) => {
   form.put(route('order.cancel', { order: id }), {
     preserveScroll: true,
     onSuccess: () => {
+      toast.open({
+        message: 'Order canceled successfully.',
+        type: 'success',
+        position: 'top',
+        duration: 4000,
+      });
       closeModal();
     },
     onError: (errors) => {
+      toast.open({
+        message: 'Failed to cancel your order! ' + errors.error,
+        type: 'error',
+        position: 'top',
+        duration: 4000,
+      });
       errorMessage.value = errors.error || 'Failed to cancel order.';
     }
   });

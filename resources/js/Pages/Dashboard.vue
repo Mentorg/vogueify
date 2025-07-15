@@ -7,12 +7,14 @@ import { PhDotsThree, PhTrash, PhXCircle } from '@phosphor-icons/vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import { useToast } from 'vue-toast-notification';
 
 const props = defineProps({
   orders: Array,
   wishlist: Array
 });
 
+const toast = useToast();
 const user = usePage().props.auth.user;
 const form = useForm({});
 const itemToCancel = ref(null);
@@ -42,10 +44,22 @@ const cancel = (id) => {
   form.put(route('order.cancel', { order: id }), {
     preserveScroll: true,
     onSuccess: () => {
+      toast.open({
+        message: 'Order canceled successfully.',
+        type: 'success',
+        position: 'top',
+        duration: 4000,
+      });
       closeModal();
     },
     onError: (errors) => {
-      errorMessage.value = errors.error || 'Failed to cancel order.';
+      toast.open({
+        message: 'Failed to cancel your order! ' + errors.error,
+        type: 'error',
+        position: 'top',
+        duration: 4000,
+      });
+      errorMessage.value = errors.error || 'Failed to cancel your order.';
     }
   });
 };
@@ -195,7 +209,7 @@ const activeStatuses = [
                 <img :src="item.product_variation.image" :alt="item.product_variation.product.name"
                   class="w-[7.5%] rounded-full" />
                 <div class="flex flex-col gap-1 ml-4">
-                  <h4 class="font-medium">{{ item.product_variation.product.name }}</h4>
+                  <Link href="/wishlist" class="font-medium">{{ item.product_variation.product.name }}</Link>
                   <p>${{ item.product_variation.price }}</p>
                 </div>
               </div>

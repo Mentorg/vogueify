@@ -6,15 +6,18 @@ import { formatDate } from "@/utils/dateFormat.js";
 import DialogModal from "./DialogModal.vue";
 import SecondaryButton from "./SecondaryButton.vue";
 import DangerButton from "./DangerButton.vue";
+import { useToast } from 'vue-toast-notification';
 
 const props = defineProps({
   users: Object
 });
 
-const form = useForm({});
+const toast = useToast();
 
+const form = useForm({});
 const openMenu = ref(null);
 const userToDelete = ref(null);
+const errorMessage = ref(null);
 
 const toggleMenu = (id) => {
   openMenu.value = openMenu.value === id ? null : id;
@@ -33,7 +36,24 @@ const confirmUserDeletion = (user) => {
 const destroy = (id) => {
   form.delete(route('user.destroy', id), {
     preserveScroll: true,
-    onSuccess: () => closeModal(),
+    onSuccess: () => {
+      toast.open({
+        message: 'User deleted successfully.',
+        type: 'success',
+        position: 'top',
+        duration: 4000,
+      });
+      closeModal()
+    },
+    onError: (errors) => {
+      toast.open({
+        message: 'Failed to delete user! ' + errors.error,
+        type: 'error',
+        position: 'top',
+        duration: 4000,
+      });
+      errorMessage.value = errors.error || 'Failed to delete user!';
+    },
     onFinish: () => form.reset(),
   });
 };
