@@ -18,11 +18,13 @@ class Order extends Model
     protected $fillable = [
         'shipping_date',
         'order_date',
+        'order_status',
         'subtotal',
         'shipping_cost',
         'tax_amount',
         'total',
         'user_id',
+        'cart_id',
         'shipping_address_line_1',
         'shipping_address_line_2',
         'shipping_city',
@@ -67,6 +69,11 @@ class Order extends Model
     public function items()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class);
     }
 
     public function shippingAddress(): string

@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('billing_phone_number')->nullable();
             $table->enum('order_status', OrderStatus::values())->default(OrderStatus::Pending->value);
             $table->timestamps();
+            $table->foreignId('cart_id')->nullable()->constrained()->onDelete('set null');
         });
 
         Schema::create('order_items', function (Blueprint $table) {

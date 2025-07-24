@@ -2,6 +2,12 @@
 
 namespace App\Services;
 
+use App\Models\Order;
+use Stripe\Stripe;
+use Stripe\Checkout\Session as StripeSession;
+use Illuminate\Support\Facades\Auth;
+use Stripe\PaymentIntent;
+
 class CheckoutService
 {
     public function getCheckout($request)
@@ -32,6 +38,64 @@ class CheckoutService
             'shipping' => round($shipping, 2),
             'tax' => round($tax, 2),
             'total' => round($total, 2)
+        ];
+    }
+
+    public function createSession($request)
+    {
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $order = Order::findOrFail($request->order_id);
+
+        $lineItems = [];
+
+        foreach ($order->items as $item) {
+            $lineItems[] = [
+                'price_data' => [
+                    'currency' => 'eur',
+                    'product_data' => [
+                        'name' => $item->productVariation->product->name,
+                        'images' => [asset('storage/' . $item->productVariation->image)]
+                    ],
+                    'unit_amount' => intval($item->price_at_time * 100),
+                ],
+                'quantity' => $item->quantity,
+            ];
+        }
+
+        $checkoutSession = StripeSession::create([
+            'payment_method_types' => ['card'],
+            'line_items' => $lineItems,
+            'mode' =>  'payment',
+            'success_url' => route('checkout.success') . '?session_id={CHECKOUT_SESSION_ID}',
+            // 'cancel_url' => route('checkout.cancel'),
+            'metadata' => [
+                'order_id' => $order->id,
+            ],
+            'customer_email' => Auth::user()->email,
+        ]);
+
+        return $checkoutSession;
+    }
+
+    public function success($request)
+    {
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+        $session = StripeSession::retrieve($request->get('session_id'));
+        $orderId = $session->metadata->order_id ?? null;
+
+        $paymentIntent = PaymentIntent::retrieve($session->payment_intent);
+
+        $order = null;
+        if ($orderId) {
+            $order = Order::with(['items.productVariation.product', 'items.size'])->find($orderId);
+        }
+
+        return [
+            'session' => $session,
+            'paymentIntent' => $paymentIntent,
+            'order' => $order
         ];
     }
 }

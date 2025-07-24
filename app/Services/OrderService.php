@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class OrderService
 {
-    protected function handleOrderAttributes(array $validated, float $subtotal, float $shippingCost, float $taxAmount, float $total): array
+    protected function handleOrderAttributes(array $validated, float $subtotal, float $shippingCost, float $taxAmount, float $total, int $cartId): array
     {
         return [
             'order_date' => now()->format('d-m-Y H:i'),
@@ -19,6 +19,7 @@ class OrderService
             'tax_amount' => $taxAmount,
             'total' => $total,
             'user_id' => auth()->id(),
+            'cart_id' => $cartId,
 
             'shipping_address_line_1' => $validated['shipping_address_line_1'],
             'shipping_address_line_2' => $validated['shipping_address_line_2'] ?? null,
@@ -75,7 +76,7 @@ class OrderService
             $total = $subtotal + $shippingCost + $taxAmount;
 
             $order = Order::create(
-                $this->handleOrderAttributes($validated, $subtotal, $shippingCost, $taxAmount, $total)
+                $this->handleOrderAttributes($validated, $subtotal, $shippingCost, $taxAmount, $total, $cart->id)
             );
 
             foreach ($validated['items'] as $itemData) {

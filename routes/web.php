@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebhookController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Country;
 use Illuminate\Support\Facades\Route;
@@ -92,4 +93,10 @@ Route::controller(OrderController::class)->group(function() {
     Route::put('/order/{order}/cancel', 'cancel')->name('order.cancel');
 });
 
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/checkout/create-session', [CheckoutController::class, 'createSession'])->name('checkout.create');
+    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+});
+
+Route::post('/webhook/stripe', [WebhookController::class, 'handle'])->name('webhook.stripe');

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class OrderController extends Controller
@@ -19,7 +20,13 @@ class OrderController extends Controller
 
     public function store(StoreOrderRequest $request, Order $order)
     {
-        $this->orderService->create($order, $request);
+        $order = $this->orderService->create($order, $request);
+
+        if ($request->wantsJson()) {
+            return response()->json(['order_id' => $order->id]);
+        }
+
+        return redirect()->route('checkout', ['order_id' => $order->id]);
     }
 
     public function show(Order $order)
