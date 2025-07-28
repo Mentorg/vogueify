@@ -46,7 +46,46 @@ Run the following command to generate your application's key:
 php artisan key:generate
 ```
 
-### 5. Run Migrations
+### 5. Configure Stripe
+
+To enable Stripe payments, follow these steps:
+
+#### a. Create a Stripe Account
+
+If you haven't already, [sign up at Stripe](https://stripe.com) and log in to your dashboard.
+
+#### b. Add Stripe Keys to `.env`
+
+Add the following environment variables to your `.env` file:
+
+```
+STRIPE_KEY=your_stripe_publishable_key
+STRIPE_SECRET=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+```
+
+#### c. Install Stripe CLI (For Local Development)
+
+If you're working locally and need to test webhooks:
+
+1. [Install the Stripe CLI](https://stripe.com/docs/stripe-cli)
+2. Authenticate your Stripe account:
+
+```
+stripe login
+```
+
+3. Forward webhook events to your Laravel app:
+
+```
+stripe listen --forward-to http://localhost:8000/webhook/stripe
+```
+
+4. Copy the `whsec_...` token from the CLI output and paste it into your `.env` as `STRIPE_WEBHOOK_SECRET`.
+
+---
+
+### 6. Run Migrations
 
 Create the necessary database tables and run the seeders:
 
@@ -54,7 +93,7 @@ Create the necessary database tables and run the seeders:
 php artisan migrate --seed
 ```
 
-### 6. Start the Development Server
+### 7. Start the Development Server
 
 You can now start the local development server:
 
@@ -64,7 +103,7 @@ php artisan serve
 
 The app will be accessible at http://localhost:8000.
 
-### Run the Frontend Development Server
+### 8. Run the Frontend Development Server
 
 For frontend hot-reloading and asset compilation, run:
 
