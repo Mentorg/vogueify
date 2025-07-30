@@ -91,6 +91,7 @@ Route::controller(OrderController::class)->group(function() {
     Route::get('/order/{order}', 'show')->name('order.show');
     Route::get('/orders', 'getUserOrders')->name('order.userOrders');
     Route::put('/order/{order}/cancel', 'cancel')->name('order.cancel');
+    Route::get('/orders/{order}/confirm', 'confirm')->name('order.confirm');
 });
 
 Route::middleware(['auth'])->group(function () {

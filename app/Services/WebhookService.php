@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\OrderStatus;
 use App\Models\Order;
+use App\Notifications\Order\RequestOrderConfirmationNotification;
 use Illuminate\Support\Facades\Log;
 use Stripe\Exception\SignatureVerificationException;
 use Stripe\Webhook;
@@ -33,11 +34,14 @@ class WebhookService
 
             if ($orderId) {
                 $order = Order::with(['items.productVariation', 'cart.cartItems'])->find($orderId);
+                $user = $order->user;
 
                 if ($order && $order->order_status !== 'paid') {
                     Log::warning('Order has no associated cart', ['order_id' => $orderId]);
                     $order->order_status = OrderStatus::Paid;
                     $order->save();
+
+                    $user->notify(new RequestOrderConfirmationNotification($order));
 
                     if ($order->cart) {
                         $order->cart->cartItems()->delete();

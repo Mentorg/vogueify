@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderStatus;
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
+use App\Notifications\Order\OrderConfirmedNotification;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -46,5 +48,17 @@ class OrderController extends Controller
     public function cancel(Order $order)
     {
         $this->orderService->cancel($order);
+    }
+
+    public function confirm(Order $order)
+    {
+        if ($order->order_status === OrderStatus::Paid) {
+            $order->update(['order_status' => OrderStatus::Confirmed]);
+
+            $user = $order->user;
+            $user->notify(new OrderConfirmedNotification($order));
+        }
+
+        return redirect()->route('home')->with('success', 'Order confirmed!');
     }
 }
