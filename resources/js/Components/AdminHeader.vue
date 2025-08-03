@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+import { defineProps, defineEmits, ref, onMounted, onBeforeUnmount } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import {
   PhList,
@@ -8,21 +8,46 @@ import {
   PhBag,
 } from "@phosphor-icons/vue";
 
+const emit = defineEmits(['toggleMenu']);
 const user = usePage().props.auth.user;
+const isUserMenuOpen = ref(false);
+const userMenu = ref(null);
+const userButton = ref(null);
 
-const props = defineProps({
-  isUserMenuOpen: Boolean,
-  openUserMenu: Function
+const toggleUserMenu = () => {
+  isUserMenuOpen.value = !isUserMenuOpen.value;
+}
+
+const closeUserMenu = () => {
+  isUserMenuOpen.value = false;
+}
+
+const handleClickOutside = (event) => {
+  if (
+    isUserMenuOpen.value &&
+    userMenu.value &&
+    !userMenu.value.contains(event.target) &&
+    userButton.value &&
+    !userButton.value.contains(event.target)) {
+    closeUserMenu();
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
 });
 
-const emit = defineEmits(['toggleMenu']);
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
+})
+
 </script>
 
 <template>
   <header
     class="flex items-center justify-between px-4 py-[8px] border-b border-b-[#D9D9D9] md:px-[20px] md:py-[16px] lg:px-[60px] lg:py-[16px]">
     <div class="flex flex-row items-center gap-6">
-      <button v-if="user?.role !== 'admin' || user?.role !== 'staff'" @click="emit('toggleMenu')"
+      <button v-if="user?.role !== 'admin' && user?.role !== 'staff'" @click="emit('toggleMenu')"
         class="flex items-center gap-2">
         <PhList :size="24" />
         <span class="hidden md:flex">Menu</span>
@@ -39,10 +64,10 @@ const emit = defineEmits(['toggleMenu']);
         <Link v-if="!user" :href="route('login')">
         <PhUser :size="24" />
         </Link>
-        <button v-else @click="openUserMenu">
+        <button ref="userButton" @click.stop="toggleUserMenu">
           <PhUser :size="24" />
         </button>
-        <div class="bg-white w-40 border border-slate-300 flex-col py-2 absolute right-0 z-10"
+        <div ref="userMenu" class="bg-white w-40 border border-slate-300 flex-col py-2 absolute right-0 z-10"
           :class="{ 'flex': isUserMenuOpen, 'hidden': !isUserMenuOpen }">
           <Link
             :href="user?.role === 'admin' ? route('admin.overview') : user?.role === 'staff' ? route('admin.products') : route('dashboard')"

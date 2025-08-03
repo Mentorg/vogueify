@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\SessionService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
@@ -17,6 +18,12 @@ class SessionController extends Controller
     public function store(Request $request)
     {
         $this->sessionService->create($request);
+
+        $user = Auth::user();
+
+        if ($user && !$user->hasVerifiedEmail()) {
+            return redirect()->route('verification.notice');
+        }
 
         return redirect('/')->withErrors([
             'email' => 'The provided credentials do not match our records'

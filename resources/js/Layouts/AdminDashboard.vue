@@ -43,8 +43,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <AdminHeader :isMenuOpen="isMenuOpen" :isUserMenuOpen="isUserMenuOpen" :openUserMenu="openUserMenu"
-    @toggleMenu="toggleMenu" />
+  <AdminHeader />
   <div class="flex">
     <MobileSidebar v-if="isMobile" :isMenuOpen="isMenuOpen" :toggleMenu="toggleMenu" :closeMenu="closeMenu" />
     <Sidebar v-else />

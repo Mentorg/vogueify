@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineEmits } from 'vue';
+import { defineEmits, ref, onMounted, onBeforeUnmount } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import {
   PhList,
@@ -9,27 +9,54 @@ import {
   PhBag,
 } from "@phosphor-icons/vue";
 
-const props = defineProps({
-  isUserMenuOpen: Boolean,
-  openUserMenu: Function
-});
-
 const user = usePage().props.auth.user;
 const wishlist = usePage().props.auth.wishlist;
 const cart = usePage().props.auth.cart;
 const emit = defineEmits(['toggleMenu']);
+
+const isUserMenuOpen = ref(false);
+const userMenu = ref(null);
+const userButton = ref(null);
+
+const toggleUserMenu = () => {
+  isUserMenuOpen.value = !isUserMenuOpen.value;
+}
+
+const closeUserMenu = () => {
+  isUserMenuOpen.value = false;
+}
+
+const handleClickOutside = (event) => {
+  if (
+    isUserMenuOpen.value &&
+    userMenu.value &&
+    !userMenu.value.contains(event.target) &&
+    userButton.value &&
+    !userButton.value.contains(event.target)
+  ) {
+    closeUserMenu();
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <template>
   <header
-    class="flex items-center justify-between px-4 py-[8px] border-b border-b-[#D9D9D9] md:px-[20px] md:py-[16px] lg:px-[60px] lg:py-[16px]">
+    class="relative top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-[8px] border-b border-b-[#D9D9D9] bg-white md:px-[20px] md:py-[16px] lg:px-[60px] lg:py-[16px]">
     <div class="flex flex-row items-center gap-6">
-      <button v-if="user?.role !== 'admin' || user?.role !== 'staff'" @click="emit('toggleMenu')"
+      <button v-if="user?.role !== 'admin' && user?.role !== 'staff'" @click="emit('toggleMenu')"
         class="flex items-center gap-2">
         <PhList :size="24" />
         <span class="hidden md:flex">Menu</span>
       </button>
-      <Link v-if="user?.role !== 'admin' || user?.role !== 'staff'" :href="route('search')"
+      <Link v-if="user?.role !== 'admin' && user?.role !== 'staff'" :href="route('search')"
         class="flex items-center gap-2">
       <PhMagnifyingGlass :size="24" />
       <span class="hidden md:flex">Search</span>
@@ -51,10 +78,10 @@ const emit = defineEmits(['toggleMenu']);
         <Link v-if="!user" :href="route('login')">
         <PhUser :size="24" />
         </Link>
-        <button v-else @click="openUserMenu">
+        <button v-else ref="userButton" @click.stop="toggleUserMenu">
           <PhUser :size="24" />
         </button>
-        <div class="bg-white w-40 border border-slate-300 flex-col py-2 absolute right-0 z-10"
+        <div ref="userMenu" class="bg-white w-40 border border-slate-300 flex-col py-2 absolute right-0 z-10"
           :class="{ 'flex': isUserMenuOpen, 'hidden': !isUserMenuOpen }">
           <Link
             :href="user?.role === 'admin' ? route('admin.overview') : user?.role === 'staff' ? route('admin.products') : route('dashboard')"

@@ -14,7 +14,6 @@ const activeSubmenu = ref(null);
 const activeThirdLevelSubmenu = ref(null);
 const hoveredItem = ref(false);
 const activeItem = ref(null);
-const isUserMenuOpen = ref(false);
 
 const openSubmenu = (item) => {
   if (activeSubmenu.value === item) {
@@ -40,10 +39,6 @@ const closeMenu = () => {
   activeThirdLevelSubmenu.value = null;
 };
 
-const openUserMenu = () => {
-  isUserMenuOpen.value = !isUserMenuOpen.value;
-}
-
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 }
@@ -68,16 +63,14 @@ onBeforeUnmount(() => {
 
 <template>
   <div v-if="isMobile">
-    <Header :isMenuOpen="isMenuOpen" :isUserMenuOpen="isUserMenuOpen" :openUserMenu="openUserMenu"
-      @toggleMenu="toggleMenu" />
+    <Header :isMenuOpen="isMenuOpen" @toggleMenu="toggleMenu" />
     <MobileMenu :isMenuOpen="isMenuOpen" :toggleMenu="toggleMenu" :closeMenu="closeMenu" />
   </div>
   <div v-else>
     <div class="relative">
       <div :class="{ 'visible': isMenuOpen, 'invisible': !isMenuOpen }"
         class="w-dvw h-dvh bg-slate-950/85 fixed top-0 left-0 z-10 transition-all duration-200 ease-in-out" />
-      <Header :isMenuOpen="isMenuOpen" :isUserMenuOpen="isUserMenuOpen" :openUserMenu="openUserMenu"
-        @toggleMenu="toggleMenu" />
+      <Header :isMenuOpen="isMenuOpen" @toggleMenu="toggleMenu" />
       <div :class="{ 'opacity-100': isMenuOpen, 'opacity-0': !isMenuOpen }"
         class="main-menu absolute top-0 left-0 w-full px-4 h-dvh bg-white py-2 transition-all duration-300 ease-in-out transform z-20 border-r md:px-[20px] md:py-[24px] md:w-[16rem] lg:px-[60px] lg:w-[30rem]"
         :style="isMenuOpen ? 'transform: translateX(0);' : 'transform: translateX(-100%);'">

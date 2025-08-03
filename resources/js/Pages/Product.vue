@@ -1,7 +1,7 @@
 <script setup>
-import { computed, defineProps, ref } from "vue";
+import { computed, defineProps, onBeforeUnmount, onMounted, ref } from "vue";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/vue3";
-import { PhHeart } from "@phosphor-icons/vue";
+import { PhHeart, PhX } from "@phosphor-icons/vue";
 import Menu from '@Components/Menu.vue';
 import Footer from "@/Components/Footer.vue";
 import InputLabel from "@/Components/InputLabel.vue";
@@ -16,6 +16,7 @@ const props = defineProps({
 const user = usePage().props.auth.user;
 const wishlist = usePage().props.auth.wishlist;
 const localWishlist = ref([...wishlist]);
+const isCartSidebarOpen = ref(false);
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -38,6 +39,16 @@ const form = useForm({
     ? (currentVariation.value.sizes.find(item => item.pivot.stock > 0)?.id ?? null)
     : null
 });
+
+const closeCartSidebar = () => {
+  isCartSidebarOpen.value = !isCartSidebarOpen.value;
+}
+
+const handleClickOutside = (event) => {
+  if (!event.target.closest('.cartSidebar')) {
+    isCartSidebarOpen.value = false;
+  }
+}
 
 const addToWishlist = async (productVariationId) => {
   const existing = localWishlist.value.find(item => item.product_variation_id === productVariationId);
@@ -94,13 +105,21 @@ const submitForm = () => {
     }))
     .post(route('cart.store'), {
       onSuccess: () => {
-        console.log('Item added successfully to the cart.');
+        isCartSidebarOpen.value = true;
       },
       onError: (errors) => {
         errorMessage.value = errors.error || 'Failed to submit form.';
       },
     });
 };
+
+onMounted(() => {
+  window.addEventListener('click', handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('click', handleClickOutside);
+});
 
 </script>
 
@@ -109,6 +128,33 @@ const submitForm = () => {
   <Head title="Products" />
   <Layout>
     <Menu />
+    <div v-if="isCartSidebarOpen" class="fixed inset-0 bg-slate-950/85 z-40" />
+    <div :class="{ 'visible': isCartSidebarOpen, 'invisible': !isCartSidebarOpen }"
+      class="cartSidebar absolute bottom-0 w-full rounded-t-xl bg-white border border-slate-200 p-8 z-50 md:p-12 md:top-1/2 md:left-1/2 md:right-[unset] md:translate-x-[-50%] md:translate-y-[-50%] md:w-[90%] lg:right-0 lg:left-[unset] lg:bottom-[unset] lg:top-[4.25rem] lg:rounded-none lg:transform-none lg:w-1/3">
+      <div class="flex justify-between">
+        <h3>Added to Shopping Bag</h3>
+        <button @click.stop="closeCartSidebar">
+          <PhX size="20" />
+        </button>
+      </div>
+      <div class="flex flex-row mt-8 md:mt-12">
+        <img v-if="currentVariation && currentVariation.image" :src="'http://vogueify.test' + currentVariation.image"
+          :alt="product.name" class="w-[8rem] h-[8rem]" />
+        <div class="flex flex-col gap-1 px-4">
+          <p class="text-xs font-light">{{ currentVariation.sku }}</p>
+          <h4 class="text-sm font-light">{{ product.name }}</h4>
+          <p class="text-sm">${{ currentVariation.price }}</p>
+        </div>
+      </div>
+      <div class="flex flex-col mt-8 gap-4">
+        <Link :href="route('cart.index')"
+          class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
+        View your shopping bag</Link>
+        <Link :href="closeCartSidebar"
+          class="flex justify-center border border-black rounded-full py-2 w-full text-sm transition-all hover:bg-slate-100 hover:text-black md:text-base">
+        Continue Shopping</Link>
+      </div>
+    </div>
     <main>
       <section class="grid grid-cols-1 lg:grid-cols-2">
         <img v-if="currentVariation && currentVariation.image" :src="'http://vogueify.test' + currentVariation.image"

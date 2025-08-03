@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Enums\RoleName;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,9 +14,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens;
+    use HasApiTokens, Notifiable;
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
@@ -33,7 +34,8 @@ class User extends Authenticatable
         'title',
         'email',
         'password',
-        'role'
+        'role',
+        'date_of_birth'
     ];
 
     /**

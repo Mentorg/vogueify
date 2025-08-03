@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Enums\RoleName;
 use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +32,7 @@ class UserSeeder extends Seeder
             'title'     => 'mr',
             'email'     => 'admin@vogueify.com',
             'password'  => Hash::make('adminuser'),
+            'email_verified_at' => Carbon::now(),
             'role'      => 'admin',
         ])->roles()->sync(Role::where('name', RoleName::ADMIN->value)->first());
     }
@@ -42,6 +44,7 @@ class UserSeeder extends Seeder
             'title'     => 'ms',
             'email'     => 'janedoe@vogueify.com',
             'password'  => Hash::make('janedoe1234'),
+            'email_verified_at' => Carbon::now(),
             'role'      => 'staff'
         ])->roles()->sync(Role::where('name', RoleName::STAFF->value)->first());
     }
@@ -53,6 +56,7 @@ class UserSeeder extends Seeder
             'title'     => $title,
             'email'     => $email,
             'password'  => Hash::make('password123'),
+            'email_verified_at' => Carbon::now(),
             'role'      => 'customer'
         ]);
 

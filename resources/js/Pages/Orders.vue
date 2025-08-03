@@ -93,7 +93,7 @@ const activeStatuses = [
           Start Shopping</Link>
         </div>
         <div v-else class="mt-8">
-          <div v-for="item in orders.filter(order => activeStatuses.includes(order.order_status)).slice(0, 3)"
+          <div v-for="item in orders.filter(order => activeStatuses.includes(order.order_status))"
             class="flex justify-between items-center gap-2 my-4">
             <div class="flex items-center gap-4">
               <template v-if="item.items.length > 1">
@@ -159,11 +159,6 @@ const activeStatuses = [
               </template>
             </DialogModal>
           </div>
-          <div v-if="orders.length > 3" class="mt-8">
-            <Link href="/"
-              class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-            View Orders</Link>
-          </div>
         </div>
       </div>
       <div>
@@ -211,11 +206,6 @@ const activeStatuses = [
               <p class="text-sm">{{ formatStatus(item.order_status) }}</p>
             </div>
             <p>${{ item.total }}</p>
-          </div>
-          <div v-if="orders.length > 3" class="mt-8">
-            <Link href="/"
-              class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-            View Orders</Link>
           </div>
         </div>
       </div>

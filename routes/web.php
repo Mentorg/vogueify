@@ -11,8 +11,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebhookController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Country;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
+
+Route::post('/register', [RegisteredUserController::class, 'store'])->name('user.register');
 
 Route::get('/login', function () {
     return Inertia::render('Auth/Login');
@@ -21,7 +26,6 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return Inertia::render('Auth/Register');
 })->name('auth.register');
-
 Route::post('/login', [SessionController::class, 'store']);
 
 Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
@@ -32,10 +36,8 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/profile', function () {
-        $countries = Country::all(['id', 'name', 'iso_code']);
-
         return Inertia::render('Profile/Profile', [
-            'countries' => $countries
+            'countries' => Country::all(['id', 'name', 'iso_code'])
         ]);
     })->name('profile');
 
@@ -53,7 +55,7 @@ Route::middleware([
 });
 
 Route::controller(HomeController::class)->group(function() {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->middleware('verified')->name('home');
     Route::get('/categories', [HomeController::class, 'getCategories'])->name('categories');
     Route::get('/search', [HomeController::class, 'search'])->name('search');
 });
@@ -62,15 +64,15 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/products', 'index')->name('products.index');
     Route::get('/products/search', 'searchResults')->name('products.search');
     Route::get('/products/{product:slug}/{variation?}', 'show')->name('product.show');
-    Route::get('/admin/product/create', 'create')->name('product.create');
-    Route::post('/admin/products', 'store')->name('product.store');
-    Route::get('/admin/products/{product:slug}/update', 'edit')->name('product.edit');
-    Route::put('/admin/products/{product}', 'update')->name('product.update');
-    Route::delete('/admin/products/{id}', 'destroy')->name('product.delete');
+    Route::get('/admin/product/create', 'create')->middleware(['auth'])->name('product.create');
+    Route::post('/admin/products', 'store')->middleware(['auth'])->name('product.store');
+    Route::get('/admin/products/{product:slug}/update', 'edit')->middleware(['auth'])->name('product.edit');
+    Route::put('/admin/products/{product}', 'update')->middleware(['auth'])->name('product.update');
+    Route::delete('/admin/products/{id}', 'destroy')->middleware(['auth'])->name('product.delete');
 });
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('/dashboard', 'index')->name('dashboard');
+    Route::get('/dashboard', 'index')->middleware('verified')->name('dashboard');
     Route::delete('/admin/users/{user}', 'destroy')->name('user.destroy');
 });
 
@@ -94,10 +96,25 @@ Route::controller(OrderController::class)->group(function() {
     Route::get('/orders/{order}/confirm', 'confirm')->name('order.confirm');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout/create-session', [CheckoutController::class, 'createSession'])->name('checkout.create');
     Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 });
 
 Route::post('/webhook/stripe', [WebhookController::class, 'handle'])->name('webhook.stripe');
+
+Route::get('/email/verify', function () {
+    return Inertia::render('Auth/VerifyEmail');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');

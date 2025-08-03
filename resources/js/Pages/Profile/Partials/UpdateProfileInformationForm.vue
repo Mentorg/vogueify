@@ -199,10 +199,10 @@ const toggleAddressInputs = (addressValue) => {
 
       <!-- Address details -->
       <div class="flex justify-between col-span-6 sm:col-span-12">
-        <button @click="toggleAddressInputs(true)"
+        <button @click.prevent="toggleAddressInputs(true)"
           class="py-2 px-8 border border-black rounded-full transition-all hover:bg-black hover:text-white">Add address
           details</button>
-        <button @click="toggleAddressInputs(false)"
+        <button @click.prevent="toggleAddressInputs(false)"
           class="flex justify-center items-center p-2 w-10 h-10 border border-black rounded-full transition-all hover:bg-black hover:text-white">
           <PhX size="18" />
         </button>
