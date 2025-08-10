@@ -1,6 +1,7 @@
 <script setup>
 import { defineProps } from 'vue';
 import { Link } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 import { PhTrash } from '@phosphor-icons/vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 
@@ -8,17 +9,18 @@ const props = defineProps({
   'wishlist': Array
 });
 
+const { t } = useI18n();
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
 </script>
 
 <template>
-  <DashboardLayout title="My Wishlist">
+  <DashboardLayout :title="t('page.user.wishlist.label')">
     <div v-if="wishlist.length < 1" class="flex flex-col place-self-center w-fit">
-      <h2 class="text-lg md:text-xl">No current products on your wishlist</h2>
+      <h2 class="text-lg md:text-xl">{{ t('page.user.wishlist.noWishlistItems') }}</h2>
       <Link href="/"
         class="bg-black flex justify-center border border-black rounded-full py-2 mt-4 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-      Start Shopping
+      {{ t('common.button.startShopping') }}
       </Link>
     </div>
     <div v-else class="grid grid-cols-4 gap-6">

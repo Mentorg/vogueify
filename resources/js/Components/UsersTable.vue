@@ -7,13 +7,14 @@ import DialogModal from "./DialogModal.vue";
 import SecondaryButton from "./SecondaryButton.vue";
 import DangerButton from "./DangerButton.vue";
 import { useToast } from 'vue-toast-notification';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps({
   users: Object
 });
 
+const { t } = useI18n();
 const toast = useToast();
-
 const form = useForm({});
 const openMenu = ref(null);
 const userToDelete = ref(null);
@@ -82,15 +83,19 @@ onBeforeUnmount(() => {
           <tr class="grid grid-cols-[0.5fr,2fr,3fr,2fr,2fr,1fr]">
             <th scope="col" class="px-6 py-4">#</th>
             <th scope="col" class="px-6 py-4">
-              Name
+              {{ t('common.user.name') }}
             </th>
             <th scope="col" class="px-6 py-4">
-              Email
+              {{ t('common.user.email') }}
+
             </th>
             <th scope="col" class="px-6 py-4">
               Role
             </th>
-            <th scope="col" class="px-6 py-4">Created</th>
+            <th scope="col" class="px-6 py-4">
+              {{ t('common.user.createdAt') }}
+
+            </th>
             <th scope="col" class="px-6 py-4">&nbsp;</th>
           </tr>
         </thead>
@@ -113,7 +118,7 @@ onBeforeUnmount(() => {
                 <div class="flex items-center gap-x-2 transition-all hover:text-slate-500">
                   <button @click="confirmUserDeletion(user)" class="flex items-center gap-2">
                     <PhTrash :size="16" color="red" />
-                    Delete
+                    {{ t('common.button.delete') }}
                   </button>
                 </div>
               </div>
@@ -121,16 +126,16 @@ onBeforeUnmount(() => {
           </tr>
           <DialogModal :show="userToDelete !== null" @close="closeModal">
             <template #title>
-              Delete '{{ userToDelete?.name }}'?
+              {{ t('common.modal.user.title', { userToDelete: userToDelete?.name }) }}?
             </template>
             <template #content>
-              Are you sure you want to delete '{{ userToDelete?.name }}'?
+              {{ t('common.modal.user.content', { userToDelete: userToDelete?.name }) }}?
             </template>
             <template #footer>
-              <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+              <SecondaryButton @click="closeModal">{{ t('common.button.cancel') }}</SecondaryButton>
               <DangerButton class="ms-3" @click="destroy(userToDelete.id)">
                 <PhTrash :size="16" color="white" class="mr-2" />
-                Delete
+                {{ t('common.button.delete') }}
               </DangerButton>
             </template>
           </DialogModal>
@@ -139,20 +144,20 @@ onBeforeUnmount(() => {
       <nav class="bg-white sticky bottom-0 flex py-2 px-4 border-t-2 items-center justify-between text-sm"
         aria-label="Page navigation example">
         <p>
-          Showing <strong>{{ users.from }}-{{ users.to }}</strong> of <strong>{{ users.total }}</strong>
+          {{ t('common.table.pagination', { from: users.from, to: users.to, total: users.total }) }}
         </p>
         <ul class="list-style-none flex gap-x-4 mx-2">
           <li v-if="users.prev_page_url">
             <button class="bg-slate-500 text-white flex items-center rounded px-3 py-1.5 text-sm"
               @click="router.visit(users.prev_page_url)">
               <PhCaretLeft :size="12" />
-              Previous
+              {{ t('common.button.previous') }}
             </button>
           </li>
           <li v-if="users.next_page_url">
             <button class="bg-slate-500 text-white flex items-center rounded px-3 py-1.5 text-sm"
               @click="router.visit(users.next_page_url)">
-              Next
+              {{ t('common.button.next') }}
               <PhCaretRight :size="12" />
             </button>
           </li>

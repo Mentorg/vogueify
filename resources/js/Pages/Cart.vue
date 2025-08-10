@@ -8,11 +8,13 @@ import DialogModal from '@/Components/DialogModal.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import { useToast } from 'vue-toast-notification';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps({
   cart: Object,
 })
 
+const { t } = useI18n();
 const toast = useToast();
 const form = useForm({});
 const user = usePage().props.auth.user;
@@ -131,7 +133,7 @@ onBeforeUnmount(() => {
 
 <template>
 
-  <Head title="My Shopping Bag" />
+  <Head :title="t('page.cart.label')" />
   <Layout>
     <Menu />
     <main>
@@ -139,13 +141,13 @@ onBeforeUnmount(() => {
         <div class="px-4 md:px-8 lg:px-16">
           <div class="flex flex-col gap-4">
             <div class="flex flex-col justify-between order-2 lg:order-1 lg:py-10 lg:flex-row">
-              <h1 class="order-2 lg:order-1 lg:text-2xl">My Shopping Cart <span
+              <h1 class="order-2 lg:order-1 lg:text-2xl">{{ t('page.cart.label') }} <span
                   class="text-xs text-slate-500 lg:text-sm">({{
                     cart.cartItems.length
                   }})</span>
               </h1>
-              <Link href="/" class="order-1 mb-8 text-center lg:order-2 text-sm underline lg:text-base lg:mb-0">Continue
-              Shopping
+              <Link href="/" class="order-1 mb-8 text-center lg:order-2 text-sm underline lg:text-base lg:mb-0">
+              {{ t('common.button.continueShopping') }}
               </Link>
             </div>
             <div v-if="isTablet" v-for="item in cart.cartItems" class="bg-white order-3 lg:order-2">
@@ -180,17 +182,18 @@ onBeforeUnmount(() => {
                 <div class="flex justify-between items-end mt-6">
                   <div class="flex flex-col">
                     <div v-if="item.size !== null" class="flex gap-2">
-                      <h4 class="text-sm">Size:</h4>
+                      <h4 class="text-sm">{{ t('common.product.size') }}:</h4>
                       <p class="text-sm">{{ item.size.label }}</p>
                     </div>
                     <div class="flex gap-2">
-                      <h4 class="text-sm">Quantity:</h4>
+                      <h4 class="text-sm">{{ t('common.product.quantity') }}:</h4>
                       <p class="text-sm">{{ item.quantity }}</p>
                     </div>
                   </div>
                   <div class="flex flex-col items-end">
                     <h3 class="text-lg">${{ item.price_at_time * item.quantity }}</h3>
-                    <p v-if="item.quantity > 1" class="text-xs text-slate-500">${{ item.price_at_time }} per piece</p>
+                    <p v-if="item.quantity > 1" class="text-xs text-slate-500">${{ item.price_at_time }}
+                      {{ t('page.cart.perPiece') }}</p>
                   </div>
                 </div>
               </div>
@@ -199,12 +202,12 @@ onBeforeUnmount(() => {
                   class="flex items-center gap-2 text-xs border-t border-t-slate-200 w-full justify-center py-2 transition-all md:text-sm">
                   <PhHeart size="14" color="red"
                     :weight="localWishlist.some(record => record.product_variation_id === item.product_variation.id) ? 'fill' : 'regular'" />
-                  Add to Wishlist
+                  {{ t('page.cart.button.addToWishlist') }}
                 </button>
                 <button @click="confirmItemDeletion(item)"
                   class="flex items-center gap-2 text-xs border-t border-t-slate-200 w-full justify-center py-2 transition-all md:text-sm">
                   <PhXCircle size="14" />
-                  Remove
+                  {{ t('common.button.remove') }}
                 </button>
               </div>
             </div>
@@ -238,17 +241,18 @@ onBeforeUnmount(() => {
                   <div class="flex items-end justify-between mt-auto py-6 px-8">
                     <div class="flex flex-col">
                       <div v-if="item.size !== null" class="flex gap-2">
-                        <h4>Size:</h4>
+                        <h4>{{ t('common.product.size') }}:</h4>
                         <p>{{ item.size.label }}</p>
                       </div>
                       <div class="flex gap-2">
-                        <h4>Quantity:</h4>
+                        <h4>{{ t('common.product.quantity') }}:</h4>
                         <p>{{ item.quantity }}</p>
                       </div>
                     </div>
                     <div class="flex flex-col items-end">
                       <h3 class="text-2xl">${{ item.price_at_time * item.quantity }}</h3>
-                      <p v-if="item.quantity > 1" class="text-xs text-slate-500">${{ item.price_at_time }} per piece</p>
+                      <p v-if="item.quantity > 1" class="text-xs text-slate-500">${{ item.price_at_time }} {{
+                        t('page.cart.perPiece') }}</p>
                     </div>
                   </div>
                 </div>
@@ -257,12 +261,12 @@ onBeforeUnmount(() => {
                     class="flex items-center gap-2 text-lg border-t border-t-slate-200 w-full justify-center py-3 transition-all hover:bg-black hover:text-white">
                     <PhHeart size="18" color="red"
                       :weight="localWishlist.some(record => record.product_variation_id === item.product_variation.id) ? 'fill' : 'regular'" />
-                    Add to Wishlist
+                    {{ t('page.cart.button.addToWishlist') }}
                   </button>
                   <button @click="confirmItemDeletion(item)"
                     class="flex items-center gap-2 text-lg border-t border-t-slate-200 w-full justify-center py-3 transition-all hover:bg-black hover:text-white">
                     <PhXCircle :size="18" />
-                    Remove
+                    {{ t('common.button.remove') }}
                   </button>
                 </div>
               </div>
@@ -270,22 +274,22 @@ onBeforeUnmount(() => {
             <div class="flex order-1 mt-8 lg:order-3 lg:my-10">
               <Link :href="user === null ? route('login') : route('checkout')"
                 class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black lg:text-base">
-              Proceed to Checkout
+              {{ t('page.cart.button.proceedToCheckout') }}
               </Link>
             </div>
           </div>
           <DialogModal :show="itemToDelete !== null" @close="closeModal">
             <template #title>
-              Delete {{ itemToDelete.product_variation.product.name }}?
+              {{ t('common.modal.cart.title', { itemToDelete: itemToDelete.product_variation.product.name }) }}?
             </template>
             <template #content>
-              Are you sure you want to delete {{ itemToDelete.product_variation.product.name }}?
+              {{ t('common.modal.cart.content', { itemToDelete: itemToDelete.product_variation.product.name }) }}?
             </template>
             <template #footer>
-              <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+              <SecondaryButton @click="closeModal">{{ t('common.button.cancel') }}</SecondaryButton>
               <DangerButton class="ms-3" @click="destroy(itemToDelete.id)">
                 <PhTrash :size="16" color="white" class="mr-2" />
-                Delete
+                {{ t('common.button.delete') }}
               </DangerButton>
             </template>
           </DialogModal>
@@ -293,23 +297,23 @@ onBeforeUnmount(() => {
         <div class="bg-white py-10 px-6 md:px-10">
           <ul class="flex flex-col gap-2">
             <li class="flex justify-between lg:text-lg">
-              <p>Subtotal</p>
+              <p>{{ t('common.product.subtotal') }}</p>
               <span>
                 ${{ cart.subtotal.toFixed(2) }}
               </span>
             </li>
             <li class="flex justify-between :text-lg">
-              <p>Shipping</p><span>${{ cart.shipping.toFixed(2) }}</span>
+              <p>{{ t('common.product.shipping') }}</p><span>${{ cart.shipping.toFixed(2) }}</span>
             </li>
             <li class="flex flex-col">
               <div class="flex justify-between">
-                <p class=":text-lg">Tax</p>
+                <p class=":text-lg">{{ t('common.product.tax') }}</p>
                 <span class=":text-lg">${{ cart.tax.toFixed(2) }}</span>
               </div>
-              <p class="text-xs text-slate-500">Will be calculated according to your delivery address</p>
+              <p class="text-xs text-slate-500">{{ t('common.product.taxInfo') }}</p>
             </li>
             <li class="flex justify-between mt-4 text-lg">
-              <p>Total</p>
+              <p>{{ t('common.product.total') }}</p>
               <span>
                 ${{ cart.total.toFixed(2) }}
               </span>
@@ -318,14 +322,14 @@ onBeforeUnmount(() => {
           <div>
             <Link :href="user === null ? route('login') : route('checkout')"
               class="bg-black flex justify-center border border-black rounded-full py-2 mt-8 w-full text-sm text-white transition-all hover:bg-white hover:text-black lg:text-base">
-            Proceed to Checkout</Link>
+            {{ t('page.cart.button.proceedToCheckout') }}</Link>
           </div>
         </div>
       </section>
       <section v-else class="w-full h-fit">
         <div class="flex flex-col items-center w-full h-full py-[5rem] lg:py-[8rem]">
           <img src="../../../public/images/empty-bag.png" alt="Empty bag" class="w-fit">
-          <p class="text-lg">Your shopping bag is empty</p>
+          <p class="text-lg">{{ t('page.cart.emptyCart') }}</p>
         </div>
       </section>
       <Footer />

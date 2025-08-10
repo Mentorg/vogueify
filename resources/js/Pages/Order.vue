@@ -1,4 +1,5 @@
 <script setup>
+import { useI18n } from 'vue-i18n';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import { formatDate } from '@/utils/dateFormat';
 import { Link } from '@inertiajs/vue3';
@@ -7,6 +8,8 @@ import { computed } from 'vue';
 const props = defineProps({
   orderDetails: Object
 });
+
+const { t } = useI18n();
 
 const statusSteps = [
   'pending',
@@ -56,15 +59,18 @@ const currentIndex = computed(() => {
 </script>
 
 <template>
-  <DashboardLayout :title="`Order ${orderDetails?.order?.order_number || 'Loading...'}`">
+  <DashboardLayout :title="`${t('page.user.orders.singleOrder.label', { order: orderDetails?.order?.order_number })}`">
     <div v-if="orderDetails && orderDetails.order"
       class="bg-white flex flex-col py-8 px-4 rounded-2xl w-auto justify-self-auto lg:justify-self-center lg:w-fit">
       <div class="flex flex-col items-center my-4 gap-2">
-        <h2 class="text-xl">Order Status</h2>
-        <p class="text-sm">Order date: {{ formatDate(orderDetails.order.order_date, '.') }}</p>
-        <p v-if="orderDetails.order.shipping_date" class="text-sm">Shipping date: {{
-          formatDate(orderDetails.order.shipping_date,
+        <h2 class="text-xl">{{ t('page.user.orders.singleOrder.orderStatus') }}</h2>
+        <p class="text-sm">{{ t('page.user.orders.singleOrder.orderDate') }}: {{
+          formatDate(orderDetails.order.order_date,
             '.') }}</p>
+        <p v-if="orderDetails.order.shipping_date" class="text-sm">{{ t('page.user.orders.singleOrder.shippingDate') }}:
+          {{
+            formatDate(orderDetails.order.shipping_date,
+              '.') }}</p>
       </div>
       <ul
         class="flex flex-nowrap justify-start overflow-x-auto overflow-y-hidden mt-4 text-xs text-gray-900 font-medium sm:text-base space-x-4 relative lg:justify-center lg:w-auto">
@@ -111,7 +117,7 @@ const currentIndex = computed(() => {
     </div>
     <div v-if="orderDetails && orderDetails.order" class="flex flex-col gap-8 my-8 lg:flex-row">
       <div class="bg-white border rounded-md p-4 h-fit">
-        <h2 class="text-2xl border-b pb-2">Product(s)</h2>
+        <h2 class="text-2xl border-b pb-2">{{ t('page.user.orders.singleOrder.orderProducts') }}</h2>
         <div v-for="item in orderDetails.order.items" class="flex items-center gap-4 py-2 my-2">
           <img v-if="item.product_variation.image" :src="item.product_variation.image" alt=""
             class="w-[20%] md:w-[10%] lg:w-[5%]">
@@ -119,39 +125,39 @@ const currentIndex = computed(() => {
             <Link
               :href="route('product.show', { product: item.product_variation.product.slug, variation: item.product_variation.sku })"
               class="text-lg">{{ item.product_variation.product.name }}</Link>
-            <p class="text-sm">Quantity: {{ item.quantity }}</p>
+            <p class="text-sm">{{ t('page.user.orders.singleOrder.quantity') }}: {{ item.quantity }}</p>
           </div>
           <p class="ml-auto">${{ item.price_at_time.toFixed(2) }}</p>
         </div>
       </div>
       <div class="flex flex-col gap-8 md:flex-row lg:flex-col">
         <div class="bg-white border rounded-md p-4 h-fit w-full lg:w-auto">
-          <h2 class="text-2xl border-b pb-2">Order Summary</h2>
+          <h2 class="text-2xl border-b pb-2">{{ t('page.user.orders.singleOrder.orderSummary') }}</h2>
           <ul class="py-8">
             <li class="flex justify-between">
-              <p>Subtotal</p>
+              <p>{{ t('common.product.subtotal') }}</p>
               <span>${{ orderDetails.subtotal.toFixed(2) }}</span>
             </li>
             <li class="flex justify-between mt-4">
-              <p>Shipping</p><span>${{ orderDetails.shipping.toFixed(2) }}</span>
+              <p>{{ t('common.product.shipping') }}</p><span>${{ orderDetails.shipping.toFixed(2) }}</span>
             </li>
             <li class="flex flex-col mt-4">
               <div class="flex justify-between">
-                <p class=":text-lg">Tax</p>
+                <p class=":text-lg">{{ t('common.product.tax') }}</p>
                 <span class=":text-lg">${{ orderDetails.tax.toFixed(2) }}</span>
               </div>
-              <p class="text-xs text-slate-500">Has been calculated according to your delivery address</p>
+              <p class="text-xs text-slate-500">{{ t('page.user.orders.singleOrder.orderInfo') }}</p>
             </li>
             <li class="flex justify-between mt-4">
-              <p>Total</p>
+              <p>{{ t('common.product.total') }}</p>
               <span>${{ orderDetails.total }}</span>
             </li>
           </ul>
         </div>
         <div class="bg-white border rounded-md p-4 h-fit w-full lg:w-auto">
-          <h2 class="text-2xl border-b pb-2">Order Address</h2>
+          <h2 class="text-2xl border-b pb-2">{{ t('page.user.orders.singleOrder.orderAddress') }}</h2>
           <div>
-            <h3 class="mt-6 font-medium">Billing Address</h3>
+            <h3 class="mt-6 font-medium">{{ t('page.user.orders.singleOrder.billingAddress') }}</h3>
             <ul class="mt-2">
               <li class="text-sm">{{ orderDetails.order.billing_address_line_1 }}</li>
               <li class="text-sm">{{ orderDetails.order.billing_city }}</li>
@@ -160,7 +166,7 @@ const currentIndex = computed(() => {
               <li class="text-sm">{{ orderDetails.order.billing_postcode }}</li>
               <li v-if="orderDetails.order.billing_state" class="text-sm">{{ orderDetails.order.billing_state }}</li>
             </ul>
-            <h3 class="mt-6 font-medium">Shipping Address</h3>
+            <h3 class="mt-6 font-medium">{{ t('page.user.orders.singleOrder.shippingAddress') }}</h3>
             <ul class="mt-2">
               <li class="text-sm">{{ orderDetails.order.shipping_address_line_1 }}</li>
               <li class="text-sm">{{ orderDetails.order.shipping_city }}</li>
@@ -173,6 +179,6 @@ const currentIndex = computed(() => {
         </div>
       </div>
     </div>
-    <div v-else class="text-center py-8">Loading order details...</div>
+    <div v-else class="text-center py-8">{{ t('page.user.orders.singleOrder.loadingOrders') }}...</div>
   </DashboardLayout>
 </template>

@@ -1,0 +1,213 @@
+{
+  "header": {
+    "button": {
+      "menu": "Menu",
+      "close": "Fermer",
+      "search": "Rechercher"
+    },
+    "contextMenu": {
+      "dashboard": "Tableau de bord",
+      "logOut": "Se déconnecter"
+    }
+  },
+  "category": {
+    "new": "Nouveautés",
+    "bags": "Sac | Sacs",
+    "shoes": "Chaussure | Chaussures",
+    "accessories": "Accessoire | Accessoires",
+    "jewelry": "Bijou | Bijoux",
+    "watches": "Montre | Montres",
+    "perfumes": "Parfum | Parfums"
+  },
+  "subCategory": {
+    "bag": {
+      "handbag": "Sac à main | Sacs à main",
+      "bucket": "Sac seau | Sacs seau",
+      "hobo": "Sac hobo | Sacs hobo",
+      "envelope": "Pochette enveloppe | Pochettes enveloppe",
+      "backpack": "Sac à dos | Sacs à dos",
+      "satchel": "Cartable | Cartables",
+      "clutch": "Pochette | Pochettes",
+      "fanny": "Banane | Bananes"
+    },
+    "shoe": {
+      "sneaker": "Basket | Baskets",
+      "ankle": "Bottine | Bottines",
+      "sandal": "Sandale | Sandales",
+      "boot": "Botte | Bottes"
+    },
+    "accessory": {
+      "scarf": "Écharpe | Écharpes",
+      "sunglasses": "Lunettes de soleil",
+      "belt": "Ceinture | Ceintures"
+    },
+    "jewelry": {
+      "bracelet": "Bracelet | Bracelets",
+      "necklace": "Collier | Colliers",
+      "earring": "Boucle d'oreille | Boucles d'oreilles",
+      "ring": "Bague | Bagues"
+    }
+  },
+  "gender": {
+    "woman": "Femme | Femmes",
+    "man": "Homme | Hommes",
+    "unisex": "Unisexe"
+  },
+  "modal": {
+    "cart": {
+      "title": "Supprimer {itemToDelete}",
+      "content": "Êtes-vous sûr de vouloir supprimer {itemToDelete}"
+    },
+    "product": {
+      "title": "Supprimer la variante de {product}",
+      "content": "Êtes-vous sûr de vouloir supprimer la variante avec le SKU '{sku}'",
+      "subContent": "Vous pouvez également supprimer l'ensemble du produit, y compris toutes ses variantes"
+    },
+    "user": {
+      "title": "Supprimer {userToDelete}",
+      "content": "Êtes-vous sûr de vouloir supprimer {userToDelete}"
+    },
+    "order": {
+      "title": "Annuler la commande {order}",
+      "content": "Êtes-vous sûr de vouloir annuler la commande {order} ?"
+    }
+  },
+  "button": {
+    "showNow": "Achetez maintenant",
+    "continueShopping": "Continuer vos achats",
+    "remove": "Supprimer",
+    "delete": "Supprimer",
+    "cancel": "Annuler",
+    "continue": "Continuer",
+    "update": "Mettre à jour",
+    "deleteVariation": "Supprimer la variante",
+    "deleteProduct": "Supprimer le produit",
+    "first": "Premier",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "last": "Dernier",
+    "addFeature": "Ajouter une fonctionnalité",
+    "addVariation": "Ajouter une nouvelle variante",
+    "saveProduct": "Enregistrer le produit",
+    "addAddress": "Ajouter les détails de l'adresse",
+    "save": "Enregistrer",
+    "enable": "Activer",
+    "confirm": "Confirmer",
+    "regenerateRecoveryCodes": "Régénérer les codes de récupération",
+    "showRecoveryCodes": "Afficher les codes de récupération",
+    "disable": "Désactiver",
+    "deleteAccount": "Supprimer le compte",
+    "startShopping": "Commencer vos achats",
+    "cancelOrder": "Annuler la commande",
+    "editProfile": "Modifier mon profil",
+    "viewOrders": "Voir les commandes",
+    "viewWishlist": "Voir la liste de souhaits",
+    "viewMyOrders": "Voir Mes Commandes",
+    "login": "Se connecter",
+    "register": "S'inscrire"
+  },
+  "menuLabel": {
+    "for": "Pour",
+    "category": "Catégorie | Catégories",
+    "all": "Tous",
+    "fine": "Haute"
+  },
+  "footer": {
+    "company": {
+      "label": "Entreprise",
+      "aboutUs": "À propos de nous",
+      "faq": "FAQ | FAQs",
+      "missionStatement": "Déclaration de mission",
+      "career": "Carrière | Carrières",
+      "press": "Presse"
+    },
+    "contact": {
+      "label": "Contact",
+      "address": "Adresse",
+      "email": "Adresse e-mail",
+      "liveChat": "Chat en direct",
+      "supportHours": "Heures de support"
+    },
+    "socialNetworks": {
+      "label": "Réseaux sociaux"
+    },
+    "privacyLegal": {
+      "label": "Confidentialité et mentions légales",
+      "privacyPolicy": "Politique de confidentialité",
+      "termsConditions": "Conditions générales",
+      "cookiePolicy": "Politique de cookies"
+    }
+  },
+  "table": {
+    "pagination": "Affichage de {from} à {to} sur {total}"
+  },
+  "form": {
+    "product": {
+      "headingBase": "Informations de base",
+      "headingProductVariation": "Variations du produit",
+      "headingPreview": "Aperçu",
+      "variation": "Variante {variation}",
+      "note": "Remarque",
+      "noteMessage": "Les champs requis varient selon le type de produit. La plupart des champs sont obligatoires. Les couleurs sont facultatives. Les tailles dépendent du type de produit.",
+      "name": "Nom",
+      "description": "Description",
+      "gender": "Genre",
+      "feature": "Caractéristique | Caractéristiques",
+      "featureTitle": "Titre de la caractéristique",
+      "featureDescription": "Description de la caractéristique",
+      "category": "Catégorie | Catégories",
+      "expand": "Développer",
+      "collapse": "Réduire",
+      "image": "Image",
+      "imageTooltip": "Seuls les formats valides sont autorisés (jpeg, png, jpg, gif, bmp, svg, webp)",
+      "productType": "Type de produit",
+      "color": "Couleur",
+      "none": "Aucune",
+      "primaryColor": "Couleur principale",
+      "secondaryColor": "Couleur secondaire",
+      "price": "Prix",
+      "sku": "SKU",
+      "stock": "Stock",
+      "stockTooltip": "Indiquez le stock uniquement pour les sacs, écharpes, lunettes de soleil, boucles d'oreilles, montres",
+      "sizeStock": "Tailles et stock",
+      "sizeStockTooltip": "Entrez la quantité de stock disponible pour chaque taille de ce produit",
+      "size": "Taille",
+      "stockPerSize": "Stock par taille",
+      "noName": "Aucun nom fourni",
+      "noDescription": "Aucune description fournie",
+      "noFeatures": "Aucune caractéristique fournie",
+      "noImage": "Aucune image sélectionnée",
+      "noSku": "Aucun SKU fourni",
+      "unknown": "Inconnu"
+    }
+  },
+  "error": {
+    "imageFail": "Échec du chargement de l'image"
+  },
+  "product": {
+    "for": "Pour",
+    "type": "Type",
+    "color": "Couleur",
+    "size": "Taille",
+    "quantity": "Quantité",
+    "primaryColor": "Couleur principale",
+    "secondaryColor": "Couleur secondaire",
+    "subtotal": "Sous-total",
+    "shipping": "Livraison",
+    "tax": "Taxe",
+    "taxInfo": "Sera calculée selon votre adresse de livraison",
+    "total": "Total",
+    "name": "Nom",
+    "price": "Prix",
+    "stock": "Stock",
+    "sku": "SKU",
+    "category": "Catégorie | Catégories",
+    "createdAt": "Créé"
+  },
+  "user": {
+    "name": "Nom",
+    "email": "E-mail",
+    "role": "Rôle",
+    "createdAt": "Créé"
+  }
+}

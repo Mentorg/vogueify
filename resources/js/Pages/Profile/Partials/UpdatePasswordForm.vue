@@ -8,7 +8,9 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { useToast } from 'vue-toast-notification';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const toast = useToast();
 const passwordInput = ref(null);
 const currentPasswordInput = ref(null);
@@ -25,7 +27,7 @@ const updatePassword = () => {
     preserveScroll: true,
     onSuccess: () => {
       toast.open({
-        message: 'Your password updated successfully.',
+        message: `${t('page.user.profile.updatePassword.successMessage')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -35,7 +37,7 @@ const updatePassword = () => {
     onError: () => {
       if (form.errors.password) {
         toast.open({
-          message: 'Failed to update your password! ' + errors.error,
+          message: `${t('page.user.profile.updatePassword.errorMessage')}! ` + errors.error,
           type: 'error',
           position: 'top',
           duration: 4000,
@@ -46,7 +48,7 @@ const updatePassword = () => {
 
       if (form.errors.current_password) {
         toast.open({
-          message: 'Failed to update your password! ' + errors.error,
+          message: `${t('page.user.profile.updatePassword.errorMessage')}! ` + errors.error,
           type: 'error',
           position: 'top',
           duration: 4000,
@@ -62,30 +64,30 @@ const updatePassword = () => {
 <template>
   <FormSection @submitted="updatePassword">
     <template #title>
-      Update Password
+      {{ t('page.user.profile.updatePassword.label') }}
     </template>
 
     <template #description>
-      Ensure your account is using a long, random password to stay secure.
+      {{ t('page.user.profile.updatePassword.passwordInstructions') }}.
     </template>
 
     <template #form>
       <div class="col-span-6 sm:col-span-12">
-        <InputLabel for="current_password" value="Current Password" />
+        <InputLabel for="current_password" :value="t('page.user.profile.updatePassword.currentPassword')" />
         <TextInput id="current_password" ref="currentPasswordInput" v-model="form.current_password" type="password"
           class="mt-1 block w-full" autocomplete="current-password" />
         <InputError :message="form.errors.current_password" class="mt-2" />
       </div>
 
       <div class="col-span-6 sm:col-span-12">
-        <InputLabel for="password" value="New Password" />
+        <InputLabel for="password" :value="t('page.user.profile.updatePassword.newPassword')" />
         <TextInput id="password" ref="passwordInput" v-model="form.password" type="password" class="mt-1 block w-full"
           autocomplete="new-password" />
         <InputError :message="form.errors.password" class="mt-2" />
       </div>
 
       <div class="col-span-6 sm:col-span-12">
-        <InputLabel for="password_confirmation" value="Confirm Password" />
+        <InputLabel for="password_confirmation" :value="t('page.user.profile.updatePassword.confirmPassword')" />
         <TextInput id="password_confirmation" v-model="form.password_confirmation" type="password"
           class="mt-1 block w-full" autocomplete="new-password" />
         <InputError :message="form.errors.password_confirmation" class="mt-2" />
@@ -94,11 +96,11 @@ const updatePassword = () => {
 
     <template #actions>
       <ActionMessage :on="form.recentlySuccessful" class="me-3">
-        Saved.
+        {{ t('page.user.profile.saved') }}.
       </ActionMessage>
 
       <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-        Save
+        {{ t('common.button.save') }}
       </PrimaryButton>
     </template>
   </FormSection>

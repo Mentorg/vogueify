@@ -1,0 +1,213 @@
+{
+  "header": {
+    "button": {
+      "menu": "Menu",
+      "close": "Close",
+      "search": "Search"
+    },
+    "contextMenu": {
+      "dashboard": "Dashboard",
+      "logOut": "Log Out"
+    }
+  },
+  "category": {
+    "new": "New",
+    "bags": "Bag | Bags",
+    "shoes": "Shoe | Shoes",
+    "accessories": "Accessory | Accessories",
+    "jewelry": "Jewelry",
+    "watches": "Watch | Watches",
+    "perfumes": "Perfume | Perfumes"
+  },
+  "subCategory": {
+    "bag": {
+      "handbag": "Handbag | Handbags",
+      "bucket": "Bucket",
+      "hobo": "Hobo",
+      "envelope": "Envelope",
+      "backpack": "Backpack",
+      "satchel": "Satchel",
+      "clutch": "Clutch",
+      "fanny": "Fanny Pack"
+    },
+    "shoe": {
+      "sneaker": "Sneaker | Sneakers",
+      "ankle": "Ankle Boot | Ankle Boots",
+      "sandal": "Sandal | Sandals",
+      "boot": "Boot | Boots"
+    },
+    "accessory": {
+      "scarf": "Scarf | Scarves",
+      "sunglasses": "Sunglasses",
+      "belt": "Belt | Belts"
+    },
+    "jewelry": {
+      "bracelet": "Bracelet | Bracelets",
+      "necklace": "Necklace | Necklaces",
+      "earring": "Earring | Earrings",
+      "ring": "Ring | Rings"
+    }
+  },
+  "gender": {
+    "woman": "Woman | Women",
+    "man": "Man | Men",
+    "unisex": "Unisex"
+  },
+  "modal": {
+    "cart": {
+      "title": "Delete {itemToDelete}",
+      "content": "Are you sure you want to delete {itemToDelete}"
+    },
+    "product": {
+      "title": "Delete {product} Variation",
+      "content": "Are you sure you want to delete the variation with SKU '{sku}'",
+      "subContent": "You can also delete the entire product, including all its variations"
+    },
+    "user": {
+      "title": "Delete {userToDelete}",
+      "content": "Are you sure you want to delete {userToDelete}"
+    },
+    "order": {
+      "title": "Cancel {order} order",
+      "content": "Are you sure you want to cancel the {order} order"
+    }
+  },
+  "button": {
+    "showNow": "Shop Now",
+    "continueShopping": "Continue Shopping",
+    "remove": "Remove",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "update": "Update",
+    "deleteVariation": "Delete Variation",
+    "deleteProduct": "Delete Product",
+    "first": "First",
+    "previous": "Previous",
+    "next": "Next",
+    "last": "Last",
+    "addFeature": "Add Feature",
+    "addVariation": "Add New Variation",
+    "saveProduct": "Save Product",
+    "addAddress": "Add address details",
+    "save": "Save",
+    "enable": "Enable",
+    "confirm": "Confirm",
+    "regenerateRecoveryCodes": "Regenerate Recovery Codes",
+    "showRecoveryCodes": "Show Recovery Codes",
+    "disable": "Disable",
+    "deleteAccount": "Delete Account",
+    "startShopping": "Start Shopping",
+    "cancelOrder": "Cancel Order",
+    "editProfile": "Edit My Profile",
+    "viewOrders": "View Orders",
+    "viewWishlist": "View Wishlist",
+    "viewMyOrders": "View My Orders",
+    "login": "Log In",
+    "register": "Register"
+  },
+  "menuLabel": {
+    "for": "For",
+    "category": "Category | Categories",
+    "all": "All",
+    "fine": "Fine"
+  },
+  "footer": {
+    "company": {
+      "label": "Company",
+      "aboutUs": "About Us",
+      "faq": "FAQ | FAQs",
+      "missionStatement": "Mission Statement",
+      "career": "Career | Careers",
+      "press": "Press"
+    },
+    "contact": {
+      "label": "Contact",
+      "address": "Address",
+      "email": "Email Address",
+      "liveChat": "Live Chat",
+      "supportHours": "Support Hours"
+    },
+    "socialNetworks": {
+      "label": "Social Networks"
+    },
+    "privacyLegal": {
+      "label": "Privacy & Legal",
+      "privacyPolicy": "Privacy Policy",
+      "termsConditions": "Terms & Conditions",
+      "cookiePolicy": "Cookie Policy"
+    }
+  },
+  "table": {
+    "pagination": "Showing {from}-{to} of {total}"
+  },
+  "form": {
+    "product": {
+      "headingBase": "Base Information",
+      "headingProductVariation": "Product Variations",
+      "headingPreview": "Preview",
+      "variation": "Variation {variation}",
+      "note": "Note",
+      "noteMessage": "Required fields vary by product type. Most fields are required. Colors are optional. Sizes apply depending on the product type",
+      "name": "Name",
+      "description": "Description",
+      "gender": "Gender",
+      "feature": "Feature | Features",
+      "featureTitle": "Feature Title",
+      "featureDescription": "Feature Description",
+      "category": "Category | Categories",
+      "expand": "Expand",
+      "collapse": "Collapse",
+      "image": "Image",
+      "imageTooltip": "Only valid formats are allowed (jpeg, png, jpg, gif, bmp, svg, webp)",
+      "productType": "Product Type",
+      "color": "Color",
+      "none": "None",
+      "primaryColor": "Primary Color",
+      "secondaryColor": "Secondary Color",
+      "price": "Price",
+      "sku": "SKU",
+      "stock": "Stock",
+      "stockTooltip": "Provide stock only for types of bags, scarves, sunglasses, earrings, watches",
+      "sizeStock": "Sizes & Stock",
+      "sizeStockTooltip": "Enter the available stock quantity for each size of this product",
+      "size": "Size",
+      "stockPerSize": "Stock per Size",
+      "noName": "No name provided",
+      "noDescription": "No description provided",
+      "noFeatures": "No features provided",
+      "noImage": "No image selected",
+      "noSku": "No SKU provided",
+      "unknown": "Unknown"
+    }
+  },
+  "error": {
+    "imageFail": "Image failed to load"
+  },
+  "product": {
+    "for": "For",
+    "type": "Type",
+    "color": "Color",
+    "size": "Size",
+    "quantity": "Quantity",
+    "primaryColor": "Primary Color",
+    "secondaryColor": "Secondary Color",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "tax": "Tax",
+    "taxInfo": "Will be calculated according to your delivery address",
+    "total": "Total",
+    "name": "Name",
+    "price": "Price",
+    "stock": "Stock",
+    "sku": "SKU",
+    "category": "Category | Categories",
+    "createdAt": "Created"
+  },
+  "user": {
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "createdAt": "Created"
+  }
+}

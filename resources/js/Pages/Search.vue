@@ -6,6 +6,7 @@ import {
   PhHeart,
   PhMagnifyingGlass,
 } from "@phosphor-icons/vue";
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps({
   categories: Array,
@@ -13,6 +14,7 @@ const props = defineProps({
   menSeasonalBags: Array
 })
 
+const { t } = useI18n();
 const wishlist = usePage().props.auth.wishlist;
 const query = ref('');
 const localWishlist = ref([...wishlist]);
@@ -73,7 +75,7 @@ const addToWishlist = async (productVariationId) => {
 
 <template>
 
-  <Head title="Search" />
+  <Head :title="t('page.search.label')" />
   <div class="bg-white fixed top-0 left-0 w-full h-full z-50">
     <div class="flex justify-between px-4 py-[8px] md:px-[60px] md:py-[17px]">
       <div></div>
@@ -86,21 +88,21 @@ const addToWishlist = async (productVariationId) => {
     </div>
     <div class="px-4 py-[8px] md:px-[60px] md:py-[17px]">
       <form :action="route('products.search')" method="get" class="flex gap-4">
-        <input type="text" name="search" :value="query" @input="onInput" id="search" placeholder="Search for Biker Bag"
-          class="w-full rounded-full py-2 px-8 text-center" autofocus>
+        <input type="text" name="search" :value="query" @input="onInput" id="search"
+          :placeholder="t('page.search.searchPlaceholder')" class="w-full rounded-full py-2 px-8 text-center" autofocus>
         <button type="submit" class="p-4 border border-black rounded-full">
           <PhMagnifyingGlass />
         </button>
       </form>
       <ul class="flex justify-center mt-4 gap-x-4">
-        <p class="text-xs uppercase">Trending searches</p>
+        <p class="text-xs uppercase">{{ t('page.search.trendingSearches') }}</p>
         <li v-for="category in categories" :key="category.id" class="text-xs">{{ category.name.charAt(0).toUpperCase() +
           category.name.slice(1) }}</li>
       </ul>
     </div>
     <div class="overflow-y-auto max-h-[calc(100vh-200px)]">
       <div class="py-6">
-        <h2 class="font-medium ml-4 my-4">Women's Seasonal</h2>
+        <h2 class="font-medium ml-4 my-4">{{ t('page.search.womenSeasonal') }}</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 justify-items-center">
           <div v-for="product in womenSeasonalBags" :key="product.id"
             class="parent-class relative flex flex-col items-center w-full">
@@ -127,7 +129,7 @@ const addToWishlist = async (productVariationId) => {
         </div>
       </div>
       <div class="py-6">
-        <h2 class="font-medium ml-4 my-4">Men's Seasonal</h2>
+        <h2 class="font-medium ml-4 my-4">{{ t('page.search.menSeasonal') }}</h2>
         <div class="grid grid-cols-2 gap-y-6 md:grid-cols-4 lg:grid-cols-6 justify-items-center">
           <div v-for="product in menSeasonalBags" :key="product.id"
             class="parent-class relative flex flex-col items-center w-full">

@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 import ActionSection from '@/Components/ActionSection.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import DialogModal from '@/Components/DialogModal.vue';
@@ -9,6 +10,7 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { useToast } from 'vue-toast-notification';
 
+const { t } = useI18n();
 const toast = useToast();
 const confirmingUserDeletion = ref(false);
 const passwordInput = ref(null);
@@ -28,7 +30,7 @@ const deleteUser = () => {
     preserveScroll: true,
     onSuccess: () => {
       toast.open({
-        message: 'Account deleted successfully.',
+        message: `${t('page.user.profile.deleteUser.successMessage')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -37,7 +39,7 @@ const deleteUser = () => {
     },
     onError: () => {
       toast.open({
-        message: 'Failed to delete account! ' + errors.error,
+        message: `{${t('page.user.profile.deleteUser.errorMessage')}}! ` + errors.error,
         type: 'error',
         position: 'top',
         duration: 4000,
@@ -67,30 +69,27 @@ const closeModal = () => {
 
     <template #content>
       <div class="max-w-xl text-sm text-gray-600">
-        Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your
-        account, please download any data or information that you wish to retain.
+        {{ t('page.user.profile.deleteUser.accountDeletionWarning') }}.
       </div>
 
       <div class="mt-5">
         <DangerButton @click="confirmUserDeletion">
-          Delete Account
+          {{ t('common.button.deleteAccount') }}
         </DangerButton>
       </div>
 
       <!-- Delete Account Confirmation Modal -->
       <DialogModal :show="confirmingUserDeletion" @close="closeModal">
         <template #title>
-          Delete Account
+          {{ t('common.button.deleteAccount') }}
         </template>
 
         <template #content>
-          Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will
-          be permanently deleted. Please enter your password to confirm you would like to permanently delete your
-          account.
-
+          {{ t('page.user.profile.deleteUser.accountDeletionConfirm') }}.
           <div class="mt-4">
             <TextInput ref="passwordInput" v-model="form.password" type="password" class="mt-1 block w-3/4"
-              placeholder="Password" autocomplete="current-password" @keyup.enter="deleteUser" />
+              :placeholder="t('page.user.profile.password')" autocomplete="current-password"
+              @keyup.enter="deleteUser" />
 
             <InputError :message="form.errors.password" class="mt-2" />
           </div>
@@ -98,12 +97,12 @@ const closeModal = () => {
 
         <template #footer>
           <SecondaryButton @click="closeModal">
-            Cancel
+            {{ t('common.button.cancel') }}
           </SecondaryButton>
 
           <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
             @click="deleteUser">
-            Delete Account
+            {{ t('common.button.deleteAccount') }}
           </DangerButton>
         </template>
       </DialogModal>

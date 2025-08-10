@@ -4,6 +4,7 @@ import { Link, router, useForm } from '@inertiajs/vue3';
 import {
   PhX,
 } from "@phosphor-icons/vue";
+import { useI18n } from 'vue-i18n';
 import ActionMessage from '@/Components/ActionMessage.vue';
 import FormSection from '@/Components/FormSection.vue';
 import InputError from '@/Components/InputError.vue';
@@ -19,6 +20,7 @@ const props = defineProps({
   countries: Array
 });
 
+const { t } = useI18n();
 const toast = useToast();
 
 const form = useForm({
@@ -55,7 +57,7 @@ const updateProfileInformation = () => {
     preserveScroll: true,
     onSuccess: () => {
       toast.open({
-        message: 'Your information updated successfully.',
+        message: `${t('page.user.profile.basicInfo.successMessage')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -64,7 +66,7 @@ const updateProfileInformation = () => {
     },
     onError: (errors) => {
       toast.open({
-        message: 'Failed to update your information! ' + errors.error,
+        message: `${t('page.user.profile.basicInfo.errorMessage')}! ` + errors.error,
         type: 'error',
         position: 'top',
         duration: 4000,
@@ -159,40 +161,39 @@ const toggleAddressInputs = (addressValue) => {
 
       <!-- Title -->
       <div class="col-span-6 sm:col-span-12">
-        <InputLabel for="title" value="Title*" />
+        <InputLabel for="title" :value="`${t('page.user.profile.basicInfo.title')}*`" />
         <SelectInput name="title" id="title" v-model="form.title" required>
-          <option value="mr">Mr.</option>
-          <option value="ms">Ms.</option>
+          <option value="mr">{{ t('page.user.profile.basicInfo.titleMr') }}</option>
+          <option value="ms">{{ t('page.user.profile.basicInfo.titleMs') }}</option>
         </SelectInput>
       </div>
 
       <!-- Name -->
       <div class="col-span-6 sm:col-span-12">
-        <InputLabel for="name" value="Name*" />
+        <InputLabel for="name" :value="`${t('page.user.profile.basicInfo.name')}*`" />
         <TextInput id="name" v-model="form.name" type="text" class="mt-1 block w-full" required autocomplete="name" />
         <InputError :message="form.errors.name" class="mt-2" />
       </div>
 
       <!-- Email -->
       <div class="col-span-6 sm:col-span-12">
-        <InputLabel for="email" value="Email*" />
+        <InputLabel for="email" :value="`${t('page.user.profile.basicInfo.email')}*`" />
         <TextInput id="email" v-model="form.email" type="email" class="mt-1 block w-full" required
           autocomplete="username" />
         <InputError :message="form.errors.email" class="mt-2" />
 
         <div v-if="$page.props.jetstream.hasEmailVerification && user.email_verified_at === null">
           <p class="text-sm mt-2">
-            Your email address is unverified.
-
+            {{ t('page.user.profile.basicInfo.emailNotVerified') }}
             <Link :href="route('verification.send')" method="post" as="button"
               class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               @click.prevent="sendEmailVerification">
-            Click here to re-send the verification email.
+            {{ t('page.user.profile.basicInfo.sendEmailVerification') }}
             </Link>
           </p>
 
           <div v-show="verificationLinkSent" class="mt-2 font-medium text-sm text-green-600">
-            A new verification link has been sent to your email address.
+            {{ t('page.user.profile.basicInfo.newVerificationLink') }}
           </div>
         </div>
       </div>
@@ -200,8 +201,8 @@ const toggleAddressInputs = (addressValue) => {
       <!-- Address details -->
       <div class="flex justify-between col-span-6 sm:col-span-12">
         <button @click.prevent="toggleAddressInputs(true)"
-          class="py-2 px-8 border border-black rounded-full transition-all hover:bg-black hover:text-white">Add address
-          details</button>
+          class="py-2 px-8 border border-black rounded-full transition-all hover:bg-black hover:text-white">{{
+            t('common.button.addAddress') }}</button>
         <button @click.prevent="toggleAddressInputs(false)"
           class="flex justify-center items-center p-2 w-10 h-10 border border-black rounded-full transition-all hover:bg-black hover:text-white">
           <PhX size="18" />
@@ -209,55 +210,55 @@ const toggleAddressInputs = (addressValue) => {
       </div>
       <div v-if="showAddressInputs" class="col-span-6 sm:col-span-12">
         <div>
-          <InputLabel for="address_line_1" value="Address 1*" />
+          <InputLabel for="address_line_1" :value="`${t('page.user.profile.basicInfo.address1')}*`" />
           <TextInput id="address_line_1" v-model="form.address_line_1" type="text" class="mt-1 block w-full" required
             autocomplete="address_line_1" />
           <InputError :message="form.errors.address_line_1" class="mt-2" />
         </div>
 
         <div>
-          <InputLabel for="address_line_2" value="Address 2" />
+          <InputLabel for="address_line_2" :value="`${t('page.user.profile.basicInfo.address2')}`" />
           <TextInput id="address_line_2" v-model="form.address_line_2" type="text" class="mt-1 block w-full"
             autocomplete="address_line_2" />
           <InputError :message="form.errors.address_line_2" class="mt-2" />
         </div>
 
         <div>
-          <InputLabel for="postcode" value="Postcode*" />
+          <InputLabel for="postcode" :value="`${t('page.user.profile.basicInfo.postcode')}*`" />
           <TextInput id="postcode" v-model="form.postcode" type="text" class="mt-1 block w-full" required
             autocomplete="postcode" />
           <InputError :message="form.errors.postcode" class="mt-2" />
         </div>
 
         <div>
-          <InputLabel for="city" value="City*" />
+          <InputLabel for="city" :value="`${t('page.user.profile.basicInfo.city')}*`" />
           <TextInput id="city" v-model="form.city" type="text" class="mt-1 block w-full" required autocomplete="city" />
           <InputError :message="form.errors.city" class="mt-2" />
         </div>
 
         <div v-if="form.country_id === 'usa'" class="state">
-          <InputLabel for="state" value="State" />
+          <InputLabel for="state" :value="`${t('page.user.profile.basicInfo.state')}`" />
           <TextInput id="state" v-model="form.state" type="text" class="mt-1 block w-full" autocomplete="state" />
           <InputError :message="form.errors.state" class="mt-2" />
         </div>
 
         <!-- Country/Region -->
         <div class="col-span-6 sm:col-span-12">
-          <InputLabel for="country_id" value="Country/Region*" />
+          <InputLabel for="country_id" :value="`${t('page.user.profile.basicInfo.countryRegion')}*`" />
           <SelectInput name="country_id" id="country_id" v-model="form.country_id">
             <option v-for="country in countries" :value="country.id" :key="country.id">{{ country.name }}</option>
           </SelectInput>
         </div>
 
         <div>
-          <InputLabel for="phone_number" value="Phone Number" />
+          <InputLabel for="phone_number" :value="`${t('page.user.profile.basicInfo.phone')}*`" />
           <TextInput id="phone_number" v-model="form.phone_number" type="text" class="mt-1 block w-full"
             autocomplete="phone_number" />
           <InputError :message="form.errors.phone_number" class="mt-2" />
         </div>
       </div>
       <div class="col-span-6 sm:col-span-12">
-        <InputLabel for="date_of_birth" value="Date of Birth" />
+        <InputLabel for="date_of_birth" :value="`${t('page.user.profile.basicInfo.birthDate')}*`" />
         <TextInput id="date_of_birth" v-model="form.date_of_birth" type="text" class="mt-1 block w-full"
           autocomplete="date_of_birth" />
         <InputError :message="form.errors.date_of_birth" class="mt-2" />
@@ -266,11 +267,11 @@ const toggleAddressInputs = (addressValue) => {
 
     <template #actions>
       <ActionMessage :on="form.recentlySuccessful" class="me-3">
-        Saved.
+        {{ t('page.user.profile.saved') }}
       </ActionMessage>
 
       <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-        Save
+        {{ t('common.button.save') }}
       </PrimaryButton>
     </template>
   </FormSection>

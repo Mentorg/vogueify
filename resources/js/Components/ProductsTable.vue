@@ -7,14 +7,15 @@ import DialogModal from './DialogModal.vue';
 import DangerButton from './DangerButton.vue';
 import SecondaryButton from './SecondaryButton.vue';
 import { useToast } from 'vue-toast-notification';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps({
   variations: Array,
   categories: Array
 });
 
+const { t } = useI18n();
 const toast = useToast();
-
 const form = useForm({});
 const openMenu = ref(null);
 const variationToDelete = ref(null);
@@ -93,12 +94,12 @@ onBeforeUnmount(() => {
           class="bg-white uppercase tracking-wider sticky top-0 border-b-2 outline outline-2 outline-neutral-300 border-neutral-300">
           <tr class="grid grid-cols-[0.5fr,4fr,2fr,2fr,3fr,3fr,3fr,1fr]">
             <th scope="col" class="px-6 py-4">#</th>
-            <th scope="col" class="px-6 py-4">Product</th>
-            <th scope="col" class="px-6 py-4">Price</th>
-            <th scope="col" class="px-6 py-4">Stock</th>
-            <th scope="col" class="px-6 py-4">SKU</th>
-            <th scope="col" class="px-6 py-4">Category</th>
-            <th scope="col" class="px-6 py-4">Created</th>
+            <th scope="col" class="px-6 py-4">{{ t('common.product.name') }}</th>
+            <th scope="col" class="px-6 py-4">{{ t('common.product.price') }}</th>
+            <th scope="col" class="px-6 py-4">{{ t('common.product.stock') }}</th>
+            <th scope="col" class="px-6 py-4">{{ t('common.product.sku') }}</th>
+            <th scope="col" class="px-6 py-4">{{ t('common.product.category') }}</th>
+            <th scope="col" class="px-6 py-4">{{ t('common.product.createdAt') }}</th>
             <th scope="col" class="px-6 py-4"></th>
           </tr>
         </thead>
@@ -129,12 +130,12 @@ onBeforeUnmount(() => {
                 <Link :href="route('product.edit', { product: variation.product.slug })"
                   class="flex items-center gap-x-2 transition-all hover:text-slate-500">
                 <PhPencilSimple :size="16" color="green" />
-                Update
+                {{ t('common.button.update') }}
                 </Link>
                 <button @click="confirmVariationDeletion(variation)"
                   class="flex items-center gap-x-2 transition-all hover:text-slate-500">
                   <PhTrash :size="16" color="red" />
-                  Delete
+                  {{ t('common.button.delete') }}
                 </button>
               </div>
             </td>
@@ -143,58 +144,58 @@ onBeforeUnmount(() => {
       </table>
       <DialogModal :show="variationToDelete !== null" @close="closeModal">
         <template #title>
-          Delete '{{ variationToDelete?.product.name }}' Variation?
+          {{ t('common.modal.product.title', { product: variationToDelete?.product.name }) }}?
         </template>
         <template #content>
-          Are you sure you want to delete the variation with SKU '{{ variationToDelete?.sku }}'?
+          {{ t('common.modal.product.content', { sku: variationToDelete?.sku }) }}?
           <br />
-          You can also delete the entire product, including all its variations.
+          {{ t('common.modal.product.subContent') }}.
           <div v-if="errorMessage" class="text-red-500 mt-2">
             {{ errorMessage }}
           </div>
         </template>
         <template #footer>
-          <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+          <SecondaryButton @click="closeModal">{{ t('common.button.cancel') }}</SecondaryButton>
           <DangerButton class="ms-3" @click="destroy(variationToDelete?.id, 'variation')">
             <PhTrash :size="16" color="white" class="mr-2" />
-            Delete Variation
+            {{ t('common.button.deleteVariation') }}
           </DangerButton>
           <DangerButton class="ms-3" @click="destroy(variationToDelete?.product_id, 'product')">
             <PhTrash :size="16" color="white" class="mr-2" />
-            Delete Product
+            {{ t('common.button.deleteProduct') }}
           </DangerButton>
         </template>
       </DialogModal>
       <nav class="bg-white sticky bottom-0 flex py-2 px-4 border-t-2 items-center justify-between text-sm"
         aria-label="Page navigation example">
         <p>
-          Showing <strong>{{ variations.from }}-{{ variations.to }}</strong> of <strong>{{ variations.total }}</strong>
+          {{ t('common.table.pagination', { from: variations.from, to: variations.to, total: variations.total }) }}
         </p>
         <ul class="list-style-none flex gap-x-4 mx-2">
           <li v-if="variations.first_page_url">
             <button class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm"
               @click="router.visit(variations.first_page_url)">
-              First
+              {{ t('common.button.first') }}
             </button>
           </li>
           <li v-if="variations.prev_page_url">
             <button class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm"
               @click="router.visit(variations.prev_page_url)">
               <PhCaretLeft :size="12" />
-              Previous
+              {{ t('common.button.previous') }}
             </button>
           </li>
           <li v-if="variations.next_page_url">
             <button class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm"
               @click="router.visit(variations.next_page_url)">
-              Next
+              {{ t('common.button.next') }}
               <PhCaretRight :size="12" />
             </button>
           </li>
           <li v-if="variations.last_page_url">
             <button class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm"
               @click="router.visit(variations.last_page_url)">
-              Last
+              {{ t('common.button.last') }}
             </button>
           </li>
         </ul>

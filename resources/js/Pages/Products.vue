@@ -2,6 +2,7 @@
 import { defineProps, ref } from "vue";
 import { Head, Link, usePage } from "@inertiajs/vue3";
 import { PhHeart } from "@phosphor-icons/vue";
+import { useI18n } from 'vue-i18n';
 import Menu from '@Components/Menu.vue'
 import Footer from "@/Components/Footer.vue";
 
@@ -9,10 +10,13 @@ const props = defineProps({
   products: Array,
 });
 
+const { t } = useI18n();
 const wishlist = usePage().props.auth.wishlist;
 const localWishlist = ref([...wishlist]);
 
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+const productType = props.products[0].product.category.name.charAt(0).toUpperCase() + props.products[0].product.category.name.slice(1);
+const productGender = props.products[0].product.gender.charAt(0).toUpperCase() + props.products[0].product.gender.slice(1);
 
 const addToWishlist = async (productVariationId) => {
   const existing = localWishlist.value.find(item => item.product_variation_id === productVariationId);
@@ -60,7 +64,7 @@ const addToWishlist = async (productVariationId) => {
 
 <template>
 
-  <Head title="Products" />
+  <Head :title="t('page.products.label', { productGender: productGender, productType: productType })" />
   <Layout>
     <Menu />
     <main>

@@ -1,0 +1,182 @@
+{
+  "home": {
+    "label": "Home",
+    "category": {
+      "heading": "Explore Our Most Popular Categories",
+      "subheading": "Discover popular seasonal prices"
+    },
+    "newIn": {
+      "heading": "New In: {gender} {category}"
+    }
+  },
+  "search": {
+    "label": "Search",
+    "searchPlaceholder": "Search for Biker Bag",
+    "trendingSearches": "Trending Searches",
+    "womenSeasonal": "Women Seasonal",
+    "menSeasonal": "Men Seasonal"
+  },
+  "products": {
+    "label": "Browse {productGender} {productType}"
+  },
+  "product": {
+    "alsoAvailable": "Also available in",
+    "notAvailable": "not available",
+    "addedToBag": "Added to Shopping Bag",
+    "capacity": "Capacity",
+    "chainLength": "Chain length",
+    "button": {
+      "placeInCart": "Place in Cart",
+      "viewBag": "View your shopping bag"
+    }
+  },
+  "cart": {
+    "label": "My Shopping Cart",
+    "perPiece": "per piece",
+    "emptyCart": "Your shopping bag is empty",
+    "button": {
+      "addToWishlist": "Add to Wishlist",
+      "proceedToCheckout": "Proceed to Checkout"
+    }
+  },
+  "checkout": {
+    "checkoutTitle": "Checkout",
+    "checkoutLabel": "Checkout Details",
+    "shippingHeading": "Shipping Address",
+    "shippingAddress1": "Shipping Address Line 1",
+    "shippingAddress2": "Shipping Address Line 2",
+    "shippingCity": "Shipping City",
+    "shippingState": "Shipping State",
+    "shippingPostcode": "Shipping Postcode",
+    "shippingCountry": "Shipping Country",
+    "shippingPhone": "Shipping Phone Number",
+    "billingHeading": "Billing Address",
+    "billingAddress1": "Billing Address Line 1",
+    "billingAddress2": "Billing Address Line 2",
+    "billingCity": "Billing City",
+    "billingState": "Billing State",
+    "billingPostcode": "Billing Postcode",
+    "billingCountry": "Billing Country",
+    "billingPhone": "Billing Phone Number",
+    "modifySelection": "Modify the Selection",
+    "checkoutSuccess": {
+      "label": "Order Confirmed - Thank You",
+      "thankYou": "Thank You {userEmail} for Shopping with Us",
+      "thankYouMessage": "Your purchase was successful, and a confirmation email has been sent to you at {userEmail}. We'll notify you when your order ships. If you have any questions, feel free to contact our support team.",
+      "orderSummary": "Order Summary",
+      "total": "Total"
+    }
+  },
+  "admin": {
+    "overview": "Overview",
+    "products": "Products",
+    "createProduct": "Create Product",
+    "updateProduct": "Update {product}",
+    "users": "Users"
+  },
+  "user": {
+    "overview": "Overview",
+    "profile": {
+      "label": "My Profile",
+      "saved": "Saved",
+      "password": "Password",
+      "basicInfo": {
+        "successMessage": "Your information updated successfully",
+        "errorMessage": "Failed to update your information",
+        "title": "Title",
+        "titleMr": "Mr.",
+        "titleMs": "Ms.",
+        "name": "Name",
+        "email": "Email",
+        "emailNotVerified": "Your email address is unverified",
+        "sendEmailVerification": "Click here to re-send the verification email",
+        "newVerificationLink": "A new verification link has been sent to your email address",
+        "noAddress": "No address provided",
+        "address1": "Address 1",
+        "address2": "Address 2",
+        "postcode": "Postcode",
+        "location": "Location",
+        "city": "City",
+        "state": "State",
+        "countryRegion": "Country/Region",
+        "phone": "Phone Number",
+        "birthDate": "Date of Birth"
+      },
+      "updatePassword": {
+        "label": "Update Password",
+        "successMessage": "Your password updated successfully",
+        "errorMessage": "Failed to update your password",
+        "passwordInstructions": "Ensure your account is using a long, random password to stay secure",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm Password"
+      },
+      "twoFactor": {
+        "tfEnabledNotConfirmed": "You have enabled two factor authentication",
+        "tfFinish": "Finish enabling two factor authentication",
+        "tfNotEnabled": "You have not enabled two factor authentication",
+        "tfInfo": "When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's Google Authenticator application",
+        "tfFinishInstruction": "To finish enabling two factor authentication, scan the following QR code using your phone's authenticator application or enter the setup key and provide the generated OTP code",
+        "tfEnabled": "Two factor authentication is now enabled. Scan the following QR code using your phone's authenticator application or enter the setup key",
+        "tfSetupKey": "Setup Key",
+        "tfCode": "Code",
+        "tfRecoveryCodeInstruction": "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost",
+        "tfEnabledSuccess": "You have successfully enabled two factor authentication",
+        "tfConfirmed": "You have successfully confirmed two factor authentication"
+      },
+      "deleteUser": {
+        "successMessage": "Account deleted successfully",
+        "errorMessage": "Failed to delete account",
+        "accountDeletionWarning": "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain",
+        "accountDeletionConfirm": "Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account"
+      }
+    },
+    "orders": {
+      "label": "My Orders",
+      "successMessage": "Order canceled successfully",
+      "errorMessage": "Failed to cancel your order",
+      "invalidOrderId": "Invalid order ID. Please try again",
+      "currentOrders": "Current Orders",
+      "noCurrentOrders": "There are no current orders",
+      "purchaseHistory": "My Purchase History",
+      "noPastOrders": "No past orders available",
+      "singleOrder": {
+        "label": "Order {order}",
+        "orderStatus": "Order Status",
+        "orderDate": "Order date",
+        "shippingDate": "Shipping date",
+        "orderProducts": "Product(s)",
+        "quantity": "Quantity",
+        "orderSummary": "Order Summary",
+        "orderInfo": "Has been calculated according to your delivery address",
+        "orderAddress": "Order Address",
+        "billingAddress": "Billing Address",
+        "shippingAddress": "Shipping Address",
+        "loadingOrders": "Loading order details"
+      }
+    },
+    "wishlist": {
+      "label": "My Wishlist",
+      "noWishlistItems": "No current products on your wishlist"
+    }
+  },
+  "authentication": {
+    "email": "Email",
+    "password": "Password",
+    "login": {
+      "label": "Log in",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot your password",
+      "noAccount": "No account? Sign Up now"
+    },
+    "register": {
+      "label": "Register",
+      "name": "Name",
+      "title": "Title",
+      "titleMr": "Mr.",
+      "titleMs": "Ms.",
+      "confirmPassword": "Confirm Password",
+      "alreadyRegistered": "Already registered"
+    }
+  }
+}

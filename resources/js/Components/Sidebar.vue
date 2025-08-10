@@ -1,6 +1,8 @@
 <script setup>
 import { Link, usePage } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const currentPath = window.location.pathname;
 const user = usePage().props.auth.user;
 
@@ -12,24 +14,27 @@ const user = usePage().props.auth.user;
       <li v-if="user.role === 'admin'">
         <Link :href="route('admin.overview')"
           class="flex w-full py-2 px-4 rounded-md transition-all hover:bg-black hover:text-white"
-          :class="{ 'bg-black text-white': currentPath === '/admin/overview' }">Overview</Link>
+          :class="{ 'bg-black text-white': currentPath === '/admin/overview' }">{{ t('page.admin.overview') }}
+        </Link>
       </li>
       <li>
         <Link :href="route('admin.products')"
           class="flex w-full py-2 px-4 rounded-md transition-all hover:bg-black hover:text-white"
-          :class="{ 'bg-black text-white': currentPath === '/admin/products' }">Products</Link>
+          :class="{ 'bg-black text-white': currentPath === '/admin/products' }">{{ t('page.admin.products') }}
+        </Link>
       </li>
       <li>
         <Link :href="route('product.create')"
           class="flex w-full py-2 px-4 rounded-md transition-all hover:bg-black hover:text-white"
           :class="{ 'bg-black text-white': currentPath === '/admin/product/create' }">
-        Create Product
+        {{ t('page.admin.createProduct') }}
         </Link>
       </li>
       <li v-if="user.role === 'admin'">
         <Link :href="route('admin.users')"
           class="flex w-full py-2 px-4 rounded-md transition-all hover:bg-black hover:text-white"
-          :class="{ 'bg-black text-white': currentPath === '/admin/users' }">Users</Link>
+          :class="{ 'bg-black text-white': currentPath === '/admin/users' }">{{ t('page.admin.users') }}
+        </Link>
       </li>
     </ul>
   </aside>

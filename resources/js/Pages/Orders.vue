@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import { Link, useForm } from '@inertiajs/vue3';
 import { PhXCircle } from '@phosphor-icons/vue';
 import { useToast } from 'vue-toast-notification';
+import { useI18n } from 'vue-i18n';
 import DangerButton from '@/Components/DangerButton.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
@@ -13,6 +14,7 @@ const props = defineProps({
   orders: Array
 });
 
+const { t } = useI18n();
 const toast = useToast();
 const form = useForm({});
 const itemToCancel = ref(null);
@@ -36,14 +38,14 @@ const closeModal = () => {
 
 const cancel = (id) => {
   if (id === null || id === undefined) {
-    errorMessage.value = 'Invalid order ID. Please try again.';
+    errorMessage.value = `${t('page.user.orders.invalidOrderId')}.`;
     return;
   }
   form.put(route('order.cancel', { order: id }), {
     preserveScroll: true,
     onSuccess: () => {
       toast.open({
-        message: 'Order canceled successfully.',
+        message: `${t('page.user.orders.successMessage')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -52,12 +54,12 @@ const cancel = (id) => {
     },
     onError: (errors) => {
       toast.open({
-        message: 'Failed to cancel your order! ' + errors.error,
+        message: `${t('page.user.orders.errorMessage')}! ` + errors.error,
         type: 'error',
         position: 'top',
         duration: 4000,
       });
-      errorMessage.value = errors.error || 'Failed to cancel order.';
+      errorMessage.value = errors.error || `${t('page.user.orders.errorMessage')}!`;
     }
   });
 };
@@ -80,17 +82,17 @@ const activeStatuses = [
 </script>
 
 <template>
-  <DashboardLayout title="My Orders">
+  <DashboardLayout :title="t('page.user.orders.label')">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
       <div>
-        <h2 class="text-xl">Current Orders</h2>
+        <h2 class="text-xl">{{ t('page.user.orders.currentOrders') }}</h2>
         <div v-if="orders.length === 0 || !orders.some(order => activeStatuses.includes(order.order_status))">
           <div class="my-8">
-            <p>There are no current orders</p>
+            <p>{{ t('page.user.orders.noCurrentOrders') }}</p>
           </div>
           <Link href="/"
             class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-          Start Shopping</Link>
+          {{ t('common.button.startShopping') }}</Link>
         </div>
         <div v-else class="mt-8">
           <div v-for="item in orders.filter(order => activeStatuses.includes(order.order_status))"
@@ -142,19 +144,19 @@ const activeStatuses = [
             </div>
             <DialogModal :show="itemToCancel !== null" @close="closeModal">
               <template #title>
-                Cancel '{{ itemToCancel?.order_number }}' order?
+                {{ t('common.modal.order.title', { order: itemToCancel?.order_number }) }}?
               </template>
               <template #content>
-                Are you sure you want to cancel the '{{ item?.order_number }}' order?
+                {{ t('common.modal.order.content', { order: item?.order_number }) }}?
                 <div v-if="errorMessage" class="text-red-500 mt-2">
                   {{ errorMessage }}
                 </div>
               </template>
               <template #footer>
-                <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+                <SecondaryButton @click="closeModal">{{ t('common.button.cancel') }}</SecondaryButton>
                 <DangerButton class="ms-3" @click="cancel(itemToCancel?.id)">
                   <PhTrash :size="16" color="white" class="mr-2" />
-                  Cancel Order
+                  {{ t('common.button.cancelOrder') }}
                 </DangerButton>
               </template>
             </DialogModal>
@@ -162,15 +164,15 @@ const activeStatuses = [
         </div>
       </div>
       <div>
-        <h2 class="text-xl">My Purchase History</h2>
+        <h2 class="text-xl">{{ t('page.user.orders.purchaseHistory') }}</h2>
         <div
           v-if="orders.length === 0 || !orders.some(order => order.order_status === 'delivered' || order.order_status === 'canceled')">
           <div class="my-8">
-            <p class="mt-6">No past orders available</p>
+            <p class="mt-6">{{ t('page.user.orders.noPastOrders') }}</p>
           </div>
           <Link href="/"
             class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-          Start Shopping</Link>
+          {{ t('common.button.startShopping') }}</Link>
         </div>
         <div v-else class="mt-8">
           <div

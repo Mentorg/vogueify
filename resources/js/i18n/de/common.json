@@ -1,0 +1,213 @@
+{
+  "header": {
+    "button": {
+      "menu": "Menü",
+      "close": "Schließen",
+      "search": "Suchen"
+    },
+    "contextMenu": {
+      "dashboard": "Dashboard",
+      "logOut": "Abmelden"
+    }
+  },
+  "category": {
+    "new": "Neuheiten",
+    "bags": "Tasche | Taschen",
+    "shoes": "Schuh | Schuhe",
+    "accessories": "Accessoire | Accessoires",
+    "jewelry": "Schmuck | Schmuckstücke",
+    "watches": "Uhr | Uhren",
+    "perfumes": "Parfüm | Parfüms"
+  },
+  "subCategory": {
+    "bag": {
+      "handbag": "Handtasche | Handtaschen",
+      "bucket": "Beuteltasche | Beuteltaschen",
+      "hobo": "Hobo-Tasche | Hobo-Taschen",
+      "envelope": "Clutch | Clutches",
+      "backpack": "Rucksack | Rucksäcke",
+      "satchel": "Umhängetasche | Umhängetaschen",
+      "clutch": "Clutch | Clutches",
+      "fanny": "Gürteltasche | Gürteltaschen"
+    },
+    "shoe": {
+      "sneaker": "Sneaker | Sneaker",
+      "ankle": "Stiefelette | Stiefeletten",
+      "sandal": "Sandalette | Sandaletten",
+      "boot": "Stiefel | Stiefel"
+    },
+    "accessory": {
+      "scarf": "Schal | Schals",
+      "sunglasses": "Sonnenbrille | Sonnenbrillen",
+      "belt": "Gürtel | Gürtel"
+    },
+    "jewelry": {
+      "bracelet": "Armband | Armbänder",
+      "necklace": "Halskette | Halsketten",
+      "earring": "Ohrring | Ohrringe",
+      "ring": "Ring | Ringe"
+    }
+  },
+  "gender": {
+    "woman": "Dame | Damen",
+    "man": "Herr | Herren",
+    "unisex": "Unisex"
+  },
+  "modal": {
+    "cart": {
+      "title": "{itemToDelete} löschen",
+      "content": "Möchten Sie { itemToDelete } wirklich löschen"
+    },
+    "product": {
+      "title": "{product}-Variante löschen",
+      "content": "Möchten Sie die Variante mit der SKU '{sku}' wirklich löschen",
+      "subContent": "Sie können auch das gesamte Produkt einschließlich aller Varianten löschen"
+    },
+    "user": {
+      "title": "{userToDelete} löschen",
+      "content": "Möchten Sie {userToDelete} wirklich löschen"
+    },
+    "order": {
+      "title": "Bestellung {order} stornieren",
+      "content": "Möchten Sie die Bestellung {order} wirklich stornieren?"
+    }
+  },
+  "button": {
+    "showNow": "Jetzt shoppen",
+    "continueShopping": "Weiter einkaufen",
+    "remove": "Entfernen",
+    "delete": "Löschen",
+    "cancel": "Abbrechen",
+    "continue": "Weiter",
+    "update": "Aktualisieren",
+    "deleteVariation": "Variante löschen",
+    "deleteProduct": "Produkt löschen",
+    "first": "Erste",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "last": "Letzte",
+    "addFeature": "Funktion hinzufügen",
+    "addVariation": "Neue Variante hinzufügen",
+    "saveProduct": "Produkt speichern",
+    "addAddress": "Adressdetails hinzufügen",
+    "save": "Speichern",
+    "enable": "Aktivieren",
+    "confirm": "Bestätigen",
+    "regenerateRecoveryCodes": "Wiederherstellungscodes neu generieren",
+    "showRecoveryCodes": "Wiederherstellungscodes anzeigen",
+    "disable": "Deaktivieren",
+    "deleteAccount": "Konto löschen",
+    "startShopping": "Jetzt einkaufen",
+    "cancelOrder": "Bestellung stornieren",
+    "editProfile": "Mein Profil bearbeiten",
+    "viewOrders": "Bestellungen anzeigen",
+    "viewWishlist": "Wunschliste anzeigen",
+    "viewMyOrders": "Meine Bestellungen ansehen",
+    "login": "Anmelden",
+    "register": "Registrieren"
+  },
+  "menuLabel": {
+    "for": "Für",
+    "category": "Kategorie | Kategorien",
+    "all": "Alle",
+    "fine": "Edler"
+  },
+  "footer": {
+    "company": {
+      "label": "Unternehmen",
+      "aboutUs": "Über uns",
+      "faq": "FAQ | FAQs",
+      "missionStatement": "Leitbild",
+      "career": "Karriere | Karrieren",
+      "press": "Presse"
+    },
+    "contact": {
+      "label": "Kontakt",
+      "address": "Adresse",
+      "email": "E-Mail-Adresse",
+      "liveChat": "Live-Chat",
+      "supportHours": "Supportzeiten"
+    },
+    "socialNetworks": {
+      "label": "Soziale Netzwerke"
+    },
+    "privacyLegal": {
+      "label": "Datenschutz & Rechtliches",
+      "privacyPolicy": "Datenschutzerklärung",
+      "termsConditions": "Allgemeine Geschäftsbedingungen",
+      "cookiePolicy": "Cookie-Richtlinie"
+    }
+  },
+  "table": {
+    "pagination": "Anzeige {from}-{to} von {total}"
+  },
+  "form": {
+    "product": {
+      "headingBase": "Basisinformationen",
+      "headingProductVariation": "Produktvarianten",
+      "headingPreview": "Vorschau",
+      "variation": "Variante {variation}",
+      "note": "Hinweis",
+      "noteMessage": "Pflichtfelder variieren je nach Produkttyp. Die meisten Felder sind erforderlich. Farben sind optional. Größen gelten je nach Produkttyp.",
+      "name": "Name",
+      "description": "Beschreibung",
+      "gender": "Geschlecht",
+      "feature": "Merkmal | Merkmale",
+      "featureTitle": "Merkmaltitel",
+      "featureDescription": "Merkmalsbeschreibung",
+      "category": "Kategorie | Kategorien",
+      "expand": "Erweitern",
+      "collapse": "Reduzieren",
+      "image": "Bild",
+      "imageTooltip": "Nur gültige Formate sind erlaubt (jpeg, png, jpg, gif, bmp, svg, webp)",
+      "productType": "Produkttyp",
+      "color": "Farbe",
+      "none": "Keine",
+      "primaryColor": "Hauptfarbe",
+      "secondaryColor": "Sekundärfarbe",
+      "price": "Preis",
+      "sku": "SKU",
+      "stock": "Bestand",
+      "stockTooltip": "Bestand nur für Taschen, Schals, Sonnenbrillen, Ohrringe und Uhren angeben",
+      "sizeStock": "Größen & Bestand",
+      "sizeStockTooltip": "Geben Sie die verfügbare Bestandsmenge für jede Größe dieses Produkts ein",
+      "size": "Größe",
+      "stockPerSize": "Bestand je Größe",
+      "noName": "Kein Name angegeben",
+      "noDescription": "Keine Beschreibung angegeben",
+      "noFeatures": "Keine Merkmale angegeben",
+      "noImage": "Kein Bild ausgewählt",
+      "noSku": "Keine SKU angegeben",
+      "unknown": "Unbekannt"
+    }
+  },
+  "error": {
+    "imageFail": "Bild konnte nicht geladen werden"
+  },
+  "product": {
+    "for": "Für",
+    "type": "Typ",
+    "color": "Farbe",
+    "size": "Größe",
+    "quantity": "Menge",
+    "primaryColor": "Hauptfarbe",
+    "secondaryColor": "Sekundärfarbe",
+    "subtotal": "Zwischensumme",
+    "shipping": "Versand",
+    "tax": "Steuer",
+    "taxInfo": "Wird basierend auf Ihrer Lieferadresse berechnet",
+    "total": "Gesamt",
+    "name": "Name",
+    "price": "Preis",
+    "stock": "Bestand",
+    "sku": "SKU",
+    "category": "Kategorie | Kategorien",
+    "createdAt": "Erstellt"
+  },
+  "user": {
+    "name": "Name",
+    "email": "E-Mail",
+    "role": "Rolle",
+    "createdAt": "Erstellt"
+  }
+}

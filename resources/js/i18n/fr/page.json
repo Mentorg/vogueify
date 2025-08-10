@@ -1,0 +1,182 @@
+{
+  "home": {
+    "label": "Accueil",
+    "category": {
+      "heading": "Découvrez nos catégories les plus populaires",
+      "subheading": "Découvrez les prix saisonniers populaires"
+    },
+    "newIn": {
+      "heading": "Nouveautés: {gender} {category}"
+    }
+  },
+  "search": {
+    "label": "Rechercher",
+    "searchPlaceholder": "Rechercher un sac Biker",
+    "trendingSearches": "Recherches populaires",
+    "womenSeasonal": "Femme - Saisonnier",
+    "menSeasonal": "Homme - Saisonnier"
+  },
+  "products": {
+    "label": "Parcourir les {productType} {productGender}"
+  },
+  "product": {
+    "alsoAvailable": "Également disponible en",
+    "notAvailable": "Indisponible",
+    "addedToBag": "Ajouté au panier",
+    "capacity": "Capacité",
+    "chainLength": "Longueur de la chaîne",
+    "button": {
+      "placeInCart": "Ajouter au panier",
+      "viewBag": "Voir votre panier"
+    }
+  },
+  "cart": {
+    "label": "Mon panier",
+    "perPiece": "par pièce",
+    "emptyCart": "Votre panier est vide",
+    "button": {
+      "addToWishlist": "Ajouter à la liste de souhaits",
+      "proceedToCheckout": "Passer à la caisse"
+    }
+  },
+  "checkout": {
+    "checkoutTitle": "Paiement",
+    "checkoutLabel": "Détails de la commande",
+    "shippingHeading": "Adresse de livraison",
+    "shippingAddress1": "Adresse de livraison - Ligne 1",
+    "shippingAddress2": "Adresse de livraison - Ligne 2",
+    "shippingCity": "Ville de livraison",
+    "shippingState": "Région / Département de livraison",
+    "shippingPostcode": "Code postal de livraison",
+    "shippingCountry": "Pays de livraison",
+    "shippingPhone": "Numéro de téléphone (livraison)",
+    "billingHeading": "Adresse de facturation",
+    "billingAddress1": "Adresse de facturation - Ligne 1",
+    "billingAddress2": "Adresse de facturation - Ligne 2",
+    "billingCity": "Ville de facturation",
+    "billingState": "Région / Département de facturation",
+    "billingPostcode": "Code postal de facturation",
+    "billingCountry": "Pays de facturation",
+    "billingPhone": "Numéro de téléphone (facturation)",
+    "modifySelection": "Modifier la sélection",
+    "checkoutSuccess": {
+      "label": "Commande confirmée - Merci",
+      "thankYou": "Merci {userEmail} pour votre achat",
+      "thankYouMessage": "Votre achat a été effectué avec succès. Un e-mail de confirmation a été envoyé à {userEmail}. Nous vous informerons lorsque votre commande sera expédiée. Si vous avez des questions, n'hésitez pas à contacter notre équipe de support.",
+      "orderSummary": "Récapitulatif de la commande",
+      "total": "Total"
+    }
+  },
+  "admin": {
+    "overview": "Aperçu",
+    "products": "Produits",
+    "createProduct": "Créer un produit",
+    "updateProduct": "Mettre à jour {product}",
+    "users": "Utilisateurs"
+  },
+  "user": {
+    "overview": "Aperçu",
+    "profile": {
+      "label": "Mon profil",
+      "saved": "Enregistré",
+      "password": "Mot de passe",
+      "basicInfo": {
+        "successMessage": "Vos informations ont été mises à jour avec succès",
+        "errorMessage": "Échec de la mise à jour de vos informations",
+        "title": "Titre",
+        "titleMr": "M.",
+        "titleMs": "Mme",
+        "name": "Nom",
+        "email": "E-mail",
+        "emailNotVerified": "Votre adresse e-mail n'est pas vérifiée",
+        "sendEmailVerification": "Cliquez ici pour renvoyer l'e-mail de vérification",
+        "newVerificationLink": "Un nouveau lien de vérification a été envoyé à votre adresse e-mail",
+        "noAddress": "Aucune adresse fournie",
+        "address1": "Adresse 1",
+        "address2": "Adresse 2",
+        "postcode": "Code postal",
+        "location": "Emplacement",
+        "city": "Ville",
+        "state": "Région / Département",
+        "countryRegion": "Pays / Région",
+        "phone": "Numéro de téléphone",
+        "birthDate": "Date de naissance"
+      },
+      "updatePassword": {
+        "label": "Mettre à jour le mot de passe",
+        "successMessage": "Votre mot de passe a été mis à jour avec succès",
+        "errorMessage": "Échec de la mise à jour de votre mot de passe",
+        "passwordInstructions": "Assurez-vous d'utiliser un mot de passe long et aléatoire pour sécuriser votre compte",
+        "currentPassword": "Mot de passe actuel",
+        "newPassword": "Nouveau mot de passe",
+        "confirmPassword": "Confirmer le mot de passe"
+      },
+      "twoFactor": {
+        "tfEnabledNotConfirmed": "Vous avez activé l'authentification à deux facteurs",
+        "tfFinish": "Finaliser l'activation de l'authentification à deux facteurs",
+        "tfNotEnabled": "Vous n'avez pas activé l'authentification à deux facteurs",
+        "tfInfo": "Lorsque l'authentification à deux facteurs est activée, un jeton sécurisé et aléatoire vous sera demandé lors de la connexion. Vous pouvez récupérer ce jeton via l'application Google Authenticator de votre téléphone",
+        "tfFinishInstruction": "Pour finaliser l'activation, scannez le code QR ci-dessous avec l'application d'authentification de votre téléphone ou entrez la clé d'installation, puis fournissez le code OTP généré",
+        "tfEnabled": "L'authentification à deux facteurs est désormais activée. Scannez le code QR ci-dessous avec l'application d'authentification de votre téléphone ou entrez la clé d'installation",
+        "tfSetupKey": "Clé d'installation",
+        "tfCode": "Code",
+        "tfRecoveryCodeInstruction": "Enregistrez ces codes de récupération dans un gestionnaire de mots de passe sécurisé. Ils peuvent être utilisés pour récupérer l'accès à votre compte si vous perdez votre appareil d'authentification",
+        "tfEnabledSuccess": "Vous avez activé l'authentification à deux facteurs avec succès",
+        "tfConfirmed": "Vous avez confirmé l'authentification à deux facteurs avec succès"
+      },
+      "deleteUser": {
+        "successMessage": "Compte supprimé avec succès",
+        "errorMessage": "Échec de la suppression du compte",
+        "accountDeletionWarning": "Une fois votre compte supprimé, toutes ses ressources et données seront définitivement supprimées. Avant de continuer, téléchargez les données que vous souhaitez conserver",
+        "accountDeletionConfirm": "Êtes-vous sûr de vouloir supprimer votre compte ? Une fois supprimé, toutes ses ressources et données seront définitivement perdues. Veuillez saisir votre mot de passe pour confirmer la suppression définitive de votre compte"
+      }
+    },
+    "orders": {
+      "label": "Mes commandes",
+      "successMessage": "Commande annulée avec succès",
+      "errorMessage": "Échec de l'annulation de votre commande",
+      "invalidOrderId": "ID de commande invalide. Veuillez réessayer",
+      "currentOrders": "Commandes en cours",
+      "noCurrentOrders": "Aucune commande en cours",
+      "purchaseHistory": "Mon historique d'achats",
+      "noPastOrders": "Aucune commande précédente disponible",
+      "singleOrder": {
+        "label": "Commande {order}",
+        "orderStatus": "Statut de la commande",
+        "orderDate": "Date de commande",
+        "shippingDate": "Date d'expédition",
+        "orderProducts": "Produit(s)",
+        "quantity": "Quantité",
+        "orderSummary": "Récapitulatif de la commande",
+        "orderInfo": "A été calculé en fonction de votre adresse de livraison",
+        "orderAddress": "Adresse de commande",
+        "billingAddress": "Adresse de facturation",
+        "shippingAddress": "Adresse de livraison",
+        "loadingOrders": "Chargement des détails de la commande"
+      }
+    },
+    "wishlist": {
+      "label": "Ma liste de souhaits",
+      "noWishlistItems": "Aucun produit actuel dans votre liste de souhaits"
+    }
+  },
+  "authentication": {
+    "email": "Email",
+    "password": "Mot de passe",
+    "login": {
+      "label": "Se connecter",
+      "rememberMe": "Se souvenir de moi",
+      "forgotPassword": "Mot de passe oublié",
+      "noAccount": "Pas de compte ? Inscrivez-vous maintenant"
+    },
+    "register": {
+      "label": "S'inscrire",
+      "name": "Nom",
+      "title": "Civilité",
+      "titleMr": "M.",
+      "titleMs": "Mme",
+      "confirmPassword": "Confirmer le mot de passe",
+      "alreadyRegistered": "Déjà inscrit"
+    }
+  }
+}

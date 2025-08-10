@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
 import { router, useForm, usePage } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 import ActionSection from '@/Components/ActionSection.vue';
 import ConfirmsPassword from '@/Components/ConfirmsPassword.vue';
 import DangerButton from '@/Components/DangerButton.vue';
@@ -15,6 +16,7 @@ const props = defineProps({
   requiresConfirmation: Boolean,
 });
 
+const { t } = useI18n();
 const toast = useToast();
 const page = usePage();
 const enabling = ref(false);
@@ -46,7 +48,7 @@ const enableTwoFactorAuthentication = () => {
     preserveScroll: true,
     onSuccess: () => {
       toast.open({
-        message: 'You have successfully enabled two factor authentication.',
+        message: `${t('page.user.profile.twoFactor.tfEnabledSuccess')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -89,7 +91,7 @@ const confirmTwoFactorAuthentication = () => {
     preserveState: true,
     onSuccess: () => {
       toast.open({
-        message: 'You have successfully confirmed two factor authentication.',
+        message: `${t('page.user.profile.twoFactor.tfEnabledSuccess')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -132,21 +134,20 @@ const disableTwoFactorAuthentication = () => {
 
     <template #content>
       <h3 v-if="twoFactorEnabled && !confirming" class="text-lg font-medium text-gray-900">
-        You have enabled two factor authentication.
+        {{ t('page.user.profile.twoFactor.tfEnabledNotConfirmed') }}.
       </h3>
 
       <h3 v-else-if="twoFactorEnabled && confirming" class="text-lg font-medium text-gray-900">
-        Finish enabling two factor authentication.
+        {{ t('page.user.profile.twoFactor.tfFinish') }}.
       </h3>
 
       <h3 v-else class="text-lg font-medium text-gray-900">
-        You have not enabled two factor authentication.
+        {{ t('page.user.profile.twoFactor.tfNotEnabled') }}.
       </h3>
 
       <div class="mt-3 max-w-xl text-sm text-gray-600">
         <p>
-          When two factor authentication is enabled, you will be prompted for a secure, random token during
-          authentication. You may retrieve this token from your phone's Google Authenticator application.
+          {{ t('page.user.profile.twoFactor.tfInfo') }}.
         </p>
       </div>
 
@@ -154,13 +155,11 @@ const disableTwoFactorAuthentication = () => {
         <div v-if="qrCode">
           <div class="mt-4 max-w-xl text-sm text-gray-600">
             <p v-if="confirming" class="font-semibold">
-              To finish enabling two factor authentication, scan the following QR code using your phone's authenticator
-              application or enter the setup key and provide the generated OTP code.
+              {{ t('page.user.profile.twoFactor.tfFinishInstruction') }}.
             </p>
 
             <p v-else>
-              Two factor authentication is now enabled. Scan the following QR code using your phone's authenticator
-              application or enter the setup key.
+              {{ t('page.user.profile.twoFactor.tfEnabled') }}.
             </p>
           </div>
 
@@ -168,12 +167,12 @@ const disableTwoFactorAuthentication = () => {
 
           <div v-if="setupKey" class="mt-4 max-w-xl text-sm text-gray-600">
             <p class="font-semibold">
-              Setup Key: <span v-html="setupKey"></span>
+              {{ t('page.user.profile.twoFactor.tfSetupKey') }}: <span v-html="setupKey"></span>
             </p>
           </div>
 
           <div v-if="confirming" class="mt-4">
-            <InputLabel for="code" value="Code" />
+            <InputLabel for="code" :value="t('page.user.profile.twoFactor.tfCode')" />
 
             <TextInput id="code" v-model="confirmationForm.code" type="text" name="code" class="block mt-1 w-1/2"
               inputmode="numeric" autofocus autocomplete="one-time-code"
@@ -186,8 +185,7 @@ const disableTwoFactorAuthentication = () => {
         <div v-if="recoveryCodes.length > 0 && !confirming">
           <div class="mt-4 max-w-xl text-sm text-gray-600">
             <p class="font-semibold">
-              Store these recovery codes in a secure password manager. They can be used to recover access to your
-              account if your two factor authentication device is lost.
+              {{ t('page.user.profile.twoFactor.tfRecoveryCodeInstruction') }}.
             </p>
           </div>
 
@@ -203,7 +201,7 @@ const disableTwoFactorAuthentication = () => {
         <div v-if="!twoFactorEnabled">
           <ConfirmsPassword @confirmed="enableTwoFactorAuthentication">
             <PrimaryButton type="button" :class="{ 'opacity-25': enabling }" :disabled="enabling">
-              Enable
+              {{ t('common.button.enable') }}
             </PrimaryButton>
           </ConfirmsPassword>
         </div>
@@ -212,31 +210,31 @@ const disableTwoFactorAuthentication = () => {
           <ConfirmsPassword @confirmed="confirmTwoFactorAuthentication">
             <PrimaryButton v-if="confirming" type="button" class="me-3" :class="{ 'opacity-25': enabling }"
               :disabled="enabling">
-              Confirm
+              {{ t('common.button.confirm') }}
             </PrimaryButton>
           </ConfirmsPassword>
 
           <ConfirmsPassword @confirmed="regenerateRecoveryCodes">
             <SecondaryButton v-if="recoveryCodes.length > 0 && !confirming" class="me-3">
-              Regenerate Recovery Codes
+              {{ t('common.button.regenerateRecoveryCodes') }}
             </SecondaryButton>
           </ConfirmsPassword>
 
           <ConfirmsPassword @confirmed="showRecoveryCodes">
             <SecondaryButton v-if="recoveryCodes.length === 0 && !confirming" class="me-3">
-              Show Recovery Codes
+              {{ t('common.button.showRecoveryCodes') }}
             </SecondaryButton>
           </ConfirmsPassword>
 
           <ConfirmsPassword @confirmed="disableTwoFactorAuthentication">
             <SecondaryButton v-if="confirming" :class="{ 'opacity-25': disabling }" :disabled="disabling">
-              Cancel
+              {{ t('common.button.cancel') }}
             </SecondaryButton>
           </ConfirmsPassword>
 
           <ConfirmsPassword @confirmed="disableTwoFactorAuthentication">
             <DangerButton v-if="!confirming" :class="{ 'opacity-25': disabling }" :disabled="disabling">
-              Disable
+              {{ t('common.button.disable') }}
             </DangerButton>
           </ConfirmsPassword>
         </div>

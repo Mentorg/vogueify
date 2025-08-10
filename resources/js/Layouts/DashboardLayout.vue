@@ -1,6 +1,7 @@
 <script setup>
 import { defineProps, computed } from 'vue';
 import { Head, Link, usePage } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 import Menu from '@/Components/Menu.vue';
 import Footer from '@/Components/Footer.vue';
 
@@ -8,6 +9,7 @@ defineProps({
   title: String
 })
 
+const { t } = useI18n();
 const isDashboard = computed(() => usePage().url === '/dashboard');
 const isProfile = computed(() => usePage().url === '/profile');
 const isOrders = computed(() => usePage().url === '/orders');
@@ -23,19 +25,24 @@ const isWishlist = computed(() => usePage().url === '/wishlist');
     <nav class="bg-white flex justify-end border-b">
       <Link :href="route('dashboard')"
         class="relative border-l w-full py-4 text-sm text-center md:py-4 md:px-8 md:text-base">
-      Overview <span :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isDashboard }" />
+      {{ t('page.user.overview') }} <span
+        :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isDashboard }" />
       </Link>
       <Link :href="route('profile')"
-        class="relative border-l w-full py-4 text-sm text-center md:py-4 md:px-8 md:text-base">My
-      Profile <span :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isProfile }" />
+        class="relative border-l w-full py-4 text-sm text-center md:py-4 md:px-8 md:text-base">{{
+          t('page.user.profile.label') }} <span
+        :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isProfile }" />
       </Link>
       <Link :href="route('order.userOrders')"
-        class="relative border-l w-full py-4 text-sm text-center md:py-4 md:px-8 md:text-base">My Orders
+        class="relative border-l w-full py-4 text-sm text-center md:py-4 md:px-8 md:text-base">{{
+          t('page.user.orders.label')
+        }}
       <span :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isOrders }" />
       </Link>
       <Link :href="route('wishlist.index')"
-        class="relative border-l w-full py-4 text-sm text-center md:py-4 md:px-8 md:text-base">My
-      Wishlist <span :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isWishlist }" />
+        class="relative border-l w-full py-4 text-sm text-center md:py-4 md:px-8 md:text-base">{{
+          t('page.user.wishlist.label') }} <span
+        :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isWishlist }" />
       </Link>
     </nav>
     <div v-if="isDashboard" class="profile-header h-[20rem]" />

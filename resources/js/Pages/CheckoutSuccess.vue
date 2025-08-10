@@ -3,31 +3,40 @@ import { Head, Link } from '@inertiajs/vue3';
 import Footer from '@/Components/Footer.vue';
 import Menu from '@/Components/Menu.vue';
 import { PhCheck } from '@phosphor-icons/vue';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps({
   checkoutSession: Object,
 });
 
+const { t } = useI18n();
 </script>
 
 <template>
 
-  <Head title="Order Confirmed - Thank You" />
+  <Head :title="t('page.checkout.checkoutSuccess.label')" />
   <Menu />
   <main>
     <div class="bg-slate-100 flex flex-col itemce place-content-center px-4 lg:px-20 min-h-[48rem] items-center">
       <PhCheck :size="48" />
       <div class="text-center my-8">
-        <h1 class="text-2xl md:text-3xl">Thank You <span class="font-medium">{{
-          checkoutSession.session.customer_details.name }}</span> for Shopping with
-          Us!</h1>
-        <p class="mt-4 text-sm md:text-base"> Your purchase was successful, and a confirmation email has been sent to
-          you at <span class="font-medium">{{ checkoutSession.session.customer_details.email }}</span>. We'll notify you
-          when your order ships. If you have any questions, feel free to contact our support team.
+        <h1 class="text-2xl md:text-3xl">
+          <i18n-t keypath="page.checkout.checkoutSuccess.thankYou">
+            <template #userEmail>
+              <span class="font-medium">{{ checkoutSession.session.customer_details.name }}</span>
+            </template>
+          </i18n-t>
+        </h1>
+        <p class="mt-4 text-sm md:text-base">
+          <i18n-t keypath="page.checkout.checkoutSuccess.thankYouMessage">
+            <template #userEmail>
+              <span class="font-medium">{{ checkoutSession.session.customer_details.email }}</span>
+            </template>
+          </i18n-t>
         </p>
       </div>
       <div class="bg-white flex flex-col p-4 lg:p-8 my-8 items-center lg:w-1/2 md:w-full">
-        <h2 class="text-lg font-medium md:text-xl">Order Summary</h2>
+        <h2 class="text-lg font-medium md:text-xl">{{ t('page.checkout.checkoutSuccess.orderSummary') }}</h2>
         <div v-for="item in checkoutSession.order.items" :key="checkoutSession.order.id"
           class="flex mt-4 border-b border-slate-300 pb-4">
           <img v-if="item.product_variation.image" :src="item.product_variation.image"
@@ -41,18 +50,18 @@ const props = defineProps({
           </div>
         </div>
         <div class="flex justify-between my-4 w-full">
-          <h4 class="text-lg font-medium">Total</h4>
+          <h4 class="text-lg font-medium">{{ t('page.checkout.checkoutSuccess.total') }}</h4>
           <p class="text-lg font-medium">${{ (checkoutSession.session.amount_total / 100).toFixed(2) }}</p>
         </div>
       </div>
       <div class="flex flex-col gap-4 w-full md:flex-row lg:gap-10 lg:w-1/2">
         <Link href="/"
           class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black lg:text-base">
-        Continue Shopping
+        {{ t('common.button.continueShopping') }}
         </Link>
         <Link :href="route('order.userOrders')"
           class="flex justify-center border border-black rounded-full py-2 w-full text-sm text-black transition-all hover:bg-slate-200 lg:text-base">
-        View My Orders
+        {{ t('common.button.viewMyOrders') }}
         </Link>
       </div>
     </div>

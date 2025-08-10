@@ -1,6 +1,7 @@
 <script setup>
 import { defineProps, ref } from 'vue';
 import { Link, useForm, usePage } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import { formatDate } from '@/utils/dateFormat';
 import { PhDotsThree, PhTrash, PhXCircle } from '@phosphor-icons/vue';
@@ -14,6 +15,7 @@ const props = defineProps({
   wishlist: Array
 });
 
+const { t } = useI18n();
 const toast = useToast();
 const user = usePage().props.auth.user;
 const form = useForm({});
@@ -38,14 +40,14 @@ const closeModal = () => {
 
 const cancel = (id) => {
   if (id === null || id === undefined) {
-    errorMessage.value = 'Invalid order ID. Please try again.';
+    errorMessage.value = `${t('page.user.orders.invalidOrderId')}.`;
     return;
   }
   form.put(route('order.cancel', { order: id }), {
     preserveScroll: true,
     onSuccess: () => {
       toast.open({
-        message: 'Order canceled successfully.',
+        message: `${t('page.user.orders.successMessage')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -54,12 +56,12 @@ const cancel = (id) => {
     },
     onError: (errors) => {
       toast.open({
-        message: 'Failed to cancel your order! ' + errors.error,
+        message: `${t('page.user.orders.errorMessage')}! ` + errors.error,
         type: 'error',
         position: 'top',
         duration: 4000,
       });
-      errorMessage.value = errors.error || 'Failed to cancel your order.';
+      errorMessage.value = errors.error || `${t('page.user.orders.errorMessage')}!`;
     }
   });
 };
@@ -82,43 +84,49 @@ const activeStatuses = [
 </script>
 
 <template>
-  <DashboardLayout title="Overview">
+  <DashboardLayout :title="t('page.user.overview')">
     <section class="flex flex-col">
       <div class="flex justify-center my-8">
         <h1 class="text-2xl">{{ user.name }}</h1>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div class="grid gap-2 bg-white p-6 w-full h-fit lg:gap-4 lg:p-10">
-          <h3 class="text-xl">My Profile</h3>
+          <h3 class="text-xl">{{ t('page.user.profile.label') }}</h3>
           <div class="flex flex-col gap-2 my-4 lg:my-8">
-            <p class="font-medium">Email: <span class="font-normal">{{ user.email }}</span></p>
-            <p v-if="user.address === null" class="font-medium">No address provided</p>
+            <p class="font-medium">{{ t('page.user.profile.basicInfo.email') }}: <span class="font-normal">{{ user.email
+                }}</span></p>
+            <p v-if="user.address === null" class="font-medium">{{ t('page.user.profile.basicInfo.noAddress') }}</p>
             <div v-else class="flex flex-col gap-2">
-              <p class="font-medium">Address 1: <span class="font-normal">{{ user.address.address_line_1 }}</span></p>
-              <p class="font-medium">Address 2: <span class="font-normal">{{ user.address.address_line_2 }}</span></p>
-              <p class="font-medium">Location: <span class="font-normal">{{ user.address.city }}, {{ user.address.state
-                !== null ?
-                user.address.state + ', ' : '' }}
+              <p class="font-medium">{{ t('page.user.profile.basicInfo.address1') }}: <span class="font-normal">{{
+                user.address.address_line_1 }}</span></p>
+              <p class="font-medium">{{ t('page.user.profile.basicInfo.address2') }}: <span class="font-normal">{{
+                user.address.address_line_2 }}</span></p>
+              <p class="font-medium">{{ t('page.user.profile.basicInfo.location') }}: <span class="font-normal">{{
+                user.address.city }}, {{ user.address.state
+                    !== null ?
+                    user.address.state + ', ' : '' }}
                   {{
                     user.address.country.iso_code }}</span></p>
-              <p class="font-medium">Postcode: <span class="font-normal">{{ user.address.postcode }}</span></p>
-              <p class="font-medium">Phone Number: <span class="font-normal">{{ user.address.phone_number }}</span></p>
+              <p class="font-medium">{{ t('page.user.profile.basicInfo.postcode') }}: <span class="font-normal">{{
+                user.address.postcode }}</span></p>
+              <p class="font-medium">{{ t('page.user.profile.basicInfo.phone') }}: <span class="font-normal">{{
+                user.address.phone_number }}</span></p>
             </div>
           </div>
           <Link href="profile"
             class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-          Edit My Profile</Link>
+          {{ t('common.button.editProfile') }}</Link>
         </div>
         <div class="grid gap-6">
           <div class="bg-white p-6 w-full h-fit lg:p-10">
-            <h3 class="text-xl">My Orders</h3>
+            <h3 class="text-xl">{{ t('page.user.orders.label') }}</h3>
             <div v-if="orders.length === 0 || !orders.some(order => activeStatuses.includes(order.order_status))">
               <div class="my-8">
-                <p>There are no current orders</p>
+                <p>{{ t('page.user.orders.noCurrentOrders') }}</p>
               </div>
               <Link href="/"
                 class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-              Start Shopping</Link>
+              {{ t('common.button.startShopping') }}</Link>
             </div>
             <div v-else class="mt-8">
               <div v-for="item in orders.filter(order => activeStatuses.includes(order.order_status)).slice(0, 3)"
@@ -170,19 +178,19 @@ const activeStatuses = [
                 </div>
                 <DialogModal :show="itemToCancel !== null" @close="closeModal">
                   <template #title>
-                    Cancel '{{ itemToCancel?.order_number }}' order?
+                    {{ t('common.modal.order.title', { order: itemToCancel?.order_number }) }}?
                   </template>
                   <template #content>
-                    Are you sure you want to cancel the '{{ item?.order_number }}' order?
+                    {{ t('common.modal.order.content', { order: item?.order_number }) }}?
                     <div v-if="errorMessage" class="text-red-500 mt-2">
                       {{ errorMessage }}
                     </div>
                   </template>
                   <template #footer>
-                    <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+                    <SecondaryButton @click="closeModal">{{ t('common.button.cancel') }}</SecondaryButton>
                     <DangerButton class="ms-3" @click="cancel(itemToCancel?.id)">
                       <PhTrash :size="16" color="white" class="mr-2" />
-                      Cancel Order
+                      {{ t('common.button.cancelOrder') }}
                     </DangerButton>
                   </template>
                 </DialogModal>
@@ -190,19 +198,19 @@ const activeStatuses = [
               <div v-if="orders.length > 3" class="mt-8">
                 <Link href="/"
                   class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-                View Orders</Link>
+                {{ t('common.button.viewOrders') }}</Link>
               </div>
             </div>
           </div>
           <div class="bg-white p-6 w-full h-fit lg:p-10">
-            <h3 class="text-xl">My Wishlist</h3>
+            <h3 class="text-xl">{{ t('page.user.wishlist.label') }}</h3>
             <div v-if="wishlist.length < 1">
               <div class="my-8">
-                <p>Your wishlist is empty.</p>
+                <p>{{ t('page.user.wishlist.noWishlistItems') }}.</p>
               </div>
               <Link href="/"
                 class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-              Start Shopping</Link>
+              {{ t('common.button.startShopping') }}</Link>
             </div>
             <div v-else class="mt-8">
               <div v-for="item in wishlist.slice(0, 3)" :key="item.product_variation.id" class="flex my-4">
@@ -216,7 +224,7 @@ const activeStatuses = [
               <div v-if="wishlist.length > 3" class="mt-8">
                 <Link href="/wishlist"
                   class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-white transition-all hover:bg-white hover:text-black">
-                View Wishlist</Link>
+                {{ t('common.button.viewWishlist') }}</Link>
               </div>
             </div>
           </div>

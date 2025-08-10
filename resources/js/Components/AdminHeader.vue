@@ -7,7 +7,9 @@ import {
   PhUser,
   PhBag,
 } from "@phosphor-icons/vue";
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const emit = defineEmits(['toggleMenu']);
 const user = usePage().props.auth.user;
 const isUserMenuOpen = ref(false);
@@ -50,7 +52,7 @@ onBeforeUnmount(() => {
       <button v-if="user?.role !== 'admin' && user?.role !== 'staff'" @click="emit('toggleMenu')"
         class="flex items-center gap-2">
         <PhList :size="24" />
-        <span class="hidden md:flex">Menu</span>
+        <span class="hidden md:flex">{{ t('common.header.button.menu') }}</span>
       </button>
     </div>
     <div>
@@ -72,14 +74,15 @@ onBeforeUnmount(() => {
           <Link
             :href="user?.role === 'admin' ? route('admin.overview') : user?.role === 'staff' ? route('admin.products') : route('dashboard')"
             class="py-2 px-4 text-sm w-full transition-all hover:bg-slate-200">
-          Dashboard</Link>
+          {{ t('common.header.contextMenu.dashboard') }}
+          </Link>
           <div class="border-t border-gray-200" />
           <Link v-if="!user" :href="route('login')" class="py-2 px-4 text-sm w-full transition-all hover:bg-slate-200">
           Login
           </Link>
           <Link v-if="user" :href="route('logout')" method="post"
             class="py-2 px-4 text-start text-sm w-full transition-all hover:bg-slate-200">
-          Log Out</Link>
+          {{ t('common.header.contextMenu.logOut') }}</Link>
         </div>
       </div>
       <button v-if="user?.role === 'customer'" class="relative">

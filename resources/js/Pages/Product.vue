@@ -7,12 +7,14 @@ import Footer from "@/Components/Footer.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import SelectInput from "@/Components/SelectInput.vue";
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps({
   product: Object,
   activeVariation: Object,
 });
 
+const { t } = useI18n();
 const user = usePage().props.auth.user;
 const wishlist = usePage().props.auth.wishlist;
 const localWishlist = ref([...wishlist]);
@@ -125,14 +127,14 @@ onBeforeUnmount(() => {
 
 <template>
 
-  <Head title="Products" />
+  <Head :title="product.name" />
   <Layout>
     <Menu />
     <div v-if="isCartSidebarOpen" class="fixed inset-0 bg-slate-950/85 z-40" />
     <div :class="{ 'visible': isCartSidebarOpen, 'invisible': !isCartSidebarOpen }"
       class="cartSidebar absolute bottom-0 w-full rounded-t-xl bg-white border border-slate-200 p-8 z-50 md:p-12 md:top-1/2 md:left-1/2 md:right-[unset] md:translate-x-[-50%] md:translate-y-[-50%] md:w-[90%] lg:right-0 lg:left-[unset] lg:bottom-[unset] lg:top-[4.25rem] lg:rounded-none lg:transform-none lg:w-1/3">
       <div class="flex justify-between">
-        <h3>Added to Shopping Bag</h3>
+        <h3>{{ t('page.product.addedToBag') }}</h3>
         <button @click.stop="closeCartSidebar">
           <PhX size="20" />
         </button>
@@ -149,10 +151,10 @@ onBeforeUnmount(() => {
       <div class="flex flex-col mt-8 gap-4">
         <Link :href="route('cart.index')"
           class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-        View your shopping bag</Link>
+        {{ t('page.product.button.viewBag') }}</Link>
         <Link :href="closeCartSidebar"
           class="flex justify-center border border-black rounded-full py-2 w-full text-sm transition-all hover:bg-slate-100 hover:text-black md:text-base">
-        Continue Shopping</Link>
+        {{ t('common.button.continueShopping') }}</Link>
       </div>
     </div>
     <main>
@@ -177,15 +179,16 @@ onBeforeUnmount(() => {
                 <div class="w-full"
                   v-if="product.category_id === 1 || product.category_id === 5 || (currentVariation && ['belt', 'bracelet', 'necklace', 'ring'].includes(currentVariation.type.type))">
                   <InputLabel for="size_id"
-                    :value="`Size ${product.category_id === 0 ? '(L)' : product.category_id === 5 ? '(ml)' : '(in)'}`" />
+                    :value="`${t('common.product.size')} ${product.category_id === 0 ? '(L)' : product.category_id === 5 ? '(ml)' : '(in)'}`" />
                   <SelectInput name="size_id" id="size_id" v-model="form.size_id" key="product.id">
                     <option :disabled="size.pivot.stock < 1" v-for="size in sizeVariations" :value="size.id"
                       :key="size.id">
-                      {{ size.pivot.stock < 1 ? size.label + ' (not available)' : size.label }} </option>
+                      {{ size.pivot.stock < 1 ? size.label + ` (${t('page.product.notAvailable')})` : size.label }}
+                        </option>
                   </SelectInput>
                 </div>
                 <div class="w-full">
-                  <InputLabel for="quantity" value="Quantity" />
+                  <InputLabel for="quantity" :value="`${t('common.product.quantity')}`" />
                   <TextInput id="quantity" type="number" name="quantity" v-model="form.quantity"
                     class="mt-1 block w-full" />
                 </div>
@@ -193,18 +196,18 @@ onBeforeUnmount(() => {
             </div>
             <button
               class="bg-black border border-black py-2 w-full rounded-full text-white transition duration-500 ease-in-out hover:bg-white hover:text-black">
-              Place in Cart
+              {{ t('page.product.button.placeInCart') }}
             </button>
           </form>
           <div class="my-8 lg:my-14">
             <div v-if="product.product_variations.length > 1" class="my-8">
-              <h3 class="font-medium">Also available in</h3>
+              <h3 class="font-medium">{{ t('page.product.alsoAvailable') }}</h3>
               <div class="flex mt-4">
                 <div v-for="variation in product.product_variations" :key="variation.id">
                   <Link v-if="variation.id !== currentVariation.id"
                     :href="route('product.show', { product: product.slug, variation: variation.sku })" class="contents">
                   <img :src="variation.image" :alt="product.name" class="w-[15%]"
-                    @error="console.error('Image failed to load:', $event.target.src)" />
+                    @error="console.error(`{{t('common.error.imageFail')}}:`, $event.target.src)" />
                   </Link>
                 </div>
               </div>
@@ -212,24 +215,24 @@ onBeforeUnmount(() => {
             <p class="my-4">{{ product.description }}</p>
             <div class="flex justify-between my-4">
               <div>
-                <h3 class="font-medium">For</h3>
+                <h3 class="font-medium">{{ t('common.product.for') }}</h3>
                 <p>{{ capitalize(product.gender) }}</p>
               </div>
               <div>
-                <h3 class="font-medium">Type</h3>
+                <h3 class="font-medium">{{ t('common.product.type') }}</h3>
                 <p>{{ currentVariation.type.label }}</p>
               </div>
               <div v-if="currentVariation.color !== null">
-                <h3 class="font-medium">Color</h3>
+                <h3 class="font-medium">{{ t('common.product.color') }}</h3>
                 <p>{{ capitalize(currentVariation.color?.name) }}</p>
               </div>
               <div v-else-if="currentVariation.primary_color !== null" class="flex gap-8">
                 <div>
-                  <h3 class="font-medium">Primary Color</h3>
+                  <h3 class="font-medium">{{ t('common.product.primaryColor') }}</h3>
                   <p>{{ capitalize(currentVariation.primary_color?.name) }}</p>
                 </div>
                 <div>
-                  <h3 class="font-medium">Secondary Color</h3>
+                  <h3 class="font-medium">{{ t('common.product.primaryColor') }}</h3>
                   <p>{{ capitalize(currentVariation.secondary_color?.name) }}</p>
                 </div>
               </div>
