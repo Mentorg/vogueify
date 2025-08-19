@@ -5,6 +5,7 @@ import {
   PhX,
 } from "@phosphor-icons/vue";
 import { useI18n } from 'vue-i18n';
+import { useToast } from 'vue-toast-notification';
 import ActionMessage from '@/Components/ActionMessage.vue';
 import FormSection from '@/Components/FormSection.vue';
 import InputError from '@/Components/InputError.vue';
@@ -13,7 +14,6 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import SelectInput from '@/Components/SelectInput.vue';
-import { useToast } from 'vue-toast-notification';
 
 const props = defineProps({
   user: Object,
@@ -22,6 +22,10 @@ const props = defineProps({
 
 const { t } = useI18n();
 const toast = useToast();
+const verificationLinkSent = ref(null);
+const photoPreview = ref(null);
+const photoInput = ref(null);
+const showAddressInputs = ref(false);
 
 const form = useForm({
   _method: 'PUT',
@@ -41,12 +45,6 @@ const form = useForm({
   phone_number: props.user.address?.phone_number ?? '',
 });
 
-const verificationLinkSent = ref(null);
-const photoPreview = ref(null);
-const photoInput = ref(null);
-const country = ref(form.country_id);
-const showAddressInputs = ref(false);
-
 const updateProfileInformation = () => {
   if (photoInput.value) {
     form.photo = photoInput.value.files[0];
@@ -57,7 +55,7 @@ const updateProfileInformation = () => {
     preserveScroll: true,
     onSuccess: () => {
       toast.open({
-        message: `${t('page.user.profile.basicInfo.successMessage')}.`,
+        message: `${t('common.toast.user.profileUpdate.successMessage')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -66,7 +64,7 @@ const updateProfileInformation = () => {
     },
     onError: (errors) => {
       toast.open({
-        message: `${t('page.user.profile.basicInfo.errorMessage')}! ` + errors.error,
+        message: `${t('common.toast.user.profileUpdate.errorMessage')}! ` + errors.error,
         type: 'error',
         position: 'top',
         duration: 4000,
@@ -117,6 +115,7 @@ const toggleAddressInputs = (addressValue) => {
   showAddressInputs.value = addressValue;
   form.has_address = addressValue;
 }
+
 </script>
 
 <template>
@@ -202,13 +201,13 @@ const toggleAddressInputs = (addressValue) => {
       <div class="flex justify-between col-span-6 sm:col-span-12">
         <button @click.prevent="toggleAddressInputs(true)"
           class="py-2 px-8 border border-black rounded-full transition-all hover:bg-black hover:text-white">{{
-            t('common.button.addAddress') }}</button>
+            user.address !== null ? t('common.button.modifyAddress', 2) : t('common.button.modifyAddress', 1) }}</button>
         <button @click.prevent="toggleAddressInputs(false)"
           class="flex justify-center items-center p-2 w-10 h-10 border border-black rounded-full transition-all hover:bg-black hover:text-white">
           <PhX size="18" />
         </button>
       </div>
-      <div v-if="showAddressInputs" class="col-span-6 sm:col-span-12">
+      <div v-if="showAddressInputs" class="flex flex-col col-span-6 gap-6 sm:col-span-12">
         <div>
           <InputLabel for="address_line_1" :value="`${t('page.user.profile.basicInfo.address1')}*`" />
           <TextInput id="address_line_1" v-model="form.address_line_1" type="text" class="mt-1 block w-full" required

@@ -1,7 +1,9 @@
 <script setup>
 import { reactive } from 'vue';
-import { Head, router } from '@inertiajs/vue3';
+import { Head, router, useForm } from '@inertiajs/vue3';
 import { PhX } from '@phosphor-icons/vue';
+import { useToast } from 'vue-toast-notification';
+import { useI18n } from 'vue-i18n';
 import AdminDashboard from '@/Layouts/AdminDashboard.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
@@ -9,8 +11,7 @@ import TextareaInput from '@/Components/TextareaInput.vue';
 import SelectInput from '@/Components/SelectInput.vue';
 import ErrorMessage from '@/Components/ErrorMessage.vue';
 import Tooltip from '@/Components/Tooltip.vue';
-import { useToast } from 'vue-toast-notification';
-import { useI18n } from 'vue-i18n';
+import { capitalize } from '@/utils/capitalize';
 
 const props = defineProps({
   categories: Array,
@@ -23,7 +24,7 @@ const props = defineProps({
 const { t } = useI18n();
 const toast = useToast();
 
-const form = reactive({
+const form = useForm({
   name: '',
   description: '',
   gender: 'unisex',
@@ -68,7 +69,6 @@ const removeVariation = index => {
 const handleImageChange = (event, index) => {
   const file = event.target.files[0];
   if (file && !['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) {
-    alert('Only PNG, JPG, and WEBP images are allowed.');
     return;
   }
   form.variations[index].image = file;
@@ -126,7 +126,7 @@ const submitForm = () => {
     forceFormData: true,
     onSuccess: () => {
       toast.open({
-        message: 'Product created successfully.',
+        message: `${t('common.toast.product.productCreate.successMessage')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -134,7 +134,7 @@ const submitForm = () => {
     },
     onError: () => {
       toast.open({
-        message: 'Failed to create product! Please check the form for errors.',
+        message: `${t('common.toast.product.productCreate.errorMessage')}!`,
         type: 'error',
         position: 'top',
         duration: 4000,
@@ -179,13 +179,13 @@ const submitForm = () => {
           <div>
             <p>{{ t('common.form.product.feature', 2) }}</p>
             <div v-for="(feature, index) in form.features" :key="index" class="grid grid-cols-2 gap-4">
-              <div class="flex flex-col">
+              <div class="flex flex-col my-2">
                 <InputLabel :for="'feature_title_' + index" :value="t('common.form.product.featureTitle')" />
                 <TextInput :id="'feature_title_' + index" type="text" v-model="feature.title"
                   class="mt-1 block w-full" />
                 <ErrorMessage :message="errors[`features.${index}.title`]" />
               </div>
-              <div class="flex flex-col">
+              <div class="flex flex-col my-2">
                 <InputLabel :for="'feature_description_' + index"
                   :value="t('common.form.product.featureDescription')" />
                 <TextInput :id="'feature_description_' + index" type="text" v-model="feature.description"
@@ -203,7 +203,7 @@ const submitForm = () => {
             <InputLabel for="category" :value="t('common.form.product.category')" />
             <SelectInput name="category" id="category" v-model="form.category_id">
               <option v-for="category in categories" :value="category.id" :key="category.id">
-                {{ category.name.charAt(0).toUpperCase() + category.name.slice(1) }}
+                {{ capitalize(category.name) }}
               </option>
             </SelectInput>
             <ErrorMessage :message="errors.category" />
@@ -213,7 +213,7 @@ const submitForm = () => {
             <div v-for="(variation, index) in form.variations" :key="index" class="border p-4 rounded-md mb-6">
               <div class="flex justify-between items-center mb-2">
                 <h3 class="font-semibold">{{ t('common.form.product.variation', { variation: index + 1 })
-                  }}</h3>
+                }}</h3>
                 <div class="flex gap-2">
                   <button @click="toggleCollapse(index)" type="button" class="text-sm text-blue-600">
                     {{ variation.collapsed ? t('common.form.product.expand') : t('common.form.product.collapse') }}
@@ -265,7 +265,7 @@ const submitForm = () => {
                   </div>
                   <div>
                     <InputLabel :value="t('common.form.product.price')" />
-                    <TextInput type=" number" v-model="variation.price" />
+                    <TextInput type="number" v-model="variation.price" />
                     <ErrorMessage :message="errors[`variations.${index}.price`]" />
                   </div>
                   <div>
@@ -319,13 +319,12 @@ const submitForm = () => {
           </div>
           <div class="flex flex-col">
             <h3 class="font-medium text-base">{{ t('common.form.product.gender') }}</h3>
-            <p class="mt-4">{{ form.gender.charAt(0).toUpperCase() + form.gender.slice(1) || t('common.gender.unisex')
-              }}</p>
+            <p class="mt-4">{{ capitalize(form.gender) || t('common.gender.unisex')
+            }}</p>
           </div>
           <div>
             <h3 class="font-medium text-base">{{ t('common.form.product.category') }}</h3>
-            <p class="mt-4">{{categories.find(c => c.id == form.category_id)?.name.charAt(0).toUpperCase()
-              + categories.find(c => c.id == form.category_id)?.name.slice(1)}}</p>
+            <p class="mt-4">{{capitalize(categories.find(c => c.id == form.category_id)?.name)}}</p>
           </div>
           <div class="flex flex-col my-4">
             <h3 class="font-medium text-base">{{ t('common.form.product.description') }}</h3>

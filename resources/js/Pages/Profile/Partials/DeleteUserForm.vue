@@ -30,7 +30,7 @@ const deleteUser = () => {
     preserveScroll: true,
     onSuccess: () => {
       toast.open({
-        message: `${t('page.user.profile.deleteUser.successMessage')}.`,
+        message: `${t('common.toast.user.accountDelete.successMessage')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -39,7 +39,7 @@ const deleteUser = () => {
     },
     onError: () => {
       toast.open({
-        message: `{${t('page.user.profile.deleteUser.errorMessage')}}! ` + errors.error,
+        message: `{${t('common.toast.user.accountDelete.errorMessage')}}! ` + errors.error,
         type: 'error',
         position: 'top',
         duration: 4000,

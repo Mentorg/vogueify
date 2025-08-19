@@ -31,7 +31,7 @@ class StoreProductRequest extends FormRequest
             'category_id' => 'required|exists:product_categories,id',
 
             'variations' => 'required|array|min:1',
-            'variations.*.image' => 'nullable|image|max:2048',
+            'variations.*.image' => 'required|image|max:2048',
             'variations.*.color_id' => 'nullable|exists:colors,id',
             'variations.*.primary_color_id' => 'nullable|exists:colors,id',
             'variations.*.secondary_color_id' => 'nullable|exists:colors,id',
@@ -50,6 +50,7 @@ class StoreProductRequest extends FormRequest
         return [
             'features.*.title' => 'feature title',
             'features.*.description' => 'feature description',
+            'variations.*.image' => 'variation image',
             'variations.*.product_type_id' => 'product type',
             'variations.*.price' => 'price',
             'variations.*.sku' => 'sku',

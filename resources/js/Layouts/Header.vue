@@ -9,6 +9,7 @@ import {
   PhBag,
 } from "@phosphor-icons/vue";
 import { useI18n } from 'vue-i18n';
+import { capitalize } from '@/utils/capitalize';
 
 const { t } = useI18n();
 const user = usePage().props.auth.user;
@@ -55,7 +56,7 @@ onBeforeUnmount(() => {
   <header
     class="relative top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-[8px] border-b border-b-[#D9D9D9] bg-white md:px-[20px] md:py-[16px] lg:px-[60px] lg:py-[26px]">
     <div class="flex flex-row items-center gap-6">
-      <button v-if="user?.role !== 'admin' && user?.role !== 'staff'" @click="emit('toggleMenu')"
+      <button v-if="user?.role !== 'admin' && user?.role !== 'staff'" @click.stop="emit('toggleMenu')"
         class="flex items-center gap-2">
         <PhList :size="24" />
         <span class="hidden text-sm font-light md:flex">{{ t('common.header.button.menu') }}</span>
@@ -67,14 +68,14 @@ onBeforeUnmount(() => {
       </Link>
     </div>
     <div>
-      <Link href="/" class="text-lg font-medium md:text-3xl">Vogueify</Link>
+      <Link href="/" class="text-lg font-medium md:text-3xl">VOGUEIFY</Link>
     </div>
     <div class="flex gap-4">
       <div v-if="user?.role === 'admin' || user?.role === 'staff'" class="locale-changer">
         <select name="locale-changer" id="locale-changer" v-model="$i18n.locale"
           class="py-0 cursor-pointer border-none text-sm">
           <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{
-            locale.charAt(0).toUpperCase() + locale.slice(1) }}
+            capitalize(locale) }}
           </option>
         </select>
       </div>

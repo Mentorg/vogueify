@@ -1,16 +1,19 @@
 <script setup>
-import { defineProps, defineEmits, ref, onMounted, onBeforeUnmount } from 'vue';
+import { defineProps, ref, onMounted, onBeforeUnmount } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import {
   PhList,
-  PhHeart,
-  PhUser,
-  PhBag,
+  PhUser
 } from "@phosphor-icons/vue";
 import { useI18n } from 'vue-i18n';
+import { capitalize } from '@/utils/capitalize';
+
+const props = defineProps({
+  isMobile: Object,
+  toggleMenu: Function
+});
 
 const { t } = useI18n();
-const emit = defineEmits(['toggleMenu']);
 const user = usePage().props.auth.user;
 const isUserMenuOpen = ref(false);
 const userMenu = ref(null);
@@ -49,19 +52,23 @@ onBeforeUnmount(() => {
   <header
     class="flex items-center justify-between px-4 py-[8px] border-b border-b-[#D9D9D9] md:px-[20px] md:py-[16px] lg:px-[60px] lg:py-[16px]">
     <div class="flex flex-row items-center gap-6">
-      <button v-if="user?.role !== 'admin' && user?.role !== 'staff'" @click="emit('toggleMenu')"
-        class="flex items-center gap-2">
+      <button @click="toggleMenu()" class="flex items-center gap-2 md:hidden">
         <PhList :size="24" />
         <span class="hidden md:flex">{{ t('common.header.button.menu') }}</span>
       </button>
     </div>
     <div>
-      <Link href="/" class="text-lg font-medium md:text-3xl">Vogueify</Link>
+      <Link href="/" class="text-lg font-medium md:text-3xl">VOGUEIFY</Link>
     </div>
     <div class="flex gap-4">
-      <Link v-if="user?.role === 'customer'" :href="route('wishlist.index')">
-      <PhHeart :size="24" />
-      </Link>
+      <div v-if="!isMobile" class="locale-changer">
+        <select name="locale-changer" id="locale-changer" v-model="$i18n.locale"
+          class="py-0 cursor-pointer border-none text-sm">
+          <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{
+            capitalize(locale) }}
+          </option>
+        </select>
+      </div>
       <div class="relative">
         <Link v-if="!user" :href="route('login')">
         <PhUser :size="24" />
@@ -77,19 +84,11 @@ onBeforeUnmount(() => {
           {{ t('common.header.contextMenu.dashboard') }}
           </Link>
           <div class="border-t border-gray-200" />
-          <Link v-if="!user" :href="route('login')" class="py-2 px-4 text-sm w-full transition-all hover:bg-slate-200">
-          Login
-          </Link>
           <Link v-if="user" :href="route('logout')" method="post"
             class="py-2 px-4 text-start text-sm w-full transition-all hover:bg-slate-200">
           {{ t('common.header.contextMenu.logOut') }}</Link>
         </div>
       </div>
-      <button v-if="user?.role === 'customer'" class="relative">
-        <PhBag :size="24" />
-        <span
-          class="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-black text-xs text-white">0</span>
-      </button>
     </div>
   </header>
 </template>

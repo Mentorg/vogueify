@@ -1,9 +1,9 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import Footer from '@/Components/Footer.vue';
-import Menu from '@/Components/Menu.vue';
 import { PhCheck } from '@phosphor-icons/vue';
 import { useI18n } from 'vue-i18n';
+import Menu from '@/Layouts/Menu.vue';
+import Footer from '@/Layouts/Footer.vue';
 
 const props = defineProps({
   checkoutSession: Object,

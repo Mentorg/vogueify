@@ -1,12 +1,14 @@
 <script setup>
 import { ref, defineProps } from 'vue';
-import { Head, Link, usePage } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 import {
   PhX,
   PhHeart,
   PhMagnifyingGlass,
 } from "@phosphor-icons/vue";
 import { useI18n } from 'vue-i18n';
+import useWishlist from '@/composables/useWishlist';
+import { capitalize } from '@/utils/capitalize';
 
 const props = defineProps({
   categories: Array,
@@ -15,9 +17,9 @@ const props = defineProps({
 })
 
 const { t } = useI18n();
-const wishlist = usePage().props.auth.wishlist;
 const query = ref('');
-const localWishlist = ref([...wishlist]);
+
+const { toggleWishlist } = useWishlist();
 
 const onInput = (e) => {
   query.value = e.target.value;
@@ -27,50 +29,6 @@ const goBack = () => {
   window.history.back();
 }
 
-const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-const addToWishlist = async (productVariationId) => {
-  const existing = localWishlist.value.find(item => item.product_variation_id === productVariationId);
-
-  if (existing) {
-    try {
-      const response = await fetch(route('wishlist.destroy', existing.id), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-TOKEN': csrfToken
-        },
-        body: JSON.stringify({ _method: 'DELETE' })
-      });
-
-      if (!response.ok) throw new Error('Failed to remove from wishlist');
-
-      localWishlist.value = localWishlist.value.filter(item => item.id !== existing.id);
-    } catch (error) {
-      console.error('Error removing from wishlist:', error);
-    }
-
-  } else {
-    try {
-      const response = await fetch(route('wishlist.store'), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-TOKEN': csrfToken
-        },
-        body: JSON.stringify({ product_variation_id: productVariationId })
-      });
-
-      if (!response.ok) throw new Error('Failed to add to wishlist');
-
-      const newItem = await response.json();
-
-      localWishlist.value.push(newItem);
-    } catch (error) {
-      console.error('Error adding to wishlist:', error);
-    }
-  }
-};
 </script>
 
 <template>
@@ -80,7 +38,7 @@ const addToWishlist = async (productVariationId) => {
     <div class="flex justify-between px-4 py-[8px] md:px-[60px] md:py-[17px]">
       <div></div>
       <div>
-        <Link href="/" class="text-lg font-medium md:text-3xl">Vogueify</Link>
+        <Link href="/" class="text-lg font-medium md:text-3xl">VOGUEIFY</Link>
       </div>
       <button @click="goBack">
         <PhX :size="24" />
@@ -96,8 +54,7 @@ const addToWishlist = async (productVariationId) => {
       </form>
       <ul class="flex justify-center mt-4 gap-x-4">
         <p class="text-xs uppercase">{{ t('page.search.trendingSearches') }}</p>
-        <li v-for="category in categories" :key="category.id" class="text-xs">{{ category.name.charAt(0).toUpperCase() +
-          category.name.slice(1) }}</li>
+        <li v-for="category in categories" :key="category.id" class="text-xs">{{ capitalize(category.name) }}</li>
       </ul>
     </div>
     <div class="overflow-y-auto max-h-[calc(100vh-200px)]">
@@ -109,9 +66,9 @@ const addToWishlist = async (productVariationId) => {
             <Link :href="route('product.show', { product: product.product.slug, variation: product.sku })">
             <img :src="product?.image" :alt="product.product.name" class="w-full h-auto" />
             <div class="absolute top-0 right-0 mt-2 mr-2">
-              <button @click.prevent="addToWishlist(product.id)">
-                <PhHeart size="18" color="red"
-                  :weight="localWishlist.some(record => record.product_variation_id === product.id) ? 'fill' : 'regular'" />
+              <button @click.prevent="toggleWishlist(product.id, () => product.isInWishlist = !product.isInWishlist)"
+                class="bg-black p-2 rounded-full">
+                <PhHeart size="18" color="white" :weight="product.isInWishlist ? 'fill' : 'regular'" />
               </button>
             </div>
             <div
@@ -136,9 +93,9 @@ const addToWishlist = async (productVariationId) => {
             <Link :href="route('product.show', { product: product.product.slug, variation: product.sku })">
             <img :src="product?.image" :alt="product.product.name" class="w-full h-auto" />
             <div class="absolute top-0 right-0 mt-2 mr-2">
-              <button @click.prevent="addToWishlist(product.id)">
-                <PhHeart size="18" color="red"
-                  :weight="localWishlist.some(record => record.product_variation_id === product.id) ? 'fill' : 'regular'" />
+              <button @click.prevent="toggleWishlist(product.id, () => product.isInWishlist = !product.isInWishlist)"
+                class="bg-black p-2 rounded-full">
+                <PhHeart size="18" color="white" :weight="product.isInWishlist ? 'fill' : 'regular'" />
               </button>
             </div>
             <div

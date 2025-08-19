@@ -2,6 +2,7 @@
 import { ref, computed, watch } from 'vue';
 import { router, useForm, usePage } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
+import { useToast } from 'vue-toast-notification';
 import ActionSection from '@/Components/ActionSection.vue';
 import ConfirmsPassword from '@/Components/ConfirmsPassword.vue';
 import DangerButton from '@/Components/DangerButton.vue';
@@ -10,7 +11,6 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { useToast } from 'vue-toast-notification';
 
 const props = defineProps({
   requiresConfirmation: Boolean,
@@ -48,7 +48,7 @@ const enableTwoFactorAuthentication = () => {
     preserveScroll: true,
     onSuccess: () => {
       toast.open({
-        message: `${t('page.user.profile.twoFactor.tfEnabledSuccess')}.`,
+        message: `${t('common.toast.user.twoFactor.enabled.successMessage')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -91,7 +91,7 @@ const confirmTwoFactorAuthentication = () => {
     preserveState: true,
     onSuccess: () => {
       toast.open({
-        message: `${t('page.user.profile.twoFactor.tfEnabledSuccess')}.`,
+        message: `${t('common.toast.user.twoFactor.confirmed.successMessage')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,

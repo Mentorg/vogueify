@@ -7,8 +7,10 @@ use App\Models\ProductVariation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\FIlters\Search;
+use App\Models\OrderItem;
 use Exception;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class ProductService
@@ -29,7 +31,17 @@ class ProductService
             $query->whereHas('type', fn($q) => $q->where('type', $request->type));
         }
 
-        return $paginate ? $query->paginate(15) : $query->get();
+        $products = $paginate ? $query->paginate(15) : $query->get();
+
+        $wishlistIds = Auth::check()
+            ? Auth::user()->wishlist()->pluck('product_variation_id')->toArray()
+            : [];
+
+        $products->each(function ($variation) use ($wishlistIds) {
+            $variation->isInWishlist = in_array($variation->id, $wishlistIds);
+        });
+
+        return $products;
     }
 
     public function create(array $validated, $request)
@@ -106,6 +118,15 @@ class ProductService
             }
         } else {
             $activeVariation = $variations->first();
+        }
+
+        if (Auth::check()) {
+            $activeVariation->isInWishlist = Auth::user()
+                ->wishlist()
+                ->where('product_variation_id', $activeVariation->id)
+                ->exists();
+        } else {
+            $activeVariation->isInWishlist = false;
         }
 
         return [
@@ -210,18 +231,32 @@ class ProductService
 
     public function delete(Product $product)
     {
-        return tap($product)->delete();
+        $hasOrders = OrderItem::whereIn(
+            'product_variation_id',
+            $product->productVariations()->pluck('id')
+        )->exists();
+
+        if ($hasOrders) {
+            return false;
+        }
+        return $product->delete();
     }
 
     public function deleteVariation(ProductVariation $variation)
     {
+        $hasOrders = OrderItem::where('product_variation_id', $variation->id)->exists();
+
+        if ($hasOrders) {
+            return false;
+        }
+
         $product = $variation->product;
 
         if ($product->productVariations()->count() <= 1) {
             return $this->delete($product);
         }
 
-        return tap($variation)->delete();
+        return $variation->delete();
     }
 
     public function getSearchResults()
@@ -229,6 +264,14 @@ class ProductService
         $products = ProductVariation::queryFilter([
             Search::class,
         ])->with(['product.category', 'type'])->get();
+
+        $wishlistIds = Auth::check()
+            ? Auth::user()->wishlist()->pluck('product_variation_id')->toArray()
+            : [];
+
+        $products->each(function ($variation) use ($wishlistIds) {
+            $variation->isInWishlist = in_array($variation->id, $wishlistIds);
+        });
 
         return $products;
     }

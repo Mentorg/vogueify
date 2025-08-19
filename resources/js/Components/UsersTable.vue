@@ -39,7 +39,7 @@ const destroy = (id) => {
     preserveScroll: true,
     onSuccess: () => {
       toast.open({
-        message: 'User deleted successfully.',
+        message: `${t('common.toast.user.userDelete.successMessage')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -48,12 +48,12 @@ const destroy = (id) => {
     },
     onError: (errors) => {
       toast.open({
-        message: 'Failed to delete user! ' + errors.error,
+        message: `${t('common.toast.user.userDelete.errorMessage')}! ` + errors.error,
         type: 'error',
         position: 'top',
         duration: 4000,
       });
-      errorMessage.value = errors.error || 'Failed to delete user!';
+      errorMessage.value = errors.error || `${t('common.toast.user.userDelete.errorMessage')}!`;
     },
     onFinish: () => form.reset(),
   });
@@ -147,6 +147,12 @@ onBeforeUnmount(() => {
           {{ t('common.table.pagination', { from: users.from, to: users.to, total: users.total }) }}
         </p>
         <ul class="list-style-none flex gap-x-4 mx-2">
+          <li v-if="users.first_page_url">
+            <button class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm"
+              @click="router.visit(users.first_page_url)">
+              {{ t('common.button.first') }}
+            </button>
+          </li>
           <li v-if="users.prev_page_url">
             <button class="bg-slate-500 text-white flex items-center rounded px-3 py-1.5 text-sm"
               @click="router.visit(users.prev_page_url)">
@@ -159,6 +165,12 @@ onBeforeUnmount(() => {
               @click="router.visit(users.next_page_url)">
               {{ t('common.button.next') }}
               <PhCaretRight :size="12" />
+            </button>
+          </li>
+          <li v-if="users.last_page_url">
+            <button class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm"
+              @click="router.visit(users.last_page_url)">
+              {{ t('common.button.last') }}
             </button>
           </li>
         </ul>

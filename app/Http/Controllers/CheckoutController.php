@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\Order;
 use App\Services\CheckoutService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -25,11 +26,11 @@ class CheckoutController extends Controller
 
     public function createSession(Request $request)
     {
-        $checkoutSession = $this->checkoutService->createSession($request);
+        $order = Order::findOrFail($request->order_id);
 
-        return response()->json([
-            'redirect_url' => $checkoutSession->url,
-        ]);
+        $checkoutSession = $this->checkoutService->createSession($order);
+
+        return redirect()->away($checkoutSession->url);
     }
 
     public function success(Request $request)

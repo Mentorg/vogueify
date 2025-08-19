@@ -2,8 +2,8 @@
 import { defineProps, computed } from 'vue';
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
-import Menu from '@/Components/Menu.vue';
-import Footer from '@/Components/Footer.vue';
+import Menu from '@/Layouts/Menu.vue';
+import Footer from '@/Layouts/Footer.vue';
 
 defineProps({
   title: String

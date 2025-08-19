@@ -8,6 +8,7 @@ import DangerButton from './DangerButton.vue';
 import SecondaryButton from './SecondaryButton.vue';
 import { useToast } from 'vue-toast-notification';
 import { useI18n } from 'vue-i18n';
+import { capitalize } from '@/utils/capitalize';
 
 const props = defineProps({
   variations: Array,
@@ -38,19 +39,19 @@ const confirmVariationDeletion = (variation) => {
 const destroy = (id, type) => {
   if (id === null || id === undefined) {
     toast.open({
-      message: 'Invalid variation ID! Please try again.',
+      message: `${t('common.toast.product.productDelete.errorVariationMessage')}!`,
       type: 'error',
       position: 'top',
       duration: 4000,
     });
-    errorMessage.value = 'Invalid variation ID! Please try again.';
+    errorMessage.value = `${t('common.toast.product.productDelete.errorVariationMessage')}!`;
     return;
   }
   form.delete(route('product.delete', { id }) + `?type=${type}`, {
     preserveScroll: true,
     onSuccess: () => {
       toast.open({
-        message: 'Product deleted successfully.',
+        message: `${t('common.toast.product.productDelete.successMessage')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -59,12 +60,12 @@ const destroy = (id, type) => {
     },
     onError: (errors) => {
       toast.open({
-        message: 'Failed to delete product! ' + errors.error,
+        message: `${t('common.toast.product.productDelete.errorMessage')}! ` + errors.error,
         type: 'error',
         position: 'top',
         duration: 4000,
       });
-      errorMessage.value = errors.error || 'Failed to delete product!';
+      errorMessage.value = errors.error || `${t('common.toast.product.productDelete.errorMessage')}!`;
     },
     onFinish: () => form.reset()
   });
@@ -118,7 +119,7 @@ onBeforeUnmount(() => {
             </td>
             <td class="px-6 py-4">{{ variation.sku }}</td>
             <td class="px-6 py-4">
-              {{ variation.product.category.name.charAt(0).toUpperCase() + variation.product.category.name.slice(1) }}
+              {{ capitalize(variation.product.category.name) }}
             </td>
             <td class="px-6 py-4">{{ formatDate(variation.created_at, '.') }}</td>
             <td class="px-6 py-4 justify-self-end context-menu-wrapper">

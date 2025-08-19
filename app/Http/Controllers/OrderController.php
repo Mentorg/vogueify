@@ -7,8 +7,8 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use App\Notifications\Order\OrderConfirmedNotification;
 use App\Services\OrderService;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class OrderController extends Controller
@@ -22,13 +22,14 @@ class OrderController extends Controller
 
     public function store(StoreOrderRequest $request, Order $order)
     {
-        $order = $this->orderService->create($order, $request);
+        try {
+            $order = $this->orderService->create(new Order, $request);
 
-        if ($request->wantsJson()) {
-            return response()->json(['order_id' => $order->id]);
+            return Inertia::location(route('checkout.create', ['order_id' => $order->id]));
+
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
-
-        return redirect()->route('checkout', ['order_id' => $order->id]);
     }
 
     public function show(Order $order)

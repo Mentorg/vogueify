@@ -72,6 +72,62 @@
       "content": "Êtes-vous sûr de vouloir annuler la commande {order} ?"
     }
   },
+  "toast": {
+    "cart": {
+      "successMessage": "Cart items deleted successfully",
+      "errorMessage": "Failed to delete cart items"
+    },
+    "checkout": {},
+    "order": {
+      "successMessage": "Commande annulée avec succès",
+      "errorMessage": "Échec de l'annulation de votre commande"
+    },
+    "product": {
+      "cart": {
+        "errorMessage": "Échec de l'ajout de l'article au panier"
+      },
+      "productDelete": {
+        "successMessage": "Produit supprimé avec succès",
+        "errorMessage": "Échec de la suppression du produit",
+        "errorVariationMessage": "ID de variation invalide! Veuillez réessayer"
+      },
+      "productCreate": {
+        "successMessage": "Produit créé avec succès",
+        "errorMessage": "Échec de la création du produit! Veuillez vérifier le formulaire pour des erreurs"
+      },
+      "productUpdate": {
+        "successMessage": "Produit créé avec succès",
+        "errorValidationMessage": "Échec de la mise à jour du produit ! Échec de la validation",
+        "errorMessage": "Échec de la création du produit! Veuillez vérifier le formulaire pour des erreurs"
+      }
+    },
+    "user": {
+      "userDelete": {
+        "successMessage": "Utilisateur supprimé avec succès",
+        "errorMessage": "Échec de la suppression de l'utilisateur"
+      },
+      "profileUpdate": {
+        "successMessage": "Vos informations ont été mises à jour avec succès",
+        "errorMessage": "Échec de la mise à jour de vos informations"
+      },
+      "accountDelete": {
+        "successMessage": "Compte supprimé avec succès",
+        "errorMessage": "Échec de la suppression du compte"
+      },
+      "twoFactor": {
+        "enabled": {
+          "successMessage": "Vous avez activé l'authentification à deux facteurs avec succès"
+        },
+        "confirmed": {
+          "successMessage": "Vous avez confirmé l'authentification à deux facteurs avec succès"
+        }
+      },
+      "passwordUpdate": {
+        "successMessage": "Votre mot de passe a été mis à jour avec succès",
+        "errorMessage": "Échec de la mise à jour de votre mot de passe"
+      }
+    }
+  },
   "button": {
     "showNow": "Achetez maintenant",
     "continueShopping": "Continuer vos achats",
@@ -89,7 +145,7 @@
     "addFeature": "Ajouter une fonctionnalité",
     "addVariation": "Ajouter une nouvelle variante",
     "saveProduct": "Enregistrer le produit",
-    "addAddress": "Ajouter les détails de l'adresse",
+    "modifyAddress": "Ajouter les détails de l'adresse | Mettre à jour les détails de l'adresse",
     "save": "Enregistrer",
     "enable": "Activer",
     "confirm": "Confirmer",

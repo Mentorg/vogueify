@@ -2,10 +2,11 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import { PhX } from "@phosphor-icons/vue";
-import Header from './Header.vue';
-import MenuLink from "./MenuLink.vue";
-import MobileMenu from './MobileMenu.vue';
 import { useI18n } from 'vue-i18n';
+import Header from '@/Layouts/Header.vue';
+import MobileMenu from "@/Layouts/MobileMenu.vue";
+import MenuLink from "@/Components/MenuLink.vue";
+import { capitalize } from '@/utils/capitalize';
 
 const { t } = useI18n();
 const isMenuOpen = ref(false);
@@ -13,6 +14,7 @@ const activeSubmenu = ref(null);
 const activeThirdLevelSubmenu = ref(null);
 const hoveredItem = ref(false);
 const activeItem = ref(null);
+const menuContainer = ref(null);
 
 const openSubmenu = (item) => {
   if (activeSubmenu.value === item) {
@@ -38,6 +40,16 @@ const closeMenu = () => {
   activeThirdLevelSubmenu.value = null;
 };
 
+const handleClickOutsideMenu = (event) => {
+  if (
+    isMenuOpen.value &&
+    menuContainer.value &&
+    !menuContainer.value.contains(event.target)
+  ) {
+    closeMenu();
+  }
+};
+
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 }
@@ -58,6 +70,14 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize);
 });
 
+onMounted(() => {
+  window.addEventListener('click', handleClickOutsideMenu);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('click', handleClickOutsideMenu);
+});
+
 </script>
 
 <template>
@@ -66,9 +86,9 @@ onBeforeUnmount(() => {
     <MobileMenu :isMenuOpen="isMenuOpen" :toggleMenu="toggleMenu" :closeMenu="closeMenu" />
   </div>
   <div v-else>
-    <div class="relative">
-      <div :class="{ 'visible': isMenuOpen, 'invisible': !isMenuOpen }"
-        class="w-dvw h-dvh bg-slate-950/85 fixed top-0 left-0 z-10 transition-all duration-200 ease-in-out" />
+    <div :class="{ 'visible': isMenuOpen, 'invisible': !isMenuOpen }"
+      class="w-dvw h-dvh bg-slate-950/85 fixed top-0 left-0 z-10 transition-all duration-200 ease-in-out" />
+    <div ref="menuContainer" class="relative">
       <Header :isMenuOpen="isMenuOpen" @toggleMenu="toggleMenu" />
       <div :class="{ 'opacity-100': isMenuOpen, 'opacity-0': !isMenuOpen }"
         class="main-menu absolute top-0 left-0 w-full px-4 h-dvh bg-white py-2 transition-all duration-300 ease-in-out transform z-50 border-r md:px-[20px] md:py-[24px] md:w-[16rem] lg:px-[60px] lg:w-[30rem]"
@@ -82,7 +102,7 @@ onBeforeUnmount(() => {
               <select name="locale-changer" id="locale-changer" v-model="$i18n.locale"
                 class="py-0 cursor-pointer border-none text-sm">
                 <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{
-                  locale.charAt(0).toUpperCase() + locale.slice(1) }}
+                  capitalize(locale) }}
                 </option>
               </select>
             </div>
@@ -643,7 +663,7 @@ onBeforeUnmount(() => {
               <Link href="/products?category=perfumes"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
               <span class="relative">{{ t('common.menuLabel.all', 2) }} {{ t('common.category.perfumes', 2)
-                }}
+              }}
                 <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
                   class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
               </span>

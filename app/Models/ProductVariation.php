@@ -52,6 +52,11 @@ class ProductVariation extends Model
         return $this->belongsTo(ProductType::class, 'product_type_id');
     }
 
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
     public function wishlist()
     {
         return $this->hasMany(Wishlist::class);

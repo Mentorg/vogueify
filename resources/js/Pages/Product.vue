@@ -2,12 +2,15 @@
 import { computed, defineProps, onBeforeUnmount, onMounted, ref } from "vue";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/vue3";
 import { PhHeart, PhX } from "@phosphor-icons/vue";
-import Menu from '@Components/Menu.vue';
-import Footer from "@/Components/Footer.vue";
+import { useI18n } from 'vue-i18n';
+import { useToast } from "vue-toast-notification";
+import Menu from '@/Layouts/Menu.vue';
+import Footer from "@/Layouts/Footer.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import SelectInput from "@/Components/SelectInput.vue";
-import { useI18n } from 'vue-i18n';
+import useWishlist from "@/composables/useWishlist";
+import { capitalize } from '@/utils/capitalize.js';
 
 const props = defineProps({
   product: Object,
@@ -15,17 +18,11 @@ const props = defineProps({
 });
 
 const { t } = useI18n();
+const toast = useToast();
 const user = usePage().props.auth.user;
-const wishlist = usePage().props.auth.wishlist;
-const localWishlist = ref([...wishlist]);
 const isCartSidebarOpen = ref(false);
 
-const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-function capitalize(value) {
-  if (!value) return '';
-  return value.charAt(0).toUpperCase() + value.slice(1);
-}
+const { toggleWishlist } = useWishlist();
 
 const currentVariation = computed(() => {
   return props.activeVariation || (props.product.productVariations?.[0] ?? null);
@@ -52,52 +49,14 @@ const handleClickOutside = (event) => {
   }
 }
 
-const addToWishlist = async (productVariationId) => {
-  const existing = localWishlist.value.find(item => item.product_variation_id === productVariationId);
-
-  if (existing) {
-    try {
-      const response = await fetch(route('wishlist.destroy', existing.id), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-TOKEN': csrfToken
-        },
-        body: JSON.stringify({ _method: 'DELETE' })
-      });
-
-      if (!response.ok) throw new Error('Failed to remove from wishlist');
-
-      localWishlist.value = localWishlist.value.filter(item => item.id !== existing.id);
-    } catch (error) {
-      console.error('Error removing from wishlist:', error);
-    }
-
-  } else {
-    try {
-      const response = await fetch(route('wishlist.store'), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-TOKEN': csrfToken
-        },
-        body: JSON.stringify({ product_variation_id: productVariationId })
-      });
-
-      if (!response.ok) throw new Error('Failed to add to wishlist');
-
-      const newItem = await response.json();
-
-      localWishlist.value.push(newItem);
-    } catch (error) {
-      console.error('Error adding to wishlist:', error);
-    }
-  }
-};
-
 const submitForm = () => {
   if (user === null) {
     router.visit(route('login'));
+    return;
+  }
+
+  if (user.email_verified_at === null) {
+    router.visit(route('verification.notice'));
     return;
   }
 
@@ -110,7 +69,12 @@ const submitForm = () => {
         isCartSidebarOpen.value = true;
       },
       onError: (errors) => {
-        errorMessage.value = errors.error || 'Failed to submit form.';
+        toast.open({
+          message: errors?.error || t('common.toast.product.cart.errorMessage'),
+          type: 'error',
+          position: 'top',
+          duration: 4000,
+        });
       },
     });
 };
@@ -167,9 +131,8 @@ onBeforeUnmount(() => {
               <div class="lg:my-8">
                 <div class="flex justify-between">
                   <p class="text-sm">{{ currentVariation.sku }}</p>
-                  <button @click.prevent="addToWishlist(currentVariation.id)">
-                    <PhHeart size="18" color="black"
-                      :weight="localWishlist.some(record => record.product_variation_id === currentVariation.id) ? 'fill' : 'regular'" />
+                  <button @click.prevent="toggleWishlist(currentVariation.id)">
+                    <PhHeart size="18" color="black" :weight="currentVariation.isInWishlist ? 'fill' : 'regular'" />
                   </button>
                 </div>
                 <h2 class="text-xl mt-4 md:text-3xl">{{ product.name }}</h2>
@@ -235,18 +198,6 @@ onBeforeUnmount(() => {
                   <h3 class="font-medium">{{ t('common.product.primaryColor') }}</h3>
                   <p>{{ capitalize(currentVariation.secondary_color?.name) }}</p>
                 </div>
-              </div>
-              <div v-if="currentVariation.size">
-                <h3 class="font-medium">
-                  {{
-                    product.category_id === 0
-                      ? "Capacity"
-                      : currentVariation.type === "necklace"
-                        ? "Chain length"
-                        : "Size"
-                  }}
-                </h3>
-                <p>{{ currentVariation.size }}</p>
               </div>
             </div>
             <ul class="mt-6 grid grid-cols-2">

@@ -1,83 +1,28 @@
 <script setup>
-import { ref } from 'vue';
-import { Link, useForm } from '@inertiajs/vue3';
-import { PhXCircle } from '@phosphor-icons/vue';
-import { useToast } from 'vue-toast-notification';
+import { Link } from '@inertiajs/vue3';
+import { PhDotsThree, PhTrash, PhXCircle } from '@phosphor-icons/vue';
 import { useI18n } from 'vue-i18n';
+import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
-import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import { formatDate } from '@/utils/dateFormat';
+import { useOrder } from '@/composables/useOrder';
 
 const props = defineProps({
   orders: Array
 });
 
 const { t } = useI18n();
-const toast = useToast();
-const form = useForm({});
-const itemToCancel = ref(null);
-const errorMessage = ref(null);
-
-const formatStatus = (status) => {
-  return status
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-};
-
-const confirmOrderCancelation = (order) => {
-  itemToCancel.value = order;
-};
-
-const closeModal = () => {
-  itemToCancel.value = null;
-  errorMessage.value = null;
-}
-
-const cancel = (id) => {
-  if (id === null || id === undefined) {
-    errorMessage.value = `${t('page.user.orders.invalidOrderId')}.`;
-    return;
-  }
-  form.put(route('order.cancel', { order: id }), {
-    preserveScroll: true,
-    onSuccess: () => {
-      toast.open({
-        message: `${t('page.user.orders.successMessage')}.`,
-        type: 'success',
-        position: 'top',
-        duration: 4000,
-      });
-      closeModal();
-    },
-    onError: (errors) => {
-      toast.open({
-        message: `${t('page.user.orders.errorMessage')}! ` + errors.error,
-        type: 'error',
-        position: 'top',
-        duration: 4000,
-      });
-      errorMessage.value = errors.error || `${t('page.user.orders.errorMessage')}!`;
-    }
-  });
-};
-
-const activeStatuses = [
-  'pending',
-  'paid',
-  'confirmed',
-  'processing',
-  'shipped',
-  'in-transit',
-  'out-for-delivery',
-  'attempted-delivery',
-  'awaiting-pickup',
-  'delayed',
-  'held-at-customs',
-  'lost'
-];
+const {
+  cancel,
+  confirmOrderCancelation,
+  closeModal,
+  itemToCancel,
+  errorMessage,
+  formatStatus,
+  activeStatuses
+} = useOrder();
 
 </script>
 
@@ -95,12 +40,12 @@ const activeStatuses = [
           {{ t('common.button.startShopping') }}</Link>
         </div>
         <div v-else class="mt-8">
-          <div v-for="item in orders.filter(order => activeStatuses.includes(order.order_status))"
+          <div v-for="item in orders.filter(order => activeStatuses.includes(order.order_status))" :key="item.id"
             class="flex justify-between items-center gap-2 my-4">
             <div class="flex items-center gap-4">
               <template v-if="item.items.length > 1">
                 <div class="flex -space-x-2">
-                  <div v-for="(orderItem, index) in item.items.slice(0, 2)" :key="index"
+                  <div v-for="orderItem in item.items.slice(0, 2)" :key="orderItem.id"
                     class="h-10 w-10 rounded-full overflow-hidden border-2 border-white">
                     <img v-if="orderItem.product_variation.image" :src="orderItem.product_variation.image" alt=""
                       class="w-full h-full object-cover" />
@@ -177,11 +122,11 @@ const activeStatuses = [
         <div v-else class="mt-8">
           <div
             v-for="item in orders.filter(order => order.order_status === 'delivered' || order.order_status === 'canceled').slice(0, 3)"
-            class="flex justify-between items-center gap-2 my-4">
+            :key="item.id" class="flex justify-between items-center gap-2 my-4">
             <div class="flex items-center gap-4">
               <template v-if="item.items.length > 1">
                 <div class="flex -space-x-2">
-                  <div v-for="(orderItem, index) in item.items.slice(0, 2)" :key="index"
+                  <div v-for="orderItem in item.items.slice(0, 2)" :key="orderItem.id"
                     class="h-10 w-10 rounded-full overflow-hidden border-2 border-white">
                     <img v-if="orderItem.product_variation.image" :src="orderItem.product_variation.image" alt=""
                       class="w-full h-full object-cover" />

@@ -5,6 +5,7 @@ import {
 } from "@phosphor-icons/vue";
 import { Link, usePage } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
+import { capitalize } from '@/utils/capitalize';
 
 const props = defineProps({
   toggleMenu: Function,
@@ -27,7 +28,7 @@ const user = usePage().props.auth.user;
         <select name="locale-changer" id="locale-changer" v-model="$i18n.locale"
           class="py-0 cursor-pointer border-none text-sm">
           <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{
-            locale.charAt(0).toUpperCase() + locale.slice(1) }}
+            capitalize(locale) }}
           </option>
         </select>
       </div>

@@ -1,14 +1,12 @@
 <script setup>
-import { Head, Link } from "@inertiajs/vue3";
-import Menu from '@Components/Menu.vue';
+import { Head, Link, useForm } from "@inertiajs/vue3";
 import { PhArrowLeft } from "@phosphor-icons/vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import { reactive } from "vue";
-import TextInput from "@/Components/TextInput.vue";
-import Footer from "@/Components/Footer.vue";
-import SelectInput from "@/Components/SelectInput.vue";
-import axios from 'axios';
 import { useI18n } from 'vue-i18n';
+import Menu from '@/Layouts/Menu.vue'
+import Footer from "@/Layouts/Footer.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import TextInput from "@/Components/TextInput.vue";
+import SelectInput from "@/Components/SelectInput.vue";
 
 const props = defineProps({
   checkoutData: Object,
@@ -17,71 +15,33 @@ const props = defineProps({
 
 const { t } = useI18n();
 
-const orderForm = reactive({
-  shipping_address_line_1: props.checkoutData.address.address_line_1,
-  shipping_address_line_2: props.checkoutData.address.address_line_2,
-  shipping_city: props.checkoutData.address.city,
-  shipping_state: props.checkoutData.address.state ?? null,
-  shipping_postcode: props.checkoutData.address.postcode,
-  shipping_country: props.countries.find((record) => record.id === props.checkoutData.address.country_id).name,
-  shipping_phone_number: props.checkoutData.address.phone_number,
+const address = props.checkoutData.address ?? {};
 
-  billing_address_line_1: props.checkoutData.address.address_line_1,
-  billing_address_line_2: props.checkoutData.address.address_line_2,
-  billing_city: props.checkoutData.address.city,
-  billing_state: props.checkoutData.address.state ?? null,
-  billing_postcode: props.checkoutData.address.postcode,
-  billing_country: props.countries.find((record) => record.id === props.checkoutData.address.country_id).name,
-  billing_phone_number: props.checkoutData.address.phone_number,
-
-  items: props.checkoutData.cart.cart_items.map(item => ({
+const orderForm = useForm({
+  shipping_address_line_1: address.address_line_1 || '',
+  shipping_address_line_2: address.address_line_2 || '',
+  shipping_city: address.city || '',
+  shipping_state: address.state ?? '',
+  shipping_postcode: address.postcode || '',
+  shipping_country: props.countries.find(record => record.id === address.country_id)?.name || '',
+  shipping_phone_number: address.phone_number || '',
+  billing_address_line_1: address.address_line_1 || '',
+  billing_address_line_2: address.address_line_2 || '',
+  billing_city: address.city || '',
+  billing_state: address.state ?? '',
+  billing_postcode: address.postcode || '',
+  billing_country: props.countries.find(record => record.id === address.country_id)?.name || '',
+  billing_phone_number: address.phone_number || '',
+  items: props.checkoutData.cart?.cart_items?.map(item => ({
     product_variation_id: item.product_variation_id,
     size_id: item.size_id,
     quantity: item.quantity,
     price_at_time: item.price_at_time,
-  }))
+  })) || [],
 });
 
-const submitOrderForm = async () => {
-  try {
-    const response = await axios.post(route('order.store'), orderForm, {
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        'Accept': 'application/json',
-      }
-    });
-
-    const orderId = response.data.order_id;
-
-    if (orderId) {
-      await startPayment(orderId);
-    } else {
-      console.error("No order ID returned from order.store");
-    }
-  } catch (error) {
-    console.error("Order submission failed:", error);
-  }
-};
-
-const startPayment = async (orderId) => {
-  try {
-    const response = await axios.post(route('checkout.create'), {
-      order_id: orderId
-    }, {
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        'Accept': 'application/json',
-      }
-    });
-
-    if (response.data.redirect_url) {
-      window.location.href = response.data.redirect_url;
-    } else {
-      console.error("Stripe session URL not provided!");
-    }
-  } catch (error) {
-    console.error("Stripe session creation failed:", error);
-  }
+const submitOrder = () => {
+  orderForm.post(route('order.store'));
 };
 
 </script>
@@ -103,7 +63,7 @@ const startPayment = async (orderId) => {
             <h2 class="font-medium">{{ t('page.checkout.checkoutLabel') }}</h2>
           </div>
           <span class="h-0.5 w-auto flex bg-slate-200" />
-          <form @submit.prevent="submitOrderForm" class="flex flex-col gap-4 p-4">
+          <form @submit.prevent="submitOrder" class="flex flex-col gap-4 p-4">
             <div>
               <h3 class="font-medium my-4">{{ t('page.checkout.shippingHeading') }}</h3>
               <div class="my-2">
@@ -134,7 +94,7 @@ const startPayment = async (orderId) => {
               <div class="my-2">
                 <InputLabel for="shipping_country" :value="`${t('page.checkout.shippingCountry')}`" />
                 <SelectInput name="shipping_country" id="shipping_country" v-model="orderForm.shipping_country">
-                  <option v-for="country in countries" :value="country.name">{{ country.name }}</option>
+                  <option v-for="country in countries" :value="country.id">{{ country.name }}</option>
                 </SelectInput>
               </div>
               <div class="my-2">
@@ -173,7 +133,7 @@ const startPayment = async (orderId) => {
               <div class="my-2">
                 <InputLabel for="billing_country" :value="`${t('page.checkout.billingCountry')}`" />
                 <SelectInput name="billing_country" id="billing_country" v-model="orderForm.billing_country">
-                  <option v-for="country in countries" :value="country.name">{{ country.name }}</option>
+                  <option v-for="country in countries" :value="country.id">{{ country.name }}</option>
                 </SelectInput>
               </div>
               <div class="my-2">
@@ -182,7 +142,7 @@ const startPayment = async (orderId) => {
                   v-model="orderForm.billing_phone_number" class="mt-1 block w-full" />
               </div>
               <div class="flex justify-center my-4">
-                <button
+                <button type="submit" :disabled="orderForm.processing"
                   class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black lg:text-base lg:w-1/2">
                   {{ t('common.button.continue') }}</button>
               </div>
@@ -195,7 +155,8 @@ const startPayment = async (orderId) => {
             <Link :href="route('cart.index')" class="text-sm underline">{{ t('page.checkout.modifySelection') }}</Link>
           </div>
           <div class="m-4">
-            <div v-for="item in checkoutData.cart.cart_items" class="grid grid-cols-[1fr,3fr] py-6 border-b">
+            <div v-for="item in checkoutData.cart.cart_items" :key="item.id"
+              class="grid grid-cols-[1fr,3fr] py-6 border-b">
               <div>
                 <img v-if="item.product_variation.image" :src="item.product_variation.image"
                   :alt="`${item.product_variation.product.name}'s image'`">

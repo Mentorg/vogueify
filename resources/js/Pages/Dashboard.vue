@@ -1,14 +1,14 @@
 <script setup>
-import { defineProps, ref } from 'vue';
-import { Link, useForm, usePage } from '@inertiajs/vue3';
+import { defineProps } from 'vue';
+import { Link, usePage } from '@inertiajs/vue3';
+import { PhDotsThree, PhTrash, PhXCircle } from '@phosphor-icons/vue';
 import { useI18n } from 'vue-i18n';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
-import { formatDate } from '@/utils/dateFormat';
-import { PhDotsThree, PhTrash, PhXCircle } from '@phosphor-icons/vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
-import { useToast } from 'vue-toast-notification';
+import { useOrder } from '@/composables/useOrder';
+import { formatDate } from '@/utils/dateFormat';
 
 const props = defineProps({
   orders: Array,
@@ -16,70 +16,18 @@ const props = defineProps({
 });
 
 const { t } = useI18n();
-const toast = useToast();
 const user = usePage().props.auth.user;
-const form = useForm({});
-const itemToCancel = ref(null);
-const errorMessage = ref(null);
+const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-const formatStatus = (status) => {
-  return status
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-}
-
-const confirmOrderCancelation = (order) => {
-  itemToCancel.value = order;
-}
-
-const closeModal = () => {
-  itemToCancel.value = null;
-  errorMessage.value = null;
-};
-
-const cancel = (id) => {
-  if (id === null || id === undefined) {
-    errorMessage.value = `${t('page.user.orders.invalidOrderId')}.`;
-    return;
-  }
-  form.put(route('order.cancel', { order: id }), {
-    preserveScroll: true,
-    onSuccess: () => {
-      toast.open({
-        message: `${t('page.user.orders.successMessage')}.`,
-        type: 'success',
-        position: 'top',
-        duration: 4000,
-      });
-      closeModal();
-    },
-    onError: (errors) => {
-      toast.open({
-        message: `${t('page.user.orders.errorMessage')}! ` + errors.error,
-        type: 'error',
-        position: 'top',
-        duration: 4000,
-      });
-      errorMessage.value = errors.error || `${t('page.user.orders.errorMessage')}!`;
-    }
-  });
-};
-
-const activeStatuses = [
-  'pending',
-  'paid',
-  'confirmed',
-  'processing',
-  'shipped',
-  'in-transit',
-  'out-for-delivery',
-  'attempted-delivery',
-  'awaiting-pickup',
-  'delayed',
-  'held-at-customs',
-  'lost'
-];
+const {
+  cancel,
+  confirmOrderCancelation,
+  closeModal,
+  itemToCancel,
+  errorMessage,
+  formatStatus,
+  activeStatuses
+} = useOrder();
 
 </script>
 
@@ -94,7 +42,7 @@ const activeStatuses = [
           <h3 class="text-xl">{{ t('page.user.profile.label') }}</h3>
           <div class="flex flex-col gap-2 my-4 lg:my-8">
             <p class="font-medium">{{ t('page.user.profile.basicInfo.email') }}: <span class="font-normal">{{ user.email
-                }}</span></p>
+            }}</span></p>
             <p v-if="user.address === null" class="font-medium">{{ t('page.user.profile.basicInfo.noAddress') }}</p>
             <div v-else class="flex flex-col gap-2">
               <p class="font-medium">{{ t('page.user.profile.basicInfo.address1') }}: <span class="font-normal">{{
@@ -130,11 +78,11 @@ const activeStatuses = [
             </div>
             <div v-else class="mt-8">
               <div v-for="item in orders.filter(order => activeStatuses.includes(order.order_status)).slice(0, 3)"
-                class="flex justify-between items-center gap-2 my-4">
+                :key="item.id" class="flex justify-between items-center gap-2 my-4">
                 <div class="flex items-center gap-4">
                   <template v-if="item.items.length > 1">
                     <div class="flex -space-x-2">
-                      <div v-for="(orderItem, index) in item.items.slice(0, 2)" :key="index"
+                      <div v-for="(orderItem, index) in item.items.slice(0, 2)" :key="orderItem.id"
                         class="h-10 w-10 rounded-full overflow-hidden border-2 border-white">
                         <img v-if="orderItem.product_variation.image" :src="orderItem.product_variation.image" alt=""
                           class="w-full h-full object-cover" />
@@ -213,13 +161,22 @@ const activeStatuses = [
               {{ t('common.button.startShopping') }}</Link>
             </div>
             <div v-else class="mt-8">
-              <div v-for="item in wishlist.slice(0, 3)" :key="item.product_variation.id" class="flex my-4">
-                <img :src="item.product_variation.image" :alt="item.product_variation.product.name"
-                  class="w-[7.5%] rounded-full" />
-                <div class="flex flex-col gap-1 ml-4">
-                  <Link href="/wishlist" class="font-medium">{{ item.product_variation.product.name }}</Link>
-                  <p>${{ item.product_variation.price }}</p>
+              <div v-for="item in wishlist.slice(0, 3)" :key="item.id" class="flex items-center my-4">
+                <div class="flex">
+                  <img :src="item.product_variation.image" :alt="item.product_variation.product.name"
+                    class="w-[7.5%] rounded-full" />
+                  <div class="flex flex-col gap-1 ml-4">
+                    <Link href="/wishlist" class="font-medium">{{ item.product_variation.product.name }}</Link>
+                    <p>${{ item.product_variation.price }}</p>
+                  </div>
                 </div>
+                <form :action="route('wishlist.destroy', item.id)" method="post" @click.stop>
+                  <input type="hidden" name="_token" :value="csrfToken" />
+                  <input type="hidden" name="_method" value="DELETE" />
+                  <button type="submit" title="Remove from wishlist" class="bg-slate-100 p-2 rounded-full">
+                    <PhTrash :size="18" color="black" />
+                  </button>
+                </form>
               </div>
               <div v-if="wishlist.length > 3" class="mt-8">
                 <Link href="/wishlist"

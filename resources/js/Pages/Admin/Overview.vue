@@ -1,10 +1,10 @@
 <script setup>
 import { defineProps } from 'vue';
+import { Head } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 import AdminDashboard from '@/Layouts/AdminDashboard.vue';
 import ProductsTable from '@/Components/ProductsTable.vue';
 import UsersTable from '@/Components/UsersTable.vue';
-import { Head } from '@inertiajs/vue3';
-import { useI18n } from 'vue-i18n';
 
 defineProps({
   variations: Array,

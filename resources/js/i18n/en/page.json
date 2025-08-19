@@ -81,8 +81,6 @@
       "saved": "Saved",
       "password": "Password",
       "basicInfo": {
-        "successMessage": "Your information updated successfully",
-        "errorMessage": "Failed to update your information",
         "title": "Title",
         "titleMr": "Mr.",
         "titleMs": "Ms.",
@@ -104,8 +102,6 @@
       },
       "updatePassword": {
         "label": "Update Password",
-        "successMessage": "Your password updated successfully",
-        "errorMessage": "Failed to update your password",
         "passwordInstructions": "Ensure your account is using a long, random password to stay secure",
         "currentPassword": "Current Password",
         "newPassword": "New Password",
@@ -120,22 +116,15 @@
         "tfEnabled": "Two factor authentication is now enabled. Scan the following QR code using your phone's authenticator application or enter the setup key",
         "tfSetupKey": "Setup Key",
         "tfCode": "Code",
-        "tfRecoveryCodeInstruction": "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost",
-        "tfEnabledSuccess": "You have successfully enabled two factor authentication",
-        "tfConfirmed": "You have successfully confirmed two factor authentication"
+        "tfRecoveryCodeInstruction": "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost"
       },
       "deleteUser": {
-        "successMessage": "Account deleted successfully",
-        "errorMessage": "Failed to delete account",
         "accountDeletionWarning": "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain",
         "accountDeletionConfirm": "Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account"
       }
     },
     "orders": {
       "label": "My Orders",
-      "successMessage": "Order canceled successfully",
-      "errorMessage": "Failed to cancel your order",
-      "invalidOrderId": "Invalid order ID. Please try again",
       "currentOrders": "Current Orders",
       "noCurrentOrders": "There are no current orders",
       "purchaseHistory": "My Purchase History",
@@ -177,6 +166,13 @@
       "titleMs": "Ms.",
       "confirmPassword": "Confirm Password",
       "alreadyRegistered": "Already registered"
+    },
+    "verify": {
+      "message": "Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.",
+      "newVerificationLink": "A new verification link has been sent to the email address you provided in your profile settings",
+      "resendVerification": "Resend Verification Email",
+      "editProfile": "Edit Profile",
+      "logOut": "Log Out"
     }
   }
 }

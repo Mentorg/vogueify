@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductVariation;
 use App\Services\WishlistService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -34,5 +35,12 @@ class WishlistController extends Controller
         $this->wishlistService->delete($id);
 
         return redirect()->back()->with('success', 'Product removed from wishlist.');
+    }
+
+    public function toggle(ProductVariation $productVariation)
+    {
+        $this->wishlistService->toggle($productVariation);
+
+        return back();
     }
 }

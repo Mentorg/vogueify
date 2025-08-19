@@ -104,10 +104,16 @@ class ProductController extends Controller
 
         if ($type === 'variation') {
             $variation = ProductVariation::findOrFail($id);
-            $this->productService->deleteVariation($variation);
+            $result = $this->productService->deleteVariation($variation);
         } else {
             $product = Product::findOrFail($id);
-            $this->productService->delete($product);
+            $result = $this->productService->delete($product);
+        }
+
+        if ($result === false) {
+            return redirect()->back()->withErrors([
+                'error' => 'This product has already been ordered and cannot be deleted!'
+            ]);
         }
 
         return redirect()->route('admin.products')->with('success', 'Deletion successful.');

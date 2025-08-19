@@ -2,10 +2,10 @@
 import { defineProps } from 'vue';
 import { Head, Link } from "@inertiajs/vue3";
 import { useI18n } from 'vue-i18n';
+import Menu from '@/Layouts/Menu.vue'
+import Footer from '@/Layouts/Footer.vue';
 import categoryMen from "../../../public/images/category-men.png";
 import categoryWomen from "../../../public/images/category-women.png";
-import Menu from '@Components/Menu.vue'
-import Footer from '@/Components/Footer.vue';
 
 const props = defineProps({
   categories: Array,

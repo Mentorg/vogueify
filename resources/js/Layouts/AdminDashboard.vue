@@ -1,25 +1,18 @@
 <script setup>
 import { computed, ref, onMounted, onBeforeUnmount } from "vue";
-import AdminHeader from "@/Components/AdminHeader.vue";
-import MobileSidebar from "@/Components/MobileSidebar.vue";
-import Sidebar from "@/Components/Sidebar.vue";
+import AdminHeader from "@/Layouts/AdminHeader.vue";
+import MobileSidebar from "@/Layouts/MobileSidebar.vue";
+import Sidebar from "@/Layouts/Sidebar.vue";
 
 const isMenuOpen = ref(false);
 const activeSubmenu = ref(null);
 const activeThirdLevelSubmenu = ref(null);
-const hoveredItem = ref(false);
-const activeItem = ref(null);
-const isUserMenuOpen = ref(false);
 
 const closeMenu = () => {
   isMenuOpen.value = false;
   activeSubmenu.value = null;
   activeThirdLevelSubmenu.value = null;
 };
-
-const openUserMenu = () => {
-  isUserMenuOpen.value = !isUserMenuOpen.value;
-}
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
@@ -43,7 +36,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <AdminHeader />
+  <AdminHeader :isMobile="isMobile" :toggleMenu="toggleMenu" />
   <div class="flex">
     <MobileSidebar v-if="isMobile" :isMenuOpen="isMenuOpen" :toggleMenu="toggleMenu" :closeMenu="closeMenu" />
     <Sidebar v-else />

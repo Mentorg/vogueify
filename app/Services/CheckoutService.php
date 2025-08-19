@@ -41,11 +41,9 @@ class CheckoutService
         ];
     }
 
-    public function createSession($request)
+    public function createSession(Order $order)
     {
         Stripe::setApiKey(config('services.stripe.secret'));
-
-        $order = Order::findOrFail($request->order_id);
 
         $lineItems = [];
 
@@ -63,16 +61,42 @@ class CheckoutService
             ];
         }
 
+        if ($order->shipping_cost > 0) {
+            $lineItems[] = [
+                'price_data' => [
+                    'currency' => 'eur',
+                    'product_data' => [
+                        'name' => 'Shipping Cost',
+                    ],
+                    'unit_amount' => intval($order->shipping_cost * 100),
+                ],
+                'quantity' => 1,
+            ];
+        }
+
+        if ($order->tax_amount > 0) {
+            $lineItems[] = [
+                'price_data' => [
+                    'currency' => 'eur',
+                    'product_data' => [
+                        'name' => 'Tax',
+                    ],
+                    'unit_amount' => intval($order->tax_amount * 100),
+                ],
+                'quantity' => 1,
+            ];
+        }
+
         $checkoutSession = StripeSession::create([
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
-            'mode' =>  'payment',
+            'mode' => 'payment',
             'success_url' => route('checkout.success') . '?session_id={CHECKOUT_SESSION_ID}',
-            // 'cancel_url' => route('checkout.cancel'),
+            // 'cancel_url' => route('checkout.cancel', ['order_id' => $order->id]),
             'metadata' => [
                 'order_id' => $order->id,
             ],
-            'customer_email' => Auth::user()->email,
+            'customer_email' => $order->user->email,
         ]);
 
         return $checkoutSession;

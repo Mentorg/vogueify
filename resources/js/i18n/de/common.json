@@ -72,6 +72,62 @@
       "content": "Möchten Sie die Bestellung {order} wirklich stornieren?"
     }
   },
+  "toast": {
+    "cart": {
+      "successMessage": "Cart items deleted successfully",
+      "errorMessage": "Failed to delete cart items"
+    },
+    "checkout": {},
+    "order": {
+      "successMessage": "Bestellung erfolgreich storniert",
+      "errorMessage": "Bestellung konnte nicht storniert werden"
+    },
+    "product": {
+      "cart": {
+        "errorMessage": "Artikel konnte nicht zum Warenkorb hinzugefügt werden"
+      },
+      "productDelete": {
+        "successMessage": "Produkt erfolgreich gelöscht",
+        "errorMessage": "Löschen des Produkts fehlgeschlagen",
+        "errorVariationMessage": "Ungültige Varianten-ID! Bitte versuchen Sie es erneut"
+      },
+      "productCreate": {
+        "successMessage": "Produkt erfolgreich erstellt",
+        "errorMessage": "Erstellen des Produkts fehlgeschlagen! Bitte überprüfen Sie das Formular auf Fehler"
+      },
+      "productUpdate": {
+        "successMessage": "Produkt erfolgreich erstellt",
+        "errorValidationMessage": "Aktualisierung des Produkts fehlgeschlagen! Validierung fehlgeschlagen",
+        "errorMessage": "Erstellen des Produkts fehlgeschlagen! Bitte überprüfen Sie das Formular auf Fehler"
+      }
+    },
+    "user": {
+      "userDelete": {
+        "successMessage": "Benutzer erfolgreich gelöscht",
+        "errorMessage": "Löschen des Benutzers fehlgeschlagen"
+      },
+      "profileUpdate": {
+        "successMessage": "Ihre Informationen wurden erfolgreich aktualisiert",
+        "errorMessage": "Aktualisierung Ihrer Informationen fehlgeschlagen"
+      },
+      "accountDelete": {
+        "successMessage": "Konto erfolgreich gelöscht",
+        "errorMessage": "Konto konnte nicht gelöscht werden"
+      },
+      "twoFactor": {
+        "enabled": {
+          "successMessage": "Sie haben die Zwei-Faktor-Authentifizierung erfolgreich aktiviert"
+        },
+        "confirmed": {
+          "successMessage": "Sie haben die Zwei-Faktor-Authentifizierung erfolgreich bestätigt"
+        }
+      },
+      "passwordUpdate": {
+        "successMessage": "Ihr Passwort wurde erfolgreich aktualisiert",
+        "errorMessage": "Aktualisierung Ihres Passworts fehlgeschlagen"
+      }
+    }
+  },
   "button": {
     "showNow": "Jetzt shoppen",
     "continueShopping": "Weiter einkaufen",
@@ -89,7 +145,7 @@
     "addFeature": "Funktion hinzufügen",
     "addVariation": "Neue Variante hinzufügen",
     "saveProduct": "Produkt speichern",
-    "addAddress": "Adressdetails hinzufügen",
+    "modifyAddress": "Adressdetails hinzufügen | Adressdetails aktualisieren",
     "save": "Speichern",
     "enable": "Aktivieren",
     "confirm": "Bestätigen",

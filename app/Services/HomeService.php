@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductVariation;
+use Illuminate\Support\Facades\Auth;
 
 class HomeService
 {
@@ -15,7 +16,7 @@ class HomeService
 
     public function getLatestWomenBags()
     {
-        return Product::with('productVariations')
+        $products = Product::with('productVariations')
             ->whereHas('category', function ($query) {
                 $query->where('name', 'bags');
             })
@@ -23,11 +24,21 @@ class HomeService
             ->latest()
             ->take(4)
             ->get();
+
+        $wishlistIds = Auth::check()
+            ? Auth::user()->wishlist()->pluck('product_variation_id')->toArray()
+            : [];
+
+        $products->each(function ($variation) use ($wishlistIds) {
+            $variation->isInWishlist = in_array($variation->id, $wishlistIds);
+        });
+
+        return $products;
     }
 
     public function getWomenSeasonalBags()
     {
-        return ProductVariation::with(['product.category'])
+        $products = ProductVariation::with(['product.category'])
             ->whereHas('product', function ($query) {
                 $query->where('gender', 'women')
                     ->whereHas('category', function ($q) {
@@ -37,11 +48,21 @@ class HomeService
             ->latest()
             ->take(6)
             ->get();
+
+        $wishlistIds = Auth::check()
+        ? Auth::user()->wishlist()->pluck('product_variation_id')->toArray()
+        : [];
+
+        $products->each(function ($variation) use ($wishlistIds) {
+            $variation->isInWishlist = in_array($variation->id, $wishlistIds);
+        });
+
+        return $products;
     }
 
     public function getMenSeasonalBags()
     {
-        return ProductVariation::with(['product.category'])
+        $products = ProductVariation::with(['product.category'])
             ->whereHas('product', function ($query) {
                 $query->where('gender', 'men')
                     ->whereHas('category', function ($q) {
@@ -51,5 +72,14 @@ class HomeService
             ->latest()
             ->take(6)
             ->get();
+            $wishlistIds = Auth::check()
+            ? Auth::user()->wishlist()->pluck('product_variation_id')->toArray()
+            : [];
+
+        $products->each(function ($variation) use ($wishlistIds) {
+            $variation->isInWishlist = in_array($variation->id, $wishlistIds);
+        });
+
+        return $products;
     }
 }

@@ -18,6 +18,6 @@ const updateValue = (e) => {
 
 <template>
   <input ref="input" :type="type"
-    class="mt-1 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" :value="modelValue"
-    @input="updateValue" />
+    class="mt-1 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
+    :value="modelValue" @input="updateValue" />
 </template>

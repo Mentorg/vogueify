@@ -81,8 +81,6 @@
       "saved": "Gespeichert",
       "password": "Passwort",
       "basicInfo": {
-        "successMessage": "Ihre Informationen wurden erfolgreich aktualisiert",
-        "errorMessage": "Aktualisierung Ihrer Informationen fehlgeschlagen",
         "title": "Anrede",
         "titleMr": "Herr",
         "titleMs": "Frau",
@@ -104,8 +102,6 @@
       },
       "updatePassword": {
         "label": "Passwort aktualisieren",
-        "successMessage": "Ihr Passwort wurde erfolgreich aktualisiert",
-        "errorMessage": "Aktualisierung Ihres Passworts fehlgeschlagen",
         "passwordInstructions": "Stellen Sie sicher, dass Ihr Konto ein langes, zufälliges Passwort verwendet, um sicher zu bleiben",
         "currentPassword": "Aktuelles Passwort",
         "newPassword": "Neues Passwort",
@@ -120,22 +116,15 @@
         "tfEnabled": "Die Zwei-Faktor-Authentifizierung ist jetzt aktiviert. Scannen Sie den folgenden QR-Code mit Ihrer Authenticator-App oder geben Sie den Einrichtungsschlüssel ein",
         "tfSetupKey": "Einrichtungsschlüssel",
         "tfCode": "Code",
-        "tfRecoveryCodeInstruction": "Speichern Sie diese Wiederherstellungscodes in einem sicheren Passwort-Manager. Sie können verwendet werden, um den Zugriff auf Ihr Konto wiederherzustellen, falls Sie Ihr Authentifizierungsgerät verlieren",
-        "tfEnabledSuccess": "Sie haben die Zwei-Faktor-Authentifizierung erfolgreich aktiviert",
-        "tfConfirmed": "Sie haben die Zwei-Faktor-Authentifizierung erfolgreich bestätigt"
+        "tfRecoveryCodeInstruction": "Speichern Sie diese Wiederherstellungscodes in einem sicheren Passwort-Manager. Sie können verwendet werden, um den Zugriff auf Ihr Konto wiederherzustellen, falls Sie Ihr Authentifizierungsgerät verlieren"
       },
       "deleteUser": {
-        "successMessage": "Konto erfolgreich gelöscht",
-        "errorMessage": "Konto konnte nicht gelöscht werden",
         "accountDeletionWarning": "Sobald Ihr Konto gelöscht wurde, werden alle dazugehörigen Daten und Ressourcen dauerhaft entfernt. Bitte laden Sie alle Informationen herunter, die Sie behalten möchten, bevor Sie fortfahren",
         "accountDeletionConfirm": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Sobald es gelöscht ist, werden alle Daten und Ressourcen dauerhaft entfernt. Bitte geben Sie Ihr Passwort ein, um die dauerhafte Löschung zu bestätigen"
       }
     },
     "orders": {
       "label": "Meine Bestellungen",
-      "successMessage": "Bestellung erfolgreich storniert",
-      "errorMessage": "Bestellung konnte nicht storniert werden",
-      "invalidOrderId": "Ungültige Bestellnummer. Bitte versuchen Sie es erneut",
       "currentOrders": "Aktuelle Bestellungen",
       "noCurrentOrders": "Keine aktuellen Bestellungen vorhanden",
       "purchaseHistory": "Mein Kaufverlauf",
@@ -177,6 +166,13 @@
       "titleMs": "Frau",
       "confirmPassword": "Passwort bestätigen",
       "alreadyRegistered": "Bereits registriert"
+    },
+    "verify": {
+      "message": "Bevor Sie fortfahren, überprüfen Sie bitte Ihre E-Mail-Adresse, indem Sie auf den Link klicken, den wir Ihnen gerade gesendet haben. Wenn Sie die E-Mail nicht erhalten haben, senden wir Ihnen gerne eine weitere.",
+      "newVerificationLink": "Ein neuer Bestätigungslink wurde an die E-Mail-Adresse gesendet, die Sie in Ihren Profileinstellungen angegeben haben",
+      "resendVerification": "Bestätigungs-E-Mail erneut senden",
+      "editProfile": "Profil bearbeiten",
+      "logOut": "Abmelden"
     }
   }
 }

@@ -81,8 +81,6 @@
       "saved": "Enregistré",
       "password": "Mot de passe",
       "basicInfo": {
-        "successMessage": "Vos informations ont été mises à jour avec succès",
-        "errorMessage": "Échec de la mise à jour de vos informations",
         "title": "Titre",
         "titleMr": "M.",
         "titleMs": "Mme",
@@ -104,8 +102,6 @@
       },
       "updatePassword": {
         "label": "Mettre à jour le mot de passe",
-        "successMessage": "Votre mot de passe a été mis à jour avec succès",
-        "errorMessage": "Échec de la mise à jour de votre mot de passe",
         "passwordInstructions": "Assurez-vous d'utiliser un mot de passe long et aléatoire pour sécuriser votre compte",
         "currentPassword": "Mot de passe actuel",
         "newPassword": "Nouveau mot de passe",
@@ -120,22 +116,15 @@
         "tfEnabled": "L'authentification à deux facteurs est désormais activée. Scannez le code QR ci-dessous avec l'application d'authentification de votre téléphone ou entrez la clé d'installation",
         "tfSetupKey": "Clé d'installation",
         "tfCode": "Code",
-        "tfRecoveryCodeInstruction": "Enregistrez ces codes de récupération dans un gestionnaire de mots de passe sécurisé. Ils peuvent être utilisés pour récupérer l'accès à votre compte si vous perdez votre appareil d'authentification",
-        "tfEnabledSuccess": "Vous avez activé l'authentification à deux facteurs avec succès",
-        "tfConfirmed": "Vous avez confirmé l'authentification à deux facteurs avec succès"
+        "tfRecoveryCodeInstruction": "Enregistrez ces codes de récupération dans un gestionnaire de mots de passe sécurisé. Ils peuvent être utilisés pour récupérer l'accès à votre compte si vous perdez votre appareil d'authentification"
       },
       "deleteUser": {
-        "successMessage": "Compte supprimé avec succès",
-        "errorMessage": "Échec de la suppression du compte",
         "accountDeletionWarning": "Une fois votre compte supprimé, toutes ses ressources et données seront définitivement supprimées. Avant de continuer, téléchargez les données que vous souhaitez conserver",
         "accountDeletionConfirm": "Êtes-vous sûr de vouloir supprimer votre compte ? Une fois supprimé, toutes ses ressources et données seront définitivement perdues. Veuillez saisir votre mot de passe pour confirmer la suppression définitive de votre compte"
       }
     },
     "orders": {
       "label": "Mes commandes",
-      "successMessage": "Commande annulée avec succès",
-      "errorMessage": "Échec de l'annulation de votre commande",
-      "invalidOrderId": "ID de commande invalide. Veuillez réessayer",
       "currentOrders": "Commandes en cours",
       "noCurrentOrders": "Aucune commande en cours",
       "purchaseHistory": "Mon historique d'achats",
@@ -177,6 +166,13 @@
       "titleMs": "Mme",
       "confirmPassword": "Confirmer le mot de passe",
       "alreadyRegistered": "Déjà inscrit"
+    },
+    "verify": {
+      "message": "Avant de continuer, pourriez-vous vérifier votre adresse e-mail en cliquant sur le lien que nous venons de vous envoyer ? Si vous n'avez pas reçu l'e-mail, nous serons heureux de vous en envoyer un autre.",
+      "newVerificationLink": "Un nouveau lien de vérification a été envoyé à l'adresse e-mail que vous avez indiquée dans les paramètres de votre profil",
+      "resendVerification": "Renvoyer l'e-mail de vérification",
+      "editProfile": "Modifier le profil",
+      "logOut": "Se déconnecter"
     }
   }
 }

@@ -41,4 +41,10 @@ class UserController extends Controller
 
         return redirect()->route('admin.users');
     }
+
+    public function getProfile() {
+        return Inertia::render('Profile/Profile', [
+            'countries' => $this->userService->getProfile()
+        ]);
+    }
 }

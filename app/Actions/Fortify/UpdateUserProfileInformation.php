@@ -33,8 +33,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'city' => ['nullable', 'string', 'max:255'],
                 'state' => ['nullable', 'string', 'max:255'],
                 'postcode' => ['nullable', 'string', 'max:20'],
-                'country_id' => ['nullable', 'exists:countries,id'],
-                'phone_number' => ['phone']
+                'country_id' => ['nullable', 'exists:countries,id']
             ]);
         }
 

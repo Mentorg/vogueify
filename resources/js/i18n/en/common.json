@@ -72,6 +72,62 @@
       "content": "Are you sure you want to cancel the {order} order"
     }
   },
+  "toast": {
+    "cart": {
+      "successMessage": "Cart items deleted successfully",
+      "errorMessage": "Failed to delete cart items"
+    },
+    "checkout": {},
+    "order": {
+      "successMessage": "Order canceled successfully",
+      "errorMessage": "Failed to cancel your order"
+    },
+    "product": {
+      "cart": {
+        "errorMessage": "Failed to add item to the cart"
+      },
+      "productDelete": {
+        "successMessage": "Product deleted successfully",
+        "errorMessage": "Failed to delete product",
+        "errorVariationMessage": "Invalid variation ID! Please try again"
+      },
+      "productCreate": {
+        "successMessage": "Product created successfully",
+        "errorMessage": "Failed to create product! Please check the form for errors"
+      },
+      "productUpdate": {
+        "successMessage": "Product updated successfully",
+        "errorValidationMessage": "Failed to update product! Validation failed",
+        "errorMessage": "Failed to update product! Unexpected error"
+      }
+    },
+    "user": {
+      "userDelete": {
+        "successMessage": "User deleted successfully",
+        "errorMessage": "Failed to delete user"
+      },
+      "profileUpdate": {
+        "successMessage": "Your information updated successfully",
+        "errorMessage": "Failed to update your information"
+      },
+      "accountDelete": {
+        "successMessage": "Account deleted successfully",
+        "errorMessage": "Failed to delete account"
+      },
+      "twoFactor": {
+        "enabled": {
+          "successMessage": "You have successfully enabled two factor authentication"
+        },
+        "confirmed": {
+          "successMessage": "You have successfully confirmed two factor authentication"
+        }
+      },
+      "passwordUpdate": {
+        "successMessage": "Your password updated successfully",
+        "errorMessage": "Failed to update your password"
+      }
+    }
+  },
   "button": {
     "showNow": "Shop Now",
     "continueShopping": "Continue Shopping",
@@ -89,7 +145,7 @@
     "addFeature": "Add Feature",
     "addVariation": "Add New Variation",
     "saveProduct": "Save Product",
-    "addAddress": "Add address details",
+    "modifyAddress": "Add address details | Update address details",
     "save": "Save",
     "enable": "Enable",
     "confirm": "Confirm",

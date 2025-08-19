@@ -5,8 +5,9 @@ namespace App\Services;
 use App\Enums\OrderStatus;
 use App\Models\Order;
 use App\Models\ProductVariation;
-use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Exception;
 
 class OrderService
 {
@@ -18,7 +19,7 @@ class OrderService
             'shipping_cost' => $shippingCost,
             'tax_amount' => $taxAmount,
             'total' => $total,
-            'user_id' => auth()->id(),
+            'user_id' => Auth::id(),
             'cart_id' => $cartId,
 
             'shipping_address_line_1' => $validated['shipping_address_line_1'],
@@ -43,7 +44,7 @@ class OrderService
 
     public function create($order, $request)
     {
-        $user = auth()->user();
+        $user = Auth::user();
 
         if (!$user) {
             abort(404);
@@ -110,7 +111,7 @@ class OrderService
 
     public function getOrder($order)
     {
-        if (!auth()->id()) {
+        if (!Auth::id()) {
             abort(404);
         }
 
@@ -132,7 +133,7 @@ class OrderService
 
     public function getUserOrders($request)
     {
-        if (auth()->check()) {
+        if (Auth::check()) {
             return $request->user()->orders()->with('items.productVariation')->get();
         } else {
             abort(404);
@@ -161,8 +162,9 @@ class OrderService
                 }
             }
 
-            $user = auth()->user();
+            $user = Auth::user();
             if ($user && $user->cart && $user->cart->is_locked) {
+                $user->cart->cartItems()->delete();
                 $user->cart->is_locked = false;
                 $user->cart->save();
             }

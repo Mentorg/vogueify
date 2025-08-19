@@ -63,7 +63,7 @@ const { t } = useI18n();
       </div>
     </div>
     <div class="flex justify-center py-8">
-      <p class="text-3xl font-medium">Vogueify</p>
+      <p class="text-3xl font-medium">VOGUEIFY</p>
     </div>
   </footer>
 </template>

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Wishlist;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class WishlistService
@@ -37,5 +38,23 @@ class WishlistService
     public function delete($id)
     {
         return Wishlist::where('id', $id)->where('user_id', request()->user()->id)->delete();
+    }
+
+    public function toggle($productVariation)
+    {
+        $userId = Auth::id();
+
+        $wishlistItem = Wishlist::where('user_id', $userId)
+            ->where('product_variation_id', $productVariation->id)
+            ->first();
+
+        if ($wishlistItem) {
+            $wishlistItem->delete();
+        } else {
+            Wishlist::create([
+                'user_id' => $userId,
+                'product_variation_id' => $productVariation->id
+            ]);
+        }
     }
 }

@@ -1,14 +1,14 @@
 <script setup>
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
+import { useToast } from 'vue-toast-notification';
+import { useI18n } from 'vue-i18n';
 import ActionMessage from '@/Components/ActionMessage.vue';
 import FormSection from '@/Components/FormSection.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { useToast } from 'vue-toast-notification';
-import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 const toast = useToast();
@@ -27,7 +27,7 @@ const updatePassword = () => {
     preserveScroll: true,
     onSuccess: () => {
       toast.open({
-        message: `${t('page.user.profile.updatePassword.successMessage')}.`,
+        message: `${t('common.toast.user.passwordUpdate.successMessage')}.`,
         type: 'success',
         position: 'top',
         duration: 4000,
@@ -37,7 +37,7 @@ const updatePassword = () => {
     onError: () => {
       if (form.errors.password) {
         toast.open({
-          message: `${t('page.user.profile.updatePassword.errorMessage')}! ` + errors.error,
+          message: `${t('common.toast.user.passwordUpdate.errorMessage')}! ` + errors.error,
           type: 'error',
           position: 'top',
           duration: 4000,
@@ -48,7 +48,7 @@ const updatePassword = () => {
 
       if (form.errors.current_password) {
         toast.open({
-          message: `${t('page.user.profile.updatePassword.errorMessage')}! ` + errors.error,
+          message: `${t('common.toast.user.passwordUpdate.errorMessage')}! ` + errors.error,
           type: 'error',
           position: 'top',
           duration: 4000,

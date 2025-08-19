@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Country;
 use App\Models\User;
 
 class UserService
@@ -14,5 +15,10 @@ class UserService
     public function delete($user)
     {
         return $user->delete();
+    }
+
+    public function getProfile()
+    {
+        return Country::all(['id', 'name', 'iso_code']);
     }
 }

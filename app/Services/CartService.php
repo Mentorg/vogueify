@@ -4,24 +4,39 @@ namespace App\Services;
 
 use App\Models\Cart;
 use App\Models\CartItem;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class CartService
 {
     public function getCartItems()
     {
-        if (!auth()->id()) {
+        if (!Auth::id()) {
             abort(404);
         }
 
-        $cart = Cart::where('user_id', auth()->id())->first();
+        $cart = Cart::where('user_id', Auth::id())->first();
 
         if (!$cart) {
             return collect();
         }
 
-        $cartItems = $cart->cartItems()->with(['productVariation.product', 'productVariation.sizes', 'size'])->get();
+        $cartItems = $cart->cartItems()->with([
+            'productVariation.product',
+            'productVariation.sizes',
+            'size'
+        ])->get();
 
-        $subtotal = $cart->cartItems->sum(fn ($item) => $item->price_at_time * $item->quantity);
+        $wishlistIds = Auth::user()
+            ->wishlist()
+            ->pluck('product_variation_id')
+            ->toArray();
+
+        $cartItems->each(function ($item) use ($wishlistIds) {
+            $item->productVariation->isInWishlist = in_array($item->productVariation->id, $wishlistIds);
+        });
+
+        $subtotal = $cartItems->sum(fn($item) => $item->price_at_time * $item->quantity);
         $shipping = 0.00;
         $tax = 0.00;
         $total = $subtotal + $shipping + $tax;
@@ -49,14 +64,16 @@ class CartService
             'size_id' => "nullable|exists:sizes,id",
         ]);
 
-        $cart = Cart::where('user_id', auth()->id())->first();
+        $cart = Cart::where('user_id', Auth::id())->first();
 
         if (!$cart) {
-            $cart = Cart::create(['user_id' => auth()->id()]);
+            $cart = Cart::create(['user_id' => Auth::id()]);
         }
 
         if ($cart->is_locked) {
-            abort(403, 'You cannot modify the cart until payment is completed.');
+            throw ValidationException::withMessages([
+                'error' => 'You cannot modify the cart until payment is completed.',
+            ]);
         }
 
         $cart_item = $cart->cartItems()->create([

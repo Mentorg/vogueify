@@ -74,7 +74,7 @@ const currentIndex = computed(() => {
       </div>
       <ul
         class="flex flex-nowrap justify-start overflow-x-auto overflow-y-hidden mt-4 text-xs text-gray-900 font-medium sm:text-base space-x-4 relative lg:justify-center lg:w-auto">
-        <li v-for="(status, index) in statusSteps" :key="status" :class="[
+        <li v-for="(status, index) in statusSteps" :key="index" :class="[
           'relative flex-shrink-0 flex flex-col items-center',
           index < currentIndex ? 'text-indigo-600' : '',
           index === currentIndex ? 'text-indigo-600' : ''
@@ -118,7 +118,7 @@ const currentIndex = computed(() => {
     <div v-if="orderDetails && orderDetails.order" class="flex flex-col gap-8 my-8 lg:flex-row">
       <div class="bg-white border rounded-md p-4 h-fit">
         <h2 class="text-2xl border-b pb-2">{{ t('page.user.orders.singleOrder.orderProducts') }}</h2>
-        <div v-for="item in orderDetails.order.items" class="flex items-center gap-4 py-2 my-2">
+        <div v-for="item in orderDetails.order.items" :key="item.id" class="flex items-center gap-4 py-2 my-2">
           <img v-if="item.product_variation.image" :src="item.product_variation.image" alt=""
             class="w-[20%] md:w-[10%] lg:w-[5%]">
           <div class="flex flex-col justify-center">

@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
@@ -15,12 +16,28 @@ defineProps({
 });
 
 const { t } = useI18n();
+const userType = ref('admin');
 
 const form = useForm({
   email: '',
   password: '',
   remember: false,
 });
+
+const users = {
+  admin: {
+    email: 'admin@vogueify.com',
+    password: 'adminuser'
+  },
+  staff: {
+    email: 'janedoe@vogueify.com',
+    password: 'janedoe1234'
+  },
+  customer: {
+    email: 'johnbrown@customer.com',
+    password: 'password123'
+  }
+};
 
 const submit = () => {
   form.transform(data => ({
@@ -40,6 +57,33 @@ const submit = () => {
     <template #logo>
       <AuthenticationCardLogo />
     </template>
+    <div class="py-4">
+      <h1 class="font-medium">Testing Credentials</h1>
+      <div class="flex my-2 gap-4">
+        <div class="flex items-center gap-2">
+          <input type="radio" name="user-type" value="admin" v-model="userType" id="admin">
+          <label for="admin">Admin</label>
+        </div>
+        <div class="flex items-center gap-2">
+          <input type="radio" name="user-type" value="staff" v-model="userType" id="staff">
+          <label for="staff">Staff</label>
+        </div>
+        <div class="flex items-center gap-2">
+          <input type="radio" name="user-type" value="customer" v-model="userType" id="customer">
+          <label for="customer">Customer</label>
+        </div>
+      </div>
+      <div class="my-2">
+        <div class="flex gap-2">
+          <h2 class="font-medium">Email:</h2>
+          <p>{{ users[userType].email }}</p>
+        </div>
+        <div class="flex gap-2">
+          <h2 class="font-medium">Password:</h2>
+          <p>{{ users[userType].password }}</p>
+        </div>
+      </div>
+    </div>
 
     <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
       {{ status }}
