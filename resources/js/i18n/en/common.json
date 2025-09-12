@@ -68,8 +68,44 @@
       "content": "Are you sure you want to delete {userToDelete}"
     },
     "order": {
-      "title": "Cancel {order} order",
-      "content": "Are you sure you want to cancel the {order} order"
+      "user": {
+        "orderCancelation": {
+          "title": "Cancel {order} order",
+          "content": "Are you sure you want to cancel the {order} order"
+        }
+      },
+      "admin": {
+        "resendConfirmation": {
+          "title": "Resend confirmation email for {order} order",
+          "content": "Are you sure you want to resend a confirmation email to {user} for {orderNumber} order"
+        },
+        "orderItemStatusUpdate": {
+          "title": "Update {orderStatus} Item Status",
+          "content": "Current status",
+          "itemStatus": "Item Status"
+        },
+        "orderItemShippingDateUpdate": {
+          "title": "Update {item} Shipping Date",
+          "content": "Are you sure you want to update order item's shipping date",
+          "itemShippingDate": "Item's Shipping Date"
+        },
+        "orderNoteUpdate": {
+          "title": "Update {orderNumber} Note",
+          "content": "Are you sure you want to update order's note",
+          "orderNote": "Order Note"
+        },
+        "orderShippingDateUpdate": {
+          "title": "Update {orderNumber} Shipping Address"
+        },
+        "orderBillingDateUpdate": {
+          "title": "Update {orderNumber} Billing Address"
+        },
+        "orderStatusUpdate": {
+          "title": "Update {orderStatus} Status",
+          "content": "Current status",
+          "itemStatus": "Order Status"
+        }
+      }
     }
   },
   "toast": {
@@ -77,10 +113,47 @@
       "successMessage": "Cart items deleted successfully",
       "errorMessage": "Failed to delete cart items"
     },
-    "checkout": {},
+    "checkout": {
+      "successMessage": "Successfully placed a new order",
+      "errorMessage": "Failed to place a new order"
+    },
     "order": {
-      "successMessage": "Order canceled successfully",
-      "errorMessage": "Failed to cancel your order"
+      "user": {
+        "orderCancelation": {
+          "successMessage": "Order canceled successfully",
+          "errorMessage": "Failed to cancel your order"
+        }
+      },
+      "admin": {
+        "resendConfirmation": {
+          "successMessage": "Order confirmation email resent",
+          "errorMessage": "Failed to resent order confirmation email"
+        },
+        "orderItemStatusUpdate": {
+          "successMessage": "Order item's status updated successfully",
+          "errorMessage": "Failed to update order item's status"
+        },
+        "orderItemShippingDateUpdate": {
+          "successMessage": "Order item's shipping date updated successfully",
+          "errorMessage": "Failed to update order item's shipping date"
+        },
+        "orderNoteUpdate": {
+          "successMessage": "Order note updated successfully",
+          "errorMessage": "Failed to update order note"
+        },
+        "orderShippingDateUpdate": {
+          "successMessage": "Order's shipping address updated successfully",
+          "errorMessage": "Failed to update order's shipping address"
+        },
+        "orderBillingDateUpdate": {
+          "successMessage": "Order's billing address updated successfully",
+          "errorMessage": "Failed to update order's billing address"
+        },
+        "orderStatusUpdate": {
+          "successMessage": "Order's status updated successfully",
+          "errorMessage": "Failed to update order's status"
+        }
+      }
     },
     "product": {
       "cart": {
@@ -160,7 +233,24 @@
     "viewWishlist": "View Wishlist",
     "viewMyOrders": "View My Orders",
     "login": "Log In",
-    "register": "Register"
+    "register": "Register",
+    "viewDetails": "View Details",
+    "contactCustomer": "Contact Customer",
+    "markAsTitle": "Mark As",
+    "moreActionsTitle": "More actions",
+    "resendConfirmation": "Resend Confirmation",
+    "resendConfirmationTitle": "Resend confirmation email to the customer",
+    "moreItemActionsTitle": "More order item actions",
+    "updateStatus": "Update Status",
+    "updateStatusTitle": "Update order's item status",
+    "setDate": "Set Date",
+    "setDateTitle": "Set order's item shipping date",
+    "updateDate": "Update Date",
+    "updateDateTitle": "Update order's item shipping date",
+    "updateOrderNoteTitle": "Update order's note",
+    "contactCustomerTitle": "Contact the customer",
+    "updateOrderShippingAddressTitle": "Update order's shipping address",
+    "updateOrderBillingAddressTitle": "Update order's billing address"
   },
   "menuLabel": {
     "for": "For",
@@ -195,7 +285,8 @@
     }
   },
   "table": {
-    "pagination": "Showing {from}-{to} of {total}"
+    "pagination": "Showing {from}-{to} of {total}",
+    "noData": "No data"
   },
   "form": {
     "product": {
@@ -235,6 +326,27 @@
       "noImage": "No image selected",
       "noSku": "No SKU provided",
       "unknown": "Unknown"
+    },
+    "order": {
+      "updateShippingAddress": {
+        "shippingDate": "Shipping Date",
+        "shippingAddress1": "Shipping Address Line 1",
+        "shippingAddress2": "Shipping Address Line 2",
+        "shippingCity": "Shipping City",
+        "shippingState": "Shipping State",
+        "shippingPostcode": "Shipping Postcode",
+        "shippingCountry": "Shipping Country",
+        "shippingPhone": "Shipping Phone Number"
+      },
+      "updateBillingAddress": {
+        "billingAddress1": "Billing Address Line 1",
+        "billingAddress2": "Billing Address Line 2",
+        "billingCity": "Billing City",
+        "billingState": "Billing State",
+        "billingPostcode": "Billing Postcode",
+        "billingCountry": "Billing Country",
+        "billingPhone": "Billing Phone Number"
+      }
     }
   },
   "error": {
@@ -265,5 +377,14 @@
     "email": "Email",
     "role": "Role",
     "createdAt": "Created"
+  },
+  "order": {
+    "datePlaced": "Date Placed",
+    "deliveryDate": "Delivery Date",
+    "status": "Status",
+    "statusDescription": "Earliest shipping date",
+    "customer": "Customer",
+    "total": "Total",
+    "actions": "Actions"
   }
 }

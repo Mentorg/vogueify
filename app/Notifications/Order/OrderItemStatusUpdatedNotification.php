@@ -2,25 +2,24 @@
 
 namespace App\Notifications\Order;
 
-use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\URL;
 
-class RequestOrderConfirmationNotification extends Notification
+class OrderItemStatusUpdatedNotification extends Notification
 {
     use Queueable;
 
-    protected Order $order;
+    protected OrderItem $orderItem;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(Order $order)
+    public function __construct(OrderItem $orderItem)
     {
-        $this->order = $order;
+        $this->orderItem = $orderItem;
     }
 
     /**
@@ -38,19 +37,11 @@ class RequestOrderConfirmationNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $confirmationUrl = URL::temporarySignedRoute(
-            'order.confirm',
-            now()->addHours(24),
-            ['order' => $this->order->id]
-        );
-
         return (new MailMessage)
-            ->subject('Please Confirm Your Order')
-            ->greeting('Hello there,')
-            ->line('Thank you for your order!')
-            ->line('Please confirm your **#' . $this->order->order_number . '** order to proceed with processing.')
-            ->action('Confirm Order', $confirmationUrl)
-            ->line("If you didn't place this order, please contact support.");
+            ->subject('Status Update for Item in Your Order #' . $this->orderItem->order->order_number)
+            ->greeting('Hello ' . $notifiable->name . ',')
+            ->line('The status of "**' . $this->orderItem->productVariation->product->name . '**" in your order has been updated to **' . $this->orderItem->order_status . '**.')
+            ->action('View Order', route('order.show', $this->orderItem->order->id));
     }
 
     /**

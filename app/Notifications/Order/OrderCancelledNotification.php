@@ -7,9 +7,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\URL;
 
-class RequestOrderConfirmationNotification extends Notification
+class OrderCancelledNotification extends Notification
 {
     use Queueable;
 
@@ -38,19 +37,10 @@ class RequestOrderConfirmationNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $confirmationUrl = URL::temporarySignedRoute(
-            'order.confirm',
-            now()->addHours(24),
-            ['order' => $this->order->id]
-        );
-
         return (new MailMessage)
-            ->subject('Please Confirm Your Order')
-            ->greeting('Hello there,')
-            ->line('Thank you for your order!')
-            ->line('Please confirm your **#' . $this->order->order_number . '** order to proceed with processing.')
-            ->action('Confirm Order', $confirmationUrl)
-            ->line("If you didn't place this order, please contact support.");
+            ->subject('Your Order Has Been Cancelled')
+            ->line('Your order **#' . $this->order->order_number . '** has been successfully cancelled.')
+            ->line('If this was a mistake, please contact support.');
     }
 
     /**

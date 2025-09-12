@@ -7,9 +7,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\URL;
 
-class RequestOrderConfirmationNotification extends Notification
+class OrderBillingAddressUpdatedNotification extends Notification
 {
     use Queueable;
 
@@ -38,19 +37,18 @@ class RequestOrderConfirmationNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $confirmationUrl = URL::temporarySignedRoute(
-            'order.confirm',
-            now()->addHours(24),
-            ['order' => $this->order->id]
-        );
-
         return (new MailMessage)
-            ->subject('Please Confirm Your Order')
-            ->greeting('Hello there,')
-            ->line('Thank you for your order!')
-            ->line('Please confirm your **#' . $this->order->order_number . '** order to proceed with processing.')
-            ->action('Confirm Order', $confirmationUrl)
-            ->line("If you didn't place this order, please contact support.");
+            ->subject('Billing address for your order was updated')
+            ->line('Your billing address for your **#' . $this->order->order_number . '** order has been updated.')
+            ->line('New Billing Address:')
+            ->line('Billing Address Line 1: ' . $this->order->billing_address_line_1)
+            ->line('Billing Address Line 2: ' . $this->order->billing_address_line_2)
+            ->line('Billing City: ' . $this->order->billing_city)
+            ->lineIf($this->order->billing_state !== null, 'Billing State: ' . $this->order->billing_state ?? 'N/A')
+            ->line('Billing Postcode: ' . $this->order->billing_postcode)
+            ->line('Billing Country: ' . optional($this->order->billingCountry)->name ?? 'N/A')
+            ->line('Billing Phone Number: ' . $this->order->billing_phone_number)
+            ->line("If you didn't make this change, please contact support immediately!");
     }
 
     /**

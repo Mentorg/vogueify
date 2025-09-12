@@ -12,7 +12,7 @@ defineProps({
 const { t } = useI18n();
 const isDashboard = computed(() => usePage().url === '/dashboard');
 const isProfile = computed(() => usePage().url === '/profile');
-const isOrders = computed(() => usePage().url === '/orders');
+const isOrders = computed(() => usePage().url === '/orders/user/orders');
 const isWishlist = computed(() => usePage().url === '/wishlist');
 
 </script>

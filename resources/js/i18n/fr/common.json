@@ -68,8 +68,44 @@
       "content": "Êtes-vous sûr de vouloir supprimer {userToDelete}"
     },
     "order": {
-      "title": "Annuler la commande {order}",
-      "content": "Êtes-vous sûr de vouloir annuler la commande {order} ?"
+      "user": {
+        "orderCancelation": {
+          "title": "Annuler la commande {order}",
+          "content": "Êtes-vous sûr de vouloir annuler la commande {order} ?"
+        }
+      },
+      "admin": {
+        "resendConfirmation": {
+          "title": "Renvoyer l'e-mail de confirmation pour la commande {order}",
+          "content": "Êtes-vous sûr de vouloir renvoyer un e-mail de confirmation à {user} pour la commande {orderNumber} ?"
+        },
+        "orderItemStatusUpdate": {
+          "title": "Mettre à jour le statut de l'article {orderStatus}",
+          "content": "Statut actuel",
+          "itemStatus": "Statut de l'article"
+        },
+        "orderItemShippingDateUpdate": {
+          "title": "Mettre à jour la date d'expédition {item}",
+          "content": "Êtes-vous sûr de vouloir mettre à jour la date d'expédition de l'article de la commande",
+          "itemShippingDate": "Date d'expédition de l'article"
+        },
+        "orderNoteUpdate": {
+          "title": "Mettre à jour la note de la commande {orderNumber}",
+          "content": "Êtes-vous sûr de vouloir mettre à jour la note de la commande",
+          "orderNote": "Note de la commande"
+        },
+        "orderShippingDateUpdate": {
+          "title": "Mettre à jour l'adresse de livraison de la commande {orderNumber}"
+        },
+        "orderBillingDateUpdate": {
+          "title": "Mettre à jour l'adresse de facturation de la commande {orderNumber}"
+        },
+        "orderStatusUpdate": {
+          "title": "Mettre à jour le statut {orderStatus}",
+          "content": "Statut actuel",
+          "itemStatus": "Statut de la commande"
+        }
+      }
     }
   },
   "toast": {
@@ -77,10 +113,47 @@
       "successMessage": "Cart items deleted successfully",
       "errorMessage": "Failed to delete cart items"
     },
-    "checkout": {},
+    "checkout": {
+      "successMessage": "Nouvelle commande passée avec succès",
+      "errorMessage": "Échec de la passation de la commande"
+    },
     "order": {
-      "successMessage": "Commande annulée avec succès",
-      "errorMessage": "Échec de l'annulation de votre commande"
+      "user": {
+        "orderCancelation": {
+          "successMessage": "Commande annulée avec succès",
+          "errorMessage": "Échec de l'annulation de votre commande"
+        }
+      },
+      "admin": {
+        "resendConfirmation": {
+          "successMessage": "E-mail de confirmation de commande renvoyé",
+          "errorMessage": "Échec du renvoi de l'e-mail de confirmation de commande"
+        },
+        "orderItemStatusUpdate": {
+          "successMessage": "Statut de l'article de la commande mis à jour avec succès",
+          "errorMessage": "Échec de la mise à jour du statut de l'article de la commande"
+        },
+        "orderItemShippingDateUpdate": {
+          "successMessage": "Date d'expédition de l'article de la commande mise à jour avec succès",
+          "errorMessage": "Échec de la mise à jour de la date d'expédition de l'article de la commande"
+        },
+        "orderNoteUpdate": {
+          "successMessage": "Note de la commande mise à jour avec succès",
+          "errorMessage": "Échec de la mise à jour de la note de la commande"
+        },
+        "orderShippingDateUpdate": {
+          "successMessage": "Adresse de livraison de la commande mise à jour avec succès",
+          "errorMessage": "Échec de la mise à jour de l'adresse de livraison de la commande"
+        },
+        "orderBillingDateUpdate": {
+          "successMessage": "Adresse de facturation de la commande mise à jour avec succès",
+          "errorMessage": "Échec de la mise à jour de l'adresse de facturation de la commande"
+        },
+        "orderStatusUpdate": {
+          "successMessage": "Le statut de la commande a été mis à jour avec succès",
+          "errorMessage": "Échec de la mise à jour du statut de la commande"
+        }
+      }
     },
     "product": {
       "cart": {
@@ -160,7 +233,24 @@
     "viewWishlist": "Voir la liste de souhaits",
     "viewMyOrders": "Voir Mes Commandes",
     "login": "Se connecter",
-    "register": "S'inscrire"
+    "register": "S'inscrire",
+    "viewDetails": "Voir les détails",
+    "contactCustomer": "Contacter le client",
+    "markAsTitle": "Marquer comme",
+    "moreActionsTitle": "Autres actions",
+    "resendConfirmation": "Renvoyer la confirmation",
+    "resendConfirmationTitle": "Renvoyer l'e-mail de confirmation au client",
+    "moreItemActionsTitle": "Autres actions sur l'article de la commande",
+    "updateStatus": "Mettre à jour le statut",
+    "updateStatusTitle": "Mettre à jour le statut de l'article de la commande",
+    "setDate": "Définir la date",
+    "setDateTitle": "Définir la date d'expédition de l'article de la commande",
+    "updateDate": "Mettre à jour la date",
+    "updateDateTitle": "Mettre à jour la date d'expédition de l'article de la commande",
+    "updateOrderNoteTitle": "Mettre à jour la note de la commande",
+    "contactCustomerTitle": "Contacter le client",
+    "updateOrderShippingAddressTitle": "Mettre à jour l'adresse de livraison de la commande",
+    "updateOrderBillingAddressTitle": "Mettre à jour l'adresse de facturation de la commande"
   },
   "menuLabel": {
     "for": "Pour",
@@ -195,7 +285,8 @@
     }
   },
   "table": {
-    "pagination": "Affichage de {from} à {to} sur {total}"
+    "pagination": "Affichage de {from} à {to} sur {total}",
+    "noData": "Aucune donnée"
   },
   "form": {
     "product": {
@@ -235,6 +326,27 @@
       "noImage": "Aucune image sélectionnée",
       "noSku": "Aucun SKU fourni",
       "unknown": "Inconnu"
+    },
+    "order": {
+      "updateShippingAddress": {
+        "shippingDate": "Date d'expédition",
+        "shippingAddress1": "Adresse de livraison ligne 1",
+        "shippingAddress2": "Adresse de livraison ligne 2",
+        "shippingCity": "Ville de livraison",
+        "shippingState": "État/région de livraison",
+        "shippingPostcode": "Code postal de livraison",
+        "shippingCountry": "Pays de livraison",
+        "shippingPhone": "Numéro de téléphone pour la livraison"
+      },
+      "updateBillingAddress": {
+        "billingAddress1": "Adresse de facturation ligne 1",
+        "billingAddress2": "Adresse de facturation ligne 2",
+        "billingCity": "Ville de facturation",
+        "billingState": "État/région de facturation",
+        "billingPostcode": "Code postal de facturation",
+        "billingCountry": "Pays de facturation",
+        "billingPhone": "Numéro de téléphone pour la facturation"
+      }
     }
   },
   "error": {
@@ -265,5 +377,14 @@
     "email": "E-mail",
     "role": "Rôle",
     "createdAt": "Créé"
+  },
+  "order": {
+    "datePlaced": "Date de commande",
+    "deliveryDate": "Date de livraison",
+    "status": "Statut",
+    "statusDescription": "Date d'expédition la plus proche",
+    "customer": "Client",
+    "total": "Total",
+    "actions": "Actions"
   }
 }

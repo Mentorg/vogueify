@@ -58,6 +58,8 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function() {
     Route::get('/overview', [DashboardController::class, 'index'])->name('admin.overview');
     Route::get('/users', [DashboardController::class, 'getUsers'])->name('admin.users');
     Route::get('/products', [DashboardController::class, 'getProducts'])->name('admin.products');
+    Route::get('/orders', [DashboardController::class, 'getOrders'])->name('admin.orders');
+    Route::get('/orders/{order}', [DashboardController::class, 'getOrder'])->name('admin.order');
 });
 
 Route::middleware(['auth', 'verified'])->prefix('cart')->group(function () {
@@ -69,10 +71,19 @@ Route::middleware(['auth', 'verified'])->prefix('cart')->group(function () {
 Route::middleware(['auth', 'verified'])->prefix('orders')->group(function() {
     Route::post('/', [OrderController::class, 'store'])->name('order.store');
     Route::get('/{order}', [OrderController::class, 'show'])->name('order.show');
-    Route::get('/', [OrderController::class, 'getUserOrders'])->name('order.userOrders');
-    Route::put('/{order}/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
-    Route::get('/{order}/confirm', [OrderController::class, 'confirm'])->name('order.confirm');
+    Route::get('/user/orders', [OrderController::class, 'getUserOrders'])->name('order.userOrders');
+    Route::patch('/{order}/cancel', [OrderController::class, 'cancel'])->name('order.cancel');
+    Route::patch('/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::patch('/{order}/note', [OrderController::class, 'updateNote'])->name('orders.updateNote');
+    Route::patch('/{order}/shipping-address', [OrderController::class, 'updateShippingAddress'])->name('orders.updateShippingAddress');
+    Route::patch('/{order}/billing-address', [OrderController::class, 'updateBillingAddress'])->name('orders.updateBillingAddress');
+    Route::post('/orders/{order}/resend-confirmation', [OrderController::class, 'resendConfirmation'])->name('orders.resendConfirmation');
+    Route::patch('/order-items/{orderItem}/status', [OrderController::class, 'updateItemStatus'])->name('orderItems.updateStatus');
+    Route::patch('/order-items/{orderItem}/shipping-date', [OrderController::class, 'updateItemShippingDate'])->name('orderItems.updateShippingDate');
+    Route::post('/{order}/continue', [OrderController::class, 'continueOrder'])->name('order.continueOrder');
 });
+
+Route::middleware(['signed'])->get('/orders/{order}/confirm', [OrderController::class, 'confirm'])->name('order.confirm');
 
 Route::middleware(['auth', 'verified'])->prefix('checkout')->group(function () {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout');

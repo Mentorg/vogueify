@@ -6,6 +6,7 @@ import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import OrderStatusChip from '@/Components/OrderStatusChip.vue';
 import { formatDate } from '@/utils/dateFormat';
 import { useOrder } from '@/composables/useOrder';
 
@@ -41,8 +42,9 @@ const {
         </div>
         <div v-else class="mt-8">
           <div v-for="item in orders.filter(order => activeStatuses.includes(order.order_status))" :key="item.id"
-            class="flex justify-between items-center gap-2 my-4">
-            <div class="flex items-center gap-4">
+            class="grid grid-cols-3 grid-rows-2 items-center gap-2 my-4 border-b border-slate-300 py-4 lg:border-none lg:justify-between lg:grid-cols-[3fr,2fr,2fr,2fr,0.5fr] lg:grid-rows-1">
+            <div
+              class="flex items-center gap-4 col-start-1 col-end-3 row-start-1 row-end-1 lg:col-start-1 lg:col-end-1 lg:row-start-1 lg:row-end-1">
               <template v-if="item.items.length > 1">
                 <div class="flex -space-x-2">
                   <div v-for="orderItem in item.items.slice(0, 2)" :key="orderItem.id"
@@ -64,35 +66,33 @@ const {
               </template>
               <Link :href="route('order.show', { order: item.id })">{{ item.order_number }}</Link>
             </div>
-            <p>{{ formatDate(item.order_date, '.', false) }}</p>
-            <div :class="{
-              'bg-yellow-100': item.order_status === 'pending',
-              'bg-green-100': item.order_status === 'paid',
-              'bg-blue-100': item.order_status === 'confirmed',
-              'bg-gray-200': item.order_status === 'processing',
-              'bg-sky-100': item.order_status === 'shipped',
-              'bg-sky-200': item.order_status === 'in-transit',
-              'bg-emerald-100': item.order_status === 'out-for-delivery',
-              'bg-yellow-200': item.order_status === 'attempted-delivery',
-              'bg-gray-300': item.order_status === 'awaiting-pickup',
-              'bg-orange-200': item.order_status === 'delayed',
-              'bg-amber-200': item.order_status === 'held-at-customs',
-              'bg-rose-200': item.order_status === 'lost'
-            }" class="rounded-full py-2 px-4">
-              <p class="text-sm">{{ formatStatus(item.order_status) }}</p>
+            <div
+              class="flex col-start-1 col-end-1 row-start-2 row-end-2 md:justify-start lg:justify-center lg:col-start-2 lg:col-end-2 lg:row-start-1 lg:row-end-1">
+              <p>{{ formatDate(item.order_date, '.', false) }}</p>
             </div>
-            <p>${{ item.total }}</p>
-            <div v-if="item.order_status === 'pending'">
-              <button @click="confirmOrderCancelation(item)" class="bg-slate-100 rounded-full p-1.5">
-                <PhXCircle :size="20" />
+            <div
+              class="flex justify-center col-start-2 col-end-2 row-start-2 row-end-2 lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-1">
+              <OrderStatusChip :status="item.order_status">
+                <p class="text-sm">{{ formatStatus(item.order_status) }}</p>
+              </OrderStatusChip>
+            </div>
+            <div
+              class="flex justify-end col-start-3 col-end-3 row-start-2 row-end-2 lg:col-start-4 lg:col-end-4 lg:row-start-1 lg:row-end-1">
+              <p>${{ item.total }}</p>
+            </div>
+            <div
+              class="flex justify-end col-start-3 col-end-3 row-start-1 row-end-1 lg:col-start-5 lg:col-end-5 lg:row-start-1 lg:row-end-1">
+              <button @click="confirmOrderCancelation(item)" :disabled="item.order_status !== 'pending'"
+                title="Cancel order" class="bg-slate-100 rounded-full p-1.5">
+                <PhXCircle :color="item.order_status !== 'pending' ? 'gray' : 'black'" :size="20" />
               </button>
             </div>
             <DialogModal :show="itemToCancel !== null" @close="closeModal">
               <template #title>
-                {{ t('common.modal.order.title', { order: itemToCancel?.order_number }) }}?
+                {{ t('common.modal.order.user.orderCancelation.title', { order: itemToCancel?.order_number }) }}?
               </template>
               <template #content>
-                {{ t('common.modal.order.content', { order: item?.order_number }) }}?
+                {{ t('common.modal.order.user.orderCancelation.content', { order: item?.order_number }) }}?
                 <div v-if="errorMessage" class="text-red-500 mt-2">
                   {{ errorMessage }}
                 </div>

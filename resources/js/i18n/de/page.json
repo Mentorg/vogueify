@@ -70,6 +70,8 @@
   "admin": {
     "overview": "Übersicht",
     "products": "Produkte",
+    "orders": "Bestellungen",
+    "orderDetails": "Bestelldetails",
     "createProduct": "Produkt erstellen",
     "updateProduct": "{product} aktualisieren",
     "users": "Benutzer"
@@ -131,6 +133,7 @@
       "noPastOrders": "Keine früheren Bestellungen verfügbar",
       "singleOrder": {
         "label": "Bestellung {order}",
+        "continueOrder": "Mit der Bestellung fortfahren",
         "orderStatus": "Bestellstatus",
         "orderDate": "Bestelldatum",
         "shippingDate": "Versanddatum",
@@ -174,5 +177,33 @@
       "editProfile": "Profil bearbeiten",
       "logOut": "Abmelden"
     }
+  },
+  "orderDetails": {
+    "orderItems": "Bestellartikel",
+    "size": "Größe",
+    "shippingDate": "Versanddatum",
+    "undetermined": "Unbestimmt",
+    "orderSummary": "Bestellübersicht",
+    "subtotal": "Zwischensumme",
+    "item": "{count} Artikel | {count} Artikel",
+    "shippingCost": "Versandkosten",
+    "freeShipping": "Kostenloser Versand",
+    "tax": "Steuer",
+    "notIncluded": "Nicht enthalten",
+    "total": "Gesamt",
+    "notes": "Notizen",
+    "noNote": "Keine Notiz vorhanden",
+    "customer": "Kunde",
+    "order": "{count} Bestellung | {count} Bestellungen",
+    "shippingAddress": "Lieferadresse",
+    "phoneNumber": "Telefonnummer",
+    "firstAddressLine": "Adresszeile 1",
+    "secondAddressLine": "Adresszeile 2",
+    "city": "Stadt",
+    "postcode": "Postleitzahl",
+    "state": "Bundesland",
+    "country": "Land",
+    "billingAddress": "Rechnungsadresse",
+    "sameAsShipping": "Wie Lieferadresse"
   }
 }

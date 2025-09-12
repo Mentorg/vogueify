@@ -1,15 +1,17 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
+import { Link, useForm } from '@inertiajs/vue3';
+import { computed } from 'vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import { formatDate } from '@/utils/dateFormat';
-import { Link } from '@inertiajs/vue3';
-import { computed } from 'vue';
 
 const props = defineProps({
-  orderDetails: Object
+  orderDetails: Object,
+  countries: Array,
 });
 
 const { t } = useI18n();
+const form = useForm({});
 
 const statusSteps = [
   'pending',
@@ -56,10 +58,21 @@ const currentIndex = computed(() => {
   return statusSteps.indexOf(currentStatus);
 });
 
+const continueOrder = () => {
+  form.post(route('order.continueOrder', props.orderDetails.order.id));
+}
+
 </script>
 
 <template>
   <DashboardLayout :title="`${t('page.user.orders.singleOrder.label', { order: orderDetails?.order?.order_number })}`">
+    <div class="flex justify-center mb-6">
+      <form @submit="continueOrder">
+        <button class="flex bg-indigo-600 py-2 px-6 text-white transition-all hover:bg-indigo-700">
+          {{ t('page.user.orders.singleOrder.continueOrder') }}
+        </button>
+      </form>
+    </div>
     <div v-if="orderDetails && orderDetails.order"
       class="bg-white flex flex-col py-8 px-4 rounded-2xl w-auto justify-self-auto lg:justify-self-center lg:w-fit">
       <div class="flex flex-col items-center my-4 gap-2">
@@ -127,7 +140,7 @@ const currentIndex = computed(() => {
               class="text-lg">{{ item.product_variation.product.name }}</Link>
             <p class="text-sm">{{ t('page.user.orders.singleOrder.quantity') }}: {{ item.quantity }}</p>
           </div>
-          <p class="ml-auto">${{ item.price_at_time.toFixed(2) }}</p>
+          <p class="ml-auto">${{ item.price_at_time }}</p>
         </div>
       </div>
       <div class="flex flex-col gap-8 md:flex-row lg:flex-col">
@@ -136,15 +149,15 @@ const currentIndex = computed(() => {
           <ul class="py-8">
             <li class="flex justify-between">
               <p>{{ t('common.product.subtotal') }}</p>
-              <span>${{ orderDetails.subtotal.toFixed(2) }}</span>
+              <span>${{ orderDetails.subtotal }}</span>
             </li>
             <li class="flex justify-between mt-4">
-              <p>{{ t('common.product.shipping') }}</p><span>${{ orderDetails.shipping.toFixed(2) }}</span>
+              <p>{{ t('common.product.shipping') }}</p><span>${{ orderDetails.shipping }}</span>
             </li>
             <li class="flex flex-col mt-4">
               <div class="flex justify-between">
                 <p class=":text-lg">{{ t('common.product.tax') }}</p>
-                <span class=":text-lg">${{ orderDetails.tax.toFixed(2) }}</span>
+                <span class=":text-lg">${{ orderDetails.tax }}</span>
               </div>
               <p class="text-xs text-slate-500">{{ t('page.user.orders.singleOrder.orderInfo') }}</p>
             </li>
@@ -161,7 +174,9 @@ const currentIndex = computed(() => {
             <ul class="mt-2">
               <li class="text-sm">{{ orderDetails.order.billing_address_line_1 }}</li>
               <li class="text-sm">{{ orderDetails.order.billing_city }}</li>
-              <li class="text-sm">{{ orderDetails.order.billing_country }}</li>
+              <li class="text-sm">
+                {{countries.find(country => country.id === orderDetails.order.billing_country_id)?.name}}
+              </li>
               <li class="text-sm">{{ orderDetails.order.billing_phone_number }}</li>
               <li class="text-sm">{{ orderDetails.order.billing_postcode }}</li>
               <li v-if="orderDetails.order.billing_state" class="text-sm">{{ orderDetails.order.billing_state }}</li>
@@ -170,7 +185,9 @@ const currentIndex = computed(() => {
             <ul class="mt-2">
               <li class="text-sm">{{ orderDetails.order.shipping_address_line_1 }}</li>
               <li class="text-sm">{{ orderDetails.order.shipping_city }}</li>
-              <li class="text-sm">{{ orderDetails.order.shipping_country }}</li>
+              <li class="text-sm">
+                {{countries.find(country => country.id === orderDetails.order.shipping_country_id)?.name}}
+              </li>
               <li class="text-sm">{{ orderDetails.order.shipping_phone_number }}</li>
               <li class="text-sm">{{ orderDetails.order.shipping_postcode }}</li>
               <li v-if="orderDetails.order.shipping_state" class="text-sm">{{ orderDetails.order.shipping_state }}</li>

@@ -70,6 +70,8 @@
   "admin": {
     "overview": "Overview",
     "products": "Products",
+    "orders": "Orders",
+    "orderDetails": "Order Details",
     "createProduct": "Create Product",
     "updateProduct": "Update {product}",
     "users": "Users"
@@ -131,6 +133,7 @@
       "noPastOrders": "No past orders available",
       "singleOrder": {
         "label": "Order {order}",
+        "continueOrder": "Continue with the order",
         "orderStatus": "Order Status",
         "orderDate": "Order date",
         "shippingDate": "Shipping date",
@@ -174,5 +177,33 @@
       "editProfile": "Edit Profile",
       "logOut": "Log Out"
     }
+  },
+  "orderDetails": {
+    "orderItems": "Order Item(s)",
+    "size": "Size {size}",
+    "shippingDate": "Shipping date",
+    "undetermined": "Undetermined",
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
+    "item": "{count} item | {count} items",
+    "shippingCost": "Shipping Cost",
+    "freeShipping": "Free shipping",
+    "tax": "Tax",
+    "notIncluded": "Not included",
+    "total": "Total",
+    "notes": "Notes",
+    "noNote": "No note provided",
+    "customer": "Customer",
+    "order": "{count} order | {count} orders",
+    "shippingAddress": "Shipping Address",
+    "phoneNumber": "Phone Number",
+    "firstAddressLine": "Address Line 1",
+    "secondAddressLine": "Address Line 2",
+    "city": "City",
+    "postcode": "Postcode",
+    "state": "State",
+    "country": "Country",
+    "billingAddress": "Billing Address",
+    "sameAsShipping": "Same as shipping address"
   }
 }

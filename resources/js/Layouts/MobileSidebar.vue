@@ -45,6 +45,11 @@ const user = usePage().props.auth.user;
         </Link>
       </li>
       <li>
+        <Link href="/admin/orders" class="flex gap-y-4 w-full text-left px-4 py-2">
+        {{ t('page.admin.orders') }}
+        </Link>
+      </li>
+      <li>
         <Link href="/admin/product/create" class="flex gap-y-4 w-full text-left px-4 py-2">
         {{ t('page.admin.createProduct') }}
         </Link>

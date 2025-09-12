@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\OrderStatus;
+use App\Enums\AggregatedOrderStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -12,13 +12,14 @@ class Order extends Model
     use HasFactory;
 
     protected $casts = [
-        'order_status' => OrderStatus::class,
+        'order_status' => AggregatedOrderStatus::class,
     ];
 
     protected $fillable = [
         'shipping_date',
         'order_date',
         'order_status',
+        'order_note',
         'subtotal',
         'shipping_cost',
         'tax_amount',
@@ -30,14 +31,14 @@ class Order extends Model
         'shipping_city',
         'shipping_state',
         'shipping_postcode',
-        'shipping_country',
+        'shipping_country_id',
         'shipping_phone_number',
         'billing_address_line_1',
         'billing_address_line_2',
         'billing_city',
         'billing_state',
         'billing_postcode',
-        'billing_country',
+        'billing_country_id',
         'billing_phone_number',
     ];
 
@@ -82,7 +83,7 @@ class Order extends Model
             $this->shipping_address_line_1,
             $this->shipping_city,
             $this->shipping_postcode,
-            $this->shipping_country,
+            $this->shipping_country_id,
         ]));
     }
 
@@ -92,7 +93,22 @@ class Order extends Model
             $this->billing_address_line_1,
             $this->billing_city,
             $this->billing_postcode,
-            $this->billing_country,
+            $this->billing_country_id,
         ]));
+    }
+
+    public function shippingCountry()
+    {
+        return $this->belongsTo(Country::class, 'shipping_country_id');
+    }
+
+    public function billingCountry()
+    {
+        return $this->belongsTo(Country::class, 'billing_country_id');
+    }
+
+    public function orderStatuses(): array
+    {
+        return AggregatedOrderStatus::values();
     }
 }

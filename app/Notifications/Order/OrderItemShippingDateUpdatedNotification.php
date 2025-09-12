@@ -2,25 +2,25 @@
 
 namespace App\Notifications\Order;
 
-use App\Models\Order;
+use App\Models\OrderItem;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\URL;
 
-class RequestOrderConfirmationNotification extends Notification
+class OrderItemShippingDateUpdatedNotification extends Notification
 {
     use Queueable;
 
-    protected Order $order;
+    private OrderItem $orderItem;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(Order $order)
+    public function __construct(OrderItem $orderItem)
     {
-        $this->order = $order;
+        $this->orderItem = $orderItem;
     }
 
     /**
@@ -38,19 +38,10 @@ class RequestOrderConfirmationNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $confirmationUrl = URL::temporarySignedRoute(
-            'order.confirm',
-            now()->addHours(24),
-            ['order' => $this->order->id]
-        );
-
         return (new MailMessage)
-            ->subject('Please Confirm Your Order')
-            ->greeting('Hello there,')
-            ->line('Thank you for your order!')
-            ->line('Please confirm your **#' . $this->order->order_number . '** order to proceed with processing.')
-            ->action('Confirm Order', $confirmationUrl)
-            ->line("If you didn't place this order, please contact support.");
+            ->subject('Shipping date changed for an item in your order')
+            ->line('The shipping date for your item "**' . $this->orderItem->productVariation->product->name . '**" has changed to **' . Carbon::parse($this->orderItem->shipping_date)->format('d.m.Y H:i') . '**.')
+            ->line("We'll notify you again when it ships.");
     }
 
     /**

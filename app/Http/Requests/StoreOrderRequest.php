@@ -30,7 +30,7 @@ class StoreOrderRequest extends FormRequest
             'shipping_city' => 'required|string|max:255',
             'shipping_state' => 'nullable|string|max:255',
             'shipping_postcode' => 'required|string|max:10',
-            'shipping_country' => 'required|string|max:255',
+            'shipping_country_id' => 'required|integer|exists:countries,id',
             'shipping_phone_number' => 'nullable|string|max:20',
 
             'billing_address_line_1' => 'nullable|string|max:255',
@@ -38,7 +38,7 @@ class StoreOrderRequest extends FormRequest
             'billing_city' => 'nullable|string|max:255',
             'billing_state' => 'nullable|string|max:255',
             'billing_postcode' => 'nullable|string|max:10',
-            'billing_country' => 'nullable|string|max:255',
+            'billing_country_id' => 'nullable|integer|exists:countries,id',
             'billing_phone_number' => 'nullable|string|max:20',
 
             'items' => 'required|array|min:1',

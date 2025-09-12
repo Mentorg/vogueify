@@ -2,12 +2,24 @@
 
 namespace App\Services;
 
+use App\Enums\AggregatedOrderStatus;
 use App\Enums\OrderStatus;
 use App\Models\Order;
 use App\Models\ProductVariation;
+use App\Notifications\Order\OrderBillingAddressUpdatedNotification;
+use App\Notifications\Order\OrderCancelledNotification;
+use App\Notifications\Order\OrderConfirmedNotification;
+use App\Notifications\Order\OrderItemShippingDateUpdatedNotification;
+use App\Notifications\Order\OrderItemStatusUpdatedNotification;
+use App\Notifications\Order\OrderShippingAddressUpdatedNotification;
+use App\Notifications\Order\OrderStatusUpdatedNotification;
+use App\Notifications\Order\RequestOrderConfirmationNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
 
 class OrderService
 {
@@ -27,7 +39,7 @@ class OrderService
             'shipping_city' => $validated['shipping_city'],
             'shipping_state' => $validated['shipping_state'] ?? null,
             'shipping_postcode' => $validated['shipping_postcode'],
-            'shipping_country' => $validated['shipping_country'],
+            'shipping_country_id' => $validated['shipping_country_id'],
             'shipping_phone_number' => $validated['shipping_phone_number'] ?? null,
 
             'billing_address_line_1' => $validated['billing_address_line_1'] ?? null,
@@ -35,11 +47,16 @@ class OrderService
             'billing_city' => $validated['billing_city'] ?? null,
             'billing_state' => $validated['billing_state'] ?? null,
             'billing_postcode' => $validated['billing_postcode'] ?? null,
-            'billing_country' => $validated['billing_country'] ?? null,
+            'billing_country_id' => $validated['billing_country_id'] ?? null,
             'billing_phone_number' => $validated['billing_phone_number'] ?? null,
 
-            'order_status' => OrderStatus::Pending,
+            'order_status' => AggregatedOrderStatus::Pending,
         ];
+    }
+
+    public function getOrders()
+    {
+        return Order::with(['user', 'items.productVariation.product'])->orderBy('created_at', 'desc')->paginate(15);
     }
 
     public function create($order, $request)
@@ -55,14 +72,23 @@ class OrderService
         DB::beginTransaction();
 
         try {
-            if ($user->orders()->where('order_status', OrderStatus::Pending)->exists()) {
-                throw new Exception('You already have a pending order. Please complete it before placing a new one.');
+            $existingPendingOrder = $user->orders()
+                ->where('order_status', AggregatedOrderStatus::Pending->value)
+                ->first();
+
+            if ($existingPendingOrder) {
+                $order = $existingPendingOrder;
+                $order->items()->delete();
             }
 
             $cart = $user->cart;
 
-            if (!$cart || $cart->is_locked) {
-                throw new Exception('Cart is either empty or already in use.');
+             if (!$cart) {
+                throw new Exception('No cart found!');
+            }
+
+            if ($cart->is_locked && (!$existingPendingOrder || $existingPendingOrder->cart_id !== $cart->id)) {
+                throw new Exception('Cart is already in use by another order.');
             }
 
             $cart->is_locked = true;
@@ -76,9 +102,21 @@ class OrderService
             $taxAmount = $subtotal * 0.10;
             $total = $subtotal + $shippingCost + $taxAmount;
 
-            $order = Order::create(
-                $this->handleOrderAttributes($validated, $subtotal, $shippingCost, $taxAmount, $total, $cart->id)
+            $orderAttributes = $this->handleOrderAttributes(
+                $validated,
+                $subtotal,
+                $shippingCost,
+                $taxAmount,
+                $total,
+                $cart->id
             );
+
+            if ($order->exists) {
+                $order->fill($orderAttributes);
+                $order->save();
+            } else {
+                $order = Order::create($orderAttributes);
+            }
 
             foreach ($validated['items'] as $itemData) {
                 $variation = ProductVariation::findOrFail($itemData['product_variation_id']);
@@ -92,6 +130,7 @@ class OrderService
                     'size_id' => $itemData['size_id'] ?? null,
                     'quantity' => $itemData['quantity'],
                     'price_at_time' => $itemData['price_at_time'],
+                    'order_status' => OrderStatus::Pending,
                 ]);
 
                 if (!is_null($variation->stock)) {
@@ -103,8 +142,13 @@ class OrderService
             DB::commit();
 
             return $order->load('items.productVariation', 'items.size');
+        } catch (ValidationException $e) {
+            DB::rollBack();
+            Log::error($e);
+            throw $e;
         } catch (Exception $e) {
             DB::rollBack();
+            Log::error($e);
             throw new Exception('Failed to store the order. Reason: ' . $e->getMessage(), $e->getCode(), $e);
         }
     }
@@ -115,7 +159,7 @@ class OrderService
             abort(404);
         }
 
-        $order->load('items.productVariation.product', 'items.size');
+        $order->load('items.productVariation.product', 'items.productVariation.type', 'items.productVariation.color', 'items.size', 'user.orders');
 
         $subtotal = $order->items->sum(fn ($item) => $item->price_at_time * $item->quantity);
         $shipping = 0.00;
@@ -124,17 +168,18 @@ class OrderService
 
         return [
             'order' => $order,
-            'subtotal' => round($subtotal, 2),
-            'shipping' => round($shipping, 2),
-            'tax' => round($tax, 2),
-            'total' => round($total, 2)
+            'orderStatuses' => AggregatedOrderStatus::values(),
+            'subtotal' => number_format($subtotal, 2, '.', ''),
+            'shipping' => number_format($shipping, 2, '.', ''),
+            'tax' => number_format($tax, 2, '.', ''),
+            'total' => number_format($total, 2, '.', ''),
         ];
     }
 
     public function getUserOrders($request)
     {
         if (Auth::check()) {
-            return $request->user()->orders()->with('items.productVariation')->get();
+            return $request->user()->orders()->with('items.productVariation')->orderBy('created_at', 'desc')->get();
         } else {
             abort(404);
         }
@@ -144,14 +189,14 @@ class OrderService
     {
         $order->refresh();
 
-        if ($order->order_status !== OrderStatus::Pending) {
+        if ($order->order_status !== AggregatedOrderStatus::Pending) {
             throw new Exception('Only pending orders can be cancelled.');
         }
 
         DB::beginTransaction();
 
         try {
-            $order->order_status = OrderStatus::Canceled;
+            $order->order_status = AggregatedOrderStatus::Canceled;
             $order->save();
 
             foreach ($order->items as $item) {
@@ -169,10 +214,145 @@ class OrderService
                 $user->cart->save();
             }
 
+            $order->user->notify(new OrderCancelledNotification($order));
+
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
             throw new Exception('Failed to cancel the order. Reason: ' . $e->getMessage(), $e->getCode(), $e);
         }
+    }
+
+    public function confirm(Order $order): array
+    {
+        if ($order->order_status !== AggregatedOrderStatus::Paid) {
+            return [
+                'status' => 'info',
+                'message' => 'This order cannot be confirmed.',
+            ];
+        }
+
+        DB::beginTransaction();
+
+        try {
+            $order->update([
+                'order_status' => AggregatedOrderStatus::Confirmed
+            ]);
+
+            foreach ($order->items as $item) {
+                $item->order_status = OrderStatus::Confirmed;
+                $item->save();
+            }
+
+            $order->user->notify(new OrderConfirmedNotification($order));
+
+            DB::commit();
+
+            return [
+                'status' => 'success',
+                'message' => 'Order confirmed successfully!',
+            ];
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw new Exception('Failed to confirm the order. Reason: ' . $e->getMessage(), $e->getCode(), $e);
+        }
+    }
+
+    public function updateStatus($order, $newStatus)
+    {
+        $validStatuses = AggregatedOrderStatus::values();
+
+        if (!in_array($newStatus, $validStatuses)) {
+            throw new Exception('Invalid order status: ' . $newStatus);
+        }
+
+        DB::transaction(function () use ($order, $newStatus) {
+            $previousStatus = $order->order_status;
+
+            if (
+                $previousStatus === AggregatedOrderStatus::Pending &&
+                $newStatus === AggregatedOrderStatus::Canceled
+            ) {
+                if ($order->cart) {
+                    $order->cart->cartItems()->delete();
+                    $order->cart->is_locked = false;
+                    $order->cart->save();
+                }
+            }
+        });
+
+        $order->user->notify(new OrderStatusUpdatedNotification($order));
+
+        $order->order_status = $newStatus;
+        $order->save();
+    }
+
+    public function updateItemStatus($orderItem, $newStatus)
+    {
+        $validStatuses = OrderStatus::values();
+
+        if (!in_array($newStatus, $validStatuses)) {
+            throw new Exception('Invalid order item status: ' . $newStatus);
+        }
+
+        $orderItem->order->user->notify(new OrderItemStatusUpdatedNotification($orderItem));
+
+        $orderItem->order_status = $newStatus;
+        $orderItem->save();
+    }
+
+    public function updateItemShippingDate($orderItem, $newDate)
+    {
+        $orderItem->shipping_date = $newDate;
+
+        $orderItem->order->user->notify(new OrderItemShippingDateUpdatedNotification($orderItem));
+
+        $orderItem->save();
+    }
+
+    public function updateNote($order, $newNote)
+    {
+        $order->order_note = $newNote;
+        $order->save();
+    }
+
+    public function updateShippingAddress($order, $validated)
+    {
+        $order->update(Arr::only($validated,[
+            'shipping_address_line_1',
+            'shipping_address_line_2',
+            'shipping_city',
+            'shipping_state',
+            'shipping_postcode',
+            'shipping_country_id',
+            'shipping_phone_number',
+            'shipping_date',
+        ]));
+
+        $order->load('shippingCountry');
+
+        $order->user->notify(new OrderShippingAddressUpdatedNotification($order));
+    }
+
+    public function updateBillingAddress($order, array $validated)
+    {
+        $order->update(Arr::only($validated, [
+            'billing_address_line_1',
+            'billing_address_line_2',
+            'billing_city',
+            'billing_state',
+            'billing_postcode',
+            'billing_country_id',
+            'billing_phone_number',
+        ]));
+
+        $order->load('billingCountry');
+
+        $order->user->notify(new OrderBillingAddressUpdatedNotification($order));
+    }
+
+    public function resendConfirmation($order)
+    {
+        $order->user->notify(new RequestOrderConfirmationNotification($order));
     }
 }

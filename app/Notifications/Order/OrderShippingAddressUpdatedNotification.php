@@ -7,9 +7,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\URL;
 
-class RequestOrderConfirmationNotification extends Notification
+class OrderShippingAddressUpdatedNotification extends Notification
 {
     use Queueable;
 
@@ -38,19 +37,18 @@ class RequestOrderConfirmationNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $confirmationUrl = URL::temporarySignedRoute(
-            'order.confirm',
-            now()->addHours(24),
-            ['order' => $this->order->id]
-        );
-
         return (new MailMessage)
-            ->subject('Please Confirm Your Order')
-            ->greeting('Hello there,')
-            ->line('Thank you for your order!')
-            ->line('Please confirm your **#' . $this->order->order_number . '** order to proceed with processing.')
-            ->action('Confirm Order', $confirmationUrl)
-            ->line("If you didn't place this order, please contact support.");
+            ->subject('Shipping address for your order was updated')
+            ->line('The shipping address for your **#' . $this->order->order_number . '** order has been updated.')
+            ->line('New Shipping Address:')
+            ->line('Shipping Address Line 1: ' . $this->order->shipping_address_line_1)
+            ->line('Shipping Address Line 2: ' . $this->order->shipping_address_line_2)
+            ->line('Shipping City: ' . $this->order->shipping_city)
+            ->lineIf($this->order->shipping_state !== null, 'Shipping State: ' . $this->order->shipping_state ?? 'N/A')
+            ->line('Shipping Postcode: ' . $this->order->shipping_postcode)
+            ->line('Shipping Country: ' . optional($this->order->shipping_country_id)->name ?? 'N/A')
+            ->line('Shipping Phone Number: ' . $this->order->shipping_phone_number)
+            ->line("If you didn't make this change, please contact support immediately!");
     }
 
     /**

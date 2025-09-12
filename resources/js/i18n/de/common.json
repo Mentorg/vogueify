@@ -68,8 +68,44 @@
       "content": "Möchten Sie {userToDelete} wirklich löschen"
     },
     "order": {
-      "title": "Bestellung {order} stornieren",
-      "content": "Möchten Sie die Bestellung {order} wirklich stornieren?"
+      "user": {
+        "orderCancelation": {
+          "title": "Bestellung {order} stornieren",
+          "content": "Möchten Sie die Bestellung {order} wirklich stornieren?"
+        }
+      },
+      "admin": {
+        "resendConfirmation": {
+          "title": "Bestätigungs-E-Mail für Bestellung {order} erneut senden",
+          "content": "Möchten Sie wirklich eine Bestätigungs-E-Mail an {user} für die Bestellung {orderNumber} erneut senden?"
+        },
+        "orderItemStatusUpdate": {
+          "title": "Artikelstatus {orderStatus} aktualisieren",
+          "content": "Aktueller Status",
+          "itemStatus": "Artikelstatus"
+        },
+        "orderItemShippingDateUpdate": {
+          "title": "{item}-Versanddatum aktualisieren",
+          "content": "Möchten Sie das Versanddatum des Bestellartikels wirklich aktualisieren?",
+          "itemShippingDate": "Versanddatum des Artikels"
+        },
+        "orderNoteUpdate": {
+          "title": "Notiz der Bestellung {orderNumber} aktualisieren",
+          "content": "Möchten Sie die Notiz der Bestellung wirklich aktualisieren",
+          "orderNote": "Bestellnotiz"
+        },
+        "orderShippingDateUpdate": {
+          "title": "Lieferadresse der Bestellung {orderNumber} aktualisieren"
+        },
+        "orderBillingDateUpdate": {
+          "title": "Rechnungsadresse der Bestellung {orderNumber} aktualisieren"
+        },
+        "orderStatusUpdate": {
+          "title": "{orderStatus} Status aktualisieren",
+          "content": "Aktueller Status",
+          "itemStatus": "Bestellstatus"
+        }
+      }
     }
   },
   "toast": {
@@ -77,10 +113,47 @@
       "successMessage": "Cart items deleted successfully",
       "errorMessage": "Failed to delete cart items"
     },
-    "checkout": {},
+    "checkout": {
+      "successMessage": "Neue Bestellung erfolgreich aufgegeben",
+      "errorMessage": "Fehler beim Aufgeben der Bestellung"
+    },
     "order": {
-      "successMessage": "Bestellung erfolgreich storniert",
-      "errorMessage": "Bestellung konnte nicht storniert werden"
+      "user": {
+        "orderCancelation": {
+          "successMessage": "Bestellung erfolgreich storniert",
+          "errorMessage": "Bestellung konnte nicht storniert werden"
+        }
+      },
+      "admin": {
+        "resendConfirmation": {
+          "successMessage": "Bestellbestätigungs-E-Mail erneut gesendet",
+          "errorMessage": "Senden der Bestellbestätigungs-E-Mail fehlgeschlagen"
+        },
+        "orderItemStatusUpdate": {
+          "successMessage": "Status des Bestellartikels erfolgreich aktualisiert",
+          "errorMessage": "Aktualisierung des Status des Bestellartikels fehlgeschlagen"
+        },
+        "orderItemShippingDateUpdate": {
+          "successMessage": "Versanddatum des Bestellartikels erfolgreich aktualisiert",
+          "errorMessage": "Aktualisierung des Versanddatums des Bestellartikels fehlgeschlagen"
+        },
+        "orderNoteUpdate": {
+          "successMessage": "Bestellnotiz erfolgreich aktualisiert",
+          "errorMessage": "Aktualisierung der Bestellnotiz fehlgeschlagen"
+        },
+        "orderShippingDateUpdate": {
+          "successMessage": "Lieferadresse der Bestellung erfolgreich aktualisiert",
+          "errorMessage": "Aktualisierung der Lieferadresse der Bestellung fehlgeschlagen"
+        },
+        "orderBillingDateUpdate": {
+          "successMessage": "Rechnungsadresse der Bestellung erfolgreich aktualisiert",
+          "errorMessage": "Aktualisierung der Rechnungsadresse der Bestellung fehlgeschlagen"
+        },
+        "orderStatusUpdate": {
+          "successMessage": "Der Bestellstatus wurde erfolgreich aktualisiert",
+          "errorMessage": "Aktualisierung des Bestellstatus fehlgeschlagen"
+        }
+      }
     },
     "product": {
       "cart": {
@@ -160,7 +233,24 @@
     "viewWishlist": "Wunschliste anzeigen",
     "viewMyOrders": "Meine Bestellungen ansehen",
     "login": "Anmelden",
-    "register": "Registrieren"
+    "register": "Registrieren",
+    "viewDetails": "Details anzeigen",
+    "contactCustomer": "Kunden kontaktieren",
+    "markAsTitle": "Markieren als",
+    "moreActionsTitle": "Weitere Aktionen",
+    "resendConfirmation": "Bestätigung erneut senden",
+    "resendConfirmationTitle": "Bestätigungs-E-Mail an den Kunden erneut senden",
+    "moreItemActionsTitle": "Weitere Aktionen für den Bestellartikel",
+    "updateStatus": "Status aktualisieren",
+    "updateStatusTitle": "Status des Bestellartikels aktualisieren",
+    "setDate": "Datum festlegen",
+    "setDateTitle": "Versanddatum des Bestellartikels festlegen",
+    "updateDate": "Datum aktualisieren",
+    "updateDateTitle": "Versanddatum des Bestellartikels aktualisieren",
+    "updateOrderNoteTitle": "Bestellnotiz aktualisieren",
+    "contactCustomerTitle": "Kunden kontaktieren",
+    "updateOrderShippingAddressTitle": "Lieferadresse der Bestellung aktualisieren",
+    "updateOrderBillingAddressTitle": "Rechnungsadresse der Bestellung aktualisieren"
   },
   "menuLabel": {
     "for": "Für",
@@ -195,7 +285,8 @@
     }
   },
   "table": {
-    "pagination": "Anzeige {from}-{to} von {total}"
+    "pagination": "Anzeige {from}-{to} von {total}",
+    "noData": "Keine Daten"
   },
   "form": {
     "product": {
@@ -235,6 +326,27 @@
       "noImage": "Kein Bild ausgewählt",
       "noSku": "Keine SKU angegeben",
       "unknown": "Unbekannt"
+    },
+    "order": {
+      "updateShippingAddress": {
+        "shippingDate": "Versanddatum",
+        "shippingAddress1": "Lieferadresse Zeile 1",
+        "shippingAddress2": "Lieferadresse Zeile 2",
+        "shippingCity": "Lieferort",
+        "shippingState": "Lieferbundesland/-region",
+        "shippingPostcode": "Liefer-Postleitzahl",
+        "shippingCountry": "Lieferland",
+        "shippingPhone": "Telefonnummer für Lieferung"
+      },
+      "updateBillingAddress": {
+        "billingAddress1": "Rechnungsadresse Zeile 1",
+        "billingAddress2": "Rechnungsadresse Zeile 2",
+        "billingCity": "Rechnungsort",
+        "billingState": "Rechnungsbundesland/-region",
+        "billingPostcode": "Rechnungs-Postleitzahl",
+        "billingCountry": "Rechnungsland",
+        "billingPhone": "Telefonnummer für Rechnung"
+      }
     }
   },
   "error": {
@@ -265,5 +377,14 @@
     "email": "E-Mail",
     "role": "Rolle",
     "createdAt": "Erstellt"
+  },
+  "order": {
+    "datePlaced": "Bestelldatum",
+    "deliveryDate": "Lieferdatum",
+    "status": "Status",
+    "statusDescription": "Frühestes Versanddatum",
+    "customer": "Kunde",
+    "total": "Gesamt",
+    "actions": "Aktionen"
   }
 }
