@@ -17,7 +17,7 @@ const { t } = useI18n();
   <Head :title="t('page.checkout.checkoutSuccess.label')" />
   <Menu />
   <main>
-    <div class="bg-slate-100 flex flex-col itemce place-content-center px-4 lg:px-20 min-h-[48rem] items-center">
+    <div class="bg-slate-100 flex flex-col items-center place-content-center px-4 py-16 min-h-[48rem] lg:px-20">
       <PhCheck :size="48" />
       <div class="text-center my-8">
         <h1 class="text-2xl md:text-3xl">

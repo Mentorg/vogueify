@@ -88,7 +88,15 @@ class CartService
 
     public function delete($id)
     {
-        $cartItem = CartItem::find($id)->first();
+        $cartItem = CartItem::findOrFail($id);
+
+        $cart = $cartItem->cart;
+
         $cartItem->delete();
+
+        if ($cart->cartItems()->count() === 0) {
+            $cart->is_locked = false;
+            $cart->save();
+        }
     }
 }

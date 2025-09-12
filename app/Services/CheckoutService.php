@@ -2,10 +2,14 @@
 
 namespace App\Services;
 
+use App\Enums\AggregatedOrderStatus;
+use App\Enums\OrderStatus;
 use App\Models\Order;
+use App\Notifications\Order\RequestOrderConfirmationNotification;
+use Exception;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Stripe\PaymentIntent;
 
 class CheckoutService
@@ -14,16 +18,26 @@ class CheckoutService
     {
         $user = $request->user();
 
-        if (!$user || !$user->cart || $user->cart->cartItems->isEmpty()) {
-            abort(404, 'No cart found for checkout.');
+        if (!$user) {
+            abort(404);
         }
 
         $user->load([
             'cart.cartItems.productVariation.product',
-            'address'
+            'address',
+            'orders.items.productVariation.product'
         ]);
 
-        $cartItems = $user->cart->cartItems;
+        $pendingOrder = $user->orders
+            ->where('order_status', AggregatedOrderStatus::Pending->value)
+            ->sortByDesc('created_at')
+            ->first();
+
+        $cartItems = $user->cart?->cartItems;
+
+        if (!$cartItems || $cartItems->isEmpty()) {
+            abort(404, 'No cart found for checkout.');
+        }
 
         $subtotal = $cartItems->sum(fn ($item) => $item->price_at_time * $item->quantity);
         $shipping = 0.00;
@@ -34,6 +48,7 @@ class CheckoutService
             'user' => $user,
             'cart' => $user->cart,
             'address' => $user->address,
+            'pendingOrder' => $pendingOrder,
             'subtotal' => round($subtotal, 2),
             'shipping' => round($shipping, 2),
             'tax' => round($tax, 2),
@@ -106,14 +121,51 @@ class CheckoutService
     {
         Stripe::setApiKey(config('services.stripe.secret'));
 
-        $session = StripeSession::retrieve($request->get('session_id'));
-        $orderId = $session->metadata->order_id ?? null;
+        $sessionId = $request->get('session_id');
 
+        if (!$sessionId) {
+            throw new Exception('Missing Stripe session ID.');
+        }
+
+        $session = StripeSession::retrieve($sessionId);
         $paymentIntent = PaymentIntent::retrieve($session->payment_intent);
 
-        $order = null;
-        if ($orderId) {
-            $order = Order::with(['items.productVariation.product', 'items.size'])->find($orderId);
+        $orderId = $session->metadata->order_id ?? null;
+
+        if (!$orderId) {
+            throw new Exception('Order ID not found in session metadata.');
+        }
+
+        $order = Order::with(['items.productVariation.product', 'items.size', 'cart.cartItems', 'user'])->find($orderId);
+
+        if (!$order) {
+            throw new Exception("Order with ID {$orderId} not found.");
+        }
+
+        if (
+            $session->payment_status === 'paid' &&
+            $order->order_status !== AggregatedOrderStatus::Paid
+        ) {
+            $order->order_status = AggregatedOrderStatus::Paid;
+            $order->save();
+
+            foreach ($order->items as $item) {
+                $item->order_status = OrderStatus::Paid;
+                $item->save();
+            }
+
+            if ($order->cart) {
+                $order->cart->cartItems()->delete();
+                $order->cart->is_locked = false;
+                $order->cart->save();
+            }
+
+            $order->user->notify(new RequestOrderConfirmationNotification($order));
+
+            Log::info('Order marked as paid via success page.', [
+                'order_id' => $order->id,
+                'session_id' => $sessionId,
+            ]);
         }
 
         return [

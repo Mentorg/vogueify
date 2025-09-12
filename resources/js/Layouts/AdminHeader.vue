@@ -52,9 +52,8 @@ onBeforeUnmount(() => {
   <header
     class="flex items-center justify-between px-4 py-[8px] border-b border-b-[#D9D9D9] md:px-[20px] md:py-[16px] lg:px-[60px] lg:py-[16px]">
     <div class="flex flex-row items-center gap-6">
-      <button @click="toggleMenu()" class="flex items-center gap-2 md:hidden">
+      <button @click="toggleMenu()" class="flex items-center gap-2 lg:hidden">
         <PhList :size="24" />
-        <span class="hidden md:flex">{{ t('common.header.button.menu') }}</span>
       </button>
     </div>
     <div>

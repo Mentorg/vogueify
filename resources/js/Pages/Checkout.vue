@@ -7,43 +7,73 @@ import Footer from "@/Layouts/Footer.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import SelectInput from "@/Components/SelectInput.vue";
+import ErrorMessage from "@/Components/ErrorMessage.vue";
+import { useToast } from "vue-toast-notification";
 
 const props = defineProps({
   checkoutData: Object,
   countries: Array,
+  errors: Object
 })
 
 const { t } = useI18n();
+const toast = useToast();
 
+const pendingOrder = props.checkoutData.pendingOrder ?? null;
 const address = props.checkoutData.address ?? {};
+const cartItems = props.checkoutData.cart?.cart_items ?? [];
+
+const getField = (field, fallback = '') => {
+  return pendingOrder?.[field] || address?.[field] || fallback;
+};
 
 const orderForm = useForm({
-  shipping_address_line_1: address.address_line_1 || '',
-  shipping_address_line_2: address.address_line_2 || '',
-  shipping_city: address.city || '',
-  shipping_state: address.state ?? '',
-  shipping_postcode: address.postcode || '',
-  shipping_country: props.countries.find(record => record.id === address.country_id)?.name || '',
-  shipping_phone_number: address.phone_number || '',
-  billing_address_line_1: address.address_line_1 || '',
-  billing_address_line_2: address.address_line_2 || '',
-  billing_city: address.city || '',
-  billing_state: address.state ?? '',
-  billing_postcode: address.postcode || '',
-  billing_country: props.countries.find(record => record.id === address.country_id)?.name || '',
-  billing_phone_number: address.phone_number || '',
-  items: props.checkoutData.cart?.cart_items?.map(item => ({
+  shipping_address_line_1: getField('shipping_address_line_1'),
+  shipping_address_line_2: getField('shipping_address_line_2'),
+  shipping_city: getField('shipping_city'),
+  shipping_state: getField('shipping_state'),
+  shipping_postcode: getField('shipping_postcode'),
+  shipping_country_id: pendingOrder?.shipping_country_id ?? address?.country_id ?? '',
+  shipping_phone_number: getField('shipping_phone_number'),
+  billing_address_line_1: getField('billing_address_line_1'),
+  billing_address_line_2: getField('billing_address_line_2'),
+  billing_city: getField('billing_city'),
+  billing_state: getField('billing_state'),
+  billing_postcode: getField('billing_postcode'),
+  billing_country_id: pendingOrder?.billing_country_id ?? address?.country_id ?? '',
+  billing_phone_number: getField('billing_phone_number'),
+  items: (pendingOrder?.items ?? cartItems).map(item => ({
     product_variation_id: item.product_variation_id,
     size_id: item.size_id,
     quantity: item.quantity,
     price_at_time: item.price_at_time,
-  })) || [],
+  }))
 });
 
 const submitOrder = () => {
-  orderForm.post(route('order.store'));
-};
+  orderForm.post(route('order.store'), {
+    preserveScroll: true,
+    onSuccess: () => {
+      toast.open({
+        message: `${t('common.toast.checkout.successMessage')}.`,
+        type: 'success',
+        position: 'top',
+        duration: 4000,
+      })
+    },
+    onError: (errors) => {
+      if (errors.order) {
+        toast.open({
+          message: `${t('common.toast.checkout.errorMessage')}!` + errors.order,
+          type: 'error',
+          position: 'top',
+          duration: 4000,
+        })
+      }
+    }
 
+  });
+};
 </script>
 
 <template>
@@ -70,6 +100,7 @@ const submitOrder = () => {
                 <InputLabel for="shipping_address_line_1" :value="`${t('page.checkout.shippingAddress1')}`" />
                 <TextInput id="shipping_address_line_1" type="text" name="shipping_address_line_1"
                   v-model="orderForm.shipping_address_line_1" class="mt-1 block w-full" />
+                <ErrorMessage :message="errors.shipping_address_line_1" />
               </div>
               <div class="my-2">
                 <InputLabel for="shipping_address_line_2" :value="`${t('page.checkout.shippingAddress2')}`" />
@@ -80,6 +111,7 @@ const submitOrder = () => {
                 <InputLabel for="shipping_city" :value="`${t('page.checkout.shippingCity')}`" />
                 <TextInput id="shipping_city" type="text" name="shipping_city" v-model="orderForm.shipping_city"
                   class="mt-1 block w-full" />
+                <ErrorMessage :message="errors.shipping_city" />
               </div>
               <div class="my-2">
                 <InputLabel for="shipping_state" :value="`${t('page.checkout.shippingState')}`" />
@@ -90,12 +122,15 @@ const submitOrder = () => {
                 <InputLabel for="shipping_postcode" :value="`${t('page.checkout.shippingPostcode')}`" />
                 <TextInput id="shipping_postcode" type="text" name="shipping_postcode"
                   v-model="orderForm.shipping_postcode" class="mt-1 block w-full" />
+                <ErrorMessage :message="errors.shipping_postcode" />
               </div>
               <div class="my-2">
-                <InputLabel for="shipping_country" :value="`${t('page.checkout.shippingCountry')}`" />
-                <SelectInput name="shipping_country" id="shipping_country" v-model="orderForm.shipping_country">
+                <InputLabel for="shipping_country_id" :value="`${t('page.checkout.shippingCountry')}`" />
+                <SelectInput name="shipping_country_id" id="shipping_country_id"
+                  v-model="orderForm.shipping_country_id">
                   <option v-for="country in countries" :value="country.id">{{ country.name }}</option>
                 </SelectInput>
+                <ErrorMessage :message="errors.shipping_country_id" />
               </div>
               <div class="my-2">
                 <InputLabel for="shipping_phone_number" :value="`${t('page.checkout.shippingPhone')}`" />
@@ -131,8 +166,8 @@ const submitOrder = () => {
                   v-model="orderForm.billing_postcode" class="mt-1 block w-full" />
               </div>
               <div class="my-2">
-                <InputLabel for="billing_country" :value="`${t('page.checkout.billingCountry')}`" />
-                <SelectInput name="billing_country" id="billing_country" v-model="orderForm.billing_country">
+                <InputLabel for="billing_country_id" :value="`${t('page.checkout.billingCountry')}`" />
+                <SelectInput name="billing_country_id" id="billing_country_id" v-model="orderForm.billing_country_id">
                   <option v-for="country in countries" :value="country.id">{{ country.name }}</option>
                 </SelectInput>
               </div>

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\AggregatedOrderStatus;
 use App\Enums\OrderStatus;
 use App\Models\Order;
 use App\Notifications\Order\RequestOrderConfirmationNotification;
@@ -32,30 +33,43 @@ class WebhookService
             $session = $event->data->object;
             $orderId = $session->metadata->order_id ?? null;
 
-            if ($orderId) {
-                $order = Order::with(['items.productVariation', 'cart.cartItems'])->find($orderId);
-                $user = $order->user;
-
-                if ($order && $order->order_status !== 'paid') {
-                    Log::warning('Order has no associated cart', ['order_id' => $orderId]);
-                    $order->order_status = OrderStatus::Paid;
-                    $order->save();
-
-                    $user->notify(new RequestOrderConfirmationNotification($order));
-
-                    if ($order->cart) {
-                        $order->cart->cartItems()->delete();
-                        $order->cart->is_locked = false;
-                        $order->cart->save();
-                    } else {
-                        Log::warning('Order has no associated cart', ['order_id' => $orderId]);
-                    }
-                }
-            } else {
+            if (!$orderId) {
                 Log::warning('Order ID not found in session metadata');
+                return response()->json(['status' => 'no_order_id'], 400);
             }
-        }
 
-        return response()->json(['status' => 'success']);
+            $order = Order::with(['items.productVariation', 'cart.cartItems'])->find($orderId);
+
+            if (!$order) {
+                Log::warning('Order not found', ['order_id' => $orderId]);
+                return response()->json(['status' => 'order_not_found'], 404);
+            }
+
+            if ($order->order_status === AggregatedOrderStatus::Paid) {
+                return response()->json(['status' => 'already_paid']);
+            }
+
+            $order->order_status = AggregatedOrderStatus::Paid;
+            foreach ($order->items as $item) {
+                $item->order_status = OrderStatus::Paid;
+                $item->save();
+            }
+            $order->save();
+
+            if ($order->cart) {
+                $order->cart->cartItems()->delete();
+                $order->cart->is_locked = false;
+                $order->cart->save();
+            } else {
+                Log::warning('Order has no associated cart', [
+                    'order_id' => $order->id,
+                    'cart_id' => $order->cart_id,
+                ]);
+            }
+
+            $order->user->notify(new RequestOrderConfirmationNotification($order));
+
+            return response()->json(['status' => 'success']);
+        }
     }
 }

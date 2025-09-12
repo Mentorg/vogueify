@@ -2,6 +2,8 @@
 import { Head, router, useForm } from '@inertiajs/vue3';
 import { PhX } from '@phosphor-icons/vue';
 import axios from 'axios';
+import { useToast } from 'vue-toast-notification';
+import { useI18n } from 'vue-i18n';
 import InputLabel from '@/Components/InputLabel.vue';
 import SelectInput from '@/Components/SelectInput.vue';
 import TextareaInput from '@/Components/TextareaInput.vue';
@@ -9,8 +11,6 @@ import TextInput from '@/Components/TextInput.vue';
 import AdminDashboard from '@/Layouts/AdminDashboard.vue';
 import ErrorMessage from '@/Components/ErrorMessage.vue';
 import Tooltip from '@/Components/Tooltip.vue';
-import { useToast } from 'vue-toast-notification';
-import { useI18n } from 'vue-i18n';
 import { capitalize } from '@/utils/capitalize';
 
 const props = defineProps({
@@ -194,7 +194,6 @@ const submitForm = () => {
       }
     });
 };
-console.log(form.variations)
 </script>
 
 <template>
@@ -266,7 +265,7 @@ console.log(form.variations)
             <div v-for="(variation, index) in form.variations" :key="variation.id" class="border p-4 rounded-md mb-6">
               <div class="flex justify-between items-center mb-2">
                 <h3 class="font-semibold">{{ t('common.form.product.variation', { variation: index + 1 })
-                }}</h3>
+                  }}</h3>
                 <div class="flex gap-2">
                   <button @click="toggleCollapse(index)" type="button" class="text-sm text-blue-600">
                     {{ variation.collapsed ? t('common.form.product.expand') : t('common.form.product.collapse') }}
@@ -373,7 +372,7 @@ console.log(form.variations)
           <div class="flex flex-col">
             <h3 class="font-medium text-base">{{ t('common.form.product.gender') }}</h3>
             <p class="mt-4">{{ capitalize(form.gender) || t('common.gender.unisex')
-            }}</p>
+              }}</p>
           </div>
           <div>
             <h3 class="font-medium text-base">{{ t('common.form.product.category') }}</h3>
