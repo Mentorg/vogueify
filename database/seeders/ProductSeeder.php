@@ -15,13 +15,11 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         $json = File::get('database/data/products.json');
-
         $data = json_decode($json, true);
 
         foreach ($data as $item) {
             Product::create(
                 [
-                    'id' => $item['id'],
                     'name' => $item['name'],
                     'description' => $item['description'],
                     'features' => $item['features'],

@@ -23,7 +23,6 @@ class ProductVariationSeeder extends Seeder
 
             ProductVariation::create(
                 [
-                    'id' => $item['id'],
                     'image' => $imagePath,
                     'price' => $item['price'],
                     'sku' => $item['sku'],

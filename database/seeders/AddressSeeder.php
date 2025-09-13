@@ -16,7 +16,6 @@ class AddressSeeder extends Seeder
     {
         DB::table('addresses')->insert([
             [
-                'id' => 0,
                 'user_id' => 3,
                 'address_line_1' => '123 Maple Street',
                 'address_line_2' => 'Apt 4B',
@@ -29,7 +28,6 @@ class AddressSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'id' => 1,
                 'user_id' => 3,
                 'address_line_1' => '456 Oak Avenue',
                 'address_line_2' => null,
@@ -42,7 +40,6 @@ class AddressSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'id' => 2,
                 'user_id' => 3,
                 'address_line_1' => '789 Pine Road',
                 'address_line_2' => 'Suite 12',

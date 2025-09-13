@@ -26,7 +26,7 @@ class OrderService
     protected function handleOrderAttributes(array $validated, float $subtotal, float $shippingCost, float $taxAmount, float $total, int $cartId): array
     {
         return [
-            'order_date' => now()->format('d-m-Y H:i'),
+            'order_date' => now()->format('Y-m-d H:i:s'),
             'subtotal' => $subtotal,
             'shipping_cost' => $shippingCost,
             'tax_amount' => $taxAmount,

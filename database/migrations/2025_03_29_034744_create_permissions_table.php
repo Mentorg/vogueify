@@ -17,17 +17,17 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+
         Schema::create('role_user', function (Blueprint $table) {
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-        });
-
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
         });
 
         Schema::create('permission_role', function (Blueprint $table) {
@@ -44,8 +44,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('permissions');
-        Schema::dropIfExists('role_user');
         Schema::dropIfExists('roles');
+        Schema::dropIfExists('role_user');
         Schema::dropIfExists('permission_role');
     }
 };

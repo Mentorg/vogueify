@@ -41,6 +41,13 @@ return new class extends Migration
             $table->integer('last_activity')->index();
         });
 
+        Schema::create('countries', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('iso_code', 2);
+            $table->timestamps();
+        });
+
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
@@ -53,13 +60,6 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->timestamps();
         });
-
-        Schema::create('countries', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('iso_code', 2);
-            $table->timestamps();
-        });
     }
 
     /**
@@ -70,7 +70,7 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
-        Schema::dropIfExists('addresses');
         Schema::dropIfExists('countries');
+        Schema::dropIfExists('addresses');
     }
 };

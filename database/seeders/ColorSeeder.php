@@ -15,13 +15,11 @@ class ColorSeeder extends Seeder
     public function run(): void
     {
         $json = File::get('database/data/colors.json');
-
         $data = json_decode($json, true);
 
         foreach ($data as $item) {
             Color::create(
                 [
-                    'id' => $item['id'],
                     'name' => $item['name'],
                     'hex_code' => $item['hex_code'],
                 ]

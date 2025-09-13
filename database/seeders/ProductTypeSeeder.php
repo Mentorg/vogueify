@@ -20,7 +20,6 @@ class ProductTypeSeeder extends Seeder
         foreach($data as $item) {
             ProductType::create(
                 [
-                    'id' => $item['id'],
                     'type' => $item['type'],
                     'label' => $item['label'],
                     'category_id' => $item['category_id'],

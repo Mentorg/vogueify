@@ -1,31 +1,25 @@
 [
   {
-    "id": 0,
     "name": "bags",
     "image": "bags.jpg"
   },
   {
-    "id": 1,
     "name": "shoes",
     "image": "shoes.jpg"
   },
   {
-    "id": 2,
     "name": "accessories",
     "image": "accessories.jpg"
   },
   {
-    "id": 3,
     "name": "jewelry",
     "image": "jewelry.jpg"
   },
   {
-    "id": 4,
     "name": "watches",
     "image": "watches.jpg"
   },
   {
-    "id": 5,
     "name": "perfumes",
     "image": "perfumes.jpg"
   }

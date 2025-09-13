@@ -11,6 +11,29 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('product_categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->unique();
+            $table->string('image');
+            $table->timestamps();
+        });
+
+        Schema::create('colors', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->unique();
+            $table->string('hex_code')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('product_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('type');
+            $table->string('label');
+            $table->unsignedBigInteger('category_id')->index();
+            $table->foreign('category_id')->references('id')->on('product_categories')->cascadeOnDelete();
+            $table->timestamps();
+        });
+
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -53,29 +76,6 @@ return new class extends Migration
             $table->unique(['product_variation_id', 'size_id']);
         });
 
-        Schema::create('colors', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->string('hex_code')->nullable();
-            $table->timestamps();
-        });
-
-        Schema::create('product_categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->string('image');
-            $table->timestamps();
-        });
-
-        Schema::create('product_types', function (Blueprint $table) {
-            $table->id();
-            $table->string('type');
-            $table->string('label');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('product_categories')->cascadeOnDelete();
-            $table->timestamps();
-        });
-
         Schema::create('wishlists', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
@@ -92,13 +92,13 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('product_categories');
+        Schema::dropIfExists('colors');
+        Schema::dropIfExists('product_types');
         Schema::dropIfExists('products');
         Schema::dropIfExists('product_variations');
         Schema::dropIfExists('sizes');
         Schema::dropIfExists('product_variation_size');
-        Schema::dropIfExists('colors');
-        Schema::dropIfExists('product_categories');
-        Schema::dropIfExists('product_types');
         Schema::dropIfExists('wishlist');
     }
 };
