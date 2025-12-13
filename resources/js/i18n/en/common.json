@@ -106,6 +106,20 @@
           "itemStatus": "Order Status"
         }
       }
+    },
+    "coupon": {
+      "couponNotifyUsers": {
+        "title": "Notify Users about {coupon}",
+        "content": "Are you sure you want to notify selected users about {coupon} coupon"
+      },
+      "couponDelete": {
+        "title": "Delete {coupon}",
+        "content": "Are you sure you want to delete {coupon}"
+      },
+      "couponApply": {
+        "title": "Enter coupon code",
+        "couponCode": "Coupon Code"
+      }
     }
   },
   "toast": {
@@ -174,6 +188,34 @@
         "errorMessage": "Failed to update product! Unexpected error"
       }
     },
+    "coupon": {
+      "couponDelete": {
+        "successMessage": "Coupon deleted successfully",
+        "errorMessage": "Failed to delete coupon"
+      },
+      "couponCreate": {
+        "successMessage": "Coupon created successfully",
+        "errorValidationMessage": "Failed to create coupon! Validation failed",
+        "errorMessage": "Failed to create coupon! Unexpected error"
+      },
+      "couponUpdate": {
+        "successMessage": "Coupon updated successfully",
+        "errorValidationMessage": "Failed to update coupon! Validation failed",
+        "errorMessage": "Failed to update coupon! Unexpected error"
+      },
+      "couponApply": {
+        "successMessage": "Coupon applied successfully",
+        "errorMessage": "Failed to apply coupon"
+      },
+      "couponStatusUpdate": {
+        "successMessage": "Coupon status updated successfully",
+        "errorMessage": "Failed to update coupon status"
+      },
+      "couponNotifyUsers": {
+        "successMessage": "Users notified about the coupon successfully",
+        "errorMessage": "Failed to notify users about the coupon"
+      }
+    },
     "user": {
       "userDelete": {
         "successMessage": "User deleted successfully",
@@ -208,13 +250,20 @@
     "delete": "Delete",
     "cancel": "Cancel",
     "continue": "Continue",
+    "create": "Create",
     "update": "Update",
+    "apply": "Apply",
     "deleteVariation": "Delete Variation",
     "deleteProduct": "Delete Product",
     "first": "First",
     "previous": "Previous",
     "next": "Next",
     "last": "Last",
+    "markAs": "Mark As",
+    "active": "Active",
+    "inactive": "Inactive",
+    "archived": "Archived",
+    "notifyUsers": "Notify Users",
     "addFeature": "Add Feature",
     "addVariation": "Add New Variation",
     "saveProduct": "Save Product",
@@ -236,7 +285,6 @@
     "register": "Register",
     "viewDetails": "View Details",
     "contactCustomer": "Contact Customer",
-    "markAsTitle": "Mark As",
     "moreActionsTitle": "More actions",
     "resendConfirmation": "Resend Confirmation",
     "resendConfirmationTitle": "Resend confirmation email to the customer",
@@ -250,7 +298,13 @@
     "updateOrderNoteTitle": "Update order's note",
     "contactCustomerTitle": "Contact the customer",
     "updateOrderShippingAddressTitle": "Update order's shipping address",
-    "updateOrderBillingAddressTitle": "Update order's billing address"
+    "updateOrderBillingAddressTitle": "Update order's billing address",
+    "couponActions": "Coupon actions",
+    "createCoupon": "Create Coupon",
+    "updateCoupon": "Update Coupon",
+    "deleteCoupon": "Delete coupon",
+    "removeCoupon": "Remove Coupon",
+    "clickHere": "Click here"
   },
   "menuLabel": {
     "for": "For",
@@ -285,10 +339,55 @@
     }
   },
   "table": {
+    "coupon": {
+      "code": "Code",
+      "type": "Type",
+      "entity": "Entity",
+      "value": "Value",
+      "createdAt": "Starts",
+      "expiresAt": "Expires",
+      "redemptions": "Redemptions",
+      "status": "Status",
+      "used": "Used",
+      "actions": "Actions",
+      "perUser": "per user"
+    },
+    "couponUsers": {
+      "avatar": "Avatar",
+      "name": "Name",
+      "email": "Email",
+      "redemptions": "Redemptions"
+    },
+    "couponCategories": {
+      "image": "Image",
+      "name": "Name",
+      "createdAt": "Created"
+    },
+    "couponProducts": {
+      "image": "Image",
+      "name": "Name",
+      "category": "Category",
+      "gender": "Gender",
+      "createdAt": "Created"
+    },
+    "couponProductVariations": {
+      "image": "Image",
+      "name": "Name",
+      "price": "Price",
+      "stock": "Stock",
+      "sku": "SKU",
+      "category": "Category",
+      "createdAt": "Created"
+    },
     "pagination": "Showing {from}-{to} of {total}",
     "noData": "No data"
   },
   "form": {
+    "base": {
+      "selectPlaceholder": "Select {entityType}",
+      "selectedPlaceholder": "{count} {entityType} selected",
+      "searchPlaceholder": "Search"
+    },
     "product": {
       "headingBase": "Base Information",
       "headingProductVariation": "Product Variations",
@@ -347,6 +446,27 @@
         "billingCountry": "Billing Country",
         "billingPhone": "Billing Phone Number"
       }
+    },
+    "coupon": {
+      "couponType": "Coupon Type",
+      "category": "Category | Categories",
+      "product": "Product | Products",
+      "productVariation": "Product Variation | Product Variations",
+      "user": "User | Users",
+      "code": "Code",
+      "type": "Type",
+      "percentage": "Percentage",
+      "fixedAmount": "Fixed Amount",
+      "value": "Value",
+      "startsAt": "Starts At",
+      "expiresAt": "Expires At",
+      "maxUses": "Maximum Uses",
+      "maxUsesPerUser": "Maximum Uses Per User",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Inactive",
+      "archived": "Archived",
+      "sendNotification": "Notify selected users immediately"
     }
   },
   "error": {
@@ -361,9 +481,11 @@
     "primaryColor": "Primary Color",
     "secondaryColor": "Secondary Color",
     "subtotal": "Subtotal",
+    "discount": "Discount",
     "shipping": "Shipping",
     "tax": "Tax",
     "taxInfo": "Will be calculated according to your delivery address",
+    "taxShippingInfo": "Tax includes shipping",
     "total": "Total",
     "name": "Name",
     "price": "Price",

@@ -129,4 +129,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Address::class);
     }
+
+    public function coupons()
+    {
+        return $this->belongsToMany(Coupon::class, 'coupon_user')
+            ->withPivot('uses')
+            ->withTimestamps();
+    }
 }

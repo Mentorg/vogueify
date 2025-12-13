@@ -36,27 +36,32 @@ const user = usePage().props.auth.user;
     <ul class="ml-2">
       <li v-if="user.role === 'admin'">
         <Link href="/admin/overview" class="flex gap-y-4 w-full text-left px-4 py-2">
-        {{ t('page.admin.overview') }}
+          {{ t('page.admin.overview') }}
         </Link>
       </li>
       <li>
         <Link href="/admin/products" class="flex gap-y-4 w-full text-left px-4 py-2">
-        {{ t('page.admin.products') }}
+          {{ t('page.admin.products') }}
         </Link>
       </li>
       <li>
         <Link href="/admin/orders" class="flex gap-y-4 w-full text-left px-4 py-2">
-        {{ t('page.admin.orders') }}
+          {{ t('page.admin.orders') }}
         </Link>
       </li>
       <li>
         <Link href="/admin/product/create" class="flex gap-y-4 w-full text-left px-4 py-2">
-        {{ t('page.admin.createProduct') }}
+          {{ t('page.admin.createProduct') }}
+        </Link>
+      </li>
+      <li>
+        <Link href="/admin/coupons" class="flex gap-y-4 w-full text-left px-4 py-2">
+          {{ t('page.admin.coupons') }}
         </Link>
       </li>
       <li v-if="user.role === 'admin'">
         <Link href="/admin/users" class="flex gap-y-4 w-full text-left px-4 py-2">
-        {{ t('page.admin.users') }}
+          {{ t('page.admin.users') }}
         </Link>
       </li>
     </ul>

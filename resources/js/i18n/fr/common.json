@@ -106,6 +106,20 @@
           "itemStatus": "Statut de la commande"
         }
       }
+    },
+    "coupon": {
+      "couponNotifyUsers": {
+        "title": "Notifier les utilisateurs à propos de {coupon}",
+        "content": "Êtes-vous sûr de vouloir notifier les utilisateurs sélectionnés à propos du coupon {coupon} ?"
+      },
+      "couponDelete": {
+        "title": "Supprimer {coupon}",
+        "content": "Êtes-vous sûr de vouloir supprimer {coupon}"
+      },
+      "couponApply": {
+        "title": "Saisissez le code du coupon",
+        "couponCode": "Code du coupon"
+      }
     }
   },
   "toast": {
@@ -174,6 +188,34 @@
         "errorMessage": "Échec de la création du produit! Veuillez vérifier le formulaire pour des erreurs"
       }
     },
+    "coupon": {
+      "couponDelete": {
+        "successMessage": "Coupon supprimé avec succès",
+        "errorMessage": "Échec de la suppression du coupon"
+      },
+      "couponCreate": {
+        "successMessage": "Coupon créé avec succès",
+        "errorValidationMessage": "Échec de la création du coupon ! Échec de la validation",
+        "errorMessage": "Échec de la création du coupon ! Erreur inattendue"
+      },
+      "couponUpdate": {
+        "successMessage": "Coupon mis à jour avec succès",
+        "errorValidationMessage": "Échec de la mise à jour du coupon ! Échec de la validation",
+        "errorMessage": "Échec de la mise à jour du coupon ! Erreur inattendue"
+      },
+      "couponApply": {
+        "successMessage": "Coupon appliqué avec succès",
+        "errorMessage": "Échec de l'application du coupon"
+      },
+      "couponStatusUpdate": {
+        "successMessage": "Statut du coupon mis à jour avec succès",
+        "errorMessage": "Échec de la mise à jour du statut du coupon"
+      },
+      "couponNotifyUsers": {
+        "successMessage": "Les utilisateurs ont été notifiés du coupon avec succès",
+        "errorMessage": "Échec de la notification des utilisateurs au sujet du coupon"
+      }
+    },
     "user": {
       "userDelete": {
         "successMessage": "Utilisateur supprimé avec succès",
@@ -208,13 +250,20 @@
     "delete": "Supprimer",
     "cancel": "Annuler",
     "continue": "Continuer",
+    "create": "Créer",
     "update": "Mettre à jour",
+    "apply": "Appliquer",
     "deleteVariation": "Supprimer la variante",
     "deleteProduct": "Supprimer le produit",
     "first": "Premier",
     "previous": "Précédent",
     "next": "Suivant",
     "last": "Dernier",
+    "markAs": "Marquer comme",
+    "active": "Actif",
+    "inactive": "Inactif",
+    "archived": "Archivé",
+    "notifyUsers": "Notifier les utilisateurs",
     "addFeature": "Ajouter une fonctionnalité",
     "addVariation": "Ajouter une nouvelle variante",
     "saveProduct": "Enregistrer le produit",
@@ -236,7 +285,6 @@
     "register": "S'inscrire",
     "viewDetails": "Voir les détails",
     "contactCustomer": "Contacter le client",
-    "markAsTitle": "Marquer comme",
     "moreActionsTitle": "Autres actions",
     "resendConfirmation": "Renvoyer la confirmation",
     "resendConfirmationTitle": "Renvoyer l'e-mail de confirmation au client",
@@ -250,7 +298,13 @@
     "updateOrderNoteTitle": "Mettre à jour la note de la commande",
     "contactCustomerTitle": "Contacter le client",
     "updateOrderShippingAddressTitle": "Mettre à jour l'adresse de livraison de la commande",
-    "updateOrderBillingAddressTitle": "Mettre à jour l'adresse de facturation de la commande"
+    "updateOrderBillingAddressTitle": "Mettre à jour l'adresse de facturation de la commande",
+    "couponActions": "Actions du coupon",
+    "createCoupon": "Créer un bon de réduction",
+    "updateCoupon": "Mettre à jour le bon de réduction",
+    "deleteCoupon": "Supprimer le coupon",
+    "removeCoupon": "Retirer le coupon",
+    "clickHere": "Cliquez ici"
   },
   "menuLabel": {
     "for": "Pour",
@@ -285,10 +339,55 @@
     }
   },
   "table": {
+    "coupon": {
+      "code": "Code",
+      "type": "Type",
+      "entity": "Entité",
+      "value": "Valeur",
+      "createdAt": "Début",
+      "expiresAt": "Expiration",
+      "redemptions": "Utilisations",
+      "status": "Statut",
+      "used": "Utilisé",
+      "actions": "Actions",
+      "perUser": "par utilisateur"
+    },
+    "couponUsers": {
+      "avatar": "Avatar",
+      "name": "Nom",
+      "email": "E-mail",
+      "redemptions": "Utilisations"
+    },
+    "couponCategories": {
+      "image": "Image",
+      "name": "Nom",
+      "createdAt": "Créé"
+    },
+    "couponProducts": {
+      "image": "Image",
+      "name": "Nom",
+      "category": "Catégorie",
+      "gender": "Genre",
+      "createdAt": "Créé"
+    },
+    "couponProductVariations": {
+      "image": "Image",
+      "name": "Nom",
+      "price": "Prix",
+      "stock": "Stock",
+      "sku": "SKU",
+      "category": "Catégorie",
+      "createdAt": "Créé"
+    },
     "pagination": "Affichage de {from} à {to} sur {total}",
     "noData": "Aucune donnée"
   },
   "form": {
+    "base": {
+      "selectPlaceholder": "Sélectionner {entityType}",
+      "selectedPlaceholder": "{count} {entityType} sélectionné(s)",
+      "searchPlaceholder": "Rechercher"
+    },
     "product": {
       "headingBase": "Informations de base",
       "headingProductVariation": "Variations du produit",
@@ -347,6 +446,27 @@
         "billingCountry": "Pays de facturation",
         "billingPhone": "Numéro de téléphone pour la facturation"
       }
+    },
+    "coupon": {
+      "couponType": "Type de coupon",
+      "category": "Catégorie | Catégories",
+      "product": "Produit | Produits",
+      "productVariation": "Variation de produit | Variations de produit",
+      "user": "Utilisateur | Utilisateurs",
+      "code": "Code",
+      "type": "Type",
+      "percentage": "Pourcentage",
+      "fixedAmount": "Montant fixe",
+      "value": "Valeur",
+      "startsAt": "Commence le",
+      "expiresAt": "Expire le",
+      "maxUses": "Nombre maximal d’utilisations",
+      "maxUsesPerUser": "Nombre maximal d’utilisations par utilisateur",
+      "status": "Statut",
+      "active": "Actif",
+      "inactive": "Inactif",
+      "archived": "Archivé",
+      "sendNotification": "Notifier immédiatement les utilisateurs sélectionnés"
     }
   },
   "error": {
@@ -361,9 +481,11 @@
     "primaryColor": "Couleur principale",
     "secondaryColor": "Couleur secondaire",
     "subtotal": "Sous-total",
+    "discount": "Réduction",
     "shipping": "Livraison",
     "tax": "Taxe",
     "taxInfo": "Sera calculée selon votre adresse de livraison",
+    "taxShippingInfo": "La taxe inclut les frais de livraison",
     "total": "Total",
     "name": "Nom",
     "price": "Prix",

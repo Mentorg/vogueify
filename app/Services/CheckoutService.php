@@ -4,28 +4,37 @@ namespace App\Services;
 
 use App\Enums\AggregatedOrderStatus;
 use App\Enums\OrderStatus;
+use App\Models\Country;
 use App\Models\Order;
 use App\Notifications\Order\RequestOrderConfirmationNotification;
+use App\Pricing\Exceptions\InvalidCouponException;
+use App\Pricing\PricingService;
+use App\Pricing\Validators\CouponValidator;
+use Illuminate\Support\Facades\Log;
 use Exception;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
-use Illuminate\Support\Facades\Log;
 use Stripe\PaymentIntent;
+use Stripe\Checkout\Session;
 
 class CheckoutService
 {
+    protected $pricingService;
+
+    public function __construct(PricingService $pricingService)
+    {
+        $this->pricingService = $pricingService;
+    }
+
     public function getCheckout($request)
     {
         $user = $request->user();
-
-        if (!$user) {
-            abort(404);
-        }
+        if (!$user) abort(404);
 
         $user->load([
             'cart.cartItems.productVariation.product',
-            'address',
-            'orders.items.productVariation.product'
+            'address.country',
+            'orders.items.productVariation.product',
         ]);
 
         $pendingOrder = $user->orders
@@ -34,25 +43,48 @@ class CheckoutService
             ->first();
 
         $cartItems = $user->cart?->cartItems;
-
         if (!$cartItems || $cartItems->isEmpty()) {
             abort(404, 'No cart found for checkout.');
         }
 
-        $subtotal = $cartItems->sum(fn ($item) => $item->price_at_time * $item->quantity);
-        $shipping = 0.00;
-        $tax = 0.00;
-        $total = $subtotal + $shipping + $tax;
+        $address = $user->address;
+        $countryCode = $address?->country?->iso_code;
+        $state = $address?->state;
+        $destination = [
+            'country_id' => $address?->country_id,
+            'postcode' => $address?->postcode,
+        ];
+
+        $couponCode = $request->input('coupon') ?? session('applied_coupon');
+        $couponModel = null;
+        if ($couponCode) {
+            try {
+                $couponModel = app(CouponValidator::class)->validate($couponCode, $user);
+            } catch (InvalidCouponException $e) {
+                session()->flash('coupon_error', $e->getMessage());
+            }
+        }
+
+        $totals = $this->pricingService->calculate($cartItems, [
+            'coupon' => $couponModel,
+            'countryCode' => $countryCode,
+            'state' => $state,
+            'destination' => $destination,
+        ]);
 
         return [
             'user' => $user,
             'cart' => $user->cart,
-            'address' => $user->address,
+            'address' => $address,
             'pendingOrder' => $pendingOrder,
-            'subtotal' => round($subtotal, 2),
-            'shipping' => round($shipping, 2),
-            'tax' => round($tax, 2),
-            'total' => round($total, 2)
+            'subtotal' => $totals['subtotal'],
+            'discount' => $totals['discount'],
+            'shipping' => $totals['shipping'],
+            'tax' => $totals['tax'],
+            'total' => $totals['total'],
+            'coupon' => $couponModel?->code,
+            'countries' => Country::all(['id', 'name', 'iso_code']),
+            'coupon_error' => session('coupon_error') ?? null,
         ];
     }
 
@@ -68,7 +100,6 @@ class CheckoutService
                     'currency' => 'eur',
                     'product_data' => [
                         'name' => $item->productVariation->product->name,
-                        'images' => [asset('storage/' . $item->productVariation->image)]
                     ],
                     'unit_amount' => intval($item->price_at_time * 100),
                 ],
@@ -80,9 +111,7 @@ class CheckoutService
             $lineItems[] = [
                 'price_data' => [
                     'currency' => 'eur',
-                    'product_data' => [
-                        'name' => 'Shipping Cost',
-                    ],
+                    'product_data' => ['name' => 'Shipping'],
                     'unit_amount' => intval($order->shipping_cost * 100),
                 ],
                 'quantity' => 1,
@@ -93,28 +122,40 @@ class CheckoutService
             $lineItems[] = [
                 'price_data' => [
                     'currency' => 'eur',
-                    'product_data' => [
-                        'name' => 'Tax',
-                    ],
+                    'product_data' => ['name' => 'Tax'],
                     'unit_amount' => intval($order->tax_amount * 100),
                 ],
                 'quantity' => 1,
             ];
         }
 
-        $checkoutSession = StripeSession::create([
+        $discounts = [];
+
+        if ($order->discount_amount > 0) {
+            $coupon = \Stripe\Coupon::create([
+                'name' => $order->coupon_code ?? 'Order Discount',
+                'amount_off' => intval($order->discount_amount * 100),
+                'currency' => 'eur',
+                'duration' => 'once',
+            ]);
+
+            $discounts[] = ['coupon' => $coupon->id];
+        }
+
+        $session = Session::create([
             'payment_method_types' => ['card'],
-            'line_items' => $lineItems,
             'mode' => 'payment',
-            'success_url' => route('checkout.success') . '?session_id={CHECKOUT_SESSION_ID}',
-            // 'cancel_url' => route('checkout.cancel', ['order_id' => $order->id]),
-            'metadata' => [
-                'order_id' => $order->id,
-            ],
             'customer_email' => $order->user->email,
+            'line_items' => $lineItems,
+            'discounts' => $discounts,
+            'success_url' => route('checkout.success', ['session_id' => '{CHECKOUT_SESSION_ID}']),
+            // 'cancel_url' => route('checkout.cancel'),
+            'metadata' => ['order_id' => $order->id],
         ]);
 
-        return $checkoutSession;
+        $order->update(['stripe_session_id' => $session->id]);
+
+        return $session;
     }
 
     public function success($request)

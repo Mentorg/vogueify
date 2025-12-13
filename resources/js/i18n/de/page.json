@@ -34,6 +34,8 @@
     "label": "Mein Warenkorb",
     "perPiece": "pro Stück",
     "emptyCart": "Ihr Warenkorb ist leer",
+    "couponApplied": "Gutschein angewendet",
+    "couponPrompt": "Haben Sie einen Gutschein? {action}, um Ihren Code einzugeben",
     "button": {
       "addToWishlist": "Zur Wunschliste hinzufügen",
       "proceedToCheckout": "Zur Kasse gehen"
@@ -74,6 +76,9 @@
     "orderDetails": "Bestelldetails",
     "createProduct": "Produkt erstellen",
     "updateProduct": "{product} aktualisieren",
+    "coupons": "Gutscheine",
+    "createCoupon": "Gutschein erstellen",
+    "updateCoupon": "Aktualisiere {coupon}",
     "users": "Benutzer"
   },
   "user": {
@@ -205,5 +210,35 @@
     "country": "Land",
     "billingAddress": "Rechnungsadresse",
     "sameAsShipping": "Wie Lieferadresse"
+  },
+  "couponDetails": {
+    "coupon": "{coupon} Gutschein",
+    "createdOn": "Erstellt am {date} von {user}",
+    "updatedOn": "Aktualisiert am {date} von {user}",
+    "couponDetails": "Gutschein-Details",
+    "code": "Code",
+    "type": "Typ",
+    "entity": "Entität",
+    "discount": "Rabatt",
+    "usageRestrictions": "Nutzungsbeschränkungen",
+    "timeframe": "Zeitraum",
+    "maximumUses": "Maximale Verwendungen",
+    "maximumUsesPerUser": "Maximale Verwendungen (pro Benutzer)",
+    "statusAndTracking": "Status & Nachverfolgung",
+    "status": "Status",
+    "redemptions": "Einlösungen",
+    "used": "Verwendet",
+    "user": "Benutzer | Benutzer",
+    "userPicture": "Profilbild von {user}",
+    "productVariation": "Produktvariante | Produktvarianten",
+    "productImage": "Bild von {product}",
+    "sku": "SKU",
+    "stock": "Bestand",
+    "price": "Preis",
+    "createdAt": "Erstellt",
+    "gender": "Geschlecht",
+    "product": "Produkt | Produkte",
+    "category": "Kategorie | Kategorien",
+    "categoryImage": "Bild von {category}"
   }
 }

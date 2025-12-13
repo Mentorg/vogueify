@@ -17,8 +17,11 @@ class CartController extends Controller
 
     public function index()
     {
+        $couponCode = session('applied_coupon');
+
         return Inertia::render('Cart', [
-            'cart' => $this->cartService->getCartItems()
+            'cart' => $this->cartService->getCartItems($couponCode),
+            'coupon' => $couponCode
         ]);
     }
 

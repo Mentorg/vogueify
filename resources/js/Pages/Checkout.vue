@@ -1,30 +1,47 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/vue3";
-import { PhArrowLeft } from "@phosphor-icons/vue";
+import { useToast } from "vue-toast-notification";
 import { useI18n } from 'vue-i18n';
+import { PhArrowLeft } from "@phosphor-icons/vue";
 import Menu from '@/Layouts/Menu.vue'
 import Footer from "@/Layouts/Footer.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import SelectInput from "@/Components/SelectInput.vue";
 import ErrorMessage from "@/Components/ErrorMessage.vue";
-import { useToast } from "vue-toast-notification";
 
 const props = defineProps({
   checkoutData: Object,
-  countries: Array,
   errors: Object
 })
 
 const { t } = useI18n();
 const toast = useToast();
-
+const form = useForm({});
 const pendingOrder = props.checkoutData.pendingOrder ?? null;
 const address = props.checkoutData.address ?? {};
 const cartItems = props.checkoutData.cart?.cart_items ?? [];
 
 const getField = (field, fallback = '') => {
-  return pendingOrder?.[field] || address?.[field] || fallback;
+  if (pendingOrder?.[field]) return pendingOrder[field];
+
+  const addressFieldMap = {
+    shipping_address_line_1: 'address_line_1',
+    shipping_address_line_2: 'address_line_2',
+    shipping_city: 'city',
+    shipping_state: 'state',
+    shipping_postcode: 'postcode',
+    shipping_phone_number: 'phone_number',
+    billing_address_line_1: 'address_line_1',
+    billing_address_line_2: 'address_line_2',
+    billing_city: 'city',
+    billing_state: 'state',
+    billing_postcode: 'postcode',
+    billing_phone_number: 'phone_number',
+  };
+
+  const mappedField = addressFieldMap[field];
+  return mappedField && address?.[mappedField] ? address[mappedField] : fallback;
 };
 
 const orderForm = useForm({
@@ -47,8 +64,32 @@ const orderForm = useForm({
     size_id: item.size_id,
     quantity: item.quantity,
     price_at_time: item.price_at_time,
-  }))
+  })),
+  discount_amount: props.checkoutData.discount ?? 0,
+  coupon: props.checkoutData.coupon ?? null,
 });
+
+const removeCoupon = () => {
+  form.post(route('coupon.remove'), {
+    preserveScroll: true,
+    onSuccess: () => {
+      toast.open({
+        message: 'Coupon removed.',
+        type: 'success',
+        position: 'top',
+        duration: 4000
+      });
+    },
+    onError: () => {
+      toast.open({
+        message: 'Failed to remove coupon!',
+        type: 'error',
+        position: 'top',
+        duration: 4000
+      });
+    }
+  });
+}
 
 const submitOrder = () => {
   orderForm.post(route('order.store'), {
@@ -74,6 +115,7 @@ const submitOrder = () => {
 
   });
 };
+
 </script>
 
 <template>
@@ -84,7 +126,7 @@ const submitOrder = () => {
     <main class="flex flex-col gap-y-4 bg-slate-100 h-full p-4 lg:p-16">
       <div>
         <Link :href="route('cart.index')">
-        <PhArrowLeft :size="24" />
+          <PhArrowLeft :size="24" />
         </Link>
       </div>
       <div class="flex flex-col gap-y-4 lg:grid lg:grid-cols-[4fr,1.5fr] lg:gap-x-4">
@@ -128,7 +170,7 @@ const submitOrder = () => {
                 <InputLabel for="shipping_country_id" :value="`${t('page.checkout.shippingCountry')}`" />
                 <SelectInput name="shipping_country_id" id="shipping_country_id"
                   v-model="orderForm.shipping_country_id">
-                  <option v-for="country in countries" :value="country.id">{{ country.name }}</option>
+                  <option v-for="country in checkoutData.countries" :value="country.id">{{ country.name }}</option>
                 </SelectInput>
                 <ErrorMessage :message="errors.shipping_country_id" />
               </div>
@@ -168,7 +210,7 @@ const submitOrder = () => {
               <div class="my-2">
                 <InputLabel for="billing_country_id" :value="`${t('page.checkout.billingCountry')}`" />
                 <SelectInput name="billing_country_id" id="billing_country_id" v-model="orderForm.billing_country_id">
-                  <option v-for="country in countries" :value="country.id">{{ country.name }}</option>
+                  <option v-for="country in checkoutData.countries" :value="country.id">{{ country.name }}</option>
                 </SelectInput>
               </div>
               <div class="my-2">
@@ -179,7 +221,9 @@ const submitOrder = () => {
               <div class="flex justify-center my-4">
                 <button type="submit" :disabled="orderForm.processing"
                   class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black lg:text-base lg:w-1/2">
-                  {{ t('common.button.continue') }}</button>
+                  <span v-if="orderForm.processing">{{ t('common.button.loading') }}...</span>
+                  <span v-else>{{ t('common.button.continue') }}</span>
+                </button>
               </div>
             </div>
           </form>
@@ -203,26 +247,43 @@ const submitOrder = () => {
             </div>
           </div>
           <div class="flex p-4 w-full">
-            <ul class="w-full">
-              <li class="flex justify-between">
+            <ul class="flex flex-col w-full gap-2">
+              <li class="flex justify-between lg:text-lg">
                 <p>{{ t('common.product.subtotal') }}</p>
                 <span>${{ checkoutData.subtotal.toFixed(2) }}</span>
+              </li>
+              <li v-if="checkoutData.discount > 0" class="flex justify-between text-green-700 lg:text-lg">
+                <p>{{ t('common.product.discount') }}</p>
+                <span>− ${{ checkoutData.discount.toFixed(2) }}</span>
+              </li>
+              <li class="flex flex-col mt-4">
+                <div class="flex justify-between">
+                  <p class=":text-lg">{{ t('common.product.tax') }}</p>
+                  <span class="lg:text-lg">${{ checkoutData.tax.toFixed(2) }}</span>
+                </div>
+                <p class="text-xs text-slate-500">{{ t('common.product.taxInfo') }}</p>
               </li>
               <li class="flex justify-between mt-4">
                 <p>{{ t('common.product.shipping') }}</p>
                 <span>${{ checkoutData.shipping.toFixed(2) }}</span>
               </li>
-              <li class="flex flex-col mt-4">
-                <div class="flex justify-between">
-                  <p class=":text-lg">{{ t('common.product.tax') }}</p>
-                  <span class=":text-lg">${{ checkoutData.tax.toFixed(2) }}</span>
-                </div>
-                <p class="text-xs text-slate-500">{{ t('common.product.taxInfo') }}</p>
-              </li>
               <li class="flex justify-between mt-4">
                 <p>{{ t('common.product.total') }}</p>
                 <span>${{ checkoutData.total.toFixed(2) }}</span>
               </li>
+              <div v-if="checkoutData.coupon_error" class="bg-red-100 text-red-700 p-3 rounded">
+                {{ checkoutData.coupon_error }}
+              </div>
+              <div v-if="checkoutData.coupon" class="mt-2 mb-4">
+                <div class="text-green-700 font-semibold">
+                  {{ t('page.cart.couponApplied') }}: {{ checkoutData.coupon }}
+                </div>
+                <form @submit.prevent="removeCoupon">
+                  <button type="submit" class="text-sm text-red-600 underline mt-1">
+                    {{ t('common.button.removeCoupon') }}
+                  </button>
+                </form>
+              </div>
             </ul>
           </div>
         </div>

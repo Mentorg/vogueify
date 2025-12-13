@@ -24,12 +24,14 @@ class StoreOrderRequest extends FormRequest
         return [
             'shipping_date' => 'nullable|date',
             'order_date' => 'nullable|date',
+            'coupon' => 'nullable|string',
+            'discount_amount' => 'required',
 
             'shipping_address_line_1' => 'required|string|max:255',
             'shipping_address_line_2' => 'nullable|string|max:255',
             'shipping_city' => 'required|string|max:255',
             'shipping_state' => 'nullable|string|max:255',
-            'shipping_postcode' => 'required|string|max:10',
+            'shipping_postcode' => 'required|string',
             'shipping_country_id' => 'required|integer|exists:countries,id',
             'shipping_phone_number' => 'nullable|string|max:20',
 
@@ -37,7 +39,7 @@ class StoreOrderRequest extends FormRequest
             'billing_address_line_2' => 'nullable|string|max:255',
             'billing_city' => 'nullable|string|max:255',
             'billing_state' => 'nullable|string|max:255',
-            'billing_postcode' => 'nullable|string|max:10',
+            'billing_postcode' => 'nullable|string',
             'billing_country_id' => 'nullable|integer|exists:countries,id',
             'billing_phone_number' => 'nullable|string|max:20',
 

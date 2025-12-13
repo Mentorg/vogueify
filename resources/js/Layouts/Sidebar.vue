@@ -33,7 +33,14 @@ const user = usePage().props.auth.user;
         <Link :href="route('product.create')"
           class="flex w-full py-2 px-4 rounded-md transition-all hover:bg-black hover:text-white"
           :class="{ 'bg-black text-white': currentPath === '/admin/product/create' }">
-        {{ t('page.admin.createProduct') }}
+          {{ t('page.admin.createProduct') }}
+        </Link>
+      </li>
+      <li>
+        <Link :href="route('admin.coupons')"
+          class="flex w-full py-2 px-4 rounded-md transition-all hover:bg-black hover:text-white"
+          :class="{ 'bg-black text-white': currentPath === '/admin/coupons' }">
+          {{ t('page.admin.coupons') }}
         </Link>
       </li>
       <li v-if="user.role === 'admin'">

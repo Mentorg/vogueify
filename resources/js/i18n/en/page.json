@@ -34,6 +34,8 @@
     "label": "My Shopping Cart",
     "perPiece": "per piece",
     "emptyCart": "Your shopping bag is empty",
+    "couponApplied": "Coupon applied",
+    "couponPrompt": "Have a coupon? {action} to enter your code",
     "button": {
       "addToWishlist": "Add to Wishlist",
       "proceedToCheckout": "Proceed to Checkout"
@@ -74,6 +76,9 @@
     "orderDetails": "Order Details",
     "createProduct": "Create Product",
     "updateProduct": "Update {product}",
+    "coupons": "Coupons",
+    "createCoupon": "Create Coupon",
+    "updateCoupon": "Update {coupon}",
     "users": "Users"
   },
   "user": {
@@ -205,5 +210,35 @@
     "country": "Country",
     "billingAddress": "Billing Address",
     "sameAsShipping": "Same as shipping address"
+  },
+  "couponDetails": {
+    "coupon": "{coupon} Coupon",
+    "createdOn": "Created on {date} by {user}",
+    "updatedOn": "Updated on {date} by {user}",
+    "couponDetails": "Coupon Details",
+    "code": "Code",
+    "type": "Type",
+    "entity": "Entitiy",
+    "discount": "Discount",
+    "usageRestrictions": "Usage Restrictions",
+    "timeframe": "Timeframe",
+    "maximumUses": "Maximum Uses",
+    "maximumUsesPerUser": "Maximum Uses (per user)",
+    "statusAndTracking": "Status & Tracking",
+    "status": "Status",
+    "redemptions": "Redemptions",
+    "used": "Used",
+    "user": "User | Users",
+    "userPicture": "{user}'s profile picture",
+    "productVariation": "Product Variation | Product Variations",
+    "productImage": "{product}'s image",
+    "sku": "SKU",
+    "stock": "Stock",
+    "price": "Price",
+    "createdAt": "Created",
+    "gender": "Gender",
+    "product": "Product | Products",
+    "category": "Category | Categories",
+    "categoryImage": "{category}'s image"
   }
 }

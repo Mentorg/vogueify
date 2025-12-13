@@ -9,6 +9,8 @@ class ProductVariation extends Model
 {
     use HasFactory;
 
+    protected $table = 'product_variations';
+
     protected $fillable = [
         'image',
         'price',
@@ -65,5 +67,11 @@ class ProductVariation extends Model
     public function hasSufficientStock($quantity)
     {
         return is_null($this->stock) || $this->stock >= $quantity;
+    }
+
+    public function coupons()
+    {
+        return $this->belongsToMany(Coupon::class, 'coupon_product_variation')
+                    ->withTimestamps();
     }
 }

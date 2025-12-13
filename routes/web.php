@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
@@ -60,6 +61,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function() {
     Route::get('/products', [DashboardController::class, 'getProducts'])->name('admin.products');
     Route::get('/orders', [DashboardController::class, 'getOrders'])->name('admin.orders');
     Route::get('/orders/{order}', [DashboardController::class, 'getOrder'])->name('admin.order');
+    Route::get('/coupons', [DashboardController::class, 'getCoupons'])->name('admin.coupons');
 });
 
 Route::middleware(['auth', 'verified'])->prefix('cart')->group(function () {
@@ -96,6 +98,17 @@ Route::middleware(['auth', 'verified'])->prefix('wishlist')->group(function() {
     Route::post('/', [WishlistController::class, 'store'])->name('wishlist.store');
     Route::delete('/{id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
     Route::post('/{productVariation}', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/coupons/{coupon}', [CouponController::class, 'show'])->name('coupon.show');
+    Route::post('/coupons', [CouponController::class, 'store'])->name('coupon.store');
+    Route::put('/coupons/{coupon}', [CouponController::class, 'update'])->name('coupon.update');
+    Route::delete('/coupons/{id}', [CouponController::class, 'destroy'])->name('coupon.delete');
+    Route::post('/coupons/apply', [CouponController::class, 'apply'])->name('coupon.apply');
+    Route::post('/coupons/remove', [CouponController::class, 'remove'])->name('coupon.remove');
+    Route::patch('/coupons/{coupon}/status', [CouponController::class, 'updateStatus'])->name('coupon.updateStatus');
+    Route::post('/coupons/{coupon}/notify-users', [CouponController::class, 'sendUserNotifications'])->name('coupon.sendUserNotifications');
 });
 
 Route::post('/webhook/stripe', [WebhookController::class, 'handle'])->name('webhook.stripe');

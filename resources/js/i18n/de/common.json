@@ -106,6 +106,20 @@
           "itemStatus": "Bestellstatus"
         }
       }
+    },
+    "coupon": {
+      "couponNotifyUsers": {
+        "title": "Benutzer über {coupon} benachrichtigen",
+        "content": "Sind Sie sicher, dass Sie die ausgewählten Benutzer über den Gutschein {coupon} benachrichtigen möchten?"
+      },
+      "couponDelete": {
+        "title": "{coupon} löschen",
+        "content": "Sind Sie sicher, dass Sie {coupon} löschen möchten"
+      },
+      "couponApply": {
+        "title": "Gutscheincode eingeben",
+        "couponCode": "Gutscheincode"
+      }
     }
   },
   "toast": {
@@ -174,6 +188,34 @@
         "errorMessage": "Erstellen des Produkts fehlgeschlagen! Bitte überprüfen Sie das Formular auf Fehler"
       }
     },
+    "coupon": {
+      "couponDelete": {
+        "successMessage": "Gutschein erfolgreich gelöscht",
+        "errorMessage": "Löschen des Gutscheins fehlgeschlagen"
+      },
+      "couponCreate": {
+        "successMessage": "Gutschein erfolgreich erstellt",
+        "errorValidationMessage": "Erstellen des Gutscheins fehlgeschlagen! Validierung fehlgeschlagen",
+        "errorMessage": "Erstellen des Gutscheins fehlgeschlagen! Unerwarteter Fehler"
+      },
+      "couponUpdate": {
+        "successMessage": "Gutschein erfolgreich aktualisiert",
+        "errorValidationMessage": "Aktualisierung des Gutscheins fehlgeschlagen! Validierung fehlgeschlagen",
+        "errorMessage": "Aktualisierung des Gutscheins fehlgeschlagen! Unerwarteter Fehler"
+      },
+      "couponApply": {
+        "successMessage": "Gutschein erfolgreich angewendet",
+        "errorMessage": "Gutschein konnte nicht angewendet werden"
+      },
+      "couponStatusUpdate": {
+        "successMessage": "Gutscheinstatus erfolgreich aktualisiert",
+        "errorMessage": "Aktualisierung des Gutscheinstatus fehlgeschlagen"
+      },
+      "couponNotifyUsers": {
+        "successMessage": "Benutzer wurden erfolgreich über den Gutschein benachrichtigt",
+        "errorMessage": "Benutzer konnten nicht über den Gutschein benachrichtigt werden"
+      }
+    },
     "user": {
       "userDelete": {
         "successMessage": "Benutzer erfolgreich gelöscht",
@@ -208,13 +250,20 @@
     "delete": "Löschen",
     "cancel": "Abbrechen",
     "continue": "Weiter",
+    "create": "Erstellen",
     "update": "Aktualisieren",
+    "apply": "Anwenden",
     "deleteVariation": "Variante löschen",
     "deleteProduct": "Produkt löschen",
     "first": "Erste",
     "previous": "Zurück",
     "next": "Weiter",
     "last": "Letzte",
+    "markAs": "Markieren als",
+    "active": "Aktiv",
+    "inactive": "Inaktiv",
+    "archived": "Archiviert",
+    "notifyUsers": "Benutzer benachrichtigen",
     "addFeature": "Funktion hinzufügen",
     "addVariation": "Neue Variante hinzufügen",
     "saveProduct": "Produkt speichern",
@@ -236,7 +285,6 @@
     "register": "Registrieren",
     "viewDetails": "Details anzeigen",
     "contactCustomer": "Kunden kontaktieren",
-    "markAsTitle": "Markieren als",
     "moreActionsTitle": "Weitere Aktionen",
     "resendConfirmation": "Bestätigung erneut senden",
     "resendConfirmationTitle": "Bestätigungs-E-Mail an den Kunden erneut senden",
@@ -250,7 +298,13 @@
     "updateOrderNoteTitle": "Bestellnotiz aktualisieren",
     "contactCustomerTitle": "Kunden kontaktieren",
     "updateOrderShippingAddressTitle": "Lieferadresse der Bestellung aktualisieren",
-    "updateOrderBillingAddressTitle": "Rechnungsadresse der Bestellung aktualisieren"
+    "updateOrderBillingAddressTitle": "Rechnungsadresse der Bestellung aktualisieren",
+    "couponActions": "Gutscheinaktionen",
+    "createCoupon": "Gutschein erstellen",
+    "updateCoupon": "Gutschein aktualisieren",
+    "deleteCoupon": "Gutschein löschen",
+    "removeCoupon": "Gutschein entfernen",
+    "clickHere": "Hier klicken"
   },
   "menuLabel": {
     "for": "Für",
@@ -285,10 +339,55 @@
     }
   },
   "table": {
+    "coupon": {
+      "code": "Code",
+      "type": "Typ",
+      "entity": "Entität",
+      "value": "Wert",
+      "createdAt": "Beginn",
+      "expiresAt": "Ablauf",
+      "redemptions": "Einlösungen",
+      "status": "Status",
+      "used": "Verwendet",
+      "actions": "Aktionen",
+      "perUser": "pro Benutzer"
+    },
+    "couponUsers": {
+      "avatar": "Avatar",
+      "name": "Name",
+      "email": "E-Mail",
+      "redemptions": "Einlösungen"
+    },
+    "couponCategories": {
+      "image": "Bild",
+      "name": "Name",
+      "createdAt": "Erstellt"
+    },
+    "couponProducts": {
+      "image": "Bild",
+      "name": "Name",
+      "category": "Kategorie",
+      "gender": "Geschlecht",
+      "createdAt": "Erstellt"
+    },
+    "couponProductVariations": {
+      "image": "Bild",
+      "name": "Name",
+      "price": "Preis",
+      "stock": "Bestand",
+      "sku": "SKU",
+      "category": "Kategorie",
+      "createdAt": "Erstellt"
+    },
     "pagination": "Anzeige {from}-{to} von {total}",
     "noData": "Keine Daten"
   },
   "form": {
+    "base": {
+      "selectPlaceholder": "{entityType} auswählen",
+      "selectedPlaceholder": "{count} {entityType} ausgewählt",
+      "searchPlaceholder": "Suchen"
+    },
     "product": {
       "headingBase": "Basisinformationen",
       "headingProductVariation": "Produktvarianten",
@@ -347,6 +446,27 @@
         "billingCountry": "Rechnungsland",
         "billingPhone": "Telefonnummer für Rechnung"
       }
+    },
+    "coupon": {
+      "couponType": "Gutscheinart",
+      "category": "Kategorie | Kategorien",
+      "product": "Produkt | Produkte",
+      "productVariation": "Produktvariation | Produktvariationen",
+      "user": "Benutzer | Benutzer",
+      "code": "Code",
+      "type": "Typ",
+      "percentage": "Prozentsatz",
+      "fixedAmount": "Fester Betrag",
+      "value": "Wert",
+      "startsAt": "Beginnt am",
+      "expiresAt": "Läuft ab am",
+      "maxUses": "Maximale Verwendungen",
+      "maxUsesPerUser": "Maximale Verwendungen pro Benutzer",
+      "status": "Status",
+      "active": "Aktiv",
+      "inactive": "Inaktiv",
+      "archived": "Archiviert",
+      "sendNotification": "Ausgewählte Benutzer sofort benachrichtigen"
     }
   },
   "error": {
@@ -361,9 +481,11 @@
     "primaryColor": "Hauptfarbe",
     "secondaryColor": "Sekundärfarbe",
     "subtotal": "Zwischensumme",
+    "discount": "Rabatt",
     "shipping": "Versand",
     "tax": "Steuer",
     "taxInfo": "Wird basierend auf Ihrer Lieferadresse berechnet",
+    "taxShippingInfo": "Die Steuer beinhaltet die Versandkosten",
     "total": "Gesamt",
     "name": "Name",
     "price": "Preis",

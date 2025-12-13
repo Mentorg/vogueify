@@ -4,18 +4,31 @@ namespace App\Services;
 
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Pricing\Exceptions\InvalidCouponException;
+use App\Pricing\PricingService;
+use App\Pricing\Validators\CouponValidator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
 class CartService
 {
-    public function getCartItems()
+    protected $pricingService;
+
+    public function __construct(PricingService $pricingService)
     {
-        if (!Auth::id()) {
+        $this->pricingService = $pricingService;
+    }
+
+    public function getCartItems(?string $couponCode = null)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
             abort(404);
         }
 
-        $cart = Cart::where('user_id', Auth::id())->first();
+        $cart = $user->cart;
 
         if (!$cart) {
             return collect();
@@ -23,30 +36,67 @@ class CartService
 
         $cartItems = $cart->cartItems()->with([
             'productVariation.product',
+            'productVariation.product.category',
             'productVariation.sizes',
             'size'
         ])->get();
 
-        $wishlistIds = Auth::user()
-            ->wishlist()
-            ->pluck('product_variation_id')
-            ->toArray();
-
+        $wishlistIds = $user->wishlist()->pluck('product_variation_id')->toArray();
         $cartItems->each(function ($item) use ($wishlistIds) {
             $item->productVariation->isInWishlist = in_array($item->productVariation->id, $wishlistIds);
         });
 
-        $subtotal = $cartItems->sum(fn($item) => $item->price_at_time * $item->quantity);
-        $shipping = 0.00;
-        $tax = 0.00;
-        $total = $subtotal + $shipping + $tax;
+        $address = $user->address;
+
+        if (!$address) {
+            Log::warning('No user address found for cart tax calculation.', [
+                'user_id' => $user->id,
+                'email' => $user->email,
+            ]);
+        }
+
+        $destination = [
+            'country_id' => $address?->country_id,
+            'postcode' => $address?->postcode,
+        ];
+
+        $countryCode = $address?->country?->iso_code;
+        $state = $address?->state;
+
+        $couponModel = null;
+        $couponCode ??= session('applied_coupon');
+
+        if (is_array($couponCode)) {
+            $couponCode = $couponCode['code'] ?? null;
+        }
+
+        if ($couponCode) {
+            try {
+                $couponModel = app(CouponValidator::class)->validate($couponCode, $user);
+            } catch (InvalidCouponException $e) {
+                session()->forget('applied_coupon');
+                $couponModel = null;
+            }
+        }
+
+        $countryId = $user->country_id ?? $user->profile?->country_id;
+
+        $totals = $this->pricingService->calculate($cartItems, [
+            'coupon' => $couponModel,
+            'countryCode' => $countryCode,
+            'state' => $state,
+            'destination' => $destination,
+        ]);
 
         return [
             'cartItems' => $cartItems,
-            'subtotal' => round($subtotal, 2),
-            'shipping' => round($shipping, 2),
-            'tax' => round($tax, 2),
-            'total' => round($total, 2),
+            'coupon'    => $couponModel ? $couponModel->load('productVariations.product.category') : null,
+            'subtotal'  => $totals['subtotal'],
+            'discount'  => $totals['discount'],
+            'shipping'  => $totals['shipping'],
+            'tax'       => $totals['tax'],
+            'total'     => $totals['total'],
+            'isShippingTaxable' => $totals['isShippingTaxable'],
         ];
     }
 
@@ -96,6 +146,7 @@ class CartService
 
         if ($cart->cartItems()->count() === 0) {
             $cart->is_locked = false;
+            session()->forget('applied_coupon');
             $cart->save();
         }
     }

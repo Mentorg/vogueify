@@ -20,6 +20,7 @@ class Order extends Model
         'order_date',
         'order_status',
         'order_note',
+        'discount_amount',
         'subtotal',
         'shipping_cost',
         'tax_amount',
@@ -110,5 +111,10 @@ class Order extends Model
     public function orderStatuses(): array
     {
         return AggregatedOrderStatus::values();
+    }
+
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class);
     }
 }

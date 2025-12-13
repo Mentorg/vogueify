@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('order_date');
             $table->enum('order_status', AggregatedOrderStatus::values())->default(AggregatedOrderStatus::Pending->value);
             $table->text('order_note')->nullable();
+            $table->decimal('discount_amount', 10, 2)->default(0.00);
             $table->decimal('subtotal', 10, 2)->default(0.00);
             $table->decimal('shipping_cost', 10, 2)->default(0.00);
             $table->decimal('tax_amount', 10, 2)->default(0.00);

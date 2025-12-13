@@ -41,3 +41,11 @@ export function getCurrentDate() {
 
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
+
+export function toDatetimeLocalFormat(isoString) {
+  if (!isoString) return "";
+  const d = new Date(isoString);
+  if (isNaN(d)) return "";
+
+  return d.toISOString().slice(0, 16);
+}

@@ -115,10 +115,10 @@ onBeforeUnmount(() => {
       <div class="flex flex-col mt-8 gap-4">
         <Link :href="route('cart.index')"
           class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-        {{ t('page.product.button.viewBag') }}</Link>
+          {{ t('page.product.button.viewBag') }}</Link>
         <Link :href="closeCartSidebar"
           class="flex justify-center border border-black rounded-full py-2 w-full text-sm transition-all hover:bg-slate-100 hover:text-black md:text-base">
-        {{ t('common.button.continueShopping') }}</Link>
+          {{ t('common.button.continueShopping') }}</Link>
       </div>
     </div>
     <main>
@@ -140,7 +140,7 @@ onBeforeUnmount(() => {
               </div>
               <div class="flex gap-4">
                 <div class="w-full"
-                  v-if="product.category_id === 1 || product.category_id === 5 || (currentVariation && ['belt', 'bracelet', 'necklace', 'ring'].includes(currentVariation.type.type))">
+                  v-if="product.category_id === 2 || product.category_id === 5 || (currentVariation && ['belt', 'bracelet', 'necklace', 'ring'].includes(currentVariation.type.type))">
                   <InputLabel for="size_id"
                     :value="`${t('common.product.size')} ${product.category_id === 0 ? '(L)' : product.category_id === 5 ? '(ml)' : '(in)'}`" />
                   <SelectInput name="size_id" id="size_id" v-model="form.size_id" key="product.id">
@@ -169,8 +169,8 @@ onBeforeUnmount(() => {
                 <div v-for="variation in product.product_variations" :key="variation.id">
                   <Link v-if="variation.id !== currentVariation.id"
                     :href="route('product.show', { product: product.slug, variation: variation.sku })" class="contents">
-                  <img :src="variation.image" :alt="product.name" class="w-[15%]"
-                    @error="console.error(`{{t('common.error.imageFail')}}:`, $event.target.src)" />
+                    <img :src="variation.image" :alt="product.name" class="w-[15%]"
+                      @error="console.error(`{{t('common.error.imageFail')}}:`, $event.target.src)" />
                   </Link>
                 </div>
               </div>

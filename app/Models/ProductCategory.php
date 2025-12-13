@@ -21,4 +21,14 @@ class ProductCategory extends Model
     {
         return $this->hasMany(ProductType::class, 'category_id');
     }
+
+    public function coupons()
+    {
+        return $this->belongsToMany(
+            Coupon::class,
+            'coupon_product_category',
+            'product_category_id',
+            'coupon_id'
+        )->withTimestamps();
+    }
 }

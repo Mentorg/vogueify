@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Enums\AggregatedOrderStatus;
 use App\Enums\OrderStatus;
+use App\Models\Country;
+use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\ProductVariation;
 use App\Notifications\Order\OrderBillingAddressUpdatedNotification;
@@ -14,6 +16,9 @@ use App\Notifications\Order\OrderItemStatusUpdatedNotification;
 use App\Notifications\Order\OrderShippingAddressUpdatedNotification;
 use App\Notifications\Order\OrderStatusUpdatedNotification;
 use App\Notifications\Order\RequestOrderConfirmationNotification;
+use App\Pricing\Exceptions\InvalidCouponException;
+use App\Pricing\PricingService;
+use App\Pricing\Validators\CouponValidator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Exception;
@@ -23,17 +28,28 @@ use Illuminate\Validation\ValidationException;
 
 class OrderService
 {
-    protected function handleOrderAttributes(array $validated, float $subtotal, float $shippingCost, float $taxAmount, float $total, int $cartId): array
+    protected $pricingService;
+    protected $couponValidator;
+
+    public function __construct(PricingService $pricingService, CouponValidator $couponValidator)
+    {
+        $this->pricingService = $pricingService;
+        $this->couponValidator = $couponValidator;
+    }
+
+    protected function handleOrderAttributes(array $validated, array $totals, int $cartId, ?Coupon $coupon = null): array
     {
         return [
             'order_date' => now()->format('Y-m-d H:i:s'),
-            'subtotal' => $subtotal,
-            'shipping_cost' => $shippingCost,
-            'tax_amount' => $taxAmount,
-            'total' => $total,
+            'subtotal' => $totals['subtotal'],
+            'shipping_cost' => $totals['shipping'],
+            'tax_amount' => $totals['tax'],
+            'total' => $totals['total'],
+            'discount_amount' => $totals['discount'] ?? 0,
+            'coupon_code' => $coupon?->code,
+            'coupon_id' => $coupon?->id,
             'user_id' => Auth::id(),
             'cart_id' => $cartId,
-
             'shipping_address_line_1' => $validated['shipping_address_line_1'],
             'shipping_address_line_2' => $validated['shipping_address_line_2'] ?? null,
             'shipping_city' => $validated['shipping_city'],
@@ -41,7 +57,6 @@ class OrderService
             'shipping_postcode' => $validated['shipping_postcode'],
             'shipping_country_id' => $validated['shipping_country_id'],
             'shipping_phone_number' => $validated['shipping_phone_number'] ?? null,
-
             'billing_address_line_1' => $validated['billing_address_line_1'] ?? null,
             'billing_address_line_2' => $validated['billing_address_line_2'] ?? null,
             'billing_city' => $validated['billing_city'] ?? null,
@@ -49,7 +64,6 @@ class OrderService
             'billing_postcode' => $validated['billing_postcode'] ?? null,
             'billing_country_id' => $validated['billing_country_id'] ?? null,
             'billing_phone_number' => $validated['billing_phone_number'] ?? null,
-
             'order_status' => AggregatedOrderStatus::Pending,
         ];
     }
@@ -62,13 +76,9 @@ class OrderService
     public function create($order, $request)
     {
         $user = Auth::user();
-
-        if (!$user) {
-            abort(404);
-        }
+        if (!$user) { abort(404); }
 
         $validated = $request->validated();
-
         DB::beginTransaction();
 
         try {
@@ -82,10 +92,7 @@ class OrderService
             }
 
             $cart = $user->cart;
-
-             if (!$cart) {
-                throw new Exception('No cart found!');
-            }
+            if (!$cart) { throw new Exception('No cart found!'); }
 
             if ($cart->is_locked && (!$existingPendingOrder || $existingPendingOrder->cart_id !== $cart->id)) {
                 throw new Exception('Cart is already in use by another order.');
@@ -94,22 +101,32 @@ class OrderService
             $cart->is_locked = true;
             $cart->save();
 
-            $subtotal = collect($validated['items'])->sum(function ($item) {
-                return $item['quantity'] * $item['price_at_time'];
-            });
+            $shippingCountry = Country::findOrFail($validated['shipping_country_id']);
 
-            $shippingCost = 5.00;
-            $taxAmount = $subtotal * 0.10;
-            $total = $subtotal + $shippingCost + $taxAmount;
+            $couponModel = null;
+            if (!empty($validated['coupon'])) {
+                try {
+                    $couponModel = $this->couponValidator->validate($validated['coupon'], $user);
+                } catch (InvalidCouponException $e) {
+                    $couponModel = null;
+                }
+            }
 
-            $orderAttributes = $this->handleOrderAttributes(
-                $validated,
-                $subtotal,
-                $shippingCost,
-                $taxAmount,
-                $total,
-                $cart->id
-            );
+            $cartItems = $cart->cartItems()->with('productVariation.product.category')->get();
+            $totals = $this->pricingService->calculate($cartItems, [
+                'coupon' => $couponModel,
+                'countryCode' => $shippingCountry->iso_code,
+                'state' => $validated['shipping_state'] ?? null,
+                'destination' => [
+                    'country_id' => $validated['shipping_country_id'],
+                    'postcode' => $validated['shipping_postcode'],
+                ],
+            ]);
+
+            Log::info('Totals before handleOrderAttributes', $totals);
+
+            $orderAttributes = $this->handleOrderAttributes($validated, $totals, $cart->id, $couponModel);
+            $orderAttributes['discount_amount'] = $totals['discount'];
 
             if ($order->exists) {
                 $order->fill($orderAttributes);
@@ -117,6 +134,8 @@ class OrderService
             } else {
                 $order = Order::create($orderAttributes);
             }
+
+            Log::info('Saved order discount', ['order_id' => $order->id, 'discount_amount' => $order->discount_amount]);
 
             foreach ($validated['items'] as $itemData) {
                 $variation = ProductVariation::findOrFail($itemData['product_variation_id']);
@@ -139,6 +158,10 @@ class OrderService
                 }
             }
 
+            if ($couponModel) {
+                $couponModel->incrementUsageForUser($user);
+            }
+
             DB::commit();
 
             return $order->load('items.productVariation', 'items.size');
@@ -159,20 +182,24 @@ class OrderService
             abort(404);
         }
 
-        $order->load('items.productVariation.product', 'items.productVariation.type', 'items.productVariation.color', 'items.size', 'user.orders');
-
-        $subtotal = $order->items->sum(fn ($item) => $item->price_at_time * $item->quantity);
-        $shipping = 0.00;
-        $tax = 0.00;
-        $total = $subtotal + $shipping + $tax;
+        $order->load(
+            'items.productVariation.product',
+            'items.productVariation.type',
+            'items.productVariation.color',
+            'items.size',
+            'user.orders',
+            'coupon'
+        );
 
         return [
             'order' => $order,
             'orderStatuses' => AggregatedOrderStatus::values(),
-            'subtotal' => number_format($subtotal, 2, '.', ''),
-            'shipping' => number_format($shipping, 2, '.', ''),
-            'tax' => number_format($tax, 2, '.', ''),
-            'total' => number_format($total, 2, '.', ''),
+            'subtotal' => number_format($order->subtotal, 2, '.', ''),
+            'discount' => number_format($order->discount_amount ?? 0.00, 2, '.', ''),
+            'shipping' => number_format($order->shipping_cost, 2, '.', ''),
+            'tax' => number_format($order->tax_amount, 2, '.', ''),
+            'total' => number_format($order->total, 2, '.', ''),
+            'coupon' => $order->coupon?->code
         ];
     }
 

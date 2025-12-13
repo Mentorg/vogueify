@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Country;
 use App\Models\Order;
 use App\Services\CheckoutService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+
 class CheckoutController extends Controller
 {
     protected $checkoutService;
@@ -19,8 +19,7 @@ class CheckoutController extends Controller
     public function index(Request $request)
     {
         return Inertia::render('Checkout', [
-            'checkoutData' => $this->checkoutService->getCheckout($request),
-            'countries' => Country::all(['id', 'name', 'iso_code'])
+            'checkoutData' => $this->checkoutService->getCheckout($request)
         ]);
     }
 

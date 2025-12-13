@@ -34,6 +34,8 @@
     "label": "Mon panier",
     "perPiece": "par pièce",
     "emptyCart": "Votre panier est vide",
+    "couponApplied": "Coupon appliqué",
+    "couponPrompt": "Vous avez un coupon ? {action} pour saisir votre code",
     "button": {
       "addToWishlist": "Ajouter à la liste de souhaits",
       "proceedToCheckout": "Passer à la caisse"
@@ -74,6 +76,9 @@
     "orderDetails": "Détails de la commande",
     "createProduct": "Créer un produit",
     "updateProduct": "Mettre à jour {product}",
+    "coupons": "Bons de réduction",
+    "createCoupon": "Créer un coupon",
+    "updateCoupon": "Mettre à jour {coupon}",
     "users": "Utilisateurs"
   },
   "user": {
@@ -205,5 +210,35 @@
     "country": "Pays",
     "billingAddress": "Adresse de facturation",
     "sameAsShipping": "Identique à l'adresse de livraison"
+  },
+  "couponDetails": {
+    "coupon": "Coupon {coupon}",
+    "createdOn": "Créé le {date} par {user}",
+    "updatedOn": "Mis à jour le {date} par {user}",
+    "couponDetails": "Détails du bon de réduction",
+    "code": "Code",
+    "type": "Type",
+    "entity": "Entité",
+    "discount": "Réduction",
+    "usageRestrictions": "Restrictions d'utilisation",
+    "timeframe": "Période",
+    "maximumUses": "Utilisations maximales",
+    "maximumUsesPerUser": "Utilisations maximales (par utilisateur)",
+    "statusAndTracking": "Statut et suivi",
+    "status": "Statut",
+    "redemptions": "Utilisations",
+    "used": "Utilisé",
+    "user": "Utilisateur | Utilisateurs",
+    "userPicture": "Photo de profil de {user}",
+    "productVariation": "Variation de produit | Variations de produit",
+    "productImage": "Image de {product}",
+    "sku": "SKU",
+    "stock": "Stock",
+    "price": "Prix",
+    "createdAt": "Créé",
+    "gender": "Genre",
+    "product": "Produit | Produits",
+    "category": "Catégorie | Catégories",
+    "categoryImage": "Image de {category}"
   }
 }
