@@ -38,4 +38,11 @@ class CheckoutController extends Controller
             'checkoutSession' => $this->checkoutService->success($request)
         ]);
     }
+
+    public function cancel(Order $order)
+    {
+        $this->checkoutService->cancel($order);
+
+        return redirect('/')->with('message', 'Checkout canceled. You were not charged.');
+    }
 }

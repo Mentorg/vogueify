@@ -3,7 +3,7 @@ import { useForm } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import { useToast } from 'vue-toast-notification';
 import InputLabel from '@/Components/InputLabel.vue';
-import TextareaInput from './TextareaInput.vue';
+import TextareaInput from '@Components/TextareaInput.vue';
 
 const props = defineProps({
   order: Object,

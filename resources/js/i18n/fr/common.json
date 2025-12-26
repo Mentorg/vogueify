@@ -54,6 +54,10 @@
     "unisex": "Unisexe"
   },
   "modal": {
+    "home": {
+      "title": "Bienvenue ! Aidez-nous à personnaliser votre expérience",
+      "content": "Nous sommes ravis de vous accueillir ! Ajouter votre adresse à votre profil nous permet de fournir des tarifs précis, y compris les taxes et les frais de livraison adaptés à votre localisation. C’est rapide, facultatif et modifiable à tout moment."
+    },
     "cart": {
       "title": "Supprimer {itemToDelete}",
       "content": "Êtes-vous sûr de vouloir supprimer {itemToDelete}"
@@ -304,7 +308,9 @@
     "updateCoupon": "Mettre à jour le bon de réduction",
     "deleteCoupon": "Supprimer le coupon",
     "removeCoupon": "Retirer le coupon",
-    "clickHere": "Cliquez ici"
+    "clickHere": "Cliquez ici",
+    "updateProfile": "Mettre à jour le profil",
+    "updateProfileTitle": "Mettre à jour les informations de votre profil"
   },
   "menuLabel": {
     "for": "Pour",
@@ -339,7 +345,33 @@
     }
   },
   "table": {
+    "product": {
+      "caption": "Catalogue de produits",
+      "name": "Nom",
+      "price": "Prix",
+      "stock": "Stock",
+      "sku": "SKU",
+      "category": "Catégorie | Catégories",
+      "createdAt": "Créé"
+    },
+    "order": {
+      "caption": "Commandes clients",
+      "datePlaced": "Date de commande",
+      "deliveryDate": "Date de livraison",
+      "deliveryDateTooltip": "Date d'expédition la plus proche",
+      "status": "Statut",
+      "customer": "Client",
+      "total": "Total"
+    },
+    "user": {
+      "caption": "Comptes utilisateurs",
+      "name": "Nom",
+      "email": "E-mail",
+      "role": "Rôle",
+      "createdAt": "Créé"
+    },
     "coupon": {
+      "caption": "Liste des coupons",
       "code": "Code",
       "type": "Type",
       "entity": "Entité",
@@ -349,7 +381,6 @@
       "redemptions": "Utilisations",
       "status": "Statut",
       "used": "Utilisé",
-      "actions": "Actions",
       "perUser": "par utilisateur"
     },
     "couponUsers": {
@@ -379,6 +410,7 @@
       "category": "Catégorie",
       "createdAt": "Créé"
     },
+    "actions": "Actions",
     "pagination": "Affichage de {from} à {to} sur {total}",
     "noData": "Aucune donnée"
   },
@@ -486,27 +518,6 @@
     "tax": "Taxe",
     "taxInfo": "Sera calculée selon votre adresse de livraison",
     "taxShippingInfo": "La taxe inclut les frais de livraison",
-    "total": "Total",
-    "name": "Nom",
-    "price": "Prix",
-    "stock": "Stock",
-    "sku": "SKU",
-    "category": "Catégorie | Catégories",
-    "createdAt": "Créé"
-  },
-  "user": {
-    "name": "Nom",
-    "email": "E-mail",
-    "role": "Rôle",
-    "createdAt": "Créé"
-  },
-  "order": {
-    "datePlaced": "Date de commande",
-    "deliveryDate": "Date de livraison",
-    "status": "Statut",
-    "statusDescription": "Date d'expédition la plus proche",
-    "customer": "Client",
-    "total": "Total",
-    "actions": "Actions"
+    "total": "Total"
   }
 }

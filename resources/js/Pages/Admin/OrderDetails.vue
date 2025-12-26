@@ -6,7 +6,7 @@ import { useI18n } from 'vue-i18n';
 import { useToast } from 'vue-toast-notification';
 import AdminDashboard from '@/Layouts/AdminDashboard.vue';
 import Modal from '@/Components/Modal.vue';
-import OrderStatusChip from '@/Components/OrderStatusChip.vue';
+import StatusChip from '@/Components/StatusChip.vue';
 import OrderItemStatusUpdate from '@/Components/OrderItemStatusUpdate.vue';
 import OrderItemShippingDateUpdate from '@/Components/OrderItemShippingDateUpdate.vue';
 import OrderShippingAddressUpdate from '@/Components/OrderShippingAddressUpdate.vue';
@@ -115,9 +115,9 @@ const formatShippingDate = (date) => date ? formatDate(date, '.', true) : t('pag
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-8">
           <h1 class="text-2xl font-medium">{{ order.order.order_number }}</h1>
-          <OrderStatusChip :status="order.order.order_status" class="rounded-md text-sm">
+          <StatusChip :status="order.order.order_status" class="rounded-md text-sm">
             {{ capitalize(order.order.order_status) }}
-          </OrderStatusChip>
+          </StatusChip>
         </div>
         <button v-if="order.order.order_status === 'paid'" @click="confirmResendConfirmation(order.order.id)"
           :title="t('common.button.resendConfirmationTitle')"
@@ -162,9 +162,9 @@ const formatShippingDate = (date) => date ? formatDate(date, '.', true) : t('pag
             </div>
             <div
               class="flex justify-start gap-4 col-start-1 col-end-3 row-start-3 row-end-3 h-fit xl:col-start-2 xl:col-end-2 xl:row-start-1 xl:row-end-1 xl:justify-center">
-              <OrderStatusChip :status="item.order_status" class="rounded-md text-sm">
+              <StatusChip :status="item.order_status" class="rounded-md text-sm">
                 {{ capitalize(item.order_status) }}
-              </OrderStatusChip>
+              </StatusChip>
             </div>
             <div
               class="flex flex-col items-end col-start-3 col-end-3 row-start-1 row-end-1 xl:col-start-3 xl:col-end-3 xl:row-start-1 xl:row-end-1">
@@ -200,9 +200,9 @@ const formatShippingDate = (date) => date ? formatDate(date, '.', true) : t('pag
         <div class="p-6 border border-gray-200 rounded-lg">
           <h2 class="text-xl font-medium mb-4">{{ t('page.orderDetails.orderSummary') }}</h2>
           <div class="flex my-4">
-            <OrderStatusChip :status="order.order.order_status" class="rounded-md text-sm">
+            <StatusChip :status="order.order.order_status" class="rounded-md text-sm">
               {{ capitalize(order.order.order_status) }}
-            </OrderStatusChip>
+            </StatusChip>
           </div>
           <div class="grid grid-cols-3">
             <div>
@@ -307,7 +307,7 @@ const formatShippingDate = (date) => date ? formatDate(date, '.', true) : t('pag
         </div>
         <div class="p-6 border border-gray-200 rounded-lg">
           <div class="flex items-center justify-between">
-            <h3 class="text-lg text-sm font-medium md:text-base">{{ t('page.orderDetails.billingAddress') }}</h3>
+            <h3 class="text-lg font-medium">{{ t('page.orderDetails.billingAddress') }}</h3>
             <button @click="editOrderBillingData(order)" :title="t('common.button.updateOrderBillingAddressTitle')"
               class="rounded-full p-0.5 transition-all hover:bg-slate-200">
               <PhPencilSimple :size="20" />

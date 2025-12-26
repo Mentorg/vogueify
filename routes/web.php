@@ -45,7 +45,8 @@ Route::controller(ProductController::class)->group(function () {
         Route::post('/products', 'store')->name('product.store');
         Route::get('/products/{product:slug}/update', 'edit')->name('product.edit');
         Route::put('/products/{product}', 'update')->name('product.update');
-        Route::delete('/products/{id}', 'destroy')->name('product.delete');
+        Route::delete('/products/{product}', 'destroy')->name('product.delete');
+        Route::delete('/products/variation/{variation}', 'destroyVariation')->name('productVariation.delete');
     });
 });
 
@@ -53,6 +54,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard', 'index')->middleware(['auth', 'verified'])->name('dashboard');
     Route::delete('/admin/users/{user}', 'destroy')->middleware(['auth', 'verified'])->name('user.destroy');
     Route::get('/profile', 'getProfile')->middleware(['auth'])->name('profile');
+    Route::patch('/profile/{user}', 'updateFirstTimeLogin')->middleware(['auth'])->name('updateFirstTimeLogin');
 });
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->group(function() {
@@ -91,6 +93,7 @@ Route::middleware(['auth', 'verified'])->prefix('checkout')->group(function () {
     Route::get('/', [CheckoutController::class, 'index'])->name('checkout');
     Route::get('/create-session', [CheckoutController::class, 'createSession'])->name('checkout.create');
     Route::get('/success', [CheckoutController::class, 'success'])->name('checkout.success');
+    Route::get('/cancel/{order}', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
 });
 
 Route::middleware(['auth', 'verified'])->prefix('wishlist')->group(function() {
@@ -104,7 +107,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/coupons/{coupon}', [CouponController::class, 'show'])->name('coupon.show');
     Route::post('/coupons', [CouponController::class, 'store'])->name('coupon.store');
     Route::put('/coupons/{coupon}', [CouponController::class, 'update'])->name('coupon.update');
-    Route::delete('/coupons/{id}', [CouponController::class, 'destroy'])->name('coupon.delete');
+    Route::delete('/coupons/{coupon}', [CouponController::class, 'destroy'])->name('coupon.delete');
     Route::post('/coupons/apply', [CouponController::class, 'apply'])->name('coupon.apply');
     Route::post('/coupons/remove', [CouponController::class, 'remove'])->name('coupon.remove');
     Route::patch('/coupons/{coupon}/status', [CouponController::class, 'updateStatus'])->name('coupon.updateStatus');

@@ -9,7 +9,7 @@ import { useI18n } from 'vue-i18n';
 import { capitalize } from '@/utils/capitalize';
 
 const props = defineProps({
-  isMobile: Object,
+  isMobile: Boolean,
   toggleMenu: Function
 });
 
@@ -70,7 +70,7 @@ onBeforeUnmount(() => {
       </div>
       <div class="relative">
         <Link v-if="!user" :href="route('login')">
-        <PhUser :size="24" />
+          <PhUser :size="24" />
         </Link>
         <button ref="userButton" @click.stop="toggleUserMenu">
           <PhUser :size="24" />
@@ -80,12 +80,12 @@ onBeforeUnmount(() => {
           <Link
             :href="user?.role === 'admin' ? route('admin.overview') : user?.role === 'staff' ? route('admin.products') : route('dashboard')"
             class="py-2 px-4 text-sm w-full transition-all hover:bg-slate-200">
-          {{ t('common.header.contextMenu.dashboard') }}
+            {{ t('common.header.contextMenu.dashboard') }}
           </Link>
           <div class="border-t border-gray-200" />
           <Link v-if="user" :href="route('logout')" method="post"
             class="py-2 px-4 text-start text-sm w-full transition-all hover:bg-slate-200">
-          {{ t('common.header.contextMenu.logOut') }}</Link>
+            {{ t('common.header.contextMenu.logOut') }}</Link>
         </div>
       </div>
     </div>

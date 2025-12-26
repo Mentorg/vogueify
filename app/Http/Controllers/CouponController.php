@@ -32,7 +32,7 @@ class CouponController extends Controller
 
     public function show(Coupon $coupon)
     {
-        $this->authorize('view', Coupon::class);
+        $this->authorize('view', $coupon);
 
         return Inertia::render('Admin/CouponDetails', [
             'coupon' => $this->couponService->getCoupon($coupon)
@@ -50,18 +50,18 @@ class CouponController extends Controller
 
     public function update(UpdateCouponRequest $request, Coupon $coupon)
     {
-        $this->authorize('update', Coupon::class);
+        $this->authorize('update', $coupon);
 
         $this->couponService->update($coupon, $request->validated());
 
         return redirect()->route('admin.coupons')->with('success', 'Coupon updated successfully.');
     }
 
-    public function destroy($id)
+    public function destroy(Coupon $coupon)
     {
-        $this->authorize('delete', Coupon::class);
+        $this->authorize('delete', $coupon);
 
-        $this->couponService->delete($id);
+        $this->couponService->delete($coupon);
 
         return redirect()->back();
     }
@@ -92,7 +92,7 @@ class CouponController extends Controller
 
     public function updateStatus(Request $request, Coupon $coupon)
     {
-        $this->authorize('updateStatus', Coupon::class);
+        $this->authorize('updateStatus', $coupon);
 
         $request->validate([
             'status' => 'required|in:active,inactive,archived',
@@ -105,7 +105,7 @@ class CouponController extends Controller
 
     public function sendUserNotifications(Coupon $coupon)
     {
-        $this->authorize('sendUserNotifications', Coupon::class);
+        $this->authorize('sendUserNotifications', $coupon);
 
         $this->couponService->sendUserNotifications($coupon);
 

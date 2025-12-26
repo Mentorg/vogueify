@@ -13,10 +13,10 @@ const props = defineProps({
   <div :class="[
     {
       'bg-yellow-100': status === 'pending',
-      'bg-green-100': status === 'paid',
+      'bg-green-100': status === 'paid' || status === 'active',
       'bg-blue-100': status === 'confirmed',
-      'bg-red-200': status === 'canceled',
-      'bg-gray-200': status === 'processing',
+      'bg-red-200': status === 'canceled' || status === 'archived',
+      'bg-gray-200': status === 'processing' || status === 'inactive',
       'bg-sky-100': status === 'shipped',
       'bg-sky-200': status === 'in-transit',
       'bg-emerald-100': status === 'out-for-delivery',
@@ -27,7 +27,7 @@ const props = defineProps({
       'bg-amber-200': status === 'held-at-customs',
       'bg-rose-200': status === 'lost',
     },
-    'rounded-full py-2 px-4',
+    'rounded-full py-2 px-4 w-fit',
     props.class
   ]">
     <slot />

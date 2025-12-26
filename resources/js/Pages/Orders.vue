@@ -6,7 +6,7 @@ import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
-import OrderStatusChip from '@/Components/OrderStatusChip.vue';
+import StatusChip from '@/Components/StatusChip.vue';
 import { formatDate } from '@/utils/dateFormat';
 import { useOrder } from '@/composables/useOrder';
 
@@ -38,7 +38,7 @@ const {
           </div>
           <Link href="/"
             class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-          {{ t('common.button.startShopping') }}</Link>
+            {{ t('common.button.startShopping') }}</Link>
         </div>
         <div v-else class="mt-8">
           <div v-for="item in orders.filter(order => activeStatuses.includes(order.order_status))" :key="item.id"
@@ -72,9 +72,9 @@ const {
             </div>
             <div
               class="flex justify-center col-start-2 col-end-2 row-start-2 row-end-2 lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-1">
-              <OrderStatusChip :status="item.order_status">
+              <StatusChip :status="item.order_status">
                 <p class="text-sm">{{ formatStatus(item.order_status) }}</p>
-              </OrderStatusChip>
+              </StatusChip>
             </div>
             <div
               class="flex justify-end col-start-3 col-end-3 row-start-2 row-end-2 lg:col-start-4 lg:col-end-4 lg:row-start-1 lg:row-end-1">
@@ -117,7 +117,7 @@ const {
           </div>
           <Link href="/"
             class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-          {{ t('common.button.startShopping') }}</Link>
+            {{ t('common.button.startShopping') }}</Link>
         </div>
         <div v-else class="mt-8">
           <div

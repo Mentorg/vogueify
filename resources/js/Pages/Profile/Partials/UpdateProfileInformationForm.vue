@@ -187,7 +187,7 @@ const toggleAddressInputs = (addressValue) => {
             <Link :href="route('verification.send')" method="post" as="button"
               class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               @click.prevent="sendEmailVerification">
-            {{ t('page.user.profile.basicInfo.sendEmailVerification') }}
+              {{ t('page.user.profile.basicInfo.sendEmailVerification') }}
             </Link>
           </p>
 
@@ -257,7 +257,7 @@ const toggleAddressInputs = (addressValue) => {
         </div>
       </div>
       <div class="col-span-6 sm:col-span-12">
-        <InputLabel for="date_of_birth" :value="`${t('page.user.profile.basicInfo.birthDate')}*`" />
+        <InputLabel for="date_of_birth" :value="`${t('page.user.profile.basicInfo.birthDate')}`" />
         <TextInput id="date_of_birth" v-model="form.date_of_birth" type="text" class="mt-1 block w-full"
           autocomplete="date_of_birth" />
         <InputError :message="form.errors.date_of_birth" class="mt-2" />

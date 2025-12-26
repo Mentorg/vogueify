@@ -123,8 +123,16 @@ onBeforeUnmount(() => {
     </div>
     <main>
       <section class="grid grid-cols-1 lg:grid-cols-2">
-        <img v-if="currentVariation && currentVariation.image" :src="'http://vogueify.test' + currentVariation.image"
-          :alt="product.name" />
+        <div class="relative">
+          <img v-if="currentVariation && currentVariation.image" :src="'http://vogueify.test' + currentVariation.image"
+            :alt="product.name" />
+          <div v-if="activeVariation.stock === 0"
+            class="absolute top-0 left-0 w-full h-full bg-slate-100/35 flex justify-center items-center">
+            <div class="bg-white py-4 px-8">
+              <p class="text-xl">{{ t('page.product.outOfStock') }}</p>
+            </div>
+          </div>
+        </div>
         <div class="w-[60%] m-auto">
           <form @submit.prevent="submitForm">
             <div class="my-4">
@@ -138,7 +146,7 @@ onBeforeUnmount(() => {
                 <h2 class="text-xl mt-4 md:text-3xl">{{ product.name }}</h2>
                 <h3 class="mt-2 md:text-lg">${{ currentVariation.price }}</h3>
               </div>
-              <div class="flex gap-4">
+              <div :class="{ 'hidden': activeVariation.stock === 0 }" class="flex gap-4">
                 <div class="w-full"
                   v-if="product.category_id === 2 || product.category_id === 5 || (currentVariation && ['belt', 'bracelet', 'necklace', 'ring'].includes(currentVariation.type.type))">
                   <InputLabel for="size_id"
@@ -150,14 +158,14 @@ onBeforeUnmount(() => {
                         </option>
                   </SelectInput>
                 </div>
-                <div class="w-full">
+                <div :class="{ 'hidden': activeVariation.stock === 0 }" class="w-full">
                   <InputLabel for="quantity" :value="`${t('common.product.quantity')}`" />
-                  <TextInput id="quantity" type="number" name="quantity" v-model="form.quantity"
+                  <TextInput id="quantity" type="number" name="quantity" v-model="form.quantity" min="1"
                     class="mt-1 block w-full" />
                 </div>
               </div>
             </div>
-            <button
+            <button :class="{ 'hidden': activeVariation.stock === 0 }"
               class="bg-black border border-black py-2 w-full rounded-full text-white transition duration-500 ease-in-out hover:bg-white hover:text-black">
               {{ t('page.product.button.placeInCart') }}
             </button>

@@ -265,7 +265,7 @@ const submitForm = () => {
             <div v-for="(variation, index) in form.variations" :key="variation.id" class="border p-4 rounded-md mb-6">
               <div class="flex justify-between items-center mb-2">
                 <h3 class="font-semibold">{{ t('common.form.product.variation', { variation: index + 1 })
-                  }}</h3>
+                }}</h3>
                 <div class="flex gap-2">
                   <button @click="toggleCollapse(index)" type="button" class="text-sm text-blue-600">
                     {{ variation.collapsed ? t('common.form.product.expand') : t('common.form.product.collapse') }}
@@ -317,7 +317,7 @@ const submitForm = () => {
                   </div>
                   <div>
                     <InputLabel :value="t('common.form.product.price')" />
-                    <TextInput type="number" v-model="variation.price" />
+                    <TextInput type="number" v-model="variation.price" min="0.01" />
                     <ErrorMessage :message="errors[`variations.${index}.price`]" />
                   </div>
                   <div>
@@ -330,7 +330,7 @@ const submitForm = () => {
                       <InputLabel :value="t('common.form.product.stock')" />
                       <Tooltip :message="t('common.form.product.stockTooltip')" />
                     </div>
-                    <TextInput v-model="variation.stock" />
+                    <TextInput v-model="variation.stock" type="number" min="0" />
                     <ErrorMessage :message="errors[`variations.${index}.stock`]" />
                   </div>
                 </div>
@@ -372,7 +372,7 @@ const submitForm = () => {
           <div class="flex flex-col">
             <h3 class="font-medium text-base">{{ t('common.form.product.gender') }}</h3>
             <p class="mt-4">{{ capitalize(form.gender) || t('common.gender.unisex')
-              }}</p>
+            }}</p>
           </div>
           <div>
             <h3 class="font-medium text-base">{{ t('common.form.product.category') }}</h3>

@@ -54,6 +54,10 @@
     "unisex": "Unisex"
   },
   "modal": {
+    "home": {
+      "title": "Welcome! Help Us Personalize Your Experience",
+      "content": "We're glad you're here! Adding your address to your profile allows us to provide accurate pricing, including taxes and shipping tailored to your location. It's quick, optional, and can be updated anytime."
+    },
     "cart": {
       "title": "Delete {itemToDelete}",
       "content": "Are you sure you want to delete {itemToDelete}"
@@ -304,7 +308,9 @@
     "updateCoupon": "Update Coupon",
     "deleteCoupon": "Delete coupon",
     "removeCoupon": "Remove Coupon",
-    "clickHere": "Click here"
+    "clickHere": "Click here",
+    "updateProfile": "Update Profile",
+    "updateProfileTitle": "Update your profile information"
   },
   "menuLabel": {
     "for": "For",
@@ -339,7 +345,33 @@
     }
   },
   "table": {
+    "product": {
+      "caption": "Product Catalog",
+      "name": "Name",
+      "price": "Price",
+      "stock": "Stock",
+      "sku": "SKU",
+      "category": "Category | Categories",
+      "createdAt": "Created"
+    },
+    "order": {
+      "caption": "Customer Orders",
+      "datePlaced": "Date Placed",
+      "deliveryDate": "Delivery Date",
+      "deliveryDateTooltip": "Earliest shipping date",
+      "status": "Status",
+      "customer": "Customer",
+      "total": "Total"
+    },
+    "user": {
+      "caption": "User Accounts",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "createdAt": "Created"
+    },
     "coupon": {
+      "caption": "Coupon List",
       "code": "Code",
       "type": "Type",
       "entity": "Entity",
@@ -349,7 +381,6 @@
       "redemptions": "Redemptions",
       "status": "Status",
       "used": "Used",
-      "actions": "Actions",
       "perUser": "per user"
     },
     "couponUsers": {
@@ -379,6 +410,7 @@
       "category": "Category",
       "createdAt": "Created"
     },
+    "actions": "Actions",
     "pagination": "Showing {from}-{to} of {total}",
     "noData": "No data"
   },
@@ -486,27 +518,6 @@
     "tax": "Tax",
     "taxInfo": "Will be calculated according to your delivery address",
     "taxShippingInfo": "Tax includes shipping",
-    "total": "Total",
-    "name": "Name",
-    "price": "Price",
-    "stock": "Stock",
-    "sku": "SKU",
-    "category": "Category | Categories",
-    "createdAt": "Created"
-  },
-  "user": {
-    "name": "Name",
-    "email": "Email",
-    "role": "Role",
-    "createdAt": "Created"
-  },
-  "order": {
-    "datePlaced": "Date Placed",
-    "deliveryDate": "Delivery Date",
-    "status": "Status",
-    "statusDescription": "Earliest shipping date",
-    "customer": "Customer",
-    "total": "Total",
-    "actions": "Actions"
+    "total": "Total"
   }
 }

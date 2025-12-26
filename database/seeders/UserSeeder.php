@@ -34,6 +34,7 @@ class UserSeeder extends Seeder
             'password'  => Hash::make('adminuser'),
             'email_verified_at' => Carbon::now(),
             'role'      => 'admin',
+            'is_first_login' => false,
         ])->roles()->sync(Role::where('name', RoleName::ADMIN->value)->first());
     }
 
@@ -45,11 +46,12 @@ class UserSeeder extends Seeder
             'email'     => 'janedoe@vogueify.com',
             'password'  => Hash::make('janedoe1234'),
             'email_verified_at' => Carbon::now(),
-            'role'      => 'staff'
+            'role'      => 'staff',
+            'is_first_login' => false,
         ])->roles()->sync(Role::where('name', RoleName::STAFF->value)->first());
     }
 
-    public function createCustomerUser(string $name, String $title, string $email)
+    public function createCustomerUser(string $name, String $title, string $email, ?bool $is_first_login = false)
     {
         $user = User::create([
             'name'      => $name,
@@ -57,7 +59,8 @@ class UserSeeder extends Seeder
             'email'     => $email,
             'password'  => Hash::make('password123'),
             'email_verified_at' => Carbon::now(),
-            'role'      => 'customer'
+            'role'      => 'customer',
+            'is_first_login' => $is_first_login
         ]);
 
         $user->roles()->sync([

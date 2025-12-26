@@ -25,6 +25,7 @@
     "addedToBag": "Added to Shopping Bag",
     "capacity": "Capacity",
     "chainLength": "Chain length",
+    "outOfStock": "Out of Stock",
     "button": {
       "placeInCart": "Place in Cart",
       "viewBag": "View your shopping bag"

@@ -3,7 +3,7 @@ import { defineProps } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import AdminDashboard from '@/Layouts/AdminDashboard.vue';
-import ProductsTable from '@/Components/ProductsTable.vue';
+import ProductsTable from '@/Components/Tables/ProductsTable.vue';
 
 const props = defineProps({
   variations: Array,

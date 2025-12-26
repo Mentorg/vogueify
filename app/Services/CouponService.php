@@ -120,7 +120,7 @@ class CouponService
 
     public function getCoupons()
     {
-        $coupons = Coupon::orderBy('created_at', 'desc')->paginate(15);
+        $coupons = Coupon::orderBy('created_at', 'desc')->paginate(15, ['*'], 'coupons_page');
         $categories = ProductCategory::all();
         $products = Product::all();
         $productVariations = ProductVariation::with('product')->get();
@@ -234,10 +234,9 @@ class CouponService
         ]);
     }
 
-    public function delete($id)
+    public function delete($coupon)
     {
-        $couponId = Coupon::findOrFail($id);
-        $couponId->delete();
+        $coupon->delete();
     }
 
     public function apply($coupon, $items)

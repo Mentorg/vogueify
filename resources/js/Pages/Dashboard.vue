@@ -7,9 +7,9 @@ import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import StatusChip from '@/Components/StatusChip.vue';
 import { useOrder } from '@/composables/useOrder';
 import { formatDate } from '@/utils/dateFormat';
-import OrderStatusChip from '@/Components/OrderStatusChip.vue';
 
 const props = defineProps({
   orders: Array,
@@ -64,7 +64,7 @@ const {
           </div>
           <Link href="profile"
             class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-          {{ t('common.button.editProfile') }}</Link>
+            {{ t('common.button.editProfile') }}</Link>
         </div>
         <div class="grid gap-6">
           <div class="bg-white p-6 w-full h-fit lg:p-10">
@@ -75,7 +75,7 @@ const {
               </div>
               <Link href="/"
                 class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-              {{ t('common.button.startShopping') }}</Link>
+                {{ t('common.button.startShopping') }}</Link>
             </div>
             <div v-else class="mt-8">
               <div v-for="item in orders.filter(order => activeStatuses.includes(order.order_status)).slice(0, 3)"
@@ -110,9 +110,9 @@ const {
                 </div>
                 <div
                   class="flex justify-center col-start-2 col-end-2 row-start-2 row-end-2 lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-1">
-                  <OrderStatusChip :status="item.order_status">
+                  <StatusChip :status="item.order_status">
                     <p class="text-sm">{{ formatStatus(item.order_status) }}</p>
-                  </OrderStatusChip>
+                  </StatusChip>
                 </div>
                 <div
                   class="flex justify-end col-start-3 col-end-3 row-start-2 row-end-2 lg:col-start-4 lg:col-end-4 lg:row-start-1 lg:row-end-1">
@@ -147,7 +147,7 @@ const {
               <div v-if="orders.length > 3" class="mt-8">
                 <Link href="/orders/user/orders"
                   class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-                {{ t('common.button.viewOrders') }}</Link>
+                  {{ t('common.button.viewOrders') }}</Link>
               </div>
             </div>
           </div>
@@ -159,7 +159,7 @@ const {
               </div>
               <Link href="/"
                 class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
-              {{ t('common.button.startShopping') }}</Link>
+                {{ t('common.button.startShopping') }}</Link>
             </div>
             <div v-else class="mt-8">
               <div v-for="item in wishlist.slice(0, 3)" :key="item.id" class="flex items-center my-4">
@@ -182,7 +182,7 @@ const {
               <div v-if="wishlist.length > 3" class="mt-8">
                 <Link href="/wishlist"
                   class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-white transition-all hover:bg-white hover:text-black">
-                {{ t('common.button.viewWishlist') }}</Link>
+                  {{ t('common.button.viewWishlist') }}</Link>
               </div>
             </div>
           </div>

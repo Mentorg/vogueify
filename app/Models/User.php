@@ -35,7 +35,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'role',
-        'date_of_birth'
+        'date_of_birth',
+        'is_first_login',
     ];
 
     /**
@@ -69,6 +70,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_first_login' => 'boolean',
         ];
     }
 

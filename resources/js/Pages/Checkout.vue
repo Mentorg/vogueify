@@ -9,6 +9,7 @@ import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import SelectInput from "@/Components/SelectInput.vue";
 import ErrorMessage from "@/Components/ErrorMessage.vue";
+import Tooltip from "@/Components/Tooltip.vue";
 
 const props = defineProps({
   checkoutData: Object,
@@ -258,7 +259,9 @@ const submitOrder = () => {
               </li>
               <li class="flex flex-col mt-4">
                 <div class="flex justify-between">
-                  <p class=":text-lg">{{ t('common.product.tax') }}</p>
+                  <p class="flex gap-2 lg:text-lg">{{ t('common.product.tax') }}
+                    <Tooltip v-if="checkoutData.isShippingTaxable" :message="t('common.product.taxShippingInfo')" />
+                  </p>
                   <span class="lg:text-lg">${{ checkoutData.tax.toFixed(2) }}</span>
                 </div>
                 <p class="text-xs text-slate-500">{{ t('common.product.taxInfo') }}</p>

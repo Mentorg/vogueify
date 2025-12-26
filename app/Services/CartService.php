@@ -79,8 +79,6 @@ class CartService
             }
         }
 
-        $countryId = $user->country_id ?? $user->profile?->country_id;
-
         $totals = $this->pricingService->calculate($cartItems, [
             'coupon' => $couponModel,
             'countryCode' => $countryCode,

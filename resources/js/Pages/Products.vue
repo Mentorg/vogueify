@@ -30,18 +30,24 @@ const { toggleWishlist } = useWishlist();
         <div v-for="variation in products" :key="variation.id" class="relative">
           <Link :href="route('product.show', { product: variation.product.slug, variation: variation.sku })"
             class="relative">
-          <img :src="variation.image" :alt="variation.product.name" />
-          <div class="absolute top-0 right-0 mt-2 mr-2">
-            <button
-              @click.prevent="toggleWishlist(variation.id, () => variation.isInWishlist = !variation.isInWishlist)"
-              class="bg-black p-2 rounded-full">
-              <PhHeart size="18" color="white" :weight="variation.isInWishlist ? 'fill' : 'regular'" />
-            </button>
-          </div>
-          <div class="absolute bottom-0 left-0 bg-white py-1 px-3 ml-2 mb-2">
-            <h2 class="line-clamp-1">{{ variation.product.name }}</h2>
-            <p>${{ variation.price }}</p>
-          </div>
+            <img :src="variation.image" :alt="variation.product.name" />
+            <div v-if="variation.stock === 0"
+              class="absolute top-0 left-0 w-full h-full bg-slate-100/35 flex justify-center items-center">
+              <div class="bg-white py-4 px-8">
+                <p class="text-xl">{{ t('page.product.outOfStock') }}</p>
+              </div>
+            </div>
+            <div class="absolute top-0 right-0 mt-2 mr-2">
+              <button
+                @click.prevent="toggleWishlist(variation.id, () => variation.isInWishlist = !variation.isInWishlist)"
+                class="bg-black p-2 rounded-full">
+                <PhHeart size="18" color="white" :weight="variation.isInWishlist ? 'fill' : 'regular'" />
+              </button>
+            </div>
+            <div class="absolute bottom-0 left-0 bg-white py-1 px-3 ml-2 mb-2">
+              <h2 class="line-clamp-1">{{ variation.product.name }}</h2>
+              <p>${{ variation.price }}</p>
+            </div>
           </Link>
         </div>
       </section>

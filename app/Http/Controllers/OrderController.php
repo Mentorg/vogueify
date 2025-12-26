@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Enums\AggregatedOrderStatus;
 use App\Enums\OrderStatus;
 use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\UpdateOrderBillingAddressRequest;
+use App\Http\Requests\UpdateOrderShippingAddressRequest;
 use App\Models\Country;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -125,39 +127,18 @@ class OrderController extends Controller
         return redirect()->back()->with('success', 'Order note updated successfully.');
     }
 
-    public function updateShippingAddress(Request $request, Order $order)
+    public function updateShippingAddress(UpdateOrderShippingAddressRequest $request, Order $order)
     {
         $this->authorize('modify', $order);
 
-        $validated = $request->validate([
-            'shipping_address_line_1' => 'required|string|max:255',
-            'shipping_address_line_2' => 'nullable|string|max:255',
-            'shipping_city' => 'required|string|min:2|max:255',
-            'shipping_state' => 'nullable|string|max:255',
-            'shipping_postcode' => 'required|string|alpha_num',
-            'shipping_country_id' => 'required|integer|exists:countries,id',
-            'shipping_phone_number' => 'nullable|string|min:7|max:20',
-            'shipping_date' => 'nullable|date',
-        ]);
-
-        $this->orderService->updateShippingAddress($order, $validated);
+        $this->orderService->updateShippingAddress($order, $request->validated());
     }
 
-    public function updateBillingAddress(Request $request, Order $order)
+    public function updateBillingAddress(UpdateOrderBillingAddressRequest $request, Order $order)
     {
         $this->authorize('modify', $order);
 
-        $validated = $request->validate([
-            'billing_address_line_1' => 'required|string|max:255',
-            'billing_address_line_2' => 'nullable|string|max:255',
-            'billing_city' => 'required|string|min:2|max:255',
-            'billing_state' => 'nullable|string|max:255',
-            'billing_postcode' => 'required|string|alpha_num',
-            'billing_country_id' => 'nullable|integer|exists:countries,id',
-            'billing_phone_number' => 'nullable|string|min:7|max:20',
-        ]);
-
-        $this->orderService->updateBillingAddress($order, $validated);
+        $this->orderService->updateBillingAddress($order, $request->validated());
     }
 
     public function resendConfirmation(Order $order)

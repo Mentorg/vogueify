@@ -6,6 +6,7 @@ import CouponCategoriesTable from '@/Components/Tables/CouponCategoriesTable.vue
 import CouponProductsTable from '@/Components/Tables/CouponProductsTable.vue';
 import CouponProductVariationsTable from '@/Components/Tables/CouponProductVariationsTable.vue';
 import CouponUsersTable from '@/Components/Tables/CouponUsersTable.vue';
+import StatusChip from '@/Components/StatusChip.vue';
 import { capitalize } from '@/utils/capitalize';
 import { formatDate } from '@/utils/dateFormat';
 
@@ -25,8 +26,8 @@ const { t } = useI18n();
       <div class="flex flex-col gap-y-2">
         <div>
           <h1 class="text-2xl font-medium">{{ coupon.code }}</h1>
-          <div class="w-fit my-2 border border-green-700 text-green-700 px-3 py-1 rounded-full">
-            <p>{{ capitalize(coupon.status) }}</p>
+          <div class="my-2">
+            <StatusChip :status="coupon.status">{{ capitalize(coupon.status) }}</StatusChip>
           </div>
         </div>
         <p>
@@ -34,12 +35,12 @@ const { t } = useI18n();
             date: formatDate(coupon.created_at, '.', true),
             user: coupon.author.name
           }) }}
-          <span class="text-sm text-slate-400">
+          <span v-if="coupon.updated_by" class="text-sm text-slate-400">
             {{
               coupon.updated_at
                 ? `(${t('page.couponDetails.updatedOn', {
                   date: formatDate(coupon.updated_at, '.', true),
-                  user: coupon.updated_by.name
+                  user: coupon.updated_by?.name
                 })})`
                 : ''
             }}
@@ -54,7 +55,7 @@ const { t } = useI18n();
           <div class="flex flex-col mt-2">
             <div class="mt-2">
               <p class="font-medium">{{ t('page.couponDetails.code') }}: <span class="font-normal">{{ coupon.code
-                  }}</span></p>
+              }}</span></p>
             </div>
             <div class="mt-2">
               <p class="font-medium">{{ t('page.couponDetails.type') }}: <span class="font-normal">{{

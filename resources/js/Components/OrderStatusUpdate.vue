@@ -3,8 +3,8 @@ import { defineProps } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import { useToast } from 'vue-toast-notification';
 import { useI18n } from 'vue-i18n';
-import OrderStatusChip from './OrderStatusChip.vue';
-import InputLabel from './InputLabel.vue';
+import StatusChip from '@Components/StatusChip.vue';
+import InputLabel from '@Components/InputLabel.vue';
 import { capitalize } from '@/utils/capitalize';
 
 const props = defineProps({
@@ -53,9 +53,9 @@ const submitForm = () => {
     }) }}</h2>
     <p class="text-slate-500 mb-4">{{ t('common.modal.order.admin.orderStatusUpdate.content') }}:</p>
     <div class="flex">
-      <OrderStatusChip :status="orderStatusToEdit?.order_status" class="rounded-md text-sm">
+      <StatusChip :status="orderStatusToEdit?.order_status" class="rounded-md text-sm">
         {{ capitalize(orderStatusToEdit?.order_status) }}
-      </OrderStatusChip>
+      </StatusChip>
     </div>
     <form @submit.prevent="submitForm">
       <InputLabel for="order_status" :value="t('common.modal.order.admin.orderStatusUpdate.itemStatus')" class="mt-4" />

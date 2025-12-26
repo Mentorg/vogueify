@@ -25,6 +25,7 @@
     "addedToBag": "Ajouté au panier",
     "capacity": "Capacité",
     "chainLength": "Longueur de la chaîne",
+    "outOfStock": "Rupture de stock",
     "button": {
       "placeInCart": "Ajouter au panier",
       "viewBag": "Voir votre panier"

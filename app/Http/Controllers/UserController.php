@@ -47,4 +47,9 @@ class UserController extends Controller
             'countries' => $this->userService->getProfile()
         ]);
     }
+
+    public function updateFirstTimeLogin(Request $request) {
+        $this->userService->updateFirstTimeLogin($request->user());
+        return redirect()->back()->with('success', 'First time login updated successfully.');
+    }
 }

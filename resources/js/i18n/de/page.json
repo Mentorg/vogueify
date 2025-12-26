@@ -25,6 +25,7 @@
     "addedToBag": "Zum Warenkorb hinzugefügt",
     "capacity": "Kapazität",
     "chainLength": "Kettenlänge",
+    "outOfStock": "Nicht auf Lager",
     "button": {
       "placeInCart": "In den Warenkorb legen",
       "viewBag": "Warenkorb ansehen"

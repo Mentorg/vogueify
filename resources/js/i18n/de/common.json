@@ -54,6 +54,10 @@
     "unisex": "Unisex"
   },
   "modal": {
+    "home": {
+      "title": "Willkommen! Helfen Sie uns, Ihr Erlebnis zu personalisieren",
+      "content": "Schön, dass Sie da sind! Wenn Sie Ihre Adresse zu Ihrem Profil hinzufügen, können wir Ihnen genaue Preise anzeigen, einschließlich Steuern und Versandkosten, die auf Ihren Standort zugeschnitten sind. Es ist schnell, optional und kann jederzeit aktualisiert werden."
+    },
     "cart": {
       "title": "{itemToDelete} löschen",
       "content": "Möchten Sie { itemToDelete } wirklich löschen"
@@ -304,7 +308,9 @@
     "updateCoupon": "Gutschein aktualisieren",
     "deleteCoupon": "Gutschein löschen",
     "removeCoupon": "Gutschein entfernen",
-    "clickHere": "Hier klicken"
+    "clickHere": "Hier klicken",
+    "updateProfile": "Profil aktualisieren",
+    "updateProfileTitle": "Ihre Profilinformationen aktualisieren"
   },
   "menuLabel": {
     "for": "Für",
@@ -339,7 +345,33 @@
     }
   },
   "table": {
+    "product": {
+      "caption": "Produktkatalog",
+      "name": "Name",
+      "price": "Preis",
+      "stock": "Bestand",
+      "sku": "SKU",
+      "category": "Kategorie | Kategorien",
+      "createdAt": "Erstellt"
+    },
+    "order": {
+      "caption": "Kundenbestellungen",
+      "datePlaced": "Bestelldatum",
+      "deliveryDate": "Lieferdatum",
+      "deliveryDateTooltip": "Frühestes Versanddatum",
+      "status": "Status",
+      "customer": "Kunde",
+      "total": "Gesamt"
+    },
+    "user": {
+      "caption": "Benutzerkonten",
+      "name": "Name",
+      "email": "E-Mail",
+      "role": "Rolle",
+      "createdAt": "Erstellt"
+    },
     "coupon": {
+      "caption": "Gutscheinliste",
       "code": "Code",
       "type": "Typ",
       "entity": "Entität",
@@ -349,7 +381,6 @@
       "redemptions": "Einlösungen",
       "status": "Status",
       "used": "Verwendet",
-      "actions": "Aktionen",
       "perUser": "pro Benutzer"
     },
     "couponUsers": {
@@ -379,6 +410,7 @@
       "category": "Kategorie",
       "createdAt": "Erstellt"
     },
+    "actions": "Aktionen",
     "pagination": "Anzeige {from}-{to} von {total}",
     "noData": "Keine Daten"
   },
@@ -486,27 +518,6 @@
     "tax": "Steuer",
     "taxInfo": "Wird basierend auf Ihrer Lieferadresse berechnet",
     "taxShippingInfo": "Die Steuer beinhaltet die Versandkosten",
-    "total": "Gesamt",
-    "name": "Name",
-    "price": "Preis",
-    "stock": "Bestand",
-    "sku": "SKU",
-    "category": "Kategorie | Kategorien",
-    "createdAt": "Erstellt"
-  },
-  "user": {
-    "name": "Name",
-    "email": "E-Mail",
-    "role": "Rolle",
-    "createdAt": "Erstellt"
-  },
-  "order": {
-    "datePlaced": "Bestelldatum",
-    "deliveryDate": "Lieferdatum",
-    "status": "Status",
-    "statusDescription": "Frühestes Versanddatum",
-    "customer": "Kunde",
-    "total": "Gesamt",
-    "actions": "Aktionen"
+    "total": "Gesamt"
   }
 }

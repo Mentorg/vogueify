@@ -2,7 +2,7 @@
 import { defineProps } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import AdminDashboard from '@/Layouts/AdminDashboard.vue';
-import OrdersTable from '@/Components/OrdersTable.vue';
+import OrdersTable from '@/Components/Tables/OrdersTable.vue';
 import { useI18n } from 'vue-i18n';
 
 const props = defineProps({

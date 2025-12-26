@@ -3,7 +3,7 @@ import { defineProps } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import AdminDashboard from '@/Layouts/AdminDashboard.vue';
-import UsersTable from '@/Components/UsersTable.vue';
+import UsersTable from '@/Components/Tables/UsersTable.vue';
 
 const props = defineProps({
   users: Array

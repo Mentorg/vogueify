@@ -70,7 +70,7 @@ class OrderService
 
     public function getOrders()
     {
-        return Order::with(['user', 'items.productVariation.product'])->orderBy('created_at', 'desc')->paginate(15);
+        return Order::with(['user', 'items.productVariation.product'])->orderBy('created_at', 'desc')->paginate(15, ['*'], 'orders_page');
     }
 
     public function create($order, $request)

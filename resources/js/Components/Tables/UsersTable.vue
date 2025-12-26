@@ -1,13 +1,14 @@
 <script setup>
 import { defineProps, onBeforeUnmount, onMounted, ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
-import { PhDotsThreeVertical, PhCaretLeft, PhCaretRight, PhTrash } from '@phosphor-icons/vue';
-import { formatDate } from "@/utils/dateFormat.js";
-import DialogModal from "./DialogModal.vue";
-import SecondaryButton from "./SecondaryButton.vue";
-import DangerButton from "./DangerButton.vue";
 import { useToast } from 'vue-toast-notification';
 import { useI18n } from 'vue-i18n';
+import { PhDotsThreeVertical, PhTrash } from '@phosphor-icons/vue';
+import DialogModal from "@Components/DialogModal.vue";
+import SecondaryButton from "@Components/SecondaryButton.vue";
+import DangerButton from "@Components/DangerButton.vue";
+import TableFooter from "@Components/Tables/TableFooter.vue";
+import { formatDate } from "@/utils/dateFormat.js";
 
 const props = defineProps({
   users: Object
@@ -78,25 +79,16 @@ onBeforeUnmount(() => {
   <div class="relative overflow-x-auto bg-white h-[350px] overflow-y-scroll">
     <div class="bg-white w-fit">
       <table class="text-left text-sm w-full">
+        <caption class="sr-only">{{ t('common.table.users.caption') }}</caption>
         <thead
           class="bg-white uppercase tracking-wider sticky top-0 border-b-2 outline outline-2 outline-neutral-300 border-neutral-300">
           <tr class="grid grid-cols-[0.5fr,2fr,3fr,2fr,2fr,1fr]">
             <th scope="col" class="px-6 py-4">#</th>
-            <th scope="col" class="px-6 py-4">
-              {{ t('common.user.name') }}
-            </th>
-            <th scope="col" class="px-6 py-4">
-              {{ t('common.user.email') }}
-
-            </th>
-            <th scope="col" class="px-6 py-4">
-              Role
-            </th>
-            <th scope="col" class="px-6 py-4">
-              {{ t('common.user.createdAt') }}
-
-            </th>
-            <th scope="col" class="px-6 py-4">&nbsp;</th>
+            <th scope="col" class="px-6 py-4">{{ t('common.table.user.name') }}</th>
+            <th scope="col" class="px-6 py-4">{{ t('common.table.user.email') }}</th>
+            <th scope="col" class="px-6 py-4">{{ t('common.table.user.role') }}</th>
+            <th scope="col" class="px-6 py-4">{{ t('common.table.user.createdAt') }}</th>
+            <th scope="col" class="px-6 py-4"></th>
           </tr>
         </thead>
         <tbody>
@@ -140,41 +132,8 @@ onBeforeUnmount(() => {
             </template>
           </DialogModal>
         </tbody>
+        <TableFooter :pagination="users" />
       </table>
-      <nav class="bg-white sticky bottom-0 flex py-2 px-4 border-t-2 items-center justify-between text-sm"
-        aria-label="Page navigation example">
-        <p>
-          {{ t('common.table.pagination', { from: users.from, to: users.to, total: users.total }) }}
-        </p>
-        <ul class="list-style-none flex gap-x-4 mx-2">
-          <li v-if="users.first_page_url">
-            <button class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm"
-              @click="router.visit(users.first_page_url)">
-              {{ t('common.button.first') }}
-            </button>
-          </li>
-          <li v-if="users.prev_page_url">
-            <button class="bg-slate-500 text-white flex items-center rounded px-3 py-1.5 text-sm"
-              @click="router.visit(users.prev_page_url)">
-              <PhCaretLeft :size="12" />
-              {{ t('common.button.previous') }}
-            </button>
-          </li>
-          <li v-if="users.next_page_url">
-            <button class="bg-slate-500 text-white flex items-center rounded px-3 py-1.5 text-sm"
-              @click="router.visit(users.next_page_url)">
-              {{ t('common.button.next') }}
-              <PhCaretRight :size="12" />
-            </button>
-          </li>
-          <li v-if="users.last_page_url">
-            <button class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm"
-              @click="router.visit(users.last_page_url)">
-              {{ t('common.button.last') }}
-            </button>
-          </li>
-        </ul>
-      </nav>
     </div>
   </div>
 </template>

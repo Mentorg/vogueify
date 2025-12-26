@@ -3,13 +3,15 @@ import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { Link, router, useForm } from '@inertiajs/vue3';
 import { useToast } from 'vue-toast-notification';
 import { useI18n } from 'vue-i18n';
-import { PhCaretLeft, PhCaretRight, PhDotsThreeVertical } from '@phosphor-icons/vue';
+import { PhCaretRight, PhDotsThreeVertical } from '@phosphor-icons/vue';
 import CouponForm from '@/Components/CouponForm.vue';
 import Modal from '@/Components/Modal.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
+import StatusChip from '../StatusChip.vue';
+import TableFooter from '@Components/Tables/TableFooter.vue';
 import { capitalize } from '@/utils/capitalize';
 import { formatDate } from '@/utils/dateFormat';
 
@@ -122,8 +124,8 @@ const closeDeleteModal = () => {
   couponToDelete.value = null;
 }
 
-const destroy = (id) => {
-  form.delete(route('coupon.delete', id), {
+const destroy = (coupon) => {
+  form.delete(route('coupon.delete', coupon), {
     preserveScroll: true,
     onSuccess: () => {
       closeDeleteModal();
@@ -160,6 +162,7 @@ onBeforeUnmount(() => {
   <div class="relative overflow-x-auto bg-white h-[350px] overflow-y-auto">
     <div class="bg-white w-fit">
       <table class="text-left text-sm w-full">
+        <caption class="sr-only">{{ t('common.table.coupon.caption') }}</caption>
         <thead
           class="bg-white uppercase tracking-wider sticky top-0 border-b-2 outline outline-2 outline-neutral-300 border-neutral-300">
           <tr
@@ -172,14 +175,14 @@ onBeforeUnmount(() => {
             <th scope="col" class="px-6 py-4 w-32 text-xs">{{ t('common.table.coupon.expiresAt') }}</th>
             <th scope="col" class="px-6 py-4 w-52 text-xs">{{ t('common.table.coupon.redemptions') }}</th>
             <th scope="col" class="px-6 py-4 w-28 text-xs">{{ t('common.table.coupon.status') }}</th>
-            <th scope="col" class="px-6 py-4 w-28 text-xs">{{ t('common.table.coupon.actions') }}</th>
+            <th scope="col" class="px-6 py-4 w-28 text-xs"></th>
           </tr>
         </thead>
         <tbody>
           <div v-if="coupons.data.length > 0">
             <tr v-for="coupon in coupons.data" :key="coupon.id"
               class="grid grid-cols-[3fr,2fr,1fr,1fr,2fr,2fr,4fr,1fr,1fr] md:grid-cols-[2fr,1fr,1fr,1fr,2fr,2fr,2fr,1fr,1fr] border-b dark:border-neutral-200 even:bg-slate-100">
-              <th class="place-content-center px-6 py-4 w-48">{{ coupon.code }}</th>
+              <th scope="row" class="place-content-center px-6 py-4 w-48">{{ coupon.code }}</th>
               <td class="place-content-center px-6 py-4 w-32">{{ capitalize(coupon.type) }}</td>
               <td class="place-content-center px-6 py-4 w-32">{{ capitalize(coupon.couponType) }}</td>
               <td class="place-content-center px-6 py-4 w-24">{{ coupon.type === 'percentage' ?
@@ -193,7 +196,9 @@ onBeforeUnmount(() => {
                 {{coupon.users.map(user => user.pivot.uses).reduce((acc, curr) => acc + curr, 0)}} / {{
                   coupon.max_uses }} ({{
                   coupon.max_uses_per_user }} {{ t('common.table.coupon.perUser') }})</td>
-              <td class="place-content-center px-6 py-4 w-28">{{ capitalize(coupon.status) }}</td>
+              <td class="place-content-center px-6 py-4 w-28">
+                <StatusChip :status="coupon.status">{{ capitalize(coupon.status) }}</StatusChip>
+              </td>
               <td class="place-content-center px-6 py-4 w-28 flex items-center context-menu-wrapper">
                 <div class="relative context-menu-wrapper">
                   <button @click.stop="toggleMenu(coupon.id)" :title="t('common.button.couponActions')"
@@ -247,6 +252,7 @@ onBeforeUnmount(() => {
             <p class="text-center py-4 text-gray-500">{{ t('common.table.noData') }}</p>
           </div>
         </tbody>
+        <TableFooter :pagination="coupons" />
       </table>
       <Modal :show="couponToEdit !== null" @close="closeCouponModal">
         <CouponForm :entities="entities" :coupon="couponToEdit" formType="update" :close="closeCouponModal" />
@@ -275,44 +281,10 @@ onBeforeUnmount(() => {
         <template #footer>
           <SecondaryButton @click="closeDeleteModal" :title="t('common.button.cancel')">{{ t('common.button.cancel') }}
           </SecondaryButton>
-          <DangerButton class="ms-3" @click="destroy(couponToDelete?.id)" :title="t('common.button.delete')">{{
+          <DangerButton class="ms-3" @click="destroy(couponToDelete)" :title="t('common.button.delete')">{{
             t('common.button.delete') }}</DangerButton>
         </template>
       </DialogModal>
-      <nav class="bg-white sticky bottom-0 flex py-2 px-4 border-t-2 items-center justify-between text-sm"
-        aria-label="Page navigation example">
-        <p>
-          {{ t('common.table.pagination', { from: coupons.from, to: coupons.to, total: coupons.total }) }}
-        </p>
-        <ul class="list-style-none flex gap-x-4 mx-2">
-          <li v-if="coupons.first_page_url">
-            <button @click="router.visit(coupons.first_page_url)" :title="t('common.button.first')"
-              class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm">
-              {{ t('common.button.first') }}
-            </button>
-          </li>
-          <li v-if="coupons.prev_page_url">
-            <button @click="router.visit(coupons.prev_page_url)" :title="t('common.button.previous')"
-              class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm">
-              <PhCaretLeft :size="12" />
-              {{ t('common.button.previous') }}
-            </button>
-          </li>
-          <li v-if="coupons.next_page_url">
-            <button @click="router.visit(coupons.next_page_url)" :title="t('common.button.next')"
-              class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm">
-              {{ t('common.button.next') }}
-              <PhCaretRight :size="12" />
-            </button>
-          </li>
-          <li v-if="coupons.last_page_url">
-            <button @click="router.visit(coupons.last_page_url)" :title="t('common.button.last')"
-              class="bg-slate-500 text-white flex items-center gap-2 rounded px-3 py-1.5 text-sm">
-              {{ t('common.button.last') }}
-            </button>
-          </li>
-        </ul>
-      </nav>
     </div>
   </div>
 </template>

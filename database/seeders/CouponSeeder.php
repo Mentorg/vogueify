@@ -33,6 +33,7 @@ class CouponSeeder extends Seeder
             'max_uses_per_user' => 75,
             'starts_at' => now(),
             'expires_at' => now()->addMonth(),
+            'created_by' => 1,
         ]);
 
         $welcomeCoupon->productVariations()->attach($variations->slice(0, 5)->pluck('id'));
@@ -47,6 +48,7 @@ class CouponSeeder extends Seeder
             'max_uses_per_user' => 50,
             'starts_at' => now(),
             'expires_at' => now()->addWeeks(2),
+            'created_by' => 1,
         ]);
 
         $exclusiveCoupon->productVariations()->attach($variations->slice(5, 5)->pluck('id'));
@@ -61,6 +63,7 @@ class CouponSeeder extends Seeder
             'max_uses_per_user' => 25,
             'starts_at' => now(),
             'expires_at' => now()->addWeek(4),
+            'created_by' => 1,
         ]);
 
         $vipCoupon->productVariations()->attach($variations->slice(10, 5)->pluck('id'));

@@ -69,7 +69,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $this->authorize('modify', Product::class);
+        $this->authorize('modify', $product);
 
         $product->load(['productVariations.sizes', 'productVariations.type', 'category']);
 
@@ -84,7 +84,7 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $this->authorize('modify', Product::class);
+        $this->authorize('modify', $product);
 
         $this->productService->update($request, $product);
 
@@ -96,19 +96,11 @@ class ProductController extends Controller
         ])->with('success', 'Product updated successfully!');
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy(Product $product)
     {
-        $this->authorize('modify', Product::class);
+        $this->authorize('modify', $product);
 
-        $type = $request->query('type', 'product');
-
-        if ($type === 'variation') {
-            $variation = ProductVariation::findOrFail($id);
-            $result = $this->productService->deleteVariation($variation);
-        } else {
-            $product = Product::findOrFail($id);
-            $result = $this->productService->delete($product);
-        }
+        $result = $this->productService->delete($product);
 
         if ($result === false) {
             return redirect()->back()->withErrors([
@@ -116,7 +108,22 @@ class ProductController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.products')->with('success', 'Deletion successful.');
+        return redirect()->back()->with('success', 'Deletion successful.');
+    }
+
+    public function destroyVariation(ProductVariation $variation)
+    {
+        $this->authorize('modify', $variation->product);
+
+        $result = $this->productService->deleteVariation($variation);
+
+        if ($result === false) {
+            throw ValidationException::withMessages([
+                'error' => 'This product has already been ordered and cannot be deleted!'
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Deletion successful.');
     }
 
     public function searchResults()

@@ -82,6 +82,7 @@ class CheckoutService
             'shipping' => $totals['shipping'],
             'tax' => $totals['tax'],
             'total' => $totals['total'],
+            'isShippingTaxable' => $totals['isShippingTaxable'],
             'coupon' => $couponModel?->code,
             'countries' => Country::all(['id', 'name', 'iso_code']),
             'coupon_error' => session('coupon_error') ?? null,
@@ -149,7 +150,9 @@ class CheckoutService
             'line_items' => $lineItems,
             'discounts' => $discounts,
             'success_url' => route('checkout.success', ['session_id' => '{CHECKOUT_SESSION_ID}']),
-            // 'cancel_url' => route('checkout.cancel'),
+            'cancel_url' => route('checkout.cancel', [
+                'order' => $order->id,
+            ]),
             'metadata' => ['order_id' => $order->id],
         ]);
 
@@ -214,5 +217,33 @@ class CheckoutService
             'paymentIntent' => $paymentIntent,
             'order' => $order
         ];
+    }
+
+    public function cancel(Order $order): void
+    {
+        if ($order->order_status === AggregatedOrderStatus::Canceled) {
+            return;
+        }
+
+        if ($order->order_status !== AggregatedOrderStatus::Pending) {
+            return;
+        }
+
+        $order->update([
+            'order_status' => AggregatedOrderStatus::Canceled,
+        ]);
+
+        foreach ($order->items as $item) {
+            $item->update([
+                'order_status' => OrderStatus::Canceled,
+            ]);
+        }
+
+        if ($order->cart) {
+            $order->cart->cartItems()->delete();
+            $order->cart->update([
+                'is_locked' => false,
+            ]);
+        }
     }
 }

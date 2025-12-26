@@ -31,7 +31,7 @@ class ProductService
             $query->whereHas('type', fn($q) => $q->where('type', $request->type));
         }
 
-        $products = $paginate ? $query->paginate(15) : $query->get();
+        $products = $paginate ? $query->paginate(15, ['*'], 'products_page') : $query->get();
 
         $wishlistIds = Auth::check()
             ? Auth::user()->wishlist()->pluck('product_variation_id')->toArray()
@@ -229,7 +229,7 @@ class ProductService
         }
     }
 
-    public function delete(Product $product)
+    public function delete($product)
     {
         $hasOrders = OrderItem::whereIn(
             'product_variation_id',
@@ -242,7 +242,7 @@ class ProductService
         return $product->delete();
     }
 
-    public function deleteVariation(ProductVariation $variation)
+    public function deleteVariation($variation)
     {
         $hasOrders = OrderItem::where('product_variation_id', $variation->id)->exists();
 

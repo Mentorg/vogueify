@@ -9,7 +9,7 @@ class UserService
 {
     public function getUsers($paginate = false)
     {
-        return $paginate ? User::paginate(15) : User::all();
+        return $paginate ? User::paginate(15, ['*'], 'users_page') : User::all();
     }
 
     public function delete($user)
@@ -20,5 +20,10 @@ class UserService
     public function getProfile()
     {
         return Country::all(['id', 'name', 'iso_code']);
+    }
+
+    public function updateFirstTimeLogin($user)
+    {
+        $user->update(['is_first_login' => false]);
     }
 }
