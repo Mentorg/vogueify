@@ -3,13 +3,11 @@
 namespace App\Services;
 
 use App\Enums\AggregatedOrderStatus;
-use App\Enums\OrderStatus;
+use App\Events\Order\OrderPaid;
 use App\Models\Order;
-use App\Notifications\Order\RequestOrderConfirmationNotification;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Stripe\Exception\SignatureVerificationException;
 use Stripe\Webhook;
-use UnexpectedValueException;
 
 class WebhookService
 {
@@ -21,55 +19,53 @@ class WebhookService
 
         try {
             $event = Webhook::constructEvent($payload, $sigHeader, $endpointSecret);
-        } catch (UnexpectedValueException $e) {
-            Log::error('Invalid Stripe webhook payload', ['error' => $e->getMessage()]);
-            return response()->json(['message' => 'Invalid payload'], 400);
-        } catch (SignatureVerificationException $e) {
-            Log::error('Invalid Stripe webhook signature', ['error' => $e->getMessage()]);
-            return response()->json(['message' => 'Invalid signature'], 400);
+        } catch (\Exception $e) {
+            Log::error('Stripe Webhook Error', [
+            'message' => $e->getMessage()
+        ]);
+            return response()->json(['message' => 'Invalid webhook'], 400);
         }
 
-        if ($event->type === 'checkout.session.completed') {
-            $session = $event->data->object;
-            $orderId = $session->metadata->order_id ?? null;
+        if ($event->type !== 'checkout.session.completed') {
+            return response()->json(['message' => 'ignored'], 200);
+        }
 
-            if (!$orderId) {
-                Log::warning('Order ID not found in session metadata');
-                return response()->json(['status' => 'no_order_id'], 400);
-            }
+        $session = $event->data->object;
+        $orderId = $session->metadata->order_id ?? null;
 
-            $order = Order::with(['items.productVariation', 'cart.cartItems'])->find($orderId);
+        if (!$orderId) {
+            Log::warning('Stripe webhook missing order ID');
+            return response()->json(['message' => 'missing_order_id'], 200);
+        }
 
-            if (!$order) {
-                Log::warning('Order not found', ['order_id' => $orderId]);
-                return response()->json(['status' => 'order_not_found'], 404);
-            }
+        $order = Order::with([
+            'user',
+            'items.productVariation.product',
+            'items.size',
+            'cart.cartItems'
+        ])->find($orderId);
 
-            if ($order->order_status === AggregatedOrderStatus::Paid) {
-                return response()->json(['status' => 'already_paid']);
-            }
+        if (!$order) {
+            Log::warning('Stripe webhook order not found', ['order_id' => $orderId]);
+            return response()->json(['message' => 'order_not_found'], 200);
+        }
+
+        if ($order->order_status === AggregatedOrderStatus::Paid) {
+            return response()->json(['message' => 'already_paid'], 200);
+        }
+
+        DB::transaction(function () use ($order) {
 
             $order->order_status = AggregatedOrderStatus::Paid;
-            foreach ($order->items as $item) {
-                $item->order_status = OrderStatus::Paid;
-                $item->save();
-            }
             $order->save();
 
-            if ($order->cart) {
-                $order->cart->cartItems()->delete();
-                $order->cart->is_locked = false;
-                $order->cart->save();
-            } else {
-                Log::warning('Order has no associated cart', [
-                    'order_id' => $order->id,
-                    'cart_id' => $order->cart_id,
-                ]);
-            }
+            event(new OrderPaid($order));
+        });
 
-            $order->user->notify(new RequestOrderConfirmationNotification($order));
+        Log::info('Order marked as paid via Stripe webhook', [
+            'order_id' => $order->id
+        ]);
 
-            return response()->json(['status' => 'success']);
-        }
+        return response()->json(['message' => 'success'], 200);
     }
 }

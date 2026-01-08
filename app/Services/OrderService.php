@@ -4,18 +4,19 @@ namespace App\Services;
 
 use App\Enums\AggregatedOrderStatus;
 use App\Enums\OrderStatus;
+use App\Events\Order\OrderBillingAddressUpdated;
+use App\Events\Order\OrderCancelled;
+use App\Events\Order\OrderConfirmationRequested;
+use App\Events\Order\OrderConfirmed;
+use App\Events\Order\OrderItemShippingDateUpdated;
+use App\Events\Order\OrderItemStatusUpdated;
+use App\Events\Order\OrderPaid;
+use App\Events\Order\OrderShippingAddressUpdated;
+use App\Events\Order\OrderStatusUpdated;
 use App\Models\Country;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\ProductVariation;
-use App\Notifications\Order\OrderBillingAddressUpdatedNotification;
-use App\Notifications\Order\OrderCancelledNotification;
-use App\Notifications\Order\OrderConfirmedNotification;
-use App\Notifications\Order\OrderItemShippingDateUpdatedNotification;
-use App\Notifications\Order\OrderItemStatusUpdatedNotification;
-use App\Notifications\Order\OrderShippingAddressUpdatedNotification;
-use App\Notifications\Order\OrderStatusUpdatedNotification;
-use App\Notifications\Order\RequestOrderConfirmationNotification;
 use App\Pricing\Exceptions\InvalidCouponException;
 use App\Pricing\PricingService;
 use App\Pricing\Validators\CouponValidator;
@@ -226,22 +227,7 @@ class OrderService
             $order->order_status = AggregatedOrderStatus::Canceled;
             $order->save();
 
-            foreach ($order->items as $item) {
-                $variation = $item->productVariation;
-                if (!is_null($variation->stock)) {
-                    $variation->stock += $item->quantity;
-                    $variation->save();
-                }
-            }
-
-            $user = Auth::user();
-            if ($user && $user->cart && $user->cart->is_locked) {
-                $user->cart->cartItems()->delete();
-                $user->cart->is_locked = false;
-                $user->cart->save();
-            }
-
-            $order->user->notify(new OrderCancelledNotification($order));
+            DB::afterCommit(fn () => event(new OrderCancelled($order)));
 
             DB::commit();
         } catch (Exception $e) {
@@ -271,7 +257,7 @@ class OrderService
                 $item->save();
             }
 
-            $order->user->notify(new OrderConfirmedNotification($order));
+            DB::afterCommit(fn () => event(new OrderConfirmed($order)));
 
             DB::commit();
 
@@ -287,31 +273,24 @@ class OrderService
 
     public function updateStatus($order, $newStatus)
     {
-        $validStatuses = AggregatedOrderStatus::values();
-
-        if (!in_array($newStatus, $validStatuses)) {
+        if (!in_array($newStatus, AggregatedOrderStatus::values(), true)) {
             throw new Exception('Invalid order status: ' . $newStatus);
         }
 
-        DB::transaction(function () use ($order, $newStatus) {
-            $previousStatus = $order->order_status;
+        DB::beginTransaction();
 
-            if (
-                $previousStatus === AggregatedOrderStatus::Pending &&
-                $newStatus === AggregatedOrderStatus::Canceled
-            ) {
-                if ($order->cart) {
-                    $order->cart->cartItems()->delete();
-                    $order->cart->is_locked = false;
-                    $order->cart->save();
-                }
-            }
-        });
+        try {
+            $previousStatus = $order->order_status instanceof AggregatedOrderStatus ? $order->order_status : AggregatedOrderStatus::from($order->order_status);
 
-        $order->user->notify(new OrderStatusUpdatedNotification($order));
+            $order->update(['order_status' => $newStatus]);
 
-        $order->order_status = $newStatus;
-        $order->save();
+            DB::afterCommit(fn () => event(new OrderStatusUpdated($order, $previousStatus)));
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     public function updateItemStatus($orderItem, $newStatus)
@@ -322,19 +301,40 @@ class OrderService
             throw new Exception('Invalid order item status: ' . $newStatus);
         }
 
-        $orderItem->order->user->notify(new OrderItemStatusUpdatedNotification($orderItem));
+        DB::beginTransaction();
 
-        $orderItem->order_status = $newStatus;
-        $orderItem->save();
+        try {
+            $orderItem->order_status = $newStatus;
+            $orderItem->save();
+
+            $orderItem->load('order.user');
+
+            DB::afterCommit(fn () => event(new OrderItemStatusUpdated($orderItem)));
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     public function updateItemShippingDate($orderItem, $newDate)
     {
-        $orderItem->shipping_date = $newDate;
+        DB::beginTransaction();
 
-        $orderItem->order->user->notify(new OrderItemShippingDateUpdatedNotification($orderItem));
+        try {
+            $orderItem->shipping_date = $newDate;
+            $orderItem->save();
 
-        $orderItem->save();
+            $orderItem->load('order.user');
+
+            DB::afterCommit(fn () => event(new OrderItemShippingDateUpdated($orderItem)));
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     public function updateNote($order, $newNote)
@@ -345,41 +345,79 @@ class OrderService
 
     public function updateShippingAddress($order, $validated)
     {
-        $order->update(Arr::only($validated,[
-            'shipping_address_line_1',
-            'shipping_address_line_2',
-            'shipping_city',
-            'shipping_state',
-            'shipping_postcode',
-            'shipping_country_id',
-            'shipping_phone_number',
-            'shipping_date',
-        ]));
+        DB::beginTransaction();
 
-        $order->load('shippingCountry');
+        try{
+            $order->update(Arr::only($validated,[
+                'shipping_address_line_1',
+                'shipping_address_line_2',
+                'shipping_city',
+                'shipping_state',
+                'shipping_postcode',
+                'shipping_country_id',
+                'shipping_phone_number',
+                'shipping_date',
+            ]));
 
-        $order->user->notify(new OrderShippingAddressUpdatedNotification($order));
+            $order->load('shippingCountry');
+
+            DB::afterCommit(fn () => event(new OrderShippingAddressUpdated($order)));
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     public function updateBillingAddress($order, array $validated)
     {
-        $order->update(Arr::only($validated, [
-            'billing_address_line_1',
-            'billing_address_line_2',
-            'billing_city',
-            'billing_state',
-            'billing_postcode',
-            'billing_country_id',
-            'billing_phone_number',
-        ]));
+        DB::beginTransaction();
 
-        $order->load('billingCountry');
+        try {
+            $order->update(Arr::only($validated, [
+                'billing_address_line_1',
+                'billing_address_line_2',
+                'billing_city',
+                'billing_state',
+                'billing_postcode',
+                'billing_country_id',
+                'billing_phone_number',
+            ]));
 
-        $order->user->notify(new OrderBillingAddressUpdatedNotification($order));
+            $order->load('billingCountry');
+
+            DB::afterCommit(fn () => event(new OrderBillingAddressUpdated($order)));
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollback();
+            throw $e;
+        }
     }
 
     public function resendConfirmation($order)
     {
-        $order->user->notify(new RequestOrderConfirmationNotification($order));
+        $order->load('user');
+        event(new OrderConfirmationRequested($order));
+    }
+
+    public function markAsPaid(Order $order)
+    {
+        if ($order->order_status === AggregatedOrderStatus::Paid) {
+            return;
+        }
+
+        DB::transaction(function () use ($order) {
+            $order->order_status = AggregatedOrderStatus::Paid;
+            $order->save();
+
+            foreach ($order->items as $item) {
+                $item->order_status = OrderStatus::Paid;
+                $item->save();
+            }
+        });
+
+        event(new OrderPaid($order));
     }
 }

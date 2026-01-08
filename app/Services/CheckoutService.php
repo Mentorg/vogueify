@@ -4,26 +4,27 @@ namespace App\Services;
 
 use App\Enums\AggregatedOrderStatus;
 use App\Enums\OrderStatus;
+use App\Events\Order\CheckoutSessionCreated;
 use App\Models\Country;
 use App\Models\Order;
-use App\Notifications\Order\RequestOrderConfirmationNotification;
 use App\Pricing\Exceptions\InvalidCouponException;
 use App\Pricing\PricingService;
 use App\Pricing\Validators\CouponValidator;
-use Illuminate\Support\Facades\Log;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
-use Stripe\PaymentIntent;
 use Stripe\Checkout\Session;
 
 class CheckoutService
 {
     protected $pricingService;
+    protected $orderService;
 
-    public function __construct(PricingService $pricingService)
+    public function __construct(PricingService $pricingService, OrderService $orderService)
     {
         $this->pricingService = $pricingService;
+        $this->orderService = $orderService;
     }
 
     public function getCheckout($request)
@@ -93,72 +94,83 @@ class CheckoutService
     {
         Stripe::setApiKey(config('services.stripe.secret'));
 
-        $lineItems = [];
+        DB::beginTransaction();
 
-        foreach ($order->items as $item) {
-            $lineItems[] = [
-                'price_data' => [
-                    'currency' => 'eur',
-                    'product_data' => [
-                        'name' => $item->productVariation->product->name,
+        try {
+            $lineItems = [];
+
+            foreach ($order->items as $item) {
+                $lineItems[] = [
+                    'price_data' => [
+                        'currency' => 'eur',
+                        'product_data' => [
+                            'name' => $item->productVariation->product->name,
+                        ],
+                        'unit_amount' => intval($item->price_at_time * 100),
                     ],
-                    'unit_amount' => intval($item->price_at_time * 100),
-                ],
-                'quantity' => $item->quantity,
-            ];
-        }
+                    'quantity' => $item->quantity,
+                ];
+            }
 
-        if ($order->shipping_cost > 0) {
-            $lineItems[] = [
-                'price_data' => [
+            if ($order->shipping_cost > 0) {
+                $lineItems[] = [
+                    'price_data' => [
+                        'currency' => 'eur',
+                        'product_data' => ['name' => 'Shipping'],
+                        'unit_amount' => intval($order->shipping_cost * 100),
+                    ],
+                    'quantity' => 1,
+                ];
+            }
+
+            if ($order->tax_amount > 0) {
+                $lineItems[] = [
+                    'price_data' => [
+                        'currency' => 'eur',
+                        'product_data' => ['name' => 'Tax'],
+                        'unit_amount' => intval($order->tax_amount * 100),
+                    ],
+                    'quantity' => 1,
+                ];
+            }
+
+            $discounts = [];
+
+            if ($order->discount_amount > 0) {
+                $coupon = \Stripe\Coupon::create([
+                    'name' => $order->coupon_code ?? 'Order Discount',
+                    'amount_off' => intval($order->discount_amount * 100),
                     'currency' => 'eur',
-                    'product_data' => ['name' => 'Shipping'],
-                    'unit_amount' => intval($order->shipping_cost * 100),
-                ],
-                'quantity' => 1,
-            ];
-        }
+                    'duration' => 'once',
+                ]);
 
-        if ($order->tax_amount > 0) {
-            $lineItems[] = [
-                'price_data' => [
-                    'currency' => 'eur',
-                    'product_data' => ['name' => 'Tax'],
-                    'unit_amount' => intval($order->tax_amount * 100),
-                ],
-                'quantity' => 1,
-            ];
-        }
+                $discounts[] = ['coupon' => $coupon->id];
+            }
 
-        $discounts = [];
-
-        if ($order->discount_amount > 0) {
-            $coupon = \Stripe\Coupon::create([
-                'name' => $order->coupon_code ?? 'Order Discount',
-                'amount_off' => intval($order->discount_amount * 100),
-                'currency' => 'eur',
-                'duration' => 'once',
+            $session = Session::create([
+                'payment_method_types' => ['card'],
+                'mode' => 'payment',
+                'customer_email' => $order->user->email,
+                'line_items' => $lineItems,
+                'discounts' => $discounts,
+                'success_url' => route('checkout.success') . '?session_id={CHECKOUT_SESSION_ID}',
+                'cancel_url' => route('checkout.cancel', ['order' => $order->id]),
+                'metadata' => ['order_id' => $order->id],
             ]);
 
-            $discounts[] = ['coupon' => $coupon->id];
+            $order->update(['stripe_session_id' => $session->id]);
+
+            $order->load('user');
+
+            DB::afterCommit(fn () => event(new CheckoutSessionCreated($order, $session)));
+
+            DB::commit();
+
+            return $session;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
-
-        $session = Session::create([
-            'payment_method_types' => ['card'],
-            'mode' => 'payment',
-            'customer_email' => $order->user->email,
-            'line_items' => $lineItems,
-            'discounts' => $discounts,
-            'success_url' => route('checkout.success', ['session_id' => '{CHECKOUT_SESSION_ID}']),
-            'cancel_url' => route('checkout.cancel', [
-                'order' => $order->id,
-            ]),
-            'metadata' => ['order_id' => $order->id],
-        ]);
-
-        $order->update(['stripe_session_id' => $session->id]);
-
-        return $session;
     }
 
     public function success($request)
@@ -172,8 +184,6 @@ class CheckoutService
         }
 
         $session = StripeSession::retrieve($sessionId);
-        $paymentIntent = PaymentIntent::retrieve($session->payment_intent);
-
         $orderId = $session->metadata->order_id ?? null;
 
         if (!$orderId) {
@@ -183,38 +193,18 @@ class CheckoutService
         $order = Order::with(['items.productVariation.product', 'items.size', 'cart.cartItems', 'user'])->find($orderId);
 
         if (!$order) {
-            throw new Exception("Order with ID {$orderId} not found.");
+            throw new Exception("Order with ID {$orderId} not found!");
         }
 
-        if (
-            $session->payment_status === 'paid' &&
-            $order->order_status !== AggregatedOrderStatus::Paid
-        ) {
-            $order->order_status = AggregatedOrderStatus::Paid;
-            $order->save();
-
-            foreach ($order->items as $item) {
-                $item->order_status = OrderStatus::Paid;
-                $item->save();
-            }
-
-            if ($order->cart) {
-                $order->cart->cartItems()->delete();
-                $order->cart->is_locked = false;
-                $order->cart->save();
-            }
-
-            $order->user->notify(new RequestOrderConfirmationNotification($order));
-
-            Log::info('Order marked as paid via success page.', [
-                'order_id' => $order->id,
-                'session_id' => $sessionId,
-            ]);
+        if ($order->order_status === AggregatedOrderStatus::Paid) {
+            return [
+                'session' => $session,
+                'order' => $order
+            ];
         }
 
         return [
             'session' => $session,
-            'paymentIntent' => $paymentIntent,
             'order' => $order
         ];
     }
