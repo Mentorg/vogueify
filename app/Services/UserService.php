@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Country;
 use App\Models\User;
+use App\Notifications\User\AdminDeletedUserAccountNotification;
 
 class UserService
 {
@@ -14,6 +15,8 @@ class UserService
 
     public function delete($user)
     {
+        $user->notify(new AdminDeletedUserAccountNotification($user));
+
         return $user->delete();
     }
 

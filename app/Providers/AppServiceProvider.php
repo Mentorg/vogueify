@@ -22,6 +22,8 @@ use App\Listeners\Order\SendOrderItemShippingDateUpdatedNotification;
 use App\Listeners\Order\SendOrderItemStatusUpdatedNotification;
 use App\Listeners\Order\SendOrderShippingAddressUpdatedNotification;
 use App\Listeners\Order\SendOrderStatusUpdatedNotification;
+use App\Models\User;
+use App\Observers\UserObserver;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
@@ -60,5 +62,7 @@ class AppServiceProvider extends ServiceProvider
 
             Event::listen(OrderPaid::class, HandleOrderPaid::class);
             Event::listen(OrderPaid::class, MarkOrderItemAsPaid::class);
+
+            User::observe(UserObserver::class);
     }
 }
