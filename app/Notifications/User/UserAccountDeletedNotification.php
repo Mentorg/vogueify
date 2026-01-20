@@ -2,13 +2,12 @@
 
 namespace App\Notifications\User;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class UserAccountDeletedNotification extends Notification
+class UserAccountDeletedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
