@@ -2,6 +2,10 @@
 
 namespace App\Services;
 
+use App\Events\Product\ProductCreated;
+use App\Events\Product\ProductDeleted;
+use App\Events\Product\ProductUpdated;
+use App\Events\Product\ProductVariationDeleted;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use Illuminate\Support\Facades\DB;
@@ -86,6 +90,10 @@ class ProductService
                 }
             }
 
+            DB::afterCommit(fn () => event(
+                new ProductCreated($product->id)
+            ));
+
             DB::commit();
             return $product;
         } catch (Exception $e) {
@@ -157,45 +165,28 @@ class ProductService
 
 
             $existingVariationIds = $product->productVariations->pluck('id')->toArray();
-
-            $incomingVariationIds = collect($request->variations)
-                                    ->pluck('id')
-                                    ->filter()
-                                    ->toArray();
+            $incomingVariationIds = collect($request->variations)->pluck('id')->filter()->toArray();
 
             $variationsToDelete = array_diff($existingVariationIds, $incomingVariationIds);
 
-            if (!empty($variationsToDelete)) {
-                $variationsWithImagesToDelete = $product->productVariations()->whereIn('id', $variationsToDelete)->get();
-                foreach ($variationsWithImagesToDelete as $var) {
-                    if ($var->image) {
-                        $oldPath = str_replace('/storage/', '', $var->image);
-                        if (Storage::disk('public')->exists($oldPath)) {
-                            Storage::disk('public')->delete($oldPath);
-                        }
-                    }
-                }
-                $product->productVariations()->whereIn('id', $variationsToDelete)->delete();
-            }
+            $deletedImagePaths = $product->productVariations()
+                ->whereIn('id', $variationsToDelete)
+                ->pluck('image')
+                ->filter()
+                ->toArray();
+
+            $product->productVariations()->whereIn('id', $variationsToDelete)->delete();
 
             foreach ($request->variations as $vIndex => $variationData) {
                 $variationId = $variationData['id'] ?? null;
-                $imageToStore = null;
+                $imageToStore = $variationData['image'] ?? null;
 
-                if (isset($variationData['image']) && $variationData['image'] instanceof UploadedFile) {
-                    $file = $variationData['image'];
-                    $storedPath = $file->store('products', 'public');
+                if (
+                    isset($variationData['image']) &&
+                    $variationData['image'] instanceof UploadedFile
+                    ) {
+                    $storedPath = $variationData['image']->store('products', 'public');
                     $imageToStore = Storage::url($storedPath);
-
-                    if ($variationId) {
-                        $existingVariation = $product->productVariations->firstWhere('id', $variationId);
-                        if ($existingVariation && $existingVariation->image) {
-                            $oldPath = str_replace('/storage/', '', $existingVariation->image);
-                            Storage::disk('public')->delete($oldPath);
-                        }
-                    }
-                } elseif (isset($variationData['image']) && is_string($variationData['image'])) {
-                    $imageToStore = $variationData['image'];
                 }
 
                 $variation = $product->productVariations()->updateOrCreate(
@@ -212,12 +203,16 @@ class ProductService
                     ]
                 );
 
-                $pivotData = [];
-                foreach ($variationData['sizes'] ?? [] as $sizeData) {
-                    $pivotData[$sizeData['id']] = ['stock' => $sizeData['stock']];
-                }
+                $pivotData = collect($variationData['sizes'] ?? [])
+                    ->mapWithKeys(fn ($s) => [$s['id'] => ['stock' => $s['stock']]])
+                    ->toArray();
+
                 $variation->sizes()->sync($pivotData);
             }
+
+            DB::afterCommit(fn () => event(
+                new ProductUpdated($product, $deletedImagePaths)
+            ));
 
             DB::commit();
         } catch (Exception $e) {
@@ -239,12 +234,29 @@ class ProductService
         if ($hasOrders) {
             return false;
         }
-        return $product->delete();
+
+        DB::transaction(function () use ($product) {
+            $imagePaths = $product->productVariations()
+                ->pluck('image')
+                ->filter()
+                ->toArray();
+
+            $product->delete();
+
+            DB::afterCommit(fn () => event(
+                new ProductDeleted($imagePaths)
+            ));
+        });
+
+        return true;
     }
 
     public function deleteVariation($variation)
     {
-        $hasOrders = OrderItem::where('product_variation_id', $variation->id)->exists();
+        $hasOrders = OrderItem::where(
+            'product_variation_id',
+            $variation->id
+        )->exists();
 
         if ($hasOrders) {
             return false;
@@ -252,11 +264,30 @@ class ProductService
 
         $product = $variation->product;
 
-        if ($product->productVariations()->count() <= 1) {
-            return $this->delete($product);
-        }
+        DB::transaction(function () use ($variation, $product) {
+            if ($product->productVariations()->count() <= 1) {
+                $imagePaths = $product->productVariations()
+                    ->pluck('image')
+                    ->filter()
+                    ->toArray();
 
-        return $variation->delete();
+                $product->delete();
+
+                DB::afterCommit(fn () => event(
+                    new ProductDeleted($imagePaths)
+                ));
+            } else {
+                $imagePath = $variation->image;
+
+                $variation->delete();
+
+                DB::afterCommit(fn () => event(
+                    new ProductVariationDeleted($imagePath)
+                ));
+            }
+        });
+
+        return true;
     }
 
     public function getSearchResults()
