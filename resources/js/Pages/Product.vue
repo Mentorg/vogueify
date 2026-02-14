@@ -49,6 +49,23 @@ const handleClickOutside = (event) => {
   }
 }
 
+const isOutOfStock = computed(() => {
+  const variation = props.activeVariation
+  if (!variation) return true
+
+  if (Array.isArray(variation.sizes) && variation.sizes.length > 0) {
+    return variation.sizes.every(size => Number(size.pivot.stock) <= 0)
+  }
+
+  return Number(variation.stock) <= 0
+})
+
+const preventDecimal = (e) => {
+  if (['.', ',', 'e', 'E', '-', '+'].includes(e.key)) {
+    e.preventDefault()
+  }
+}
+
 const submitForm = () => {
   if (user === null) {
     router.visit(route('login'));
@@ -126,7 +143,7 @@ onBeforeUnmount(() => {
         <div class="relative">
           <img v-if="currentVariation && currentVariation.image" :src="'http://vogueify.test' + currentVariation.image"
             :alt="product.name" />
-          <div v-if="activeVariation.stock === 0"
+          <div v-if="isOutOfStock"
             class="absolute top-0 left-0 w-full h-full bg-slate-100/35 flex justify-center items-center">
             <div class="bg-white py-4 px-8">
               <p class="text-xl">{{ t('page.product.outOfStock') }}</p>
@@ -148,19 +165,24 @@ onBeforeUnmount(() => {
               </div>
               <div :class="{ 'hidden': activeVariation.stock === 0 }" class="flex gap-4">
                 <div class="w-full"
-                  v-if="product.category_id === 2 || product.category_id === 5 || (currentVariation && ['belt', 'bracelet', 'necklace', 'ring'].includes(currentVariation.type.type))">
-                  <InputLabel for="size_id"
-                    :value="`${t('common.product.size')} ${product.category_id === 0 ? '(L)' : product.category_id === 5 ? '(ml)' : '(in)'}`" />
+                  v-if="product.category_id === 2 || product.category_id === 6 || (currentVariation && ['belt', 'bracelet', 'ring'].includes(currentVariation.type.type))">
+                  <InputLabel for="size_id" :value="`${t('common.product.size')}`" />
                   <SelectInput name="size_id" id="size_id" v-model="form.size_id" key="product.id">
                     <option :disabled="size.pivot.stock < 1" v-for="size in sizeVariations" :value="size.id"
                       :key="size.id">
-                      {{ size.pivot.stock < 1 ? size.label + ` (${t('page.product.notAvailable')})` : size.label }}
-                        </option>
+                      {{size.pivot.stock < 1 ? (size.size_labels.find(l => l.system === 'EU')?.label ?? '') + `
+                        (${t('page.product.notAvailable')})`
+                        : size.size_labels.find(l => l.system === 'EU')?.label ?? ''
+                      }}
+                    </option>
+
                   </SelectInput>
                 </div>
                 <div :class="{ 'hidden': activeVariation.stock === 0 }" class="w-full">
                   <InputLabel for="quantity" :value="`${t('common.product.quantity')}`" />
-                  <TextInput id="quantity" type="number" name="quantity" v-model="form.quantity" min="1"
+                  <TextInput id="quantity" type="number" name="quantity" v-model.number="form.quantity" min="1" step="1"
+                    inputmode="numeric" @keydown="preventDecimal"
+                    @input="form.quantity = Math.max(1, Math.floor(Number(form.quantity) || 1))" pattern="[0-9]"
                     class="mt-1 block w-full" />
                 </div>
               </div>

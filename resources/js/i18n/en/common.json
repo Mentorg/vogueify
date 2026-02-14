@@ -17,7 +17,7 @@
     "accessories": "Accessory | Accessories",
     "jewelry": "Jewelry",
     "watches": "Watch | Watches",
-    "perfumes": "Perfume | Perfumes"
+    "fragrances": "Fragrance | Fragrances"
   },
   "subCategory": {
     "bag": {
@@ -446,7 +446,7 @@
       "price": "Price",
       "sku": "SKU",
       "stock": "Stock",
-      "stockTooltip": "Provide stock only for types of bags, scarves, sunglasses, earrings, watches",
+      "stockTooltip": "Provide stock only for types of bags, scarves, sunglasses, earrings, necklaces, watches",
       "sizeStock": "Sizes & Stock",
       "sizeStockTooltip": "Enter the available stock quantity for each size of this product",
       "size": "Size",

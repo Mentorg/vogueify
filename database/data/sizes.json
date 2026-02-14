@@ -1,44 +1,618 @@
 [
   {
-    "label": "6"
+    "sort_value": 35,
+    "product_type_id": 9
   },
   {
-    "label": "7"
+    "sort_value": 35.5,
+    "product_type_id": 9
   },
   {
-    "label": "8"
+    "sort_value": 36,
+    "product_type_id": 9
   },
   {
-    "label": "9"
+    "sort_value": 36.5,
+    "product_type_id": 9
   },
   {
-    "label": "10"
+    "sort_value": 37,
+    "product_type_id": 9
   },
   {
-    "label": "11"
+    "sort_value": 37.5,
+    "product_type_id": 9
   },
   {
-    "label": "S"
+    "sort_value": 38,
+    "product_type_id": 9
   },
   {
-    "label": "M"
+    "sort_value": 38.5,
+    "product_type_id": 9
   },
   {
-    "label": "L"
+    "sort_value": 39,
+    "product_type_id": 9
   },
   {
-    "label": "XL"
+    "sort_value": 39.5,
+    "product_type_id": 9
   },
   {
-    "label": "30ml"
+    "sort_value": 40,
+    "product_type_id": 9
   },
   {
-    "label": "50ml"
+    "sort_value": 40.5,
+    "product_type_id": 9
   },
   {
-    "label": "75ml"
+    "sort_value": 41,
+    "product_type_id": 9
   },
   {
-    "label": "100ml"
+    "sort_value": 41.5,
+    "product_type_id": 9
+  },
+  {
+    "sort_value": 42,
+    "product_type_id": 9
+  },
+  {
+    "sort_value": 42.5,
+    "product_type_id": 9
+  },
+  {
+    "sort_value": 43,
+    "product_type_id": 9
+  },
+  {
+    "sort_value": 43.5,
+    "product_type_id": 9
+  },
+  {
+    "sort_value": 44,
+    "product_type_id": 9
+  },
+  {
+    "sort_value": 44.5,
+    "product_type_id": 9
+  },
+  {
+    "sort_value": 45,
+    "product_type_id": 9
+  },
+  {
+    "sort_value": 45.5,
+    "product_type_id": 9
+  },
+  {
+    "sort_value": 46,
+    "product_type_id": 9
+  },
+  {
+    "sort_value": 46.5,
+    "product_type_id": 9
+  },
+  {
+    "sort_value": 47,
+    "product_type_id": 9
+  },
+  {
+    "sort_value": 48,
+    "product_type_id": 9
+  },
+  {
+    "sort_value": 35,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 35.5,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 36,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 36.5,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 37,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 37.5,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 38,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 38.5,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 39,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 39.5,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 40,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 40.5,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 41,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 41.5,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 42,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 42.5,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 43,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 43.5,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 44,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 44.5,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 45,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 45.5,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 46,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 46.5,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 47,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 48,
+    "product_type_id": 10
+  },
+  {
+    "sort_value": 35,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 35.5,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 36,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 36.5,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 37,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 37.5,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 38,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 38.5,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 39,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 39.5,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 40,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 40.5,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 41,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 41.5,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 42,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 42.5,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 43,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 43.5,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 44,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 44.5,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 45,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 45.5,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 46,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 46.5,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 47,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 48,
+    "product_type_id": 11
+  },
+  {
+    "sort_value": 35,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 35.5,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 36,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 36.5,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 37,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 37.5,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 38,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 38.5,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 39,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 39.5,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 40,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 40.5,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 41,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 41.5,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 42,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 42.5,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 43,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 43.5,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 44,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 44.5,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 45,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 45.5,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 46,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 46.5,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 47,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 48,
+    "product_type_id": 12
+  },
+  {
+    "sort_value": 70,
+    "product_type_id": 13
+  },
+  {
+    "sort_value": 75,
+    "product_type_id": 13
+  },
+  {
+    "sort_value": 80,
+    "product_type_id": 13
+  },
+  {
+    "sort_value": 85,
+    "product_type_id": 13
+  },
+  {
+    "sort_value": 90,
+    "product_type_id": 13
+  },
+  {
+    "sort_value": 95,
+    "product_type_id": 13
+  },
+  {
+    "sort_value": 100,
+    "product_type_id": 13
+  },
+  {
+    "sort_value": 105,
+    "product_type_id": 13
+  },
+  {
+    "sort_value": 110,
+    "product_type_id": 13
+  },
+  {
+    "sort_value": 115,
+    "product_type_id": 13
+  },
+  {
+    "sort_value": 120,
+    "product_type_id": 13
+  },
+  {
+    "sort_value": 16,
+    "product_type_id": 16
+  },
+  {
+    "sort_value": 17,
+    "product_type_id": 16
+  },
+  {
+    "sort_value": 18,
+    "product_type_id": 16
+  },
+  {
+    "sort_value": 19,
+    "product_type_id": 16
+  },
+  {
+    "sort_value": 20,
+    "product_type_id": 16
+  },
+  {
+    "sort_value": 21,
+    "product_type_id": 16
+  },
+  {
+    "sort_value": 22,
+    "product_type_id": 16
+  },
+  {
+    "sort_value": 48,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 49,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 50,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 51,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 52,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 53,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 54,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 55,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 56,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 57,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 58,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 59,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 60,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 61,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 62,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 63,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 64,
+    "product_type_id": 19
+  },
+  {
+    "sort_value": 10,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 15,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 30,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 35,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 40,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 50,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 60,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 75,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 80,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 90,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 100,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 125,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 150,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 200,
+    "product_type_id": 22
+  },
+  {
+    "sort_value": 300,
+    "product_type_id": 22
   }
 ]

@@ -129,8 +129,8 @@ onBeforeUnmount(() => {
                 :openSubmenu="openSubmenu" />
             </li>
             <li>
-              <MenuLink :hoveredItem="hoveredItem" :activeItem="activeItem" :content="t('common.category.perfumes', 2)"
-                :openSubmenu="openSubmenu" />
+              <MenuLink :hoveredItem="hoveredItem" :activeItem="activeItem"
+                :content="t('common.category.fragrances', 2)" :openSubmenu="openSubmenu" />
             </li>
           </ul>
         </nav>
@@ -210,22 +210,22 @@ onBeforeUnmount(() => {
             <li class="text-lg">
               <Link href="/products?category=watches"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.menuLabel.all') }} {{ t('common.category.watches', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.menuLabel.all') }} {{ t('common.category.watches', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
           </ul>
         </nav>
       </div>
-      <div v-if="activeSubmenu === t('common.category.perfumes', 2)"
+      <div v-if="activeSubmenu === t('common.category.fragrances', 2)"
         class="submenu absolute top-0 bg-white py-[4.5rem] px-6 z-50 h-dvh border-r md:w-[16rem] md:left-[16rem] lg:w-[30rem] lg:left-[30rem]">
         <nav class="flex flex-col w-full">
           <ul class="flex flex-col text-xl py-8">
             <li class="text-lg">
               <MenuLink :hoveredItem="hoveredItem" :activeItem="activeItem" :content="t('common.menuLabel.category', 2)"
-                :openThirdLevelSubmenu="openThirdLevelSubmenu" :thirdLevelContent="'PerfumesCategoriesThirdLevel'" />
+                :openThirdLevelSubmenu="openThirdLevelSubmenu" :thirdLevelContent="'FragrancesCategoriesThirdLevel'" />
             </li>
           </ul>
         </nav>
@@ -238,55 +238,55 @@ onBeforeUnmount(() => {
             <li class="text-lg">
               <Link href="/products?gender=women&category=bags"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.category.bags', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.category.bags', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=women&category=shoes"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.category.shoes', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.category.shoes', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=women&category=accessories"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.category.accessories', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.category.accessories', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=women&category=jewelry"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.category.jewelry', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.category.jewelry', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=women&category=watches"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.category.watches', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.category.watches', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
-              <Link href="/products?gender=women&category=perfumes"
+              <Link href="/products?gender=women&category=fragrances"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.category.perfumes', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.category.fragrances', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
           </ul>
@@ -299,55 +299,55 @@ onBeforeUnmount(() => {
             <li class="text-lg">
               <Link href="/products?gender=men&category=bags"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.category.bags', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.category.bags', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=men&category=shoes"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.category.shoes', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.category.shoes', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=men&category=accessories"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.category.accessories', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.category.accessories', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=men&category=jewelry"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.category.jewelry', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.category.jewelry', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=men&category=watches"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.category.watches', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.category.watches', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
-              <Link href="/products?gender=men&category=perfumes"
+              <Link href="/products?gender=men&category=fragrances"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.category.perfumes', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.category.fragrances', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
           </ul>
@@ -360,46 +360,46 @@ onBeforeUnmount(() => {
             <li class="text-lg">
               <Link href="/products?gender=women&category=bags"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.menuLabel.all') }} {{ t('common.category.bags', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.menuLabel.all') }} {{ t('common.category.bags', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=women&category=bags&type=handbag"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.bag.handbag', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.bag.handbag', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=women&category=bags&type=bucket"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.bag.bucket', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.bag.bucket', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=women&category=bags&type=hobo"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.bag.hobo', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.bag.hobo', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=women&category=bags&type=envelope"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.bag.envelope', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.bag.envelope', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
           </ul>
@@ -412,37 +412,37 @@ onBeforeUnmount(() => {
             <li class="text-lg">
               <Link href="/products?gender=women&category=shoes"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.menuLabel.all') }} {{ t('common.category.shoes', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.menuLabel.all') }} {{ t('common.category.shoes', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=women&category=shoes&type=sneakers"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.shoe.sneaker', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.shoe.sneaker', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=women&category=shoes&type=ankle-boots"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.shoe.ankle', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.shoe.ankle', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=women&category=shoes&type=sandals"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.shoe.sandal', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.shoe.sandal', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
           </ul>
@@ -455,28 +455,28 @@ onBeforeUnmount(() => {
             <li class="text-lg">
               <Link href="/products?gender=women&category=accessories&type=scarf"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.accessory.scarf', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.accessory.scarf', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=women&category=accessories&type=sunglasses"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.accessory.sunglasses', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.accessory.sunglasses', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=women&category=accessories&type=belt"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.accessory.belt', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.accessory.belt', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
           </ul>
@@ -489,46 +489,46 @@ onBeforeUnmount(() => {
             <li class="text-lg">
               <Link href="/products?gender=men&category=bags"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.menuLabel.all') }} {{ t('common.category.bags', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.menuLabel.all') }} {{ t('common.category.bags', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=men&category=bags&type=backpack"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.bag.backpack', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.bag.backpack', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=men&category=bags&type=satchel"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.bag.satchel', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.bag.satchel', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=men&category=bags&type=clutch"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.bag.clutch', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.bag.clutch', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=men&category=bags&type=fanny"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.bag.fanny', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.bag.fanny', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
           </ul>
@@ -541,28 +541,28 @@ onBeforeUnmount(() => {
             <li class="text-lg">
               <Link href="/products?gender=men&category=shoes"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.menuLabel.all') }} {{ t('common.category.shoes', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.menuLabel.all') }} {{ t('common.category.shoes', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=men&category=shoes&type=sneakers"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.shoe.sneaker', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.shoe.sneaker', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=men&category=shoes&type=dress-boots"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.shoe.boot', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.shoe.boot', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
           </ul>
@@ -575,28 +575,28 @@ onBeforeUnmount(() => {
             <li class="text-lg">
               <Link href="/products?gender=men&category=accessories&type=belt"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.accessory.belt', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.accessory.belt', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=men&category=accessories&type=scarf"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.accessory.scarf', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.accessory.scarf', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?gender=men&category=accessories&type=sunglasses"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.accessory.sunglasses', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.accessory.sunglasses', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
           </ul>
@@ -609,84 +609,84 @@ onBeforeUnmount(() => {
             <li class="text-lg">
               <Link href="/products?category=jewelry"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.menuLabel.all', 2) }} {{ t('common.menuLabel.fine', 2) }} {{
-                t('common.category.jewelry', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.menuLabel.all', 2) }} {{ t('common.menuLabel.fine', 2) }} {{
+                  t('common.category.jewelry', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?category=jewelry&type=bracelet"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.jewelry.bracelet', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.jewelry.bracelet', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?category=jewelry&type=necklace"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.jewelry.necklace', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.jewelry.necklace', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?category=jewelry&type=earrings"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.jewelry.earring', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.jewelry.earring', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
               <Link href="/products?category=jewelry&type=ring"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.subCategory.jewelry.ring', 2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.subCategory.jewelry.ring', 2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
           </ul>
         </nav>
       </div>
-      <div v-if="activeThirdLevelSubmenu === 'PerfumesCategoriesThirdLevel'"
+      <div v-if="activeThirdLevelSubmenu === 'FragrancesCategoriesThirdLevel'"
         class="submenu absolute top-0 bg-white py-[4.5rem] px-6 z-50 h-dvh border-r overflow-y-auto pb-[10rem] md:left-[32rem] md:w-[16rem] lg:left-[60rem] lg:w-[30rem]">
         <nav class="flex flex-col w-full">
           <ul class="flex flex-col text-xl py-8">
             <li class="text-lg">
-              <Link href="/products?category=perfumes"
+              <Link href="/products?category=fragrances"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.menuLabel.all', 2) }} {{ t('common.category.perfumes', 2)
-              }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.menuLabel.all', 2) }} {{ t('common.category.fragrances', 2)
+                }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
-              <Link href="/products?gender=women&category=perfumes"
+              <Link href="/products?gender=women&category=fragrances"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.gender.woman', 2) }} {{ t('common.category.perfumes',
-                2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.gender.woman', 2) }} {{ t('common.category.fragrances',
+                  2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
             <li class="text-lg">
-              <Link href="/products?gender=men&category=perfumes"
+              <Link href="/products?gender=men&category=fragrances"
                 class="flex justify-between w-full group py-3 relative overflow-hidden">
-              <span class="relative">{{ t('common.gender.man', 2) }} {{ t('common.category.perfumes',
-                2) }}
-                <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
-                  class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
-              </span>
+                <span class="relative">{{ t('common.gender.man', 2) }} {{ t('common.category.fragrances',
+                  2) }}
+                  <span :class="{ 'scale-x-100': activeItem === content || hoveredItem === content }"
+                    class="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-in-out"></span>
+                </span>
               </Link>
             </li>
           </ul>

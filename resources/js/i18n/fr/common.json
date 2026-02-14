@@ -17,7 +17,7 @@
     "accessories": "Accessoire | Accessoires",
     "jewelry": "Bijou | Bijoux",
     "watches": "Montre | Montres",
-    "perfumes": "Parfum | Parfums"
+    "fragrances": "Parfum | Parfums"
   },
   "subCategory": {
     "bag": {
@@ -446,7 +446,7 @@
       "price": "Prix",
       "sku": "SKU",
       "stock": "Stock",
-      "stockTooltip": "Indiquez le stock uniquement pour les sacs, écharpes, lunettes de soleil, boucles d'oreilles, montres",
+      "stockTooltip": "Indiquez le stock uniquement pour les types de sacs, écharpes, lunettes de soleil, boucles d'oreilles, colliers, montres",
       "sizeStock": "Tailles et stock",
       "sizeStockTooltip": "Entrez la quantité de stock disponible pour chaque taille de ce produit",
       "size": "Taille",

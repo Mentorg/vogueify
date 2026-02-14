@@ -17,7 +17,7 @@
     "accessories": "Accessoire | Accessoires",
     "jewelry": "Schmuck | Schmuckstücke",
     "watches": "Uhr | Uhren",
-    "perfumes": "Parfüm | Parfüms"
+    "fragrances": "Duft | Düfte"
   },
   "subCategory": {
     "bag": {
@@ -446,7 +446,7 @@
       "price": "Preis",
       "sku": "SKU",
       "stock": "Bestand",
-      "stockTooltip": "Bestand nur für Taschen, Schals, Sonnenbrillen, Ohrringe und Uhren angeben",
+      "stockTooltip": "Bestand nur für folgende Artikeltypen angeben: Taschen, Schals, Sonnenbrillen, Ohrringe, Halsketten, Uhren",
       "sizeStock": "Größen & Bestand",
       "sizeStockTooltip": "Geben Sie die verfügbare Bestandsmenge für jede Größe dieses Produkts ein",
       "size": "Größe",

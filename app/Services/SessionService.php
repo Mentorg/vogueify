@@ -9,7 +9,7 @@ class SessionService
     public function create ($request)
     {
         $validated = $request->validate([
-            'email' => 'required|email|exists:users',
+            'email' => 'required|email',
             'password' => 'required'
         ]);
 

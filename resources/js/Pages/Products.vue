@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from "vue";
+import { computed, defineProps } from "vue";
 import { Head, Link } from "@inertiajs/vue3";
 import { PhHeart } from "@phosphor-icons/vue";
 import { useI18n } from 'vue-i18n';
@@ -18,6 +18,21 @@ const productGender = capitalize(props.products[0].product.gender);
 
 const { toggleWishlist } = useWishlist();
 
+const productsOutOfStock = computed(() => {
+  if (!props.products) return {};
+
+  const result = {};
+  props.products.forEach(product => {
+    if (Array.isArray(product.sizes) && product.sizes.length > 0) {
+      result[product.id] = product.sizes.every(size => Number(size.pivot?.stock ?? 0) <= 0);
+    } else {
+      result[product.id] = Number(product.stock) <= 0;
+    }
+  });
+
+  return result;
+});
+
 </script>
 
 <template>
@@ -31,7 +46,7 @@ const { toggleWishlist } = useWishlist();
           <Link :href="route('product.show', { product: variation.product.slug, variation: variation.sku })"
             class="relative">
             <img :src="variation.image" :alt="variation.product.name" />
-            <div v-if="variation.stock === 0"
+            <div v-if="productsOutOfStock[variation.id]"
               class="absolute top-0 left-0 w-full h-full bg-slate-100/35 flex justify-center items-center">
               <div class="bg-white py-4 px-8">
                 <p class="text-xl">{{ t('page.product.outOfStock') }}</p>

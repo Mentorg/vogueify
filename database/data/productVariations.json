@@ -1763,7 +1763,7 @@
     "image": "women-necklace-1.jpg",
     "price": 70,
     "sku": "W323361",
-    "stock": null,
+    "stock": 10,
     "product_id": 161,
     "color_id": null,
     "primary_color_id": null,
@@ -1774,7 +1774,7 @@
     "image": "women-necklace-2.jpg",
     "price": 65,
     "sku": "W323362",
-    "stock": null,
+    "stock": 10,
     "product_id": 162,
     "color_id": null,
     "primary_color_id": null,
@@ -1785,7 +1785,7 @@
     "image": "women-necklace-3.jpg",
     "price": 80,
     "sku": "W323363",
-    "stock": null,
+    "stock": 10,
     "product_id": 163,
     "color_id": null,
     "primary_color_id": null,
@@ -1796,7 +1796,7 @@
     "image": "women-necklace-4.jpg",
     "price": 75,
     "sku": "W323364",
-    "stock": null,
+    "stock": 10,
     "product_id": 164,
     "color_id": null,
     "primary_color_id": null,
@@ -1807,7 +1807,7 @@
     "image": "women-necklace-5.jpg",
     "price": 85,
     "sku": "W323365",
-    "stock": null,
+    "stock": 10,
     "product_id": 165,
     "color_id": null,
     "primary_color_id": null,
@@ -1818,7 +1818,7 @@
     "image": "women-necklace-6.jpg",
     "price": 90,
     "sku": "W323366",
-    "stock": null,
+    "stock": 10,
     "product_id": 166,
     "color_id": null,
     "primary_color_id": null,
@@ -1829,7 +1829,7 @@
     "image": "women-necklace-7.jpg",
     "price": 95,
     "sku": "W323367",
-    "stock": null,
+    "stock": 10,
     "product_id": 167,
     "color_id": null,
     "primary_color_id": null,
@@ -1840,7 +1840,7 @@
     "image": "women-necklace-8.jpg",
     "price": 100,
     "sku": "W323368",
-    "stock": null,
+    "stock": 10,
     "product_id": 168,
     "color_id": null,
     "primary_color_id": null,
@@ -2043,7 +2043,7 @@
     "color_id": null,
     "primary_color_id": null,
     "secondary_color_id": null,
-    "product_type_id": 23
+    "product_type_id": 22
   },
   {
     "image": "women-perfume-3.jpg",
@@ -2054,7 +2054,7 @@
     "color_id": null,
     "primary_color_id": null,
     "secondary_color_id": null,
-    "product_type_id": 24
+    "product_type_id": 22
   },
   {
     "image": "women-perfume-4.jpg",
@@ -2065,7 +2065,7 @@
     "color_id": null,
     "primary_color_id": null,
     "secondary_color_id": null,
-    "product_type_id": 25
+    "product_type_id": 22
   },
   {
     "image": "women-perfume-5.jpg",
@@ -2076,7 +2076,7 @@
     "color_id": null,
     "primary_color_id": null,
     "secondary_color_id": null,
-    "product_type_id": 26
+    "product_type_id": 22
   },
   {
     "image": "women-perfume-6.jpg",
@@ -2098,7 +2098,7 @@
     "color_id": null,
     "primary_color_id": null,
     "secondary_color_id": null,
-    "product_type_id": 23
+    "product_type_id": 22
   },
   {
     "image": "women-perfume-8.jpg",
@@ -2109,7 +2109,7 @@
     "color_id": null,
     "primary_color_id": null,
     "secondary_color_id": null,
-    "product_type_id": 24
+    "product_type_id": 22
   },
   {
     "image": "men-perfume-1.jpg",
@@ -2120,7 +2120,7 @@
     "color_id": null,
     "primary_color_id": null,
     "secondary_color_id": null,
-    "product_type_id": 25
+    "product_type_id": 22
   },
   {
     "image": "men-perfume-2.jpg",
@@ -2131,7 +2131,7 @@
     "color_id": null,
     "primary_color_id": null,
     "secondary_color_id": null,
-    "product_type_id": 26
+    "product_type_id": 22
   },
   {
     "image": "men-perfume-3.jpg",
@@ -2153,7 +2153,7 @@
     "color_id": null,
     "primary_color_id": null,
     "secondary_color_id": null,
-    "product_type_id": 23
+    "product_type_id": 22
   },
   {
     "image": "men-perfume-5.jpg",
@@ -2164,7 +2164,7 @@
     "color_id": null,
     "primary_color_id": null,
     "secondary_color_id": null,
-    "product_type_id": 24
+    "product_type_id": 22
   },
   {
     "image": "men-perfume-6.jpg",
@@ -2175,7 +2175,7 @@
     "color_id": null,
     "primary_color_id": null,
     "secondary_color_id": null,
-    "product_type_id": 25
+    "product_type_id": 22
   },
   {
     "image": "men-perfume-7.jpg",
@@ -2186,7 +2186,7 @@
     "color_id": null,
     "primary_color_id": null,
     "secondary_color_id": null,
-    "product_type_id": 26
+    "product_type_id": 22
   },
   {
     "image": "men-perfume-8.jpg",
@@ -2643,7 +2643,7 @@
     "image": "men-necklace-1.jpg",
     "price": 115,
     "sku": "A1L3Z8B",
-    "stock": null,
+    "stock": 10,
     "product_id": 241,
     "color_id": null,
     "primary_color_id": null,
@@ -2654,7 +2654,7 @@
     "image": "men-necklace-2.jpg",
     "price": 115,
     "sku": "V4N5R6W",
-    "stock": null,
+    "stock": 10,
     "product_id": 242,
     "color_id": null,
     "primary_color_id": null,
@@ -2665,7 +2665,7 @@
     "image": "men-necklace-3.jpg",
     "price": 115,
     "sku": "T0K1E9C",
-    "stock": null,
+    "stock": 10,
     "product_id": 243,
     "color_id": null,
     "primary_color_id": null,
@@ -2676,7 +2676,7 @@
     "image": "men-necklace-4.jpg",
     "price": 115,
     "sku": "M6Q4H2X",
-    "stock": null,
+    "stock": 10,
     "product_id": 244,
     "color_id": null,
     "primary_color_id": null,
@@ -2687,7 +2687,7 @@
     "image": "men-necklace-5.jpg",
     "price": 115,
     "sku": "Z2P8L0Y",
-    "stock": null,
+    "stock": 10,
     "product_id": 245,
     "color_id": null,
     "primary_color_id": null,
@@ -2698,7 +2698,7 @@
     "image": "men-necklace-6.jpg",
     "price": 115,
     "sku": "W7F3S1G",
-    "stock": null,
+    "stock": 10,
     "product_id": 246,
     "color_id": null,
     "primary_color_id": null,
@@ -2709,7 +2709,7 @@
     "image": "men-necklace-7.jpg",
     "price": 115,
     "sku": "E5R9D6M",
-    "stock": null,
+    "stock": 10,
     "product_id": 247,
     "color_id": null,
     "primary_color_id": null,
@@ -2720,7 +2720,7 @@
     "image": "men-necklace-8.jpg",
     "price": 115,
     "sku": "Y8J1Q3A",
-    "stock": null,
+    "stock": 10,
     "product_id": 248,
     "color_id": null,
     "primary_color_id": null,

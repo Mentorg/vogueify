@@ -18,7 +18,7 @@ class SizeSeeder extends Seeder
         $data = json_decode($json, true);
 
         foreach ($data as $item) {
-            Size::create([ 'label' => $item['label'] ]);
+            Size::create([ 'sort_value' => $item['sort_value'], 'product_type_id' => $item['product_type_id'] ]);
         }
     }
 }

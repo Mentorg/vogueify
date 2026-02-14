@@ -66,7 +66,7 @@ const continueOrder = () => {
 
 <template>
   <DashboardLayout :title="`${t('page.user.orders.singleOrder.label', { order: orderDetails?.order?.order_number })}`">
-    <div class="flex justify-center mb-6">
+    <div v-if="orderDetails.order.order_status === 'pending'" class="flex justify-center mb-6">
       <form @submit="continueOrder">
         <button class="flex bg-indigo-600 py-2 px-6 text-white transition-all hover:bg-indigo-700">
           {{ t('page.user.orders.singleOrder.continueOrder') }}

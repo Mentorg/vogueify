@@ -107,7 +107,7 @@ class ProductService
     public function getProduct($product, ?string $variation = null)
     {
         $product->load(
-            'productVariations.sizes',
+            'productVariations.sizes.sizeLabels',
             'productVariations.color',
             'productVariations.primaryColor',
             'productVariations.secondaryColor',

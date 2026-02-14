@@ -12,6 +12,7 @@ import AdminDashboard from '@/Layouts/AdminDashboard.vue';
 import ErrorMessage from '@/Components/ErrorMessage.vue';
 import Tooltip from '@/Components/Tooltip.vue';
 import { capitalize } from '@/utils/capitalize';
+import { computed } from 'vue';
 
 const props = defineProps({
   product: Object,
@@ -24,6 +25,13 @@ const props = defineProps({
 
 const { t } = useI18n();
 const toast = useToast();
+
+const sizeMap = Object.fromEntries(
+  props.sizes.map(size => [
+    size.id,
+    size.size_labels?.[0]?.label
+  ])
+)
 
 const form = useForm({
   id: props.product.id,
@@ -45,9 +53,9 @@ const form = useForm({
     primary_color_id: variation.primary_color_id,
     secondary_color_id: variation.secondary_color_id,
     collapsed: false,
-    sizes: variation.sizes.map((size) => ({
+    sizes: variation.sizes.map(size => ({
       id: size.id,
-      label: size.label,
+      label: sizeMap[size.id] ?? null,
       stock: size.pivot?.stock ?? 0,
     })),
   })) || [],
@@ -141,7 +149,6 @@ const submitForm = () => {
       } else {
       }
     }
-
 
     formData.append(`variations[${vIndex}][product_type_id]`, variation.product_type_id);
     formData.append(`variations[${vIndex}][color_id]`, variation.color_id ?? '');
@@ -265,7 +272,7 @@ const submitForm = () => {
             <div v-for="(variation, index) in form.variations" :key="variation.id" class="border p-4 rounded-md mb-6">
               <div class="flex justify-between items-center mb-2">
                 <h3 class="font-semibold">{{ t('common.form.product.variation', { variation: index + 1 })
-                }}</h3>
+                  }}</h3>
                 <div class="flex gap-2">
                   <button @click="toggleCollapse(index)" type="button" class="text-sm text-blue-600">
                     {{ variation.collapsed ? t('common.form.product.expand') : t('common.form.product.collapse') }}
@@ -317,7 +324,7 @@ const submitForm = () => {
                   </div>
                   <div>
                     <InputLabel :value="t('common.form.product.price')" />
-                    <TextInput type="number" v-model="variation.price" min="0.01" />
+                    <TextInput type="number" v-model="variation.price" min="0.01" step="0.01" />
                     <ErrorMessage :message="errors[`variations.${index}.price`]" />
                   </div>
                   <div>
@@ -325,7 +332,7 @@ const submitForm = () => {
                     <TextInput v-model="variation.sku" />
                     <ErrorMessage :message="errors[`variations.${index}.sku`]" />
                   </div>
-                  <div>
+                  <div v-if="!variation.sizes || Object.keys(variation.sizes).length === 0">
                     <div class="flex items-center gap-2">
                       <InputLabel :value="t('common.form.product.stock')" />
                       <Tooltip :message="t('common.form.product.stockTooltip')" />
@@ -342,7 +349,7 @@ const submitForm = () => {
                   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
                     <div v-for="(size, sIndex) in variation.sizes" :key="size.id">
                       <InputLabel :for="`size_${index}_${sIndex}`"
-                        :value="`${t('common.form.product.size')} ${props.sizes[sIndex].label}`" />
+                        :value="`${t('common.form.product.size')} ${size.label ?? t('common.form.product.unknown')}`" />
                       <TextInput type="number" :id="`size_${index}_${sIndex}`"
                         v-model.number="variation.sizes[sIndex].stock" min="0" />
                       <ErrorMessage :message="errors[`variations.${index}.sizes.${sIndex}.stock`]" />
@@ -372,7 +379,7 @@ const submitForm = () => {
           <div class="flex flex-col">
             <h3 class="font-medium text-base">{{ t('common.form.product.gender') }}</h3>
             <p class="mt-4">{{ capitalize(form.gender) || t('common.gender.unisex')
-            }}</p>
+              }}</p>
           </div>
           <div>
             <h3 class="font-medium text-base">{{ t('common.form.product.category') }}</h3>
@@ -428,9 +435,9 @@ const submitForm = () => {
                 <h3 class="font-medium text-base mb-2">{{ t('common.form.product.stockPerSize') }}</h3>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                   <div v-for="(sizeStock, sIndex) in variation.sizes" :key="sizeStock.id">
-                    <span class="font-medium">{{ t('common.form.product.size') }} {{ props.sizes[sIndex]?.label ||
-                      t('common.form.product.unknown') }}: </span>
-                    <span>{{ sizeStock.stock }}</span>
+                    <span>
+                      {{ t('common.form.product.size') }}: {{ sizeStock.label ?? t('common.form.product.unknown') }}
+                    </span>
                   </div>
                 </div>
               </div>

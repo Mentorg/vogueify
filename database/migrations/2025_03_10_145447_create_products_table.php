@@ -62,8 +62,20 @@ return new class extends Migration
 
         Schema::create('sizes', function (Blueprint $table) {
             $table->id();
-            $table->string('label');
-            $table->timestamps();
+            $table->decimal('sort_value', 5, 2)->nullable();
+            $table->foreignId('product_type_id')->constrained('product_types')->cascadeOnDelete();
+            $table->unique(['product_type_id', 'sort_value']);
+        });
+
+        Schema::create('size_labels', function (Blueprint $table) {
+            $table->id();
+            $table->string('label', 10);
+            $table->string('system', 10);
+            $table->string('unit', 10)->nullable();
+            $table->enum('gender', ['men', 'women', 'unisex'])->nullable();
+            $table->foreignId('size_id')->constrained('sizes')->cascadeOnDelete();
+            $table->unique(['size_id', 'system', 'gender']);
+            $table->index(['system', 'gender']);
         });
 
         Schema::create('product_variation_size', function (Blueprint $table) {

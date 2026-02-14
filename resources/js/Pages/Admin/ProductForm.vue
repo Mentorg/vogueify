@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from 'vue';
+import { computed, reactive, watch } from 'vue';
 import { Head, router, useForm } from '@inertiajs/vue3';
 import { PhX } from '@phosphor-icons/vue';
 import { useToast } from 'vue-toast-notification';
@@ -27,7 +27,7 @@ const toast = useToast();
 const form = useForm({
   name: '',
   description: '',
-  gender: 'unisex',
+  gender: 'men',
   features: [{ title: '', description: '' }],
   category_id: props.categories.length ? props.categories[0].id : '',
   variations: []
@@ -43,17 +43,73 @@ const removeFeature = (index) => {
   form.features.splice(index, 1)
 }
 
+const productTypeGenderRules = {
+  men: [1, 2, 3, 4],
+  women: [5, 6, 7, 8],
+}
+
+const productTypesForCategory = computed(() => {
+  let filtered = props.types.filter(
+    type => type.category_id === form.category_id
+  )
+
+  if (form.category_id === 1 && form.gender !== 'unisex') {
+    const genderAllowedIds = productTypeGenderRules[form.gender] ?? []
+    filtered = filtered.filter(type =>
+      genderAllowedIds.includes(type.id)
+    )
+  }
+
+  return filtered
+})
+
+const getSizesForVariation = (variation) => {
+  if (!variation.product_type_id) return []
+
+  let sizes = props.sizes.filter(size => {
+    if (form.category_id === 2) {
+      return size.product_type_id === 9
+    }
+
+    return size.product_type_id === variation.product_type_id
+  })
+
+  if (form.category_id === 2 && form.gender !== 'unisex') {
+    sizes = sizes.filter(size =>
+      size.size_labels.some(label => label.gender === form.gender)
+    )
+  }
+
+  return sizes
+}
+
+const canAddVariation = computed(() => {
+  return Boolean(form.name && form.description && form.gender && form.category_id)
+})
+
+const sizeById = computed(() => {
+  const map = {}
+
+  props.sizes.forEach(size => {
+    map[size.id] = size
+  })
+
+  return map
+})
+
 const addVariation = () => {
+  const types = productTypesForCategory.value;
+
   form.variations.push({
     image: null,
-    product_type_id: props.types.length ? props.types[0].id : '',
-    color_id: null,
-    primary_color_id: null,
-    secondary_color_id: null,
+    product_type_id: types.length ? types[0].id : null,
+    color_id: '',
+    primary_color_id: '',
+    secondary_color_id: '',
     price: '',
     sku: '',
     stock: '',
-    sizes: props.sizes.map(size => ({ id: size.id, stock: 0 })),
+    sizes: [],
     collapsed: false
   });
 }
@@ -86,6 +142,17 @@ const handleImageChange = (event, index) => {
   }
 }
 
+const preventDecimal = (e) => {
+  if (e.key === '.' || e.key === ',') {
+    e.preventDefault()
+  }
+}
+
+const sanitizeInteger = (value) => {
+  if (value === null || value === '') return null
+  return Math.max(0, Math.floor(Number(value)))
+}
+
 const getColorHex = (colorId) => {
   const color = props.colors.find(c => String(c.id) === String(colorId));
   return color?.hex_code?.startsWith('#') ? color.hex_code : `#${color?.hex_code || '000000'}`;
@@ -109,14 +176,16 @@ const submitForm = () => {
       formData.append(`variations[${i}][image]`, variation.image);
     }
     formData.append(`variations[${i}][product_type_id]`, variation.product_type_id);
-    formData.append(`variations[${i}][color_id]`, variation.color_id);
-    formData.append(`variations[${i}][primary_color_id]`, variation.primary_color_id);
-    formData.append(`variations[${i}][secondary_color_id]`, variation.secondary_color_id);
+    ['color_id', 'primary_color_id', 'secondary_color_id'].forEach(field => {
+      const value = variation[field] === '' ? null : variation[field]
+
+      formData.append(`variations[${i}][${field}]`, value ?? '')
+    })
     formData.append(`variations[${i}][price]`, variation.price);
     formData.append(`variations[${i}][sku]`, variation.sku);
     formData.append(`variations[${i}][stock]`, variation.stock);
 
-    variation.sizes.forEach((size, j) => {
+    Object.values(variation.sizes).forEach((size, j) => {
       formData.append(`variations[${i}][sizes][${j}][id]`, size.id);
       formData.append(`variations[${i}][sizes][${j}][stock]`, size.stock);
     });
@@ -142,6 +211,42 @@ const submitForm = () => {
     }
   })
 }
+
+watch(
+  () => [form.category_id, form.gender],
+  () => {
+    const types = productTypesForCategory.value
+
+    form.variations.forEach(variation => {
+      if (
+        variation.product_type_id &&
+        !types.some(type => type.id === variation.product_type_id)
+      ) {
+        variation.product_type_id = types.length ? types[0].id : null
+      }
+    })
+  }
+)
+
+watch(
+  () => form.variations.map(v => v.product_type_id),
+  () => {
+    form.variations.forEach(variation => {
+      const sizes = getSizesForVariation(variation)
+
+      const map = {}
+      sizes.forEach(size => {
+        map[size.id] = variation.sizes?.[size.id] ?? {
+          id: size.id,
+          stock: 0,
+        }
+      })
+
+      variation.sizes = map
+    })
+  },
+  { deep: true }
+)
 </script>
 
 <template>
@@ -168,13 +273,13 @@ const submitForm = () => {
             <ErrorMessage :message="errors.description" />
           </div>
           <div>
-            <InputLabel for="gender" :value="t('common.form.product.gender')" />
-            <SelectInput name="gender" id="gender" v-model="form.gender">
-              <option value="unisex">{{ t('common.gender.unisex') }}</option>
-              <option value="men">{{ t('common.gender.man') }}</option>
-              <option value="women">{{ t('common.gender.woman') }}</option>
+            <InputLabel for="category" :value="t('common.form.product.category')" />
+            <SelectInput name="category" id="category" v-model.number="form.category_id">
+              <option v-for="category in categories" :value="category.id" :key="category.id">
+                {{ capitalize(category.name) }}
+              </option>
             </SelectInput>
-            <ErrorMessage :message="errors.gender" />
+            <ErrorMessage :message="errors.category" />
           </div>
           <div>
             <p>{{ t('common.form.product.feature', 2) }}</p>
@@ -200,20 +305,20 @@ const submitForm = () => {
             </div>
           </div>
           <div>
-            <InputLabel for="category" :value="t('common.form.product.category')" />
-            <SelectInput name="category" id="category" v-model="form.category_id">
-              <option v-for="category in categories" :value="category.id" :key="category.id">
-                {{ capitalize(category.name) }}
-              </option>
+            <InputLabel for="gender" :value="t('common.form.product.gender')" />
+            <SelectInput name="gender" id="gender" v-model="form.gender">
+              <option value="men">{{ t('common.gender.man', 2) }}</option>
+              <option value="women">{{ t('common.gender.woman', 2) }}</option>
+              <option value="unisex">{{ t('common.gender.unisex') }}</option>
             </SelectInput>
-            <ErrorMessage :message="errors.category" />
+            <ErrorMessage :message="errors.gender" />
           </div>
           <div class="mt-8">
             <h2 class="text-xl font-medium mb-2">{{ t('common.form.product.headingProductVariation') }}</h2>
             <div v-for="(variation, index) in form.variations" :key="index" class="border p-4 rounded-md mb-6">
               <div class="flex justify-between items-center mb-2">
                 <h3 class="font-semibold">{{ t('common.form.product.variation', { variation: index + 1 })
-                  }}</h3>
+                }}</h3>
                 <div class="flex gap-2">
                   <button @click="toggleCollapse(index)" type="button" class="text-sm text-blue-600">
                     {{ variation.collapsed ? t('common.form.product.expand') : t('common.form.product.collapse') }}
@@ -234,38 +339,40 @@ const submitForm = () => {
                   </div>
                   <div>
                     <InputLabel :value="t('common.form.product.productType')" />
-                    <SelectInput v-model="variation.product_type_id">
-                      <option v-for="type in types" :key="type.id" :value="type.id">{{ type.label }}</option>
+                    <SelectInput v-model.number="variation.product_type_id" :disabled="!productTypesForCategory.length">
+                      <option v-for="type in productTypesForCategory" :key="type.id" :value="type.id">{{ type.label }}
+                      </option>
                     </SelectInput>
                     <ErrorMessage :message="errors[`variations.${index}.product_type_id`]" />
                   </div>
                   <div>
                     <InputLabel :value="t('common.form.product.color')" />
-                    <SelectInput v-model="variation.color_id">
-                      <option :value="null">{{ t('common.form.product.none') }}</option>
+                    <SelectInput v-model.number="variation.color_id">
+                      <option value="">{{ t('common.form.product.none') }}</option>
                       <option v-for="color in colors" :key="color.id" :value="color.id">{{ color.name }}</option>
                     </SelectInput>
                     <ErrorMessage :message="errors[`variations.${index}.color_id`]" />
                   </div>
                   <div>
                     <InputLabel :value="t('common.form.product.primaryColor')" />
-                    <SelectInput v-model="variation.primary_color_id">
-                      <option :value="null">{{ t('common.form.product.none') }}</option>
+                    <SelectInput v-model.number="variation.primary_color_id">
+                      <option value="">{{ t('common.form.product.none') }}</option>
                       <option v-for="color in colors" :key="color.id" :value="color.id">{{ color.name }}</option>
                     </SelectInput>
                     <ErrorMessage :message="errors[`variations.${index}.primary_color_id`]" />
                   </div>
                   <div>
                     <InputLabel :value="t('common.form.product.secondaryColor')" />
-                    <SelectInput v-model="variation.secondary_color_id">
-                      <option :value="null">{{ t('common.form.product.none') }}</option>
+                    <SelectInput v-model.number="variation.secondary_color_id">
+                      <option value="">{{ t('common.form.product.none') }}</option>
                       <option v-for="color in colors" :key="color.id" :value="color.id">{{ color.name }}</option>
                     </SelectInput>
                     <ErrorMessage :message="errors[`variations.${index}.secondary_color_id`]" />
                   </div>
                   <div>
                     <InputLabel :value="t('common.form.product.price')" />
-                    <TextInput type="number" v-model="variation.price" min="0.01" />
+                    <TextInput type="number" v-model.number="variation.price" min="0.01" step="0.01"
+                      inputmode="decimal" />
                     <ErrorMessage :message="errors[`variations.${index}.price`]" />
                   </div>
                   <div>
@@ -273,34 +380,36 @@ const submitForm = () => {
                     <TextInput v-model="variation.sku" />
                     <ErrorMessage :message="errors[`variations.${index}.sku`]" />
                   </div>
-                  <div>
+                  <div v-if="!variation.sizes || Object.keys(variation.sizes).length === 0">
                     <div class="flex items-center gap-2">
                       <InputLabel :value="t('common.form.product.stock')" />
                       <Tooltip :message="t('common.form.product.stockTooltip')" />
                     </div>
-                    <TextInput v-model="variation.stock" type="number" min="0" />
+                    <TextInput v-model.number="variation.stock" type="number" min="0" step="1" inputmode="numeric"
+                      @keydown="preventDecimal" @input="variation.stock = sanitizeInteger(variation.stock)" />
                     <ErrorMessage :message="errors[`variations.${index}.stock`]" />
                   </div>
                 </div>
-                <div class="mt-4">
+                <div v-if="getSizesForVariation(variation).length" class="mt-4">
                   <div class="flex items-center gap-2">
                     <h4 class="font-medium">{{ t('common.form.product.sizeStock') }}</h4>
                     <Tooltip :message="t('common.form.product.sizeStockTooltip')" />
                   </div>
                   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-2">
-                    <div v-for="(size, sIndex) in variation.sizes" :key="sIndex">
-                      <InputLabel :for="`size_${index}_${sIndex}`"
-                        :value="`${t('common.form.product.size')} ${props.sizes[sIndex].label}`" />
-                      <TextInput type="number" :id="`size_${index}_${sIndex}`" v-model="variation.sizes[sIndex].stock"
-                        min="0" />
-                      <ErrorMessage :message="errors[`variations.${index}.sizes.${sIndex}.stock`]" />
+                    <div class="textInputs" v-for="size in getSizesForVariation(variation)" :key="size.id">
+                      <InputLabel :for="`size_${index}_${size.id}`"
+                        :value="`${t('common.form.product.size')} ${size.size_labels[0].label}`" />
+                      <TextInput type="number" :id="`size_${index}_${size.id}`"
+                        v-model.number="variation.sizes[size.id].stock" min="0" step="1" inputmode="numeric"
+                        @keydown="preventDecimal"
+                        @input="variation.sizes[size.id].stock = sanitizeInteger(variation.sizes[size.id].stock)" />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <button type="button" @click="addVariation"
-              class="border border-black text-black text-sm px-6 py-2 rounded-full transition-all hover:bg-black hover:text-white">
+            <button type="button" @click="addVariation" :disabled="!canAddVariation"
+              class="border border-black text-black text-sm px-6 py-2 rounded-full transition-all hover:bg-black hover:text-white disabled:border-slate-400 disabled:text-slate-400 disabled:hover:bg-white disabled:hover:cursor-not-allowed">
               {{ t('common.button.addVariation') }}
             </button>
           </div>
@@ -320,7 +429,7 @@ const submitForm = () => {
           <div class="flex flex-col">
             <h3 class="font-medium text-base">{{ t('common.form.product.gender') }}</h3>
             <p class="mt-4">{{ capitalize(form.gender) || t('common.gender.unisex')
-              }}</p>
+            }}</p>
           </div>
           <div>
             <h3 class="font-medium text-base">{{ t('common.form.product.category') }}</h3>
@@ -375,9 +484,14 @@ const submitForm = () => {
               <div class="mt-4">
                 <h3 class="font-medium text-base mb-2">{{ t('common.form.product.stockPerSize') }}</h3>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-                  <div v-for="(sizeStock, sIndex) in variation.sizes" :key="sIndex">
-                    <span class="font-medium">{{ t('common.form.product.size') }} {{ props.sizes[sIndex]?.label ||
-                      t('common.form.product.unknown') }}: </span>
+                  <div v-for="(sizeStock, sizeId) in variation.sizes" :key="sizeId">
+                    <span class="font-medium">
+                      {{ t('common.form.product.size') }}
+                      {{
+                        sizeById[sizeId]?.size_labels?.[0]?.label
+                        ?? t('common.form.product.unknown')
+                      }}:
+                    </span>
                     <span>{{ sizeStock.stock }}</span>
                   </div>
                 </div>

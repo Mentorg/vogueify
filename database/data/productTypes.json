@@ -105,28 +105,8 @@
     "category_id": 5
   },
   {
-    "type": "eau-fraiche",
-    "label": "Eau Fraiche",
-    "category_id": 6
-  },
-  {
-    "type": "eau-de-cologne",
-    "label": "Eau de Cologne",
-    "category_id": 6
-  },
-  {
-    "type": "eau-de-toilette",
-    "label": "Eau de Toilette",
-    "category_id": 6
-  },
-  {
-    "type": "eau-de-parfum",
-    "label": "Eau de Parfum",
-    "category_id": 6
-  },
-  {
-    "type": "pure-perfume",
-    "label": "Pure Perfume",
+    "type": "perfume",
+    "label": "Perfume",
     "category_id": 6
   }
 ]

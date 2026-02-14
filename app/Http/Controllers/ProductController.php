@@ -42,7 +42,7 @@ class ProductController extends Controller
         return Inertia::render('Admin/ProductForm', [
             'categories' => ProductCategory::all(),
             'types' => ProductType::all(),
-            'sizes' => Size::all(),
+            'sizes' => Size::with('sizeLabels')->get(),
             'colors' => Color::all()
         ]);
     }
@@ -77,7 +77,7 @@ class ProductController extends Controller
             'product' => $product,
             'categories' => ProductCategory::all(),
             'types' => ProductType::all(),
-            'sizes' => Size::all(),
+            'sizes' => Size::with('sizeLabels')->get(),
             'colors' => Color::all()
         ]);
     }
