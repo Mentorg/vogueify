@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class OrderShippingAddressUpdatedNotification extends Notification
+class OrderShippingAddressUpdatedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

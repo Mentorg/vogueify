@@ -153,6 +153,12 @@ The app will be accessible at:
 http://localhost:8000
 ```
 
+Start the queue worker:
+
+```
+php artisan queue:work
+```
+
 ### 9. Run the Frontend Development Server
 
 For frontend hot-reloading and asset compilation, run:
