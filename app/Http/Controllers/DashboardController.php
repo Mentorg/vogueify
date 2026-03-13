@@ -6,11 +6,13 @@ use App\Enums\AggregatedOrderStatus;
 use App\Enums\OrderStatus;
 use App\Models\Country;
 use App\Models\Coupon;
+use App\Models\Invoice;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use App\Services\CouponService;
 use App\Services\HomeService;
+use App\Services\InvoiceService;
 use App\Services\OrderService;
 use App\Services\ProductService;
 use App\Services\UserService;
@@ -26,13 +28,15 @@ class DashboardController extends Controller
     protected $userService;
     protected $orderService;
     protected $couponService;
+    protected $invoiceService;
 
     public function __construct(
         ProductService $productService,
         HomeService $homeService,
         UserService $userService,
         OrderService $orderService,
-        CouponService $couponService
+        CouponService $couponService,
+        InvoiceService $invoiceService,
     )
     {
         $this->productService = $productService;
@@ -40,6 +44,7 @@ class DashboardController extends Controller
         $this->userService = $userService;
         $this->orderService = $orderService;
         $this->couponService = $couponService;
+        $this->invoiceService = $invoiceService;
     }
 
     public function index()
@@ -105,6 +110,15 @@ class DashboardController extends Controller
             'products' => $products,
             'productVariations' => $productVariations,
             'users' => $users,
+        ]);
+    }
+
+    public function getInvoices()
+    {
+        $this->authorize('viewAny', Invoice::class);
+
+        return Inertia::render('Admin/Invoices', [
+            'invoices' => $this->invoiceService->getInvoices(),
         ]);
     }
 }

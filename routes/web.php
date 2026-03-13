@@ -5,6 +5,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SessionController;
@@ -64,6 +65,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->group(function() {
     Route::get('/orders', [DashboardController::class, 'getOrders'])->name('admin.orders');
     Route::get('/orders/{order}', [DashboardController::class, 'getOrder'])->name('admin.order');
     Route::get('/coupons', [DashboardController::class, 'getCoupons'])->name('admin.coupons');
+    Route::get('/invoices', [DashboardController::class, 'getInvoices'])->name('admin.invoices');
 });
 
 Route::middleware(['auth', 'verified'])->prefix('cart')->group(function () {
@@ -101,6 +103,14 @@ Route::middleware(['auth', 'verified'])->prefix('wishlist')->group(function() {
     Route::post('/', [WishlistController::class, 'store'])->name('wishlist.store');
     Route::delete('/{id}', [WishlistController::class, 'destroy'])->name('wishlist.destroy');
     Route::post('/{productVariation}', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
+});
+
+Route::middleware(['auth', 'verified'])->prefix('invoices')->group(function() {
+    Route::get('/{invoice}', [InvoiceController::class, 'show'])->name('admin.invoices.view');
+    Route::get('/{invoice}/download', [InvoiceController::class, 'download'])->name('admin.invoices.download');
+    Route::post('/{invoice}/resend', [InvoiceController::class, 'resend'])->name('admin.invoice.resend');
+    Route::patch('/{invoice}/cancel', [InvoiceController::class, 'cancel'])->name('admin.invoice.cancel');
+    Route::patch('/{invoice}/updateNote', [InvoiceController::class, 'updateNote'])->name('admin.invoice.updateNote');
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

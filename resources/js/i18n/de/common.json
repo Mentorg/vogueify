@@ -111,6 +111,24 @@
         }
       }
     },
+    "invoice": {
+      "resendInvoice": {
+        "title": "Rechnung {invoice} an {user} erneut senden",
+        "content": "Möchten Sie die Rechnung {invoice} wirklich an {user} erneut senden"
+      },
+      "cancelInvoice": {
+        "title": "Rechnung {invoice} stornieren",
+        "content": "Sind Sie sicher, dass Sie die Rechnung {invoice} stornieren möchten"
+      },
+      "addInvoiceNote": {
+        "title": "Interne Notiz hinzufügen"
+      },
+      "updateInvoiceNote": {
+        "title": "Interne Notiz von {internalNote} aktualisieren",
+        "content": "Sind Sie sicher, dass Sie die interne Notiz von {internalNote} aktualisieren möchten",
+        "internalNote": "Interne Notiz"
+      }
+    },
     "coupon": {
       "couponNotifyUsers": {
         "title": "Benutzer über {coupon} benachrichtigen",
@@ -192,6 +210,20 @@
         "errorMessage": "Erstellen des Produkts fehlgeschlagen! Bitte überprüfen Sie das Formular auf Fehler"
       }
     },
+    "invoice": {
+      "invoiceResend": {
+        "successMessage": "Rechnung erfolgreich erneut gesendet",
+        "errorMessage": "Fehler beim erneuten Senden der Rechnung"
+      },
+      "invoiceCancel": {
+        "successMessage": "Rechnung erfolgreich storniert",
+        "errorMessage": "Fehler beim Stornieren der Rechnung"
+      },
+      "invoiceInternalNoteUpdate": {
+        "successMessage": "Interne Notiz der Rechnung erfolgreich aktualisiert.",
+        "errorMessage": "Fehler beim Aktualisieren der internen Notiz der Rechnung."
+      }
+    },
     "coupon": {
       "couponDelete": {
         "successMessage": "Gutschein erfolgreich gelöscht",
@@ -257,6 +289,24 @@
     "create": "Erstellen",
     "update": "Aktualisieren",
     "apply": "Anwenden",
+    "add": "Hinzufügen",
+    "downloadPDF": "PDF herunterladen",
+    "downloadInvoicePDFTitle": "Diese Rechnung als PDF herunterladen",
+    "cancelResendInvoiceTitle": "Das erneute Senden dieser Rechnung abbrechen",
+    "resendInvoice": "Rechnung erneut senden",
+    "resendInvoiceTitle": "Diese Rechnung erneut an den Kunden senden",
+    "abortInvoiceCancellation": "Rechnung behalten",
+    "abortInvoiceCancellationTitle": "Diese Rechnung behalten",
+    "confirmInvoiceCancellation": "Rechnung stornieren",
+    "confirmInvoiceCancellationTitle": "Diese Rechnung stornieren",
+    "markAsCancelled": "Als storniert markieren",
+    "markAsCancelledTitle": "Rechnung als storniert markieren",
+    "viewOrder": "Bestellung anzeigen",
+    "viewOrderTitle": "Bestellung der Rechnung anzeigen",
+    "addInternalNote": "Interne Notiz hinzufügen",
+    "addInternalNoteTitle": "Interne Notiz für diese Rechnung hinzufügen",
+    "updateInternalNote": "Interne Notiz aktualisieren",
+    "updateInternalNoteTitle": "Interne Notiz für diese Rechnung aktualisieren",
     "deleteVariation": "Variante löschen",
     "deleteProduct": "Produkt löschen",
     "first": "Erste",
@@ -362,6 +412,13 @@
       "status": "Status",
       "customer": "Kunde",
       "total": "Gesamt"
+    },
+    "invoice": {
+      "caption": "Kundenrechnungen",
+      "customerName": "Kundenname",
+      "issuedAt": "Ausgestellt am",
+      "amount": "Betrag",
+      "status": "Status"
     },
     "user": {
       "caption": "Benutzerkonten",

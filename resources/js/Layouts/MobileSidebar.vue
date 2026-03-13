@@ -55,6 +55,11 @@ const user = usePage().props.auth.user;
         </Link>
       </li>
       <li>
+        <Link href="/admin/invoices" class="flex gap-y-4 w-full text-left px-4 py-2">
+          {{ t('page.admin.invoices') }}
+        </Link>
+      </li>
+      <li>
         <Link href="/admin/coupons" class="flex gap-y-4 w-full text-left px-4 py-2">
           {{ t('page.admin.coupons') }}
         </Link>

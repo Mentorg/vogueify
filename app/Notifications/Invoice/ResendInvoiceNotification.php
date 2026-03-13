@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Notifications\Order;
+namespace App\Notifications\Invoice;
 
-use App\Models\Order;
+use App\Models\Invoice;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Queue\SerializesModels;
 
-class OrderConfirmedNotification extends Notification implements ShouldQueue
+class ResendInvoiceNotification extends Notification implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    protected Order $order;
+    protected $invoice;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(Order $order)
+    public function __construct(Invoice $invoice)
     {
-        $this->order = $order->load(['user', 'invoice']);
+        $this->invoice = $invoice;
     }
 
     /**
@@ -38,20 +38,21 @@ class OrderConfirmedNotification extends Notification implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $order = $this->order->loadMissing('invoice');
-
         $mail = (new MailMessage)
-            ->subject('Your Order Has Been Confirmed')
-            ->greeting('Hello ' . $notifiable->name . ',')
-            ->line("We're happy to let you know that your order (#{$order->order_number}) has been confirmed.")
-            ->line('Our team will begin preparing it shortly.')
-            ->line('Thank you for shopping with us!');
+            ->subject("Invoice {$this->invoice->invoice_number} - Copy of Your Invoice")
+            ->greeting("Hello {$notifiable->name},")
+            ->line("Attached to this email you can find another copy of your invoice.")
+            ->line("Order number: #{$this->invoice->order->order_number}")
+            ->line("Invoice number: {$this->invoice->invoice_number}")
+            ->line("Invoice Date: {$this->invoice->issued_at}")
+            ->line("Total Amount: {$this->invoice->total}")
+            ->line('Thank you for using our platform!');
 
-        if ($order->invoice?->file_path) {
+        if ($this->invoice?->file_path) {
             $mail->attach(
-                storage_path('app/public/' . $order->invoice->file_path),
+                storage_path('app/public/' . $this->invoice->file_path),
                 [
-                    'as' => 'Invoice-' . $order->invoice->invoice_number . '.pdf',
+                    'as' => 'Invoice-' . $this->invoice->invoice_number . '.pdf',
                     'mime' => 'application/pdf',
                 ]
             );
@@ -68,8 +69,7 @@ class OrderConfirmedNotification extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         return [
-            'order_id' => $this->order->id,
-            'message' => 'Order #' . $this->order->order_number . ' has been confirmed.'
+            //
         ];
     }
 }

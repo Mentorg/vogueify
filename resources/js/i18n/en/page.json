@@ -77,6 +77,7 @@
     "orderDetails": "Order Details",
     "createProduct": "Create Product",
     "updateProduct": "Update {product}",
+    "invoices": "Invoices",
     "coupons": "Coupons",
     "createCoupon": "Create Coupon",
     "updateCoupon": "Update {coupon}",
@@ -211,6 +212,24 @@
     "country": "Country",
     "billingAddress": "Billing Address",
     "sameAsShipping": "Same as shipping address"
+  },
+  "invoiceDetails": {
+    "issuedAt": "Issued At",
+    "profilePictureAlt": "{name}'s profile picture",
+    "orderID": "Order ID",
+    "billingAddress": "Billing Address",
+    "invoiceID": "Invoice ID",
+    "shippingAddress": "Shipping Address",
+    "internalNote": "Internal Note",
+    "items": "Items",
+    "itemImageAlt": "{name}'s image",
+    "sku": "SKU",
+    "qty": "QTY",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "shipping": "Shipping",
+    "tax": "Tax"
   },
   "couponDetails": {
     "coupon": "{coupon} Coupon",

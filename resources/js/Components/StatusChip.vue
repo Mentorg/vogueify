@@ -13,7 +13,7 @@ const props = defineProps({
   <div :class="[
     {
       'bg-yellow-100': status === 'pending',
-      'bg-green-100': status === 'paid' || status === 'active',
+      'bg-green-100': status === 'paid' || status === 'active' || status === 'issued',
       'bg-blue-100': status === 'confirmed',
       'bg-red-200': status === 'canceled' || status === 'archived',
       'bg-gray-200': status === 'processing' || status === 'inactive',

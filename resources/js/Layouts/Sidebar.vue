@@ -37,6 +37,13 @@ const user = usePage().props.auth.user;
         </Link>
       </li>
       <li>
+        <Link :href="route('admin.invoices')"
+          class="flex w-full py-2 px-4 rounded-md transition-all hover:bg-black hover:text-white"
+          :class="{ 'bg-black text-white': currentPath === '/admin/invoices' }">
+          {{ t('page.admin.invoices') }}
+        </Link>
+      </li>
+      <li>
         <Link :href="route('admin.coupons')"
           class="flex w-full py-2 px-4 rounded-md transition-all hover:bg-black hover:text-white"
           :class="{ 'bg-black text-white': currentPath === '/admin/coupons' }">

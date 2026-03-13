@@ -2,22 +2,23 @@
 
 namespace App\Providers;
 
+use App\Events\Order\InvoiceCreated;
 use App\Events\Order\OrderBillingAddressUpdated;
 use App\Events\Order\OrderCancelled;
 use App\Events\Order\OrderConfirmationRequested;
-use App\Events\Order\OrderConfirmed;
 use App\Events\Order\OrderItemShippingDateUpdated;
 use App\Events\Order\OrderItemStatusUpdated;
 use App\Events\Order\OrderPaid;
 use App\Events\Order\OrderShippingAddressUpdated;
 use App\Events\Order\OrderStatusUpdated;
+use App\Listeners\Order\GenerateInvoice;
+use App\Listeners\Order\GenerateInvoicePdf;
 use App\Listeners\Order\HandleOrderPaid;
 use App\Listeners\Order\MarkOrderItemAsPaid;
 use App\Listeners\Order\RestockOrderItems;
 use App\Listeners\Order\SendOrderBillingAddressUpdatedNotification;
 use App\Listeners\Order\SendOrderCancelledNotification;
 use App\Listeners\Order\SendOrderConfirmationRequestNotification;
-use App\Listeners\Order\SendOrderConfirmedNotification;
 use App\Listeners\Order\SendOrderItemShippingDateUpdatedNotification;
 use App\Listeners\Order\SendOrderItemStatusUpdatedNotification;
 use App\Listeners\Order\SendOrderShippingAddressUpdatedNotification;
@@ -42,8 +43,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-            Event::listen(OrderConfirmed::class, SendOrderConfirmedNotification::class);
-
             Event::listen(OrderCancelled::class, SendOrderCancelledNotification::class);
 
             Event::listen(OrderCancelled::class, RestockOrderItems::class);
@@ -62,6 +61,9 @@ class AppServiceProvider extends ServiceProvider
 
             Event::listen(OrderPaid::class, HandleOrderPaid::class);
             Event::listen(OrderPaid::class, MarkOrderItemAsPaid::class);
+            Event::listen(OrderPaid::class, GenerateInvoice::class);
+
+            Event::listen(InvoiceCreated::class, GenerateInvoicePdf::class);
 
             User::observe(UserObserver::class);
     }

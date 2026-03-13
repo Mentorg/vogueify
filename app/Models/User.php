@@ -138,4 +138,9 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withPivot('uses')
             ->withTimestamps();
     }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

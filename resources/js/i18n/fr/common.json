@@ -111,6 +111,24 @@
         }
       }
     },
+    "invoice": {
+      "resendInvoice": {
+        "title": "Renvoyer la facture {invoice} à {user}",
+        "content": "Êtes-vous sûr de vouloir renvoyer la facture {invoice} à {user}"
+      },
+      "cancelInvoice": {
+        "title": "Annuler la facture {invoice}",
+        "content": "Êtes-vous sûr de vouloir annuler la facture {invoice}"
+      },
+      "addInvoiceNote": {
+        "title": "Ajouter une note interne"
+      },
+      "updateInvoiceNote": {
+        "title": "Mettre à jour la note interne de {internalNote}",
+        "content": "Êtes-vous sûr de vouloir mettre à jour la note interne de {internalNote}",
+        "internalNote": "Note interne"
+      }
+    },
     "coupon": {
       "couponNotifyUsers": {
         "title": "Notifier les utilisateurs à propos de {coupon}",
@@ -192,6 +210,20 @@
         "errorMessage": "Échec de la création du produit! Veuillez vérifier le formulaire pour des erreurs"
       }
     },
+    "invoice": {
+      "invoiceResend": {
+        "successMessage": "La facture a été renvoyée avec succès",
+        "errorMessage": "Échec du renvoi de la facture"
+      },
+      "invoiceCancel": {
+        "successMessage": "La facture a été annulée avec succès",
+        "errorMessage": "Échec de l'annulation de la facture"
+      },
+      "invoiceInternalNoteUpdate": {
+        "successMessage": "La note interne de la facture a été mise à jour avec succès",
+        "errorMessage": "Échec de la mise à jour de la note interne de la facture"
+      }
+    },
     "coupon": {
       "couponDelete": {
         "successMessage": "Coupon supprimé avec succès",
@@ -257,6 +289,24 @@
     "create": "Créer",
     "update": "Mettre à jour",
     "apply": "Appliquer",
+    "add": "Ajouter",
+    "downloadPDF": "Télécharger le PDF",
+    "downloadInvoicePDFTitle": "Télécharger cette facture au format PDF",
+    "cancelResendInvoiceTitle": "Annuler l'envoi de cette facture",
+    "resendInvoice": "Renvoyer la facture",
+    "resendInvoiceTitle": "Renvoyer cette facture au client",
+    "abortInvoiceCancellation": "Conserver la facture",
+    "abortInvoiceCancellationTitle": "Conserver cette facture",
+    "confirmInvoiceCancellation": "Annuler la facture",
+    "confirmInvoiceCancellationTitle": "Annuler cette facture",
+    "markAsCancelled": "Marquer comme annulé",
+    "markAsCancelledTitle": "Marquer la facture comme annulée",
+    "viewOrder": "Voir la commande",
+    "viewOrderTitle": "Voir la commande de la facture",
+    "addInternalNote": "Ajouter une note interne",
+    "addInternalNoteTitle": "Ajouter une note interne pour cette facture",
+    "updateInternalNote": "Mettre à jour la note interne",
+    "updateInternalNoteTitle": "Mettre à jour la note interne pour cette facture",
     "deleteVariation": "Supprimer la variante",
     "deleteProduct": "Supprimer le produit",
     "first": "Premier",
@@ -362,6 +412,13 @@
       "status": "Statut",
       "customer": "Client",
       "total": "Total"
+    },
+    "invoice": {
+      "caption": "Factures clients",
+      "customerName": "Nom du client",
+      "issuedAt": "Date d'émission",
+      "amount": "Montant",
+      "status": "Statut"
     },
     "user": {
       "caption": "Comptes utilisateurs",

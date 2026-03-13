@@ -77,6 +77,7 @@
     "orderDetails": "Bestelldetails",
     "createProduct": "Produkt erstellen",
     "updateProduct": "{product} aktualisieren",
+    "invoices": "Rechnungen",
     "coupons": "Gutscheine",
     "createCoupon": "Gutschein erstellen",
     "updateCoupon": "Aktualisiere {coupon}",
@@ -211,6 +212,24 @@
     "country": "Land",
     "billingAddress": "Rechnungsadresse",
     "sameAsShipping": "Wie Lieferadresse"
+  },
+  "invoiceDetails": {
+    "issuedAt": "Ausgestellt am",
+    "profilePictureAlt": "{name}s Profilbild",
+    "orderID": "Bestell-ID",
+    "billingAddress": "Rechnungsadresse",
+    "invoiceID": "Rechnungs-ID",
+    "shippingAddress": "Lieferadresse",
+    "internalNote": "Interne Notiz",
+    "items": "Artikel",
+    "itemImageAlt": "Bild von {name}",
+    "sku": "Artikelnummer",
+    "qty": "Menge",
+    "total": "Gesamt",
+    "subtotal": "Zwischensumme",
+    "discount": "Rabatt",
+    "shipping": "Versand",
+    "tax": "Steuer"
   },
   "couponDetails": {
     "coupon": "{coupon} Gutschein",

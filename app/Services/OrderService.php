@@ -238,6 +238,15 @@ class OrderService
 
     public function confirm(Order $order): array
     {
+        $order->load('invoice');
+
+        if (!$order->invoice || !$order->invoice->pdf_generated) {
+            return [
+                'status' => 'info',
+                'message' => 'Invoice is still being generated. Please try again in a moment.',
+            ];
+        }
+
         if ($order->order_status !== AggregatedOrderStatus::Paid) {
             return [
                 'status' => 'info',
@@ -245,29 +254,33 @@ class OrderService
             ];
         }
 
-        DB::beginTransaction();
-
         try {
-            $order->update([
-                'order_status' => AggregatedOrderStatus::Confirmed
-            ]);
+            DB::transaction(function () use ($order) {
 
-            foreach ($order->items as $item) {
-                $item->order_status = OrderStatus::Confirmed;
-                $item->save();
-            }
+                $order->update([
+                    'order_status' => AggregatedOrderStatus::Confirmed
+                ]);
 
-            DB::afterCommit(fn () => event(new OrderConfirmed($order)));
+                foreach ($order->items as $item) {
+                    $item->update([
+                        'order_status' => OrderStatus::Confirmed
+                    ]);
+                }
 
-            DB::commit();
+                DB::afterCommit(fn () => event(new OrderConfirmed($order)));
+            });
 
             return [
                 'status' => 'success',
                 'message' => 'Order confirmed successfully!',
             ];
+
         } catch (Exception $e) {
-            DB::rollBack();
-            throw new Exception('Failed to confirm the order. Reason: ' . $e->getMessage(), $e->getCode(), $e);
+            throw new Exception(
+                'Failed to confirm the order. Reason: ' . $e->getMessage(),
+                $e->getCode(),
+                $e
+            );
         }
     }
 

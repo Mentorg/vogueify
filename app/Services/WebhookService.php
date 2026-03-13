@@ -55,11 +55,12 @@ class WebhookService
         }
 
         DB::transaction(function () use ($order) {
-
             $order->order_status = AggregatedOrderStatus::Paid;
             $order->save();
+        });
 
-            event(new OrderPaid($order));
+        DB::afterCommit(function () use ($order) {
+            event(new OrderPaid($order->fresh()));
         });
 
         Log::info('Order marked as paid via Stripe webhook', [

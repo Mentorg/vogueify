@@ -111,6 +111,24 @@
         }
       }
     },
+    "invoice": {
+      "resendInvoice": {
+        "title": "Resend {invoice} invoice to {user}",
+        "content": "Are you sure you want to resend the {invoice} to {user}"
+      },
+      "cancelInvoice": {
+        "title": "Cancel {invoice} invoice",
+        "content": "Are you sure you want to cancel the {invoice} invoice"
+      },
+      "addInvoiceNote": {
+        "title": "Add Internal Note"
+      },
+      "updateInvoiceNote": {
+        "title": "Update {internalNote} Internal Note",
+        "content": "Are you sure you want to update {internalNote} internal note",
+        "internalNote": "Internal Note"
+      }
+    },
     "coupon": {
       "couponNotifyUsers": {
         "title": "Notify Users about {coupon}",
@@ -192,6 +210,20 @@
         "errorMessage": "Failed to update product! Unexpected error"
       }
     },
+    "invoice": {
+      "invoiceResend": {
+        "successMessage": "Invoice resent successfully",
+        "errorMessage": "Failed to resend invoice"
+      },
+      "invoiceCancel": {
+        "successMessage": "Invoice cancelled successfully",
+        "errorMessage": "Failed to cancel invoice!"
+      },
+      "invoiceInternalNoteUpdate": {
+        "successMessage": "Invoice internal note successfully updated",
+        "errorMessage": "Failed to update invoice internal note"
+      }
+    },
     "coupon": {
       "couponDelete": {
         "successMessage": "Coupon deleted successfully",
@@ -257,6 +289,24 @@
     "create": "Create",
     "update": "Update",
     "apply": "Apply",
+    "add": "Add",
+    "downloadPDF": "Download PDF",
+    "downloadInvoicePDFTitle": "Download this invoice as a PDF",
+    "cancelResendInvoiceTitle": "Cancel resending this invoice",
+    "resendInvoice": "Resend Invoice",
+    "resendInvoiceTitle": "Resend this invoice to the customer",
+    "abortInvoiceCancellation": "Keep invoice",
+    "abortInvoiceCancellationTitle": "Keep this invoice",
+    "confirmInvoiceCancellation": "Cancel invoice",
+    "confirmInvoiceCancellationTitle": "Cancel this invoice",
+    "markAsCancelled": "Mark as Cancelled",
+    "markAsCancelledTitle": "Mark invoice as cancelled",
+    "viewOrder": "View Order",
+    "viewOrderTitle": "View invoice's order",
+    "addInternalNote": "Add Internal Note",
+    "addInternalNoteTitle": "Add internal note for this invoice",
+    "updateInternalNote": "Update Internal Note",
+    "updateInternalNoteTitle": "Update internal note for this invoice",
     "deleteVariation": "Delete Variation",
     "deleteProduct": "Delete Product",
     "first": "First",
@@ -362,6 +412,13 @@
       "status": "Status",
       "customer": "Customer",
       "total": "Total"
+    },
+    "invoice": {
+      "caption": "Customer Invoices",
+      "customerName": "Customer Name",
+      "issuedAt": "Issued At",
+      "amount": "Amount",
+      "status": "Status"
     },
     "user": {
       "caption": "User Accounts",
