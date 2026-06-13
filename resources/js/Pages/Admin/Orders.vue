@@ -1,11 +1,10 @@
 <script setup>
-import { defineProps } from 'vue';
 import { Head } from '@inertiajs/vue3';
-import AdminDashboard from '@/Layouts/AdminDashboard.vue';
-import OrdersTable from '@/Components/Tables/OrdersTable.vue';
 import { useI18n } from 'vue-i18n';
+import AdminDashboard from '@/Layouts/AdminDashboard.vue';
+import OrdersTable from '@Components/Tables/OrdersTable.vue';
 
-const props = defineProps({
+defineProps({
   orders: Array,
   orderStatuses: Array,
 });
@@ -15,7 +14,7 @@ const { t } = useI18n();
 
 <template>
 
-  <Head title="Orders" />
+  <Head :title="t('page.admin.orders')" />
   <AdminDashboard>
     <h1 class="text-2xl font-medium">{{ t('page.admin.orders') }}</h1>
     <div class="flex w-full gap-x-8 py-8">

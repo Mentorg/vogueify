@@ -77,7 +77,7 @@ onUnmounted(() => {
           entityType: entityType
         }))}...`
           : selectedEntity.length <= 2 ? selectedEntity.map(item =>
-            item.hasOwnProperty('name') ? capitalize(item.name) : capitalize(item.product.name) + `
+            item.hasOwnProperty('name') ? capitalize(item?.name) : capitalize(item.product?.name) + `
           (${(item.sku)})`).join(', ') :
             `${t('common.form.base.selectedPlaceholder', { count: selectedEntity.length, entityType: entityType })}`}}
       </span>

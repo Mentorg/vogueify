@@ -17,7 +17,9 @@
     "accessories": "Accessory | Accessories",
     "jewelry": "Jewelry",
     "watches": "Watch | Watches",
-    "fragrances": "Fragrance | Fragrances"
+    "fragrances": "Fragrance | Fragrances",
+    "categoryMen": "Shop men's products",
+    "categoryWomen": "Shop women's products"
   },
   "subCategory": {
     "bag": {
@@ -48,6 +50,11 @@
       "ring": "Ring | Rings"
     }
   },
+  "userType": {
+    "admin": "Admin",
+    "staff": "Staff",
+    "customer": "Customer"
+  },
   "gender": {
     "woman": "Woman | Women",
     "man": "Man | Men",
@@ -76,6 +83,10 @@
         "orderCancelation": {
           "title": "Cancel {order} order",
           "content": "Are you sure you want to cancel the {order} order"
+        },
+        "orderContinuation": {
+          "title": "Continue with the {order} order",
+          "content": "Are you sure you want to continue with the {order} order"
         }
       },
       "admin": {
@@ -92,6 +103,9 @@
           "title": "Update {item} Shipping Date",
           "content": "Are you sure you want to update order item's shipping date",
           "itemShippingDate": "Item's Shipping Date"
+        },
+        "addOrderNote": {
+          "title": "Add Order Note"
         },
         "orderNoteUpdate": {
           "title": "Update {orderNumber} Note",
@@ -125,7 +139,7 @@
       },
       "updateInvoiceNote": {
         "title": "Update {internalNote} Internal Note",
-        "content": "Are you sure you want to update {internalNote} internal note",
+        "content": "Are you sure you want to update invoice's internal note",
         "internalNote": "Internal Note"
       }
     },
@@ -145,6 +159,9 @@
     }
   },
   "toast": {
+    "wishlist": {
+      "errorMessage": "Failed to remove item from wishlist"
+    },
     "cart": {
       "successMessage": "Cart items deleted successfully",
       "errorMessage": "Failed to delete cart items"
@@ -208,7 +225,9 @@
         "successMessage": "Product updated successfully",
         "errorValidationMessage": "Failed to update product! Validation failed",
         "errorMessage": "Failed to update product! Unexpected error"
-      }
+      },
+      "invalidImageType": "Invalid image type. Please upload a supported image format (e.g. PNG, JPG, WEBP).",
+      "imageTooLarge": "Image must be smaller than 5MB."
     },
     "invoice": {
       "invoiceResend": {
@@ -242,6 +261,10 @@
       "couponApply": {
         "successMessage": "Coupon applied successfully",
         "errorMessage": "Failed to apply coupon"
+      },
+      "couponRemove": {
+        "successMessage": "Coupon removed successfully",
+        "errorMessage": "Failed to remove coupon"
       },
       "couponStatusUpdate": {
         "successMessage": "Coupon status updated successfully",
@@ -287,9 +310,13 @@
     "cancel": "Cancel",
     "continue": "Continue",
     "create": "Create",
+    "creating": "Creating",
     "update": "Update",
+    "updating": "Updating",
     "apply": "Apply",
+    "applying": "Applying",
     "add": "Add",
+    "adding": "Adding",
     "downloadPDF": "Download PDF",
     "downloadInvoicePDFTitle": "Download this invoice as a PDF",
     "cancelResendInvoiceTitle": "Cancel resending this invoice",
@@ -302,7 +329,7 @@
     "markAsCancelled": "Mark as Cancelled",
     "markAsCancelledTitle": "Mark invoice as cancelled",
     "viewOrder": "View Order",
-    "viewOrderTitle": "View invoice's order",
+    "viewInvoiceOrderTitle": "View invoice's order",
     "addInternalNote": "Add Internal Note",
     "addInternalNoteTitle": "Add internal note for this invoice",
     "updateInternalNote": "Update Internal Note",
@@ -319,9 +346,17 @@
     "archived": "Archived",
     "notifyUsers": "Notify Users",
     "addFeature": "Add Feature",
+    "addFeatureTitle": "Add a new feature field",
+    "removeFeatureTitle": "Remove feature",
     "addVariation": "Add New Variation",
+    "addVariationTitle": "Create product variation",
     "saveProduct": "Save Product",
+    "savingProduct": "Saving",
+    "updateProduct": "Update Product",
+    "updatingProduct": "Updating Product",
     "modifyAddress": "Add address details | Update address details",
+    "modifyAddressTitle": "Show Address Form",
+    "hideAddressTitle": "Hide Address Form",
     "save": "Save",
     "enable": "Enable",
     "confirm": "Confirm",
@@ -353,20 +388,201 @@
     "contactCustomerTitle": "Contact the customer",
     "updateOrderShippingAddressTitle": "Update order's shipping address",
     "updateOrderBillingAddressTitle": "Update order's billing address",
-    "couponActions": "Coupon actions",
+    "cancelOrderContinuationTitle": "Cancel continuing with the order",
+    "confirmOrderContinuationTitle": "Continue with the order",
+    "viewOrderTitle": "View this order",
+    "markOrderAsTitle": "Mark order as",
+    "updateProductTitle": "Update product",
+    "deleteProductTitle": "Delete product",
+    "cancelProductDeletionTitle": "Cancel deleting this product",
+    "confirmProductDeletionTitle": "Delete this product and its variations",
+    "confirmVariationDeletionTitle": "Delete this product's variation",
+    "viewInvoiceTitle": "View this invoice",
+    "viewCouponTitle": "View this coupon",
     "createCoupon": "Create Coupon",
-    "updateCoupon": "Update Coupon",
-    "deleteCoupon": "Delete coupon",
+    "markCouponAsTitle": "Mark coupon as",
+    "updateCouponTitle": "Update Coupon",
+    "deleteCouponTitle": "Delete coupon",
     "removeCoupon": "Remove Coupon",
+    "cancelUserCouponNotificationTitle": "Cancel sending coupon notification to user",
+    "sendUserCouponNotificationTitle": "Send coupon notification to user",
+    "cancelCouponDeletionTitle": "Cancel deleting this coupon",
+    "confirmCouponDeletionTitle": "Delete this coupon",
+    "deleteUserTitle": "Delete this user",
+    "cancelUserDeletionTitle": "Cancel deleting this user",
+    "confirmUserDeletionTitle": "Delete this user",
     "clickHere": "Click here",
     "updateProfile": "Update Profile",
-    "updateProfileTitle": "Update your profile information"
+    "updateProfileTitle": "Update your profile information",
+    "placeOrder": "Place order",
+    "processing": "Processing",
+    "selectUserPhoto": "Select A New Photo",
+    "removeUserPhoto": "Remove Photo",
+    "goToHomeTitle": "Go to home",
+    "searchProductsTitle": "Search products",
+    "addToWishlist": "Add to Wishlist",
+    "addToWishlistTitle": "Save this item to your wishlist",
+    "removeFromWishlist": "Remove from Wishlist",
+    "removeFromWishlistTitle": "Remove this item from your wishlist",
+    "closeCartSidebarTitle": "Close cart",
+    "applyCouponTitle": "Open coupon code form",
+    "removeFromCartTitle": "Remove this item from your cart",
+    "openSidebarTitle": "Open navigation menu",
+    "closeSidebarTitle": "Close navigation menu",
+    "openCategoryMenuTitle": "Open category menu",
+    "closeCategoryMenuTitle": "Close category menu",
+    "openUserMenu": "Open account menu",
+    "cancelDeleteCartItemTitle": "Cancel item removal",
+    "confirmDeleteCartItemTitle": "Remove item from cart",
+    "cancelOrderDismissTitle": "Keep this order",
+    "cancelOrderConfirmTitle": "Cancel this order",
+    "deleteAccountTitle": "Open account deletion dialog",
+    "confirmDeleteAccountTitle": "Delete your account",
+    "cancelDeleteAccountTitle": "Keep your account",
+    "cancelResendOrderConfirmationEmailTitle": "Do not resend the order confirmation email",
+    "confirmResendOrderConfirmationEmailTitle": "Resend the order confirmation email",
+    "loginTitle": "Sign in to your account",
+    "registerTitle": "Create a new account",
+    "saveProfileChangesTitle": "Save changes to your profile",
+    "selectProfilePhotoTitle": "Select a new profile photo",
+    "deleteProfilePhotoTitle": "Remove your profile photo",
+    "applyCouponCodeTitle": "Apply this coupon code",
+    "createCouponFormSubmitTitle": "Create a new coupon",
+    "updateCouponFormSubmitTitle": "Save changes to this coupon",
+    "createInvoiceNoteFormSubmitTitle": "Create a new invoice note",
+    "updateInvoiceNoteFormSubmitTitle": "Save changes to this invoice note",
+    "updateOrderBillingAddressFormSubmitTitle": "Save changes to the billing address",
+    "updateOrderItemShippingDateFormSubmitTitle": "Save changes to the shipping date",
+    "updateOrderItemStatusFormSubmitTitle": "Save changes to the order item status",
+    "updateOrderNoteFormSubmitTitle": "Save changes to the order note",
+    "updateOrderShippingAddressFormSubmitTitle": "Save changes to the shipping address",
+    "updateOrderStatusFormSubmitTitle": "Save changes to the order status",
+    "placeOrderTitle": "Place your order",
+    "addToCartTitle": "Add this product to your cart",
+    "createProductFormSubmitTitle": "Create a new product",
+    "updateProductFormSubmitTitle": "Save changes to this product",
+    "goToLoginTitle": "Go to login page",
+    "logoutTitle": "Log out of your account",
+    "goToOverviewTitle": "Go to overview",
+    "goToProductsTitle": "Go to products",
+    "goToProfileTitle": "Go to your profile",
+    "goToUserOverviewTitle": "Go to overview",
+    "goToUserProfileTitle": "Go to profile",
+    "goToUserOrdersTitle": "Go to orders",
+    "goToUserWishlistTitle": "Go to wishlist",
+    "goToSearchTitle": "Go to search",
+    "goToCartTitle": "Go to cart",
+    "continueShoppingTitle": "Continue shopping",
+    "goBackToProductTitle": "Back to product",
+    "goToCheckoutTitle": "Go to checkout",
+    "goToEditProfileTitle": "Edit your profile",
+    "goToOrderTitle": "View order details",
+    "goToCategoryTitle": "Browse {category}",
+    "browseMenTitle": "Browse Men",
+    "browseWomenTitle": "Browse Women",
+    "goToProductTitle": "View product",
+    "goToCategoryProductsTitle": "View products",
+    "goToProductVariationTitle": "View variation"
   },
   "menuLabel": {
     "for": "For",
     "category": "Category | Categories",
     "all": "All",
     "fine": "Fine"
+  },
+  "catalogMenu": {
+    "new": {
+      "title": "View new arrivals",
+      "women": {
+        "title": "View new arrivals for women",
+        "bags": "View women's bags",
+        "shoes": "View women's shoes",
+        "accessories": "View women's accessories",
+        "jewelry": "View women's jewelry",
+        "watches": "View women's watches",
+        "fragrances": "View women's fragrances"
+      },
+      "men": {
+        "title": "View new arrivals for men",
+        "bags": "View men's bags",
+        "shoes": "View men's shoes",
+        "accessories": "View men's accessories",
+        "jewelry": "View men's jewelry",
+        "watches": "View men's watches",
+        "fragrances": "View men's fragrances"
+      }
+    },
+    "women": {
+      "title": "View women's collection",
+      "bags": {
+        "title": "View women's bags",
+        "all": "View all women's bags",
+        "handbags": "View handbags",
+        "bucket": "View bucket bags",
+        "hobo": "View hobo bags",
+        "envelope": "View envelope bags"
+      },
+      "shoes": {
+        "title": "View women's shoes",
+        "all": "View all women's shoes",
+        "sneakers": "View sneakers",
+        "ankleBoots": "View ankle boots",
+        "sandals": "View sandals"
+      },
+      "accessories": {
+        "title": "View women's accessories",
+        "scarves": "View scarves",
+        "sunglasses": "View sunglasses",
+        "belts": "View belts"
+      }
+    },
+    "men": {
+      "title": "View men's collection",
+      "bags": {
+        "title": "View men's bags",
+        "all": "View all men's bags",
+        "backpack": "View backpacks",
+        "satchel": "View satchels",
+        "clutch": "View clutches",
+        "fannyPack": "View fanny packs"
+      },
+      "shoes": {
+        "title": "View men's shoes",
+        "all": "View all men's shoes",
+        "sneakers": "View sneakers",
+        "boots": "View boots"
+      },
+      "accessories": {
+        "title": "View men's accessories",
+        "scarves": "View scarves",
+        "sunglasses": "View sunglasses",
+        "belts": "View belts"
+      }
+    },
+    "jewelry": {
+      "title": "View jewelry",
+      "categories": {
+        "title": "View jewelry categories",
+        "all": "View all fine jewelry",
+        "bracelets": "View bracelets",
+        "necklaces": "View necklaces",
+        "earrings": "View earrings",
+        "rings": "View rings"
+      }
+    },
+    "watches": {
+      "title": "View watches",
+      "all": "View all watches"
+    },
+    "fragrances": {
+      "title": "View fragrances",
+      "categories": {
+        "title": "View fragrance categories",
+        "all": "View all fragrances",
+        "women": "View women's fragrances",
+        "men": "View men's fragrances"
+      }
+    }
   },
   "footer": {
     "company": {
@@ -406,6 +622,7 @@
     },
     "order": {
       "caption": "Customer Orders",
+      "number": "Order Number",
       "datePlaced": "Date Placed",
       "deliveryDate": "Delivery Date",
       "deliveryDateTooltip": "Earliest shipping date",
@@ -415,7 +632,8 @@
     },
     "invoice": {
       "caption": "Customer Invoices",
-      "customerName": "Customer Name",
+      "number": "Invoice Number",
+      "customer": "Customer",
       "issuedAt": "Issued At",
       "amount": "Amount",
       "status": "Status"
@@ -444,7 +662,8 @@
       "avatar": "Avatar",
       "name": "Name",
       "email": "Email",
-      "redemptions": "Redemptions"
+      "redemptions": "Redemptions",
+      "userPicture": "{user}'s picture"
     },
     "couponCategories": {
       "image": "Image",
@@ -468,19 +687,26 @@
       "createdAt": "Created"
     },
     "actions": "Actions",
+    "firstTitle": "Go to first page",
+    "previousTitle": "Go to previous page",
+    "nextTitle": "Go to next page",
+    "lastTitle": "Go to last page",
     "pagination": "Showing {from}-{to} of {total}",
-    "noData": "No data"
+    "noData": "No data",
+    "undetermined": "Undetermined"
   },
   "form": {
     "base": {
       "selectPlaceholder": "Select {entityType}",
       "selectedPlaceholder": "{count} {entityType} selected",
-      "searchPlaceholder": "Search"
+      "searchPlaceholder": "Search",
+      "uploading": "Uploading"
     },
     "product": {
       "headingBase": "Base Information",
       "headingProductVariation": "Product Variations",
       "headingPreview": "Preview",
+      "imagePreview": "Selected Image Preview",
       "variation": "Variation {variation}",
       "note": "Note",
       "noteMessage": "Required fields vary by product type. Most fields are required. Colors are optional. Sizes apply depending on the product type",
@@ -492,7 +718,10 @@
       "featureDescription": "Feature Description",
       "category": "Category | Categories",
       "expand": "Expand",
+      "expandTitle": "Expand variation details",
       "collapse": "Collapse",
+      "collapseTitle": "Collapse variation details",
+      "removeVariationTitle": "Remove variation",
       "image": "Image",
       "imageTooltip": "Only valid formats are allowed (jpeg, png, jpg, gif, bmp, svg, webp)",
       "productType": "Product Type",
@@ -513,7 +742,9 @@
       "noFeatures": "No features provided",
       "noImage": "No image selected",
       "noSku": "No SKU provided",
-      "unknown": "Unknown"
+      "unknown": "Unknown",
+      "categoryLocked": "Remove all variations to change category",
+      "genderLocked": "Remove all variations to change gender"
     },
     "order": {
       "updateShippingAddress": {

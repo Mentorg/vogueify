@@ -2,15 +2,15 @@
 import { Head } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import AdminDashboard from '@/Layouts/AdminDashboard.vue';
-import CouponCategoriesTable from '@/Components/Tables/CouponCategoriesTable.vue';
-import CouponProductsTable from '@/Components/Tables/CouponProductsTable.vue';
-import CouponProductVariationsTable from '@/Components/Tables/CouponProductVariationsTable.vue';
-import CouponUsersTable from '@/Components/Tables/CouponUsersTable.vue';
-import StatusChip from '@/Components/StatusChip.vue';
+import CouponCategoriesTable from '@Components/Tables/CouponCategoriesTable.vue';
+import CouponProductsTable from '@Components/Tables/CouponProductsTable.vue';
+import CouponProductVariationsTable from '@Components/Tables/CouponProductVariationsTable.vue';
+import CouponUsersTable from '@Components/Tables/CouponUsersTable.vue';
+import StatusChip from '@Components/StatusChip.vue';
 import { capitalize } from '@/utils/capitalize';
 import { formatDate } from '@/utils/dateFormat';
 
-const props = defineProps({
+defineProps({
   coupon: Object,
 })
 
@@ -20,7 +20,7 @@ const { t } = useI18n();
 
 <template>
 
-  <Head :title="t('page.couponDetails.coupon', { coupon: coupon.code })" />
+  <Head :title="t('page.admin.couponDetails')" />
   <AdminDashboard>
     <div class="flex justify-between items-center">
       <div class="flex flex-col gap-y-2">
@@ -55,7 +55,7 @@ const { t } = useI18n();
           <div class="flex flex-col mt-2">
             <div class="mt-2">
               <p class="font-medium">{{ t('page.couponDetails.code') }}: <span class="font-normal">{{ coupon.code
-              }}</span></p>
+                  }}</span></p>
             </div>
             <div class="mt-2">
               <p class="font-medium">{{ t('page.couponDetails.type') }}: <span class="font-normal">{{
@@ -114,7 +114,7 @@ const { t } = useI18n();
           <h2 class="text-xl font-semibold text-slate-600">{{ t('page.couponDetails.user', 1) }}</h2>
           <div class="flex gap-8 border p-4 rounded-md mt-4">
             <div v-for="user in coupon.users" :key="user.id" class="flex gap-4 items-center">
-              <img :src="user.profile_photo_url" :alt="t('page.couponDetails.userPicture', { user: user.name })"
+              <img :src="user.profile_photo_url" :alt="t('common.table.couponUsers.userPicture', { user: user.name })"
                 class="w-12 h-12 rounded-full object-cover" />
               <div>
                 <p class="font-medium">{{ user.name }}</p>

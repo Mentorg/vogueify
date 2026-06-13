@@ -5,7 +5,7 @@ import { useI18n } from 'vue-i18n';
 import Menu from '@/Layouts/Menu.vue';
 import Footer from '@/Layouts/Footer.vue';
 
-const props = defineProps({
+defineProps({
   checkoutSession: Object,
 });
 
@@ -55,13 +55,13 @@ const { t } = useI18n();
         </div>
       </div>
       <div class="flex flex-col gap-4 w-full md:flex-row lg:gap-10 lg:w-1/2">
-        <Link href="/"
+        <Link href="/" :title="t('common.button.continueShoppingTitle')"
           class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black lg:text-base">
-        {{ t('common.button.continueShopping') }}
+          {{ t('common.button.continueShopping') }}
         </Link>
-        <Link :href="route('order.userOrders')"
+        <Link :href="route('order.userOrders')" :title="t('common.button.goToUserOrdersTitle')"
           class="flex justify-center border border-black rounded-full py-2 w-full text-sm text-black transition-all hover:bg-slate-200 lg:text-base">
-        {{ t('common.button.viewMyOrders') }}
+          {{ t('common.button.viewMyOrders') }}
         </Link>
       </div>
     </div>

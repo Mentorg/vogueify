@@ -1,31 +1,18 @@
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
-import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
-import Checkbox from '@/Components/Checkbox.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import SelectInput from '@/Components/SelectInput.vue';
+import AuthenticationCard from '@Components/AuthenticationCard.vue';
+import AuthenticationCardLogo from '@Components/AuthenticationCardLogo.vue';
+import Checkbox from '@Components/Checkbox.vue';
+import InputError from '@Components/InputError.vue';
+import InputLabel from '@Components/InputLabel.vue';
+import PrimaryButton from '@Components/PrimaryButton.vue';
+import TextInput from '@Components/TextInput.vue';
+import SelectInput from '@Components/SelectInput.vue';
+import { useRegisterUser } from '@/composables/user/useRegisterUser';
 
 const { t } = useI18n();
-
-const form = useForm({
-  name: '',
-  title: '',
-  email: '',
-  password: '',
-  password_confirmation: '',
-  terms: false,
-});
-
-const submit = () => {
-  form.post(route('auth.register'), {
-    onFinish: () => form.reset('password', 'password_confirmation'),
-  });
-};
+const { form, submit } = useRegisterUser();
 </script>
 
 <template>
@@ -92,12 +79,13 @@ const submit = () => {
       </div>
 
       <div class="flex items-center justify-end mt-4">
-        <Link :href="route('login')"
+        <Link :href="route('login')" :title="t('common.button.loginTitle')"
           class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-        {{ t('page.authentication.register.alreadyRegistered') }}?
+          {{ t('page.authentication.register.alreadyRegistered') }}?
         </Link>
 
-        <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+        <PrimaryButton :title="t('common.button.registerTitle')" class="ms-4" :class="{ 'opacity-25': form.processing }"
+          :disabled="form.processing">
           {{ t('common.button.register') }}
         </PrimaryButton>
       </div>

@@ -1,17 +1,18 @@
 <script setup>
-import { defineProps } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
-import { PhDotsThree, PhTrash, PhXCircle } from '@phosphor-icons/vue';
 import { useI18n } from 'vue-i18n';
+import { PhDotsThree, PhTrash } from '@phosphor-icons/vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
-import DialogModal from '@/Components/DialogModal.vue';
-import DangerButton from '@/Components/DangerButton.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
-import StatusChip from '@/Components/StatusChip.vue';
-import { useOrder } from '@/composables/useOrder';
+import DialogModal from '@Components/DialogModal.vue';
+import DangerButton from '@Components/DangerButton.vue';
+import SecondaryButton from '@Components/SecondaryButton.vue';
+import StatusChip from '@Components/StatusChip.vue';
+import { useCancelOrder } from '@/composables/order/useCancelOrder';
 import { formatDate } from '@/utils/dateFormat';
+import { formatStatus } from '@/utils/statusFormatter';
+import { ACTIVE_ORDER_STATUSES } from '@/constants/orderStatuses';
 
-const props = defineProps({
+defineProps({
   orders: Array,
   wishlist: Array
 });
@@ -21,14 +22,12 @@ const user = usePage().props.auth.user;
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
 const {
-  cancel,
-  confirmOrderCancelation,
-  closeModal,
-  itemToCancel,
-  errorMessage,
-  formatStatus,
-  activeStatuses
-} = useOrder();
+  cancelOrderTarget,
+  isCancelOrderModalOpen,
+  openCancelOrderModal,
+  closeCancelOrderModal,
+  cancelOrder,
+} = useCancelOrder();
 
 </script>
 
@@ -62,32 +61,35 @@ const {
                 user.address.phone_number }}</span></p>
             </div>
           </div>
-          <Link href="profile"
+          <Link href="profile" :title="t('common.button.goToEditProfileTitle')"
             class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
             {{ t('common.button.editProfile') }}</Link>
         </div>
         <div class="grid gap-6">
           <div class="bg-white p-6 w-full h-fit lg:p-10">
             <h3 class="text-xl">{{ t('page.user.orders.label') }}</h3>
-            <div v-if="orders.length === 0 || !orders.some(order => activeStatuses.includes(order.order_status))">
+            <div
+              v-if="orders.length === 0 || !orders.some(order => ACTIVE_ORDER_STATUSES.includes(order.order_status))">
               <div class="my-8">
                 <p>{{ t('page.user.orders.noCurrentOrders') }}</p>
               </div>
-              <Link href="/"
+              <Link href="/" :title="t('common.button.goToHomeTitle')"
                 class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
                 {{ t('common.button.startShopping') }}</Link>
             </div>
             <div v-else class="mt-8">
-              <div v-for="item in orders.filter(order => activeStatuses.includes(order.order_status)).slice(0, 3)"
+              <div
+                v-for="item in orders.filter(order => ACTIVE_ORDER_STATUSES.includes(order.order_status)).slice(0, 3)"
                 :key="item.id"
                 class="grid grid-cols-3 grid-rows-2 items-center gap-2 py-2 border-b border-slate-300 lg:border-none lg:justify-between lg:grid-cols-[3fr,2fr,2fr,2fr,0.5fr] lg:grid-rows-1">
                 <div
                   class="flex items-center gap-4 col-start-1 col-end-3 row-start-1 row-end-1 lg:col-start-1 lg:col-end-1 lg:row-start-1 lg:row-end-1">
                   <template v-if="item.items.length > 1">
                     <div class="flex -space-x-2">
-                      <div v-for="(orderItem, index) in item.items.slice(0, 2)" :key="orderItem.id"
+                      <div v-for="orderItem in item.items.slice(0, 2)" :key="orderItem.id"
                         class="h-10 w-10 rounded-full overflow-hidden border-2 border-white">
-                        <img v-if="orderItem.product_variation.image" :src="orderItem.product_variation.image" alt=""
+                        <img v-if="orderItem.product_variation.image" :src="orderItem.product_variation.image"
+                          :alt="t('page.user.orders.orderImage', { order: item.order_number })"
                           class="w-full h-full object-cover" />
                       </div>
                       <div v-if="item.items.length > 2"
@@ -99,10 +101,13 @@ const {
                   <template v-else>
                     <div class="h-10 w-10 rounded-full overflow-hidden border-2 border-white">
                       <img v-if="item.items[0].product_variation.image" :src="item.items[0].product_variation.image"
-                        alt="" class="w-full h-full object-cover" />
+                        :alt="t('page.user.orders.orderImage', { order: item.order_number })"
+                        class="w-full h-full object-cover" />
                     </div>
                   </template>
-                  <Link :href="route('order.show', { order: item.id })">{{ item.order_number }}</Link>
+                  <Link :href="route('order.show', { order: item.id })" :title="t('common.button.goToOrderTitle')">{{
+                    item.order_number }}
+                  </Link>
                 </div>
                 <div
                   class="flex col-start-1 col-end-1 row-start-2 row-end-2 md:justify-start lg:justify-center lg:col-start-2 lg:col-end-2 lg:row-start-1 lg:row-end-1">
@@ -120,24 +125,26 @@ const {
                 </div>
                 <div
                   class="flex justify-end col-start-3 col-end-3 row-start-1 row-end-1 lg:col-start-5 lg:col-end-5 lg:row-start-1 lg:row-end-1">
-                  <button @click="confirmOrderCancelation(item)" :disabled="item.order_status !== 'pending'"
-                    class="bg-slate-100 rounded-full p-1.5">
-                    <PhXCircle :size="20" />
+                  <button @click="openCancelOrderModal(item)" :disabled="item.order_status !== 'pending'"
+                    :title="t('common.button.cancelOrder')" class="bg-slate-100 p-2 rounded-full">
+                    <PhTrash :size="18" color="black" />
                   </button>
                 </div>
-                <DialogModal :show="itemToCancel !== null" @close="closeModal">
+                <DialogModal :show="isCancelOrderModalOpen" @close="closeCancelOrderModal">
                   <template #title>
-                    {{ t('common.modal.order.user.orderCancelation.title', { order: itemToCancel?.order_number }) }}?
+                    {{ t('common.modal.order.user.orderCancelation.title', {
+                      order: cancelOrderTarget?.order_number
+                    }) }}?
                   </template>
                   <template #content>
-                    {{ t('common.modal.order.user.orderCancelation.content', { order: item?.order_number }) }}?
-                    <div v-if="errorMessage" class="text-red-500 mt-2">
-                      {{ errorMessage }}
-                    </div>
+                    {{ t('common.modal.order.user.orderCancelation.content', { order: cancelOrderTarget?.order_number })
+                    }}?
                   </template>
                   <template #footer>
-                    <SecondaryButton @click="closeModal">{{ t('common.button.cancel') }}</SecondaryButton>
-                    <DangerButton class="ms-3" @click="cancel(itemToCancel?.id)">
+                    <SecondaryButton @click="closeCancelOrderModal" :title="t('common.button.cancelOrderDismissTitle')">
+                      {{ t('common.button.cancel') }}</SecondaryButton>
+                    <DangerButton @click="cancelOrder()" :title="t('common.button.cancelOrderConfirmTitle')"
+                      class="ms-3">
                       <PhTrash :size="16" color="white" class="mr-2" />
                       {{ t('common.button.cancelOrder') }}
                     </DangerButton>
@@ -145,7 +152,7 @@ const {
                 </DialogModal>
               </div>
               <div v-if="orders.length > 3" class="mt-8">
-                <Link href="/orders/user/orders"
+                <Link href="/orders/user/orders" :title="t('common.button.goToUserOrdersTitle')"
                   class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
                   {{ t('common.button.viewOrders') }}</Link>
               </div>
@@ -157,7 +164,7 @@ const {
               <div class="my-8">
                 <p>{{ t('page.user.wishlist.noWishlistItems') }}.</p>
               </div>
-              <Link href="/"
+              <Link href="/" :title="t('common.button.goToHomeTitle')"
                 class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-sm text-white transition-all hover:bg-white hover:text-black md:text-base">
                 {{ t('common.button.startShopping') }}</Link>
             </div>
@@ -167,20 +174,22 @@ const {
                   <img :src="item.product_variation.image" :alt="item.product_variation.product.name"
                     class="w-[7.5%] rounded-full" />
                   <div class="flex flex-col gap-1 ml-4">
-                    <Link href="/wishlist" class="font-medium">{{ item.product_variation.product.name }}</Link>
+                    <Link href="/wishlist" :title="t('common.button.goToUserWishlistTitle')" class="font-medium">{{
+                      item.product_variation.product.name }}</Link>
                     <p>${{ item.product_variation.price }}</p>
                   </div>
                 </div>
                 <form :action="route('wishlist.destroy', item.id)" method="post" @click.stop>
                   <input type="hidden" name="_token" :value="csrfToken" />
                   <input type="hidden" name="_method" value="DELETE" />
-                  <button type="submit" title="Remove from wishlist" class="bg-slate-100 p-2 rounded-full">
+                  <button type="submit" :title="t('common.button.removeFromWishlist')"
+                    class="bg-slate-100 p-2 rounded-full">
                     <PhTrash :size="18" color="black" />
                   </button>
                 </form>
               </div>
               <div v-if="wishlist.length > 3" class="mt-8">
-                <Link href="/wishlist"
+                <Link href="/wishlist" :title="t('common.button.goToUserWishlistTitle')"
                   class="bg-black flex justify-center border border-black rounded-full py-2 w-full text-white transition-all hover:bg-white hover:text-black">
                   {{ t('common.button.viewWishlist') }}</Link>
               </div>

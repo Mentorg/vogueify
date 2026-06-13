@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue';
 import { Link } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import {
@@ -11,51 +10,68 @@ import {
   PhProhibit
 } from '@phosphor-icons/vue';
 import StatusChip from '@Components/StatusChip.vue';
+import MenuItem from '@Components/MenuItem.vue';
+import ContextMenu from '@Components/ContextMenu.vue';
 import TableFooter from '@Components/Tables/TableFooter.vue';
 import DialogModal from '@Components/DialogModal.vue';
 import Modal from '@Components/Modal.vue';
 import InvoiceNoteUpdate from '@Components/InvoiceNoteUpdate.vue';
 import SecondaryButton from '@Components/SecondaryButton.vue';
 import PrimaryButton from '@Components/PrimaryButton.vue';
+import { useContextMenu } from '@/composables/useContextMenu';
+import { useResendInvoice } from '@/composables/invoice/useResendInvoice';
+import { useCancelInvoice } from '@/composables/invoice/useCancelInvoice';
+import { useUpsertInvoiceNote } from '@/composables/invoice/useUpsertInvoiceNote';
 import { capitalize } from '@/utils/capitalize';
 import { formatDate } from '@/utils/dateFormat';
-import { useInvoice } from '@/composables/useInvoice';
 
-const props = defineProps({
+defineProps({
   invoices: Array,
 });
 
 const { t } = useI18n();
+
 const {
-  invoiceToResend,
-  invoiceToCancel,
-  invoiceNoteToUpdate,
-  updateInternalNoteForm,
-  isInvoiceMenuOpen,
-  toggleMenu,
-  openInvoiceResendModal,
-  openInvoiceCancelModal,
-  openInvoiceNoteModal,
-  closeInvoiceResendModal,
-  closeInvoiceCancelModal,
-  closeInvoiceNoteModal,
+  isContextMenuOpen,
+  dropdownStyle,
+  toggleContextMenu,
+} = useContextMenu();
+const {
+  resendInvoiceTarget,
+  isResendInvoiceModalOpen,
+  openResendInvoiceModal,
+  closeResendInvoiceModal,
   resendInvoice,
+} = useResendInvoice();
+const {
+  cancelInvoiceTarget,
+  isCancelInvoiceModalOpen,
+  openCancelInvoiceModal,
+  closeCancelInvoiceModal,
   cancelInvoice,
-  updateInvoiceInternalNote,
-} = useInvoice();
+} = useCancelInvoice();
+const {
+  invoiceNoteTarget,
+  isUpsertInvoiceNoteModalOpen,
+  upsertInvoiceNoteForm,
+  openUpsertInvoiceNoteModal,
+  closeUpsertInvoiceNoteModal,
+  upsertInvoiceNote,
+} = useUpsertInvoiceNote();
 
 </script>
 
 <template>
-  <div class="relative overflow-x-auto bg-white h-[350px] overflow-y-auto">
+  <div class="relative overflow-x-auto bg-white h-[350px] overflow-y-auto isolate">
     <div class="bg-white w-fit">
       <table class="text-left text-sm w-full">
         <caption class="sr-only">{{ t('common.table.invoice.caption') }}</caption>
         <thead
-          class="bg-white uppercase tracking-wider sticky top-0 border-b-2 outline outline-2 outline-neutral-300 border-neutral-300">
-          <tr class="grid grid-cols-[2fr,2fr,2fr,2fr,2fr,1fr]">
+          class="bg-white uppercase tracking-wider sticky top-0 z-20 border-b-2 outline outline-2 outline-neutral-300 border-neutral-300">
+          <tr class="grid grid-cols-[0.5fr,2fr,2fr,2fr,2fr,2fr,1fr]">
             <th scope="col" class="px-6 py-4 text-xs">#</th>
-            <th scope="col" class="px-6 py-4 text-xs">{{ t('common.table.invoice.customerName') }}</th>
+            <th scope="col" class="px-6 py-4 text-xs">{{ t('common.table.invoice.number') }}</th>
+            <th scope="col" class="px-6 py-4 text-xs">{{ t('common.table.invoice.customer') }}</th>
             <th scope="col" class="flex items-center gap-2 px-6 py-4 text-xs">{{ t('common.table.invoice.issuedAt') }}
             </th>
             <th scope="col" class="px-6 py-4 text-xs">{{ t('common.table.invoice.amount') }}</th>
@@ -65,13 +81,21 @@ const {
         </thead>
         <tbody>
           <div v-if="invoices.data.length > 0">
-            <tr v-for="invoice in invoices.data" :key="invoice.id"
-              class="grid grid-cols-[2fr,2fr,2fr,2fr,2fr,1fr] border-b dark:border-neutral-200 even:bg-slate-100">
+            <tr v-for="(invoice, index) in invoices.data" :key="invoice.id"
+              class="grid grid-cols-[0.5fr,2fr,2fr,2fr,2fr,2fr,1fr] border-b dark:border-neutral-200 even:bg-slate-100">
+              <th class="place-content-center px-6 py-4">{{ (invoices.current_page - 1) * invoices.per_page +
+                index + 1 }}</th>
               <th class="place-content-center px-6 py-4">
-                <Link :href="route('admin.invoices.view', { invoice: invoice.id })" class="hover:underline">{{
-                  invoice.invoice_number }}</Link>
+                <Link :href="route('admin.invoices.view', { invoice: invoice.id })"
+                  :title="t('common.button.viewInvoiceTitle')" class="hover:underline">{{
+                    invoice.invoice_number }}</Link>
               </th>
-              <th class="place-content-center px-6 py-4">{{ invoice.user.name }}</th>
+              <th class="place-content-center px-6 py-4">
+                <img v-if="invoice.user.profile_photo_url" :src="invoice.user.profile_photo_url"
+                  :alt="t('page.user.picture', { user: invoice.user.name })"
+                  class="w-8 h-8 rounded-full inline-block mr-2">
+                {{ invoice.user.name }}
+              </th>
               <td class="place-content-center px-6 py-4">{{ formatDate(invoice.issued_at, '.', true) }}</td>
               <td class="place-content-center px-6 py-4">{{ invoice.currency === 'EUR' ? "€" : "$" }}{{
                 invoice.order.total }}</td>
@@ -80,43 +104,39 @@ const {
               </td>
               <td class="place-content-center px-6 py-4 flex items-center context-menu-wrapper">
                 <div class="relative">
-                  <button @click.stop="toggleMenu(invoice.id)" :title="t('common.button.moreActionsTitle')"
+                  <button @click.stop="(e) => toggleContextMenu(invoice.id, e)"
+                    :title="t('common.button.moreActionsTitle')"
                     class="rounded-full p-0.5 transition-all hover:bg-slate-200">
                     <PhDotsThreeVertical :size="20" />
                   </button>
-                  <div v-if="isInvoiceMenuOpen(invoice.id)"
-                    class="absolute z-10 right-0 top-0 px-1 py-1 bg-white border border-gray-200 shadow-md hs-dropdown-menu min-w-32 w-max flex flex-col rounded-md mt-6">
-                    <a :href="route('admin.invoices.download', { invoice: invoice.id })"
-                      :title="t('common.button.downloadInvoicePDFTitle')"
-                      class="flex items-center gap-2 w-full px-2 py-2 rounded-md text-sm hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-transparent">
+                  <ContextMenu :state="isContextMenuOpen" :entity="invoice" :style="dropdownStyle">
+                    <MenuItem :href="route('admin.invoices.download', { invoice: invoice.id })"
+                      :title="t('common.button.downloadInvoicePDFTitle')">
                       <PhDownloadSimple :size="16" color="green" />
                       {{ t('common.button.downloadPDF') }}
-                    </a>
-                    <button @click="openInvoiceResendModal(invoice)" :title="t('common.button.resendInvoiceTitle')"
-                      class="flex items-center gap-2 w-full px-2 py-2 rounded-md text-sm hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-transparent">
+                    </MenuItem>
+                    <MenuItem :action="() => openResendInvoiceModal(invoice)"
+                      :title="t('common.button.resendInvoiceTitle')">
                       <PhEnvelope :size="16" color="green" />
                       {{ t('common.button.resendInvoice') }}
-                    </button>
-                    <button :disabled="invoice.status === 'cancelled'" @click="openInvoiceCancelModal(invoice)"
-                      :title="t('common.button.markAsCancelledTitle')"
-                      class="flex items-center gap-2 w-full px-2 py-2 rounded-md text-sm hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-transparent">
+                    </MenuItem>
+                    <MenuItem :action="() => openCancelInvoiceModal(invoice)"
+                      :title="t('common.button.markAsCancelledTitle')" :disabled="invoice.status === 'cancelled'">
                       <PhProhibit :size="16" color="red" />
                       {{ t('common.button.markAsCancelled') }}
-                    </button>
-                    <Link :href="route('admin.order', { order: invoice.order.id })"
-                      :title="t('common.button.viewOrderTitle')"
-                      class="flex items-center gap-2 w-full px-2 py-2 rounded-md text-sm hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-transparent">
+                    </MenuItem>
+                    <MenuItem :href="route('admin.order', { order: invoice.order.id })"
+                      :title="t('common.button.viewInvoiceOrderTitle')">
                       <PhEye :size="16" color="blue" />
                       {{ t('common.button.viewOrder') }}
-                    </Link>
-                    <button @click="openInvoiceNoteModal(invoice)"
-                      :title="invoice.internal_note ? t('common.button.updateInternalNote') : t('common.button.addInternalNote')"
-                      class="flex items-center gap-2 w-full px-2 py-2 rounded-md text-sm hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-transparent">
+                    </MenuItem>
+                    <MenuItem :action="() => openUpsertInvoiceNoteModal(invoice)"
+                      :title="invoice.internal_note ? t('common.button.updateInternalNote') : t('common.button.addInternalNote')">
                       <PhPencilSimple :size="16" color="green" />
                       {{ invoice.internal_note ? t('common.button.updateInternalNote') :
                         t('common.button.addInternalNote') }}
-                    </button>
-                  </div>
+                    </MenuItem>
+                  </ContextMenu>
                 </div>
               </td>
             </tr>
@@ -127,53 +147,52 @@ const {
         </tbody>
         <TableFooter :pagination="invoices" />
       </table>
-      <DialogModal :show="invoiceToResend !== null" @close="closeInvoiceResendModal">
+      <DialogModal :show="isResendInvoiceModalOpen" @close="closeResendInvoiceModal">
         <template #title>
           {{ t('common.modal.invoice.resendInvoice.title', {
-            invoice: invoiceToResend?.invoice_number, user:
-              invoiceToResend?.user.name
+            invoice: resendInvoiceTarget?.invoice_number, user:
+              resendInvoiceTarget?.user.name
           }) }}?
         </template>
         <template #content>
           {{ t('common.modal.invoice.resendInvoice.content', {
-            invoice: invoiceToResend?.invoice_number, user:
-              invoiceToResend?.user.name
+            invoice: resendInvoiceTarget?.invoice_number, user:
+              resendInvoiceTarget?.user.name
           }) }}?
         </template>
         <template #footer>
-          <SecondaryButton @click="closeInvoiceResendModal" :title="t('common.button.cancelResendInvoiceTitle')">
+          <SecondaryButton @click="closeResendInvoiceModal" :title="t('common.button.cancelResendInvoiceTitle')">
             {{ t('common.button.cancel') }}
           </SecondaryButton>
-          <PrimaryButton class="ms-3" @click="resendInvoice(invoiceToResend)"
+          <PrimaryButton class="ms-3" @click="resendInvoice(resendInvoiceTarget)"
             :title="t('common.button.resendInvoiceTitle')">
             {{ t('common.button.resendInvoice') }}
           </PrimaryButton>
         </template>
       </DialogModal>
-      <DialogModal :show="invoiceToCancel !== null" @close="closeInvoiceCancelModal">
+      <DialogModal :show="isCancelInvoiceModalOpen" @close="closeCancelInvoiceModal">
         <template #title>
           {{ t('common.modal.invoice.cancelInvoice.title', {
-            invoice: invoiceToCancel?.invoice_number
+            invoice: cancelInvoiceTarget?.invoice_number
           }) }}?
         </template>
         <template #content>
           {{ t('common.modal.invoice.cancelInvoice.content', {
-            invoice: invoiceToCancel?.invoice_number
+            invoice: cancelInvoiceTarget?.invoice_number
           }) }}?
         </template>
         <template #footer>
-          <SecondaryButton @click="closeInvoiceCancelModal" :title="t('common.button.abortInvoiceCancellationTitle')">
+          <SecondaryButton @click="closeCancelInvoiceModal" :title="t('common.button.abortInvoiceCancellationTitle')">
             {{ t('common.button.abortInvoiceCancellation') }}
           </SecondaryButton>
-          <PrimaryButton class="ms-3" @click="cancelInvoice(invoiceToCancel)"
-            :title="t('common.button.confirmInvoiceCancellationTitle')">
+          <PrimaryButton @click="cancelInvoice(cancelInvoiceTarget)"
+            :title="t('common.button.confirmInvoiceCancellationTitle')" class="ms-3">
             {{ t('common.button.confirmInvoiceCancellation') }}
           </PrimaryButton>
         </template>
       </DialogModal>
-      <Modal :show="invoiceNoteToUpdate !== null" @close="closeInvoiceNoteModal">
-        <InvoiceNoteUpdate :invoice="invoiceNoteToUpdate" :form="updateInternalNoteForm"
-          :submit="updateInvoiceInternalNote" />
+      <Modal :show="isUpsertInvoiceNoteModalOpen" @close="closeUpsertInvoiceNoteModal">
+        <InvoiceNoteUpdate :invoice="invoiceNoteTarget" :form="upsertInvoiceNoteForm" :submit="upsertInvoiceNote" />
       </Modal>
     </div>
   </div>

@@ -17,7 +17,8 @@
     "menSeasonal": "Herren - Saisonartikel"
   },
   "products": {
-    "label": "{productGender} {productType} durchsuchen"
+    "label": "{productGender} {productType} durchsuchen",
+    "productImage": "Bild von {product}"
   },
   "product": {
     "alsoAvailable": "Auch erhältlich in",
@@ -28,6 +29,7 @@
     "outOfStock": "Nicht auf Lager",
     "button": {
       "placeInCart": "In den Warenkorb legen",
+      "placingInCart": "Wird zum Warenkorb hinzugefügt",
       "viewBag": "Warenkorb ansehen"
     }
   },
@@ -38,7 +40,6 @@
     "couponApplied": "Gutschein angewendet",
     "couponPrompt": "Haben Sie einen Gutschein? {action}, um Ihren Code einzugeben",
     "button": {
-      "addToWishlist": "Zur Wunschliste hinzufügen",
       "proceedToCheckout": "Zur Kasse gehen"
     }
   },
@@ -72,16 +73,25 @@
   },
   "admin": {
     "overview": "Übersicht",
+    "overviewTitle": "Zur Übersicht wechseln",
     "products": "Produkte",
+    "productsTitle": "Produkte anzeigen",
     "orders": "Bestellungen",
+    "ordersTitle": "Bestellungen anzeigen",
     "orderDetails": "Bestelldetails",
     "createProduct": "Produkt erstellen",
+    "createProductTitle": "Neues Produkt erstellen",
     "updateProduct": "{product} aktualisieren",
     "invoices": "Rechnungen",
+    "invoicesTitle": "Rechnungen anzeigen",
+    "invoiceDetails": "Rechnungsdetails",
     "coupons": "Gutscheine",
+    "couponsTitle": "Gutscheine verwalten",
+    "couponDetails": "Gutscheindetails",
     "createCoupon": "Gutschein erstellen",
     "updateCoupon": "Aktualisiere {coupon}",
-    "users": "Benutzer"
+    "users": "Benutzer",
+    "usersTitle": "Benutzer verwalten"
   },
   "user": {
     "overview": "Übersicht",
@@ -90,6 +100,7 @@
       "saved": "Gespeichert",
       "password": "Passwort",
       "basicInfo": {
+        "picture": "Profilbild von {user}",
         "title": "Anrede",
         "titleMr": "Herr",
         "titleMs": "Frau",
@@ -138,6 +149,7 @@
       "noCurrentOrders": "Keine aktuellen Bestellungen vorhanden",
       "purchaseHistory": "Mein Kaufverlauf",
       "noPastOrders": "Keine früheren Bestellungen verfügbar",
+      "orderImage": "Bestellbild von {order}",
       "singleOrder": {
         "label": "Bestellung {order}",
         "continueOrder": "Mit der Bestellung fortfahren",
@@ -163,6 +175,7 @@
     "email": "E-Mail",
     "password": "Passwort",
     "login": {
+      "testingCredentials": "Anmeldedaten werden getestet",
       "label": "Anmelden",
       "rememberMe": "Angemeldet bleiben",
       "forgotPassword": "Passwort vergessen",
@@ -187,6 +200,7 @@
   },
   "orderDetails": {
     "orderItems": "Bestellartikel",
+    "productImage": "Bild von {product}",
     "size": "Größe",
     "shippingDate": "Versanddatum",
     "undetermined": "Unbestimmt",
@@ -249,7 +263,6 @@
     "redemptions": "Einlösungen",
     "used": "Verwendet",
     "user": "Benutzer | Benutzer",
-    "userPicture": "Profilbild von {user}",
     "productVariation": "Produktvariante | Produktvarianten",
     "productImage": "Bild von {product}",
     "sku": "SKU",

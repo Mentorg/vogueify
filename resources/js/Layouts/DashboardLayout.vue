@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, computed } from 'vue';
+import { computed } from 'vue';
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import Menu from '@/Layouts/Menu.vue';
@@ -23,26 +23,26 @@ const isWishlist = computed(() => usePage().url === '/wishlist');
   <Menu />
   <div class="bg-[#F5F5F5]">
     <nav class="bg-white flex justify-end border-b">
-      <Link :href="route('dashboard')"
+      <Link :href="route('dashboard')" :title="t('common.button.goToUserOverviewTitle')"
         class="relative border-l w-full py-4 text-sm text-center md:py-4 md:px-8 md:text-base">
-      {{ t('page.user.overview') }} <span
-        :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isDashboard }" />
+        {{ t('page.user.overview') }} <span
+          :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isDashboard }" />
       </Link>
-      <Link :href="route('profile')"
+      <Link :href="route('profile')" :title="t('common.button.goToUserProfileTitle')"
         class="relative border-l w-full py-4 text-sm text-center md:py-4 md:px-8 md:text-base">{{
           t('page.user.profile.label') }} <span
-        :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isProfile }" />
+          :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isProfile }" />
       </Link>
-      <Link :href="route('order.userOrders')"
+      <Link :href="route('order.userOrders')" :title="t('common.button.goToUserOrdersTitle')"
         class="relative border-l w-full py-4 text-sm text-center md:py-4 md:px-8 md:text-base">{{
           t('page.user.orders.label')
         }}
-      <span :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isOrders }" />
+        <span :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isOrders }" />
       </Link>
-      <Link :href="route('wishlist.index')"
+      <Link :href="route('wishlist.index')" :title="t('common.button.goToUserWishlistTitle')"
         class="relative border-l w-full py-4 text-sm text-center md:py-4 md:px-8 md:text-base">{{
           t('page.user.wishlist.label') }} <span
-        :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isWishlist }" />
+          :class="{ 'absolute bottom-0 left-0 w-full h-[2px] bg-black': isWishlist }" />
       </Link>
     </nav>
     <div v-if="isDashboard" class="profile-header h-[20rem]" />

@@ -1,172 +1,85 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref } from 'vue';
-import { Link, router, useForm } from '@inertiajs/vue3';
-import { useToast } from 'vue-toast-notification';
+import { inject, watch } from 'vue';
+import { Link } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
-import { PhCaretRight, PhDotsThreeVertical } from '@phosphor-icons/vue';
-import CouponForm from '@/Components/CouponForm.vue';
-import Modal from '@/Components/Modal.vue';
-import DialogModal from '@/Components/DialogModal.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
-import DangerButton from '@/Components/DangerButton.vue';
-import StatusChip from '../StatusChip.vue';
+import {
+  PhArchive,
+  PhBellRinging,
+  PhCaretRight,
+  PhCheck,
+  PhDotsThreeVertical,
+  PhPencilSimple,
+  PhProhibit,
+  PhTrash
+} from '@phosphor-icons/vue';
+import StatusChip from '@Components/StatusChip.vue';
+import ContextMenu from '@Components/ContextMenu.vue';
+import MenuItem from '@Components/MenuItem.vue';
+import CouponForm from '@Components/CouponForm.vue';
+import Modal from '@Components/Modal.vue';
+import DialogModal from '@Components/DialogModal.vue';
+import PrimaryButton from '@Components/PrimaryButton.vue';
+import SecondaryButton from '@Components/SecondaryButton.vue';
+import DangerButton from '@Components/DangerButton.vue';
 import TableFooter from '@Components/Tables/TableFooter.vue';
+import { useContextMenu } from '@/composables/useContextMenu';
+import { useSendCouponNotification } from '@/composables/coupon/useSendCouponNotification';
+import { useUpdateCouponStatus } from '@/composables/coupon/useUpdateCouponStatus';
+import { useDeleteCoupon } from '@/composables/coupon/useDeleteCoupon';
 import { capitalize } from '@/utils/capitalize';
 import { formatDate } from '@/utils/dateFormat';
 
-
-const props = defineProps({
+defineProps({
   coupons: Object,
   entities: Object,
 })
 
-const form = useForm({});
-const statusForm = useForm({ status: null })
-const toast = useToast();
 const { t } = useI18n();
 
-const openCouponMenu = ref(null);
-const openCouponStatusMenu = ref(null);
-const couponToEdit = ref(null);
-const notificationToSend = ref(null);
-const couponToDelete = ref(null);
+const {
+  isUpdateCouponModalOpen,
+  openUpdateCouponModal,
+  closeUpdateCouponModal,
+} = inject('couponManager');
 
-const toggleMenu = (couponId) => {
-  openCouponMenu.value = openCouponMenu.value === couponId ? null : couponId;
-  openCouponStatusMenu.value = openCouponStatusMenu.value === couponId && null;
-}
+const {
+  isContextMenuOpen,
+  isSubMenuOpen,
+  dropdownStyle,
+  toggleContextMenu,
+  toggleSubMenu,
+  closeSubMenu
+} = useContextMenu();
+const {
+  sendCouponNotificationTarget,
+  isSendCouponNotificationModalOpen,
+  openSendCouponNotificationModal,
+  closeSendCouponNotificationModal,
+  sendCouponNotification,
+} = useSendCouponNotification();
+const { updateCouponStatus } = useUpdateCouponStatus();
+const {
+  deleteCouponTarget,
+  isDeleteCouponModalOpen,
+  openDeleteCouponModal,
+  closeDeleteCouponModal,
+  deleteCoupon,
+} = useDeleteCoupon();
 
-const toggleCouponStatusMenu = (couponId) => {
-  openCouponStatusMenu.value = openCouponStatusMenu.value === couponId ? null : couponId;
-}
-
-const isCouponMenuOpen = (couponId) => openCouponMenu.value === couponId;
-
-const isCouponStatusMenuOpen = (couponId) => openCouponStatusMenu.value === couponId;
-
-const handleClickOutside = (event) => {
-  if (!event.target.closest('.context-menu-wrapper')) {
-    openCouponMenu.value = null;
-  }
-};
-
-const editCoupon = (coupon) => {
-  couponToEdit.value = coupon;
-}
-
-const closeCouponModal = () => {
-  couponToEdit.value = null;
-}
-
-const editCouponStatus = (coupon, status) => {
-  statusForm.status = status
-
-  statusForm.patch(route('coupon.updateStatus', coupon.id), {
-    preserveScroll: true,
-    onSuccess: () => {
-      toggleMenu(coupon.id)
-      toast.open({
-        message: `${t('common.toast.coupon.couponStatusUpdate.successMessage')}.`,
-        type: 'success',
-        position: 'top',
-        duration: 4000
-      })
-    },
-    onError: () => {
-      toast.open({
-        message: `${t('common.toast.coupon.couponStatusUpdate.errorMessage')}!`,
-        type: 'error',
-        position: 'top',
-        duration: 4000
-      })
-    }
-  })
-}
-
-const confirmUserNotifications = (coupon) => {
-  notificationToSend.value = coupon;
-}
-
-const closeNotificationModal = () => {
-  notificationToSend.value = null;
-}
-
-const sendUserNotifications = (coupon) => {
-  router.post(route('coupon.sendUserNotifications', coupon.id), {}, {
-    preserveScroll: true,
-    onSuccess: () => {
-      closeNotificationModal();
-      toast.open({
-        message: `${t('common.toast.coupon.couponNotifyUsers.successMessage')}.`,
-        type: 'success',
-        position: 'top',
-        duration: 4000
-      })
-    },
-    onError: (errors) => {
-      toast.open({
-        message: `${t('common.toast.coupon.couponNotifyUsers.errorMessage')}! ${errors.message || ''}`,
-        type: 'error',
-        position: 'top',
-        duration: 4000
-      })
-    },
-  });
-};
-
-
-const confirmCouponDeletion = (coupon) => {
-  couponToDelete.value = coupon;
-}
-
-const closeDeleteModal = () => {
-  couponToDelete.value = null;
-}
-
-const destroy = (coupon) => {
-  form.delete(route('coupon.delete', coupon), {
-    preserveScroll: true,
-    onSuccess: () => {
-      closeDeleteModal();
-      toast.open({
-        message: `${t('common.toast.coupon.couponDelete.successMessage')}.`,
-        type: 'success',
-        position: 'top',
-        duration: 4000,
-      })
-    },
-    onError: () => {
-      toast.open({
-        message: `${t('common.toast.coupon.couponDelete.errorMessage')}!`,
-        type: 'error',
-        position: 'top',
-        duration: 4000
-      })
-    },
-    onFinish: () => form.reset()
-  })
-}
-
-onMounted(() => {
-  window.addEventListener('click', handleClickOutside);
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener('click', handleClickOutside);
-});
+watch(isContextMenuOpen, (val) => !val && closeSubMenu())
 
 </script>
 
 <template>
-  <div class="relative overflow-x-auto bg-white h-[350px] overflow-y-auto">
+  <div class="relative overflow-x-auto bg-white h-[350px] overflow-y-auto isolate">
     <div class="bg-white w-fit">
       <table class="text-left text-sm w-full">
         <caption class="sr-only">{{ t('common.table.coupon.caption') }}</caption>
         <thead
-          class="bg-white uppercase tracking-wider sticky top-0 border-b-2 outline outline-2 outline-neutral-300 border-neutral-300">
+          class="bg-white uppercase tracking-wider sticky top-0 z-20 border-b-2 outline outline-2 outline-neutral-300 border-neutral-300">
           <tr
-            class="grid grid-cols-[3fr,2fr,1fr,1fr,2fr,2fr,4fr,1fr,1fr] md:grid-cols-[2fr,1fr,1fr,1fr,2fr,2fr,2fr,1fr,1fr]">
+            class="grid grid-cols-[0.5fr,3fr,2fr,1fr,1fr,2fr,2fr,4fr,1fr,1fr] md:grid-cols-[0.5fr,2fr,1fr,1fr,1fr,2fr,2fr,2fr,1fr,1fr]">
+            <th scope="col" class="px-6 py-4 text-xs">#</th>
             <th scope="col" class="px-6 py-4 w-48 text-xs">{{ t('common.table.coupon.code') }}</th>
             <th scope="col" class="px-6 py-4 w-32 text-xs">{{ t('common.table.coupon.type') }}</th>
             <th scope="col" class="px-6 py-4 w-32 text-xs">{{ t('common.table.coupon.entity') }}</th>
@@ -180,9 +93,16 @@ onBeforeUnmount(() => {
         </thead>
         <tbody>
           <div v-if="coupons.data.length > 0">
-            <tr v-for="coupon in coupons.data" :key="coupon.id"
-              class="grid grid-cols-[3fr,2fr,1fr,1fr,2fr,2fr,4fr,1fr,1fr] md:grid-cols-[2fr,1fr,1fr,1fr,2fr,2fr,2fr,1fr,1fr] border-b dark:border-neutral-200 even:bg-slate-100">
-              <th scope="row" class="place-content-center px-6 py-4 w-48">{{ coupon.code }}</th>
+            <tr v-for="(coupon, index) in coupons.data" :key="coupon.id"
+              class="grid grid-cols-[0.5fr,3fr,2fr,1fr,1fr,2fr,2fr,4fr,1fr,1fr] md:grid-cols-[0.5fr,2fr,1fr,1fr,1fr,2fr,2fr,2fr,1fr,1fr] border-b dark:border-neutral-200 even:bg-slate-100">
+              <th scope="row" class="place-content-center px-6 py-4">{{ (coupons.current_page - 1) * coupons.per_page +
+                index + 1 }}</th>
+              <th scope="row" class="place-content-center px-6 py-4 w-48">
+                <Link :href="route('coupon.show', { coupon: coupon })" :title="t('common.button.viewCouponTitle')"
+                  class="hover:underline">
+                  {{ coupon.code }}
+                </Link>
+              </th>
               <td class="place-content-center px-6 py-4 w-32">{{ capitalize(coupon.type) }}</td>
               <td class="place-content-center px-6 py-4 w-32">{{ capitalize(coupon.couponType) }}</td>
               <td class="place-content-center px-6 py-4 w-24">{{ coupon.type === 'percentage' ?
@@ -201,49 +121,51 @@ onBeforeUnmount(() => {
               </td>
               <td class="place-content-center px-6 py-4 w-28 flex items-center context-menu-wrapper">
                 <div class="relative context-menu-wrapper">
-                  <button @click.stop="toggleMenu(coupon.id)" :title="t('common.button.couponActions')"
-                    class="rounded-full p-0.5 transition-all hover:bg-slate-200">
+                  <button @click.stop="(e) => toggleContextMenu(coupon.id, e)"
+                    :title="t('common.button.moreActionsTitle')"
+                    class="relative rounded-full p-0.5 transition-all hover:bg-slate-200">
                     <PhDotsThreeVertical :size="20" />
                   </button>
-                  <div v-if="isCouponMenuOpen(coupon.id)"
-                    class="absolute z-10 right-0 top-0 px-1 py-1 bg-white border border-gray-200 shadow-md hs-dropdown-menu min-w-32 w-max flex flex-col rounded-md mt-6">
-                    <Link :href="route('coupon.show', { coupon: coupon })" :title="t('common.button.viewDetails')"
-                      class="flex w-full px-2 py-2 rounded-md text-xs md:text-sm hover:bg-slate-100">
-                      {{ t('common.button.viewDetails') }}
-                    </Link>
-                    <button @click="editCoupon(coupon)" :title="t('common.button.updateCoupon')"
-                      class="flex w-full px-2 py-2 rounded-md text-xs md:text-sm hover:bg-slate-100">
-                      {{ t('common.button.updateCoupon') }}
-                    </button>
-                    <button @click.stop="toggleCouponStatusMenu(coupon.id)" :title="t('common.button.markAs')"
-                      class="relative flex items-center justify-between w-full px-2 py-2 rounded-md text-xs md:text-sm hover:bg-slate-100">
+                  <ContextMenu :state="isContextMenuOpen" :entity="coupon" :style="dropdownStyle">
+                    <MenuItem :action="() => openUpdateCouponModal(coupon)"
+                      :title="t('common.button.updateCouponTitle')">
+                      <PhPencilSimple :size="16" color="green" />
+                      {{ t('common.button.update') }}
+                    </MenuItem>
+                    <MenuItem :action="(e) => { e.stopPropagation(); toggleSubMenu(coupon.id) }"
+                      :title="t('common.button.markCouponAsTitle')">
+                      <PhPencilSimple :size="16" />
                       {{ t('common.button.markAs') }}
                       <PhCaretRight :size="14" />
-                    </button>
-                    <div v-if="isCouponStatusMenuOpen(coupon.id)"
-                      class="absolute z-10 -left-32 top-12 px-1 py-1 bg-white border border-gray-200 shadow-md hs-dropdown-menu min-w-32 w-max flex flex-col rounded-md mt-6">
-                      <button @click="editCouponStatus(coupon, 'active')" :title="t('common.button.active')"
-                        class="flex w-full px-2 py-2 rounded-md text-xs md:text-sm hover:bg-slate-100">
+                    </MenuItem>
+                    <div v-if="isSubMenuOpen"
+                      class="absolute z-10 -left-32 top-2.5 px-1 py-1 bg-white border border-gray-200 shadow-md hs-dropdown-menu min-w-32 w-max flex flex-col rounded-md mt-6">
+                      <MenuItem :action="() => updateCouponStatus(coupon, 'active')" :title="t('common.button.active')">
+                        <PhCheck :size="14" color="green" />
                         {{ t('common.button.active') }}
-                      </button>
-                      <button @click="editCouponStatus(coupon, 'inactive')" :title="t('common.button.inactive')"
-                        class="flex w-full px-2 py-2 rounded-md text-xs md:text-sm hover:bg-slate-100">
+                      </MenuItem>
+                      <MenuItem :action="() => updateCouponStatus(coupon, 'inactive')"
+                        :title="t('common.button.inactive')">
+                        <PhProhibit :size="14" color="grey" />
                         {{ t('common.button.inactive') }}
-                      </button>
-                      <button @click="editCouponStatus(coupon, 'archived')" :title="t('common.button.archived')"
-                        class="flex w-full px-2 py-2 rounded-md text-xs md:text-sm hover:bg-slate-100">
+                      </MenuItem>
+                      <MenuItem :action="() => updateCouponStatus(coupon, 'archived')"
+                        :title="t('common.button.archived')">
+                        <PhArchive :size="14" color="red" />
                         {{ t('common.button.archived') }}
-                      </button>
+                      </MenuItem>
                     </div>
-                    <button :title="t('common.button.notifyUsers')" @click=confirmUserNotifications(coupon)
-                      class="flex w-full px-2 py-2 rounded-md text-xs md:text-sm hover:bg-slate-100">
+                    <MenuItem :action="() => openSendCouponNotificationModal(coupon)"
+                      :title="t('common.button.notifyUsers')">
+                      <PhBellRinging :size="14" color="blue" />
                       {{ t('common.button.notifyUsers') }}
-                    </button>
-                    <button :title="t('common.button.deleteCoupon')" @click="confirmCouponDeletion(coupon)"
-                      class="flex w-full px-2 py-2 rounded-md text-xs md:text-sm hover:bg-slate-100">
-                      {{ t('common.button.deleteCoupon') }}
-                    </button>
-                  </div>
+                    </MenuItem>
+                    <MenuItem :action="() => openDeleteCouponModal(coupon)"
+                      :title="t('common.button.deleteCouponTitle')">
+                      <PhTrash :size="16" color="red" />
+                      {{ t('common.button.delete') }}
+                    </MenuItem>
+                  </ContextMenu>
                 </div>
               </td>
             </tr>
@@ -254,35 +176,39 @@ onBeforeUnmount(() => {
         </tbody>
         <TableFooter :pagination="coupons" />
       </table>
-      <Modal :show="couponToEdit !== null" @close="closeCouponModal">
-        <CouponForm :entities="entities" :coupon="couponToEdit" formType="update" :close="closeCouponModal" />
+      <Modal :show="isUpdateCouponModalOpen" @close="closeUpdateCouponModal">
+        <CouponForm :entities="entities" />
       </Modal>
-      <DialogModal :show="notificationToSend !== null" @close="closeNotificationModal">
+      <DialogModal :show="isSendCouponNotificationModalOpen" @close="closeSendCouponNotificationModal">
         <template #title>
-          {{ t('common.modal.coupon.couponNotifyUsers.title', { coupon: notificationToSend?.code }) }}?
+          {{ t('common.modal.coupon.couponNotifyUsers.title', { coupon: sendCouponNotificationTarget?.code }) }}?
         </template>
         <template #content>
-          {{ t('common.modal.coupon.couponNotifyUsers.content', { coupon: notificationToSend?.code }) }}?
+          {{ t('common.modal.coupon.couponNotifyUsers.content', { coupon: sendCouponNotificationTarget?.code }) }}?
         </template>
         <template #footer>
-          <SecondaryButton @click="closeNotificationModal" :title="t('common.button.cancel')">{{
-            t('common.button.cancel') }}</SecondaryButton>
-          <PrimaryButton class="ms-3" @click="sendUserNotifications(notificationToSend)"
-            :title="t('common.button.notifyUsers')">{{ t('common.button.notifyUsers') }}</PrimaryButton>
+          <SecondaryButton @click="closeSendCouponNotificationModal"
+            :title="t('common.button.cancelUserCouponNotificationTitle')">{{
+              t('common.button.cancel') }}</SecondaryButton>
+          <PrimaryButton @click="sendCouponNotification(sendCouponNotificationTarget)"
+            :title="t('common.button.sendUserCouponNotificationTitle')" class="ms-3">{{ t('common.button.notifyUsers')
+            }}</PrimaryButton>
         </template>
       </DialogModal>
-      <DialogModal :show="couponToDelete !== null" @close="closeDeleteModal">
+      <DialogModal :show="isDeleteCouponModalOpen" @close="closeDeleteCouponModal">
         <template #title>
-          {{ t('common.modal.coupon.couponDelete.title', { coupon: couponToDelete?.code }) }}?
+          {{ t('common.modal.coupon.couponDelete.title', { coupon: deleteCouponTarget?.code }) }}?
         </template>
         <template #content>
-          {{ t('common.modal.coupon.couponDelete.content', { coupon: couponToDelete?.code }) }}?
+          {{ t('common.modal.coupon.couponDelete.content', { coupon: deleteCouponTarget?.code }) }}?
         </template>
         <template #footer>
-          <SecondaryButton @click="closeDeleteModal" :title="t('common.button.cancel')">{{ t('common.button.cancel') }}
+          <SecondaryButton @click="closeDeleteCouponModal" :title="t('common.button.cancelCouponDeletionTitle')">{{
+            t('common.button.cancel') }}
           </SecondaryButton>
-          <DangerButton class="ms-3" @click="destroy(couponToDelete)" :title="t('common.button.delete')">{{
-            t('common.button.delete') }}</DangerButton>
+          <DangerButton @click="deleteCoupon(deleteCouponTarget)" :title="t('common.button.confirmCouponDeletionTitle')"
+            class="ms-3">{{
+              t('common.button.delete') }}</DangerButton>
         </template>
       </DialogModal>
     </div>

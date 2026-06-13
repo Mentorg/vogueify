@@ -2,9 +2,9 @@
 import { useI18n } from 'vue-i18n';
 import { Head } from '@inertiajs/vue3';
 import AdminDashboard from '@/Layouts/AdminDashboard.vue';
-import InvoicesTable from '@/Components/Tables/InvoicesTable.vue';
+import InvoicesTable from '@Components/Tables/InvoicesTable.vue';
 
-const props = defineProps({
+defineProps({
   invoices: Array,
 });
 

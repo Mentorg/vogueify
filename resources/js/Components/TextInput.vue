@@ -5,7 +5,15 @@ const props = defineProps({
   type: {
     type: String,
     default: 'text'
-  }
+  },
+  name: {
+    type: String,
+    required: true
+  },
+  id: {
+    type: String,
+    required: true
+  },
 });
 const emit = defineEmits(['update:modelValue']);
 
@@ -17,7 +25,7 @@ const updateValue = (e) => {
 </script>
 
 <template>
-  <input ref="input" :type="type"
+  <input :name="name" :id="id" ref="input" :type="type"
     class="mt-1 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full"
     :value="modelValue" @input="updateValue" />
 </template>

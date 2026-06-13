@@ -17,7 +17,9 @@
     "accessories": "Accessoire | Accessoires",
     "jewelry": "Schmuck | Schmuckstücke",
     "watches": "Uhr | Uhren",
-    "fragrances": "Duft | Düfte"
+    "fragrances": "Duft | Düfte",
+    "categoryMen": "Produkte für Herren kaufen",
+    "categoryWomen": "Produkte für Damen kaufen"
   },
   "subCategory": {
     "bag": {
@@ -48,6 +50,11 @@
       "ring": "Ring | Ringe"
     }
   },
+  "userType": {
+    "admin": "Administrator",
+    "staff": "Mitarbeiter",
+    "customer": "Kunde"
+  },
   "gender": {
     "woman": "Dame | Damen",
     "man": "Herr | Herren",
@@ -76,6 +83,10 @@
         "orderCancelation": {
           "title": "Bestellung {order} stornieren",
           "content": "Möchten Sie die Bestellung {order} wirklich stornieren?"
+        },
+        "orderContinuation": {
+          "title": "Mit der Bestellung {order} fortfahren",
+          "content": "Sind Sie sicher, dass Sie mit der Bestellung {order} fortfahren möchten"
         }
       },
       "admin": {
@@ -92,6 +103,9 @@
           "title": "{item}-Versanddatum aktualisieren",
           "content": "Möchten Sie das Versanddatum des Bestellartikels wirklich aktualisieren?",
           "itemShippingDate": "Versanddatum des Artikels"
+        },
+        "addOrderNote": {
+          "title": "Bestellnotiz hinzufügen"
         },
         "orderNoteUpdate": {
           "title": "Notiz der Bestellung {orderNumber} aktualisieren",
@@ -125,7 +139,7 @@
       },
       "updateInvoiceNote": {
         "title": "Interne Notiz von {internalNote} aktualisieren",
-        "content": "Sind Sie sicher, dass Sie die interne Notiz von {internalNote} aktualisieren möchten",
+        "content": "Sind Sie sicher, dass Sie die interne Notiz der Rechnung aktualisieren möchten",
         "internalNote": "Interne Notiz"
       }
     },
@@ -145,6 +159,9 @@
     }
   },
   "toast": {
+    "wishlist": {
+      "errorMessage": "Fehler beim Entfernen des Artikels von der Wunschliste"
+    },
     "cart": {
       "successMessage": "Cart items deleted successfully",
       "errorMessage": "Failed to delete cart items"
@@ -208,7 +225,9 @@
         "successMessage": "Produkt erfolgreich erstellt",
         "errorValidationMessage": "Aktualisierung des Produkts fehlgeschlagen! Validierung fehlgeschlagen",
         "errorMessage": "Erstellen des Produkts fehlgeschlagen! Bitte überprüfen Sie das Formular auf Fehler"
-      }
+      },
+      "invalidImageType": "Ungültiger Bildtyp. Bitte laden Sie ein unterstütztes Bildformat hoch (z. B. PNG, JPG, WEBP).",
+      "imageTooLarge": "Das Bild muss kleiner als 5 MB sein."
     },
     "invoice": {
       "invoiceResend": {
@@ -242,6 +261,10 @@
       "couponApply": {
         "successMessage": "Gutschein erfolgreich angewendet",
         "errorMessage": "Gutschein konnte nicht angewendet werden"
+      },
+      "couponRemove": {
+        "successMessage": "Gutschein erfolgreich entfernt",
+        "errorMessage": "Fehler beim Entfernen des Gutscheins"
       },
       "couponStatusUpdate": {
         "successMessage": "Gutscheinstatus erfolgreich aktualisiert",
@@ -287,9 +310,13 @@
     "cancel": "Abbrechen",
     "continue": "Weiter",
     "create": "Erstellen",
+    "creating": "Wird erstellt",
     "update": "Aktualisieren",
+    "updating": "Wird aktualisiert",
     "apply": "Anwenden",
+    "applying": "Wird angewendet",
     "add": "Hinzufügen",
+    "adding": "Wird hinzugefügt",
     "downloadPDF": "PDF herunterladen",
     "downloadInvoicePDFTitle": "Diese Rechnung als PDF herunterladen",
     "cancelResendInvoiceTitle": "Das erneute Senden dieser Rechnung abbrechen",
@@ -302,7 +329,7 @@
     "markAsCancelled": "Als storniert markieren",
     "markAsCancelledTitle": "Rechnung als storniert markieren",
     "viewOrder": "Bestellung anzeigen",
-    "viewOrderTitle": "Bestellung der Rechnung anzeigen",
+    "viewInvoiceOrderTitle": "Bestellung der Rechnung anzeigen",
     "addInternalNote": "Interne Notiz hinzufügen",
     "addInternalNoteTitle": "Interne Notiz für diese Rechnung hinzufügen",
     "updateInternalNote": "Interne Notiz aktualisieren",
@@ -319,9 +346,17 @@
     "archived": "Archiviert",
     "notifyUsers": "Benutzer benachrichtigen",
     "addFeature": "Funktion hinzufügen",
+    "addFeatureTitle": "Neues Merkmalsfeld hinzufügen",
+    "removeFeatureTitle": "Merkmal entfernen",
     "addVariation": "Neue Variante hinzufügen",
+    "addVariationTitle": "Produktvariante erstellen",
     "saveProduct": "Produkt speichern",
+    "savingProduct": "Speichern",
+    "updateProduct": "Produkt aktualisieren",
+    "updatingProduct": "Produkt wird aktualisiert",
     "modifyAddress": "Adressdetails hinzufügen | Adressdetails aktualisieren",
+    "modifyAddressTitle": "Adressformular anzeigen",
+    "hideAddressTitle": "Adressformular ausblenden",
     "save": "Speichern",
     "enable": "Aktivieren",
     "confirm": "Bestätigen",
@@ -353,20 +388,198 @@
     "contactCustomerTitle": "Kunden kontaktieren",
     "updateOrderShippingAddressTitle": "Lieferadresse der Bestellung aktualisieren",
     "updateOrderBillingAddressTitle": "Rechnungsadresse der Bestellung aktualisieren",
-    "couponActions": "Gutscheinaktionen",
+    "cancelOrderContinuationTitle": "Fortsetzung der Bestellung abbrechen",
+    "confirmOrderContinuationTitle": "Mit der Bestellung fortfahren",
+    "viewOrderTitle": "Diese Bestellung anzeigen",
+    "markOrderAsTitle": "Bestellung markieren als",
+    "updateProductTitle": "Produkt aktualisieren",
+    "deleteProductTitle": "Produkt löschen",
+    "cancelProductDeletionTitle": "Das Löschen dieses Produkts abbrechen",
+    "confirmProductDeletionTitle": "Dieses Produkt und seine Varianten löschen",
+    "confirmVariationDeletionTitle": "Die Produktvariante löschen",
+    "viewInvoiceTitle": "Diese Rechnung anzeigen",
+    "viewCouponTitle": "Diesen Gutschein anzeigen",
     "createCoupon": "Gutschein erstellen",
-    "updateCoupon": "Gutschein aktualisieren",
-    "deleteCoupon": "Gutschein löschen",
+    "markCouponAsTitle": "Gutschein markieren als",
+    "updateCouponTitle": "Gutschein aktualisieren",
+    "deleteCouponTitle": "Gutschein löschen",
     "removeCoupon": "Gutschein entfernen",
+    "cancelUserCouponNotificationTitle": "Senden der Gutscheinbenachrichtigung an den Benutzer abbrechen",
+    "sendUserCouponNotificationTitle": "Gutscheinbenachrichtigung an den Benutzer senden",
+    "cancelCouponDeletionTitle": "Das Löschen dieses Gutscheins abbrechen",
+    "confirmCouponDeletionTitle": "Diesen Gutschein löschen",
+    "deleteUserTitle": "Benutzer löschen",
+    "cancelUserDeletionTitle": "Das Löschen dieses Benutzers abbrechen",
+    "confirmUserDeletionTitle": "Diesen Benutzer löschen",
     "clickHere": "Hier klicken",
     "updateProfile": "Profil aktualisieren",
-    "updateProfileTitle": "Ihre Profilinformationen aktualisieren"
+    "updateProfileTitle": "Ihre Profilinformationen aktualisieren",
+    "placeOrder": "Bestellung aufgeben",
+    "processing": "Wird verarbeitet",
+    "selectUserPhoto": "Ein neues Foto auswählen",
+    "removeUserPhoto": "Foto entfernen",
+    "goToHomeTitle": "Zur Startseite gehen",
+    "searchProductsTitle": "Produkte suchen",
+    "addToWishlist": "Zur Wunschliste hinzufügen",
+    "addToWishlistTitle": "Diesen Artikel zur Wunschliste speichern",
+    "removeFromWishlist": "Von der Wunschliste entfernen",
+    "removeFromWishlistTitle": "Diesen Artikel von der Wunschliste entfernen",
+    "closeCartSidebarTitle": "Warenkorb schließen",
+    "applyCouponTitle": "Formular für Gutscheincode öffnen",
+    "removeFromCartTitle": "Diesen Artikel aus dem Warenkorb entfernen",
+    "openSidebarTitle": "Navigationsmenü öffnen",
+    "closeSidebarTitle": "Navigationsmenü schließen",
+    "openCategoryMenuTitle": "Kategorienmenü öffnen",
+    "closeCategoryMenuTitle": "Kategorienmenü schließen",
+    "openUserMenu": "Kontomenü öffnen",
+    "cancelDeleteCartItemTitle": "Entfernen des Artikels abbrechen",
+    "confirmDeleteCartItemTitle": "Artikel aus dem Warenkorb entfernen",
+    "cancelOrderDismissTitle": "Diese Bestellung beibehalten",
+    "cancelOrderConfirmTitle": "Diese Bestellung stornieren",
+    "cancelResendOrderConfirmationEmailTitle": "Bestellbestätigungs-E-Mail nicht erneut senden",
+    "confirmResendOrderConfirmationEmailTitle": "Bestellbestätigungs-E-Mail erneut senden",
+    "loginTitle": "Bei Ihrem Konto anmelden",
+    "registerTitle": "Neues Konto erstellen",
+    "saveProfileChangesTitle": "Änderungen an Ihrem Profil speichern",
+    "selectProfilePhotoTitle": "Neues Profilbild auswählen",
+    "deleteProfilePhotoTitle": "Ihr Profilbild entfernen",
+    "applyCouponCodeTitle": "Diesen Gutscheincode anwenden",
+    "createCouponFormSubmitTitle": "Neuen Gutscheincode erstellen",
+    "updateCouponFormSubmitTitle": "Änderungen an diesem Gutscheincode speichern",
+    "createInvoiceNoteFormSubmitTitle": "Neue Rechnungsnotiz erstellen",
+    "updateInvoiceNoteFormSubmitTitle": "Änderungen an dieser Rechnungsnotiz speichern",
+    "updateOrderBillingAddressFormSubmitTitle": "Änderungen an der Rechnungsadresse speichern",
+    "updateOrderItemShippingDateFormSubmitTitle": "Änderungen am Versanddatum speichern",
+    "updateOrderItemStatusFormSubmitTitle": "Änderungen am Status des Bestellartikels speichern",
+    "updateOrderNoteFormSubmitTitle": "Änderungen an der Bestellnotiz speichern",
+    "updateOrderShippingAddressFormSubmitTitle": "Änderungen an der Lieferadresse speichern",
+    "updateOrderStatusFormSubmitTitle": "Änderungen am Bestellstatus speichern",
+    "placeOrderTitle": "Bestellung aufgeben",
+    "addToCartTitle": "Dieses Produkt in den Warenkorb legen",
+    "createProductFormSubmitTitle": "Neues Produkt erstellen",
+    "updateProductFormSubmitTitle": "Änderungen an diesem Produkt speichern",
+    "goToLoginTitle": "Zur Anmeldeseite gehen",
+    "logoutTitle": "Sich von Ihrem Konto abmelden",
+    "goToOverviewTitle": "Zur Übersicht gehen",
+    "goToProductsTitle": "Zu den Produkten gehen",
+    "goToProfileTitle": "Zu Ihrem Profil gehen",
+    "goToUserOverviewTitle": "Zur Übersicht gehen",
+    "goToUserProfileTitle": "Zu Ihrem Profil gehen",
+    "goToUserOrdersTitle": "Zu Ihren Bestellungen gehen",
+    "goToUserWishlistTitle": "Zu Ihrer Wunschliste gehen",
+    "goToSearchTitle": "Zur Suche gehen",
+    "goToCartTitle": "Zum Warenkorb gehen",
+    "continueShoppingTitle": "Weiter einkaufen",
+    "goBackToProductTitle": "Zurück zum Produkt",
+    "goToCheckoutTitle": "Zur Kasse gehen",
+    "goToEditProfileTitle": "Profil bearbeiten",
+    "goToOrderTitle": "Bestelldetails anzeigen",
+    "goToCategoryTitle": "{category} durchsuchen",
+    "browseMenTitle": "Herren ansehen",
+    "browseWomenTitle": "Damen ansehen",
+    "goToProductTitle": "Produkt ansehen",
+    "goToCategoryProductsTitle": "Produkte ansehen",
+    "goToProductVariationTitle": "Variante ansehen"
   },
   "menuLabel": {
     "for": "Für",
     "category": "Kategorie | Kategorien",
     "all": "Alle",
     "fine": "Edler"
+  },
+  "catalogMenu": {
+    "new": {
+      "title": "Neue Produkte ansehen",
+      "women": {
+        "title": "Neue Produkte für Damen ansehen",
+        "bags": "Damentaschen",
+        "shoes": "Damenschuhe",
+        "accessories": "Damen-Accessoires",
+        "jewelry": "Damenschmuck",
+        "watches": "Damenuhren",
+        "fragrances": "Damenparfums"
+      },
+      "men": {
+        "title": "Neue Produkte für Herren ansehen",
+        "bags": "Herrentaschen",
+        "shoes": "Herrenschuhe",
+        "accessories": "Herren-Accessoires",
+        "jewelry": "Herrenschmuck",
+        "watches": "Herrenuhren",
+        "fragrances": "Herrenparfums"
+      }
+    },
+    "women": {
+      "title": "Damenkollektion ansehen",
+      "bags": {
+        "title": "Damentaschen ansehen",
+        "all": "Alle Damentaschen ansehen",
+        "handbags": "Handtaschen ansehen",
+        "bucket": "Bucket-Taschen ansehen",
+        "hobo": "Hobo-Taschen ansehen",
+        "envelope": "Clutch-Taschen ansehen"
+      },
+      "shoes": {
+        "title": "Damenschuhe ansehen",
+        "all": "Alle Damenschuhe ansehen",
+        "sneakers": "Sneaker ansehen",
+        "ankleBoots": "Stiefeletten ansehen",
+        "sandals": "Sandalen ansehen"
+      },
+      "accessories": {
+        "title": "Damenaccessoires ansehen",
+        "scarves": "Schals ansehen",
+        "sunglasses": "Sonnenbrillen ansehen",
+        "belts": "Gürtel ansehen"
+      }
+    },
+    "men": {
+      "title": "Herrenkollektion ansehen",
+      "bags": {
+        "title": "Herrentaschen ansehen",
+        "all": "Alle Herrentaschen ansehen",
+        "backpack": "Rucksäcke ansehen",
+        "satchel": "Umhängetaschen ansehen",
+        "clutch": "Clutches ansehen",
+        "fannyPack": "Bauchtaschen ansehen"
+      },
+      "shoes": {
+        "title": "Herrenschuhe ansehen",
+        "all": "Alle Herrenschuhe ansehen",
+        "sneakers": "Sneaker ansehen",
+        "boots": "Stiefel ansehen"
+      },
+      "accessories": {
+        "title": "Herrenaccessoires ansehen",
+        "scarves": "Schals ansehen",
+        "sunglasses": "Sonnenbrillen ansehen",
+        "belts": "Gürtel ansehen"
+      }
+    },
+    "jewelry": {
+      "title": "Schmuck ansehen",
+      "categories": {
+        "title": "Schmuckkategorien ansehen",
+        "all": "Allen Feinschmuck ansehen",
+        "bracelets": "Armbänder ansehen",
+        "necklaces": "Halsketten ansehen",
+        "earrings": "Ohrringe ansehen",
+        "rings": "Ringe ansehen"
+      }
+    },
+    "watches": {
+      "title": "Uhren ansehen",
+      "all": "Alle Uhren ansehen"
+    },
+    "fragrances": {
+      "title": "Parfums ansehen",
+      "categories": {
+        "title": "Parfümkategorien ansehen",
+        "all": "Alle Parfums ansehen",
+        "women": "Damenparfums ansehen",
+        "men": "Herrenparfums ansehen"
+      }
+    }
   },
   "footer": {
     "company": {
@@ -406,6 +619,7 @@
     },
     "order": {
       "caption": "Kundenbestellungen",
+      "number": "Bestellnummer",
       "datePlaced": "Bestelldatum",
       "deliveryDate": "Lieferdatum",
       "deliveryDateTooltip": "Frühestes Versanddatum",
@@ -415,7 +629,8 @@
     },
     "invoice": {
       "caption": "Kundenrechnungen",
-      "customerName": "Kundenname",
+      "number": "Rechnungsnummer",
+      "customer": "Kunde",
       "issuedAt": "Ausgestellt am",
       "amount": "Betrag",
       "status": "Status"
@@ -444,7 +659,8 @@
       "avatar": "Avatar",
       "name": "Name",
       "email": "E-Mail",
-      "redemptions": "Einlösungen"
+      "redemptions": "Einlösungen",
+      "userPicture": "Bild von {user}"
     },
     "couponCategories": {
       "image": "Bild",
@@ -468,19 +684,26 @@
       "createdAt": "Erstellt"
     },
     "actions": "Aktionen",
+    "firstTitle": "Aller à la première page",
+    "previousTitle": "Aller à la page précédente",
+    "nextTitle": "Aller à la page suivante",
+    "lastTitle": "Aller à la dernière page",
     "pagination": "Anzeige {from}-{to} von {total}",
-    "noData": "Keine Daten"
+    "noData": "Keine Daten",
+    "undetermined": "Unbestimmt"
   },
   "form": {
     "base": {
       "selectPlaceholder": "{entityType} auswählen",
       "selectedPlaceholder": "{count} {entityType} ausgewählt",
-      "searchPlaceholder": "Suchen"
+      "searchPlaceholder": "Suchen",
+      "uploading": "Wird hochgeladen"
     },
     "product": {
       "headingBase": "Basisinformationen",
       "headingProductVariation": "Produktvarianten",
       "headingPreview": "Vorschau",
+      "imagePreview": "Vorschau des ausgewählten Bildes",
       "variation": "Variante {variation}",
       "note": "Hinweis",
       "noteMessage": "Pflichtfelder variieren je nach Produkttyp. Die meisten Felder sind erforderlich. Farben sind optional. Größen gelten je nach Produkttyp.",
@@ -492,7 +715,10 @@
       "featureDescription": "Merkmalsbeschreibung",
       "category": "Kategorie | Kategorien",
       "expand": "Erweitern",
+      "expandTitle": "Variantendetails anzeigen",
       "collapse": "Reduzieren",
+      "collapseTitle": "Variantendetails einklappen",
+      "removeVariationTitle": "Variante entfernen",
       "image": "Bild",
       "imageTooltip": "Nur gültige Formate sind erlaubt (jpeg, png, jpg, gif, bmp, svg, webp)",
       "productType": "Produkttyp",
@@ -513,7 +739,9 @@
       "noFeatures": "Keine Merkmale angegeben",
       "noImage": "Kein Bild ausgewählt",
       "noSku": "Keine SKU angegeben",
-      "unknown": "Unbekannt"
+      "unknown": "Unbekannt",
+      "categoryLocked": "Entfernen Sie alle Varianten, um die Kategorie zu ändern",
+      "genderLocked": "Entfernen Sie alle Varianten, um das Geschlecht zu ändern"
     },
     "order": {
       "updateShippingAddress": {

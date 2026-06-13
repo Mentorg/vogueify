@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue';
 import { PhCaretRight } from '@phosphor-icons/vue';
 
 const props = defineProps({

@@ -3,13 +3,11 @@ import { useI18n } from 'vue-i18n';
 import { capitalize } from '@/utils/capitalize';
 import { formatDate } from '@/utils/dateFormat';
 
-const props = defineProps({
+defineProps({
   coupon: Object,
 })
 
 const { t } = useI18n();
-
-const variations = props.coupon.product_variations;
 
 </script>
 
@@ -31,7 +29,7 @@ const variations = props.coupon.product_variations;
           </tr>
         </thead>
         <tbody>
-          <tr v-for="variation in variations" :key="variation.id"
+          <tr v-for="variation in coupon.product_variations" :key="variation.id"
             class="grid grid-cols-[2fr,2fr,4fr,2fr,2fr,3fr,3fr,3fr] border-b dark:border-neutral-200 even:bg-slate-100">
             <th class="px-6 py-4 w-24">{{ variation.id }}</th>
             <th class="px-6 py-4 w-28">

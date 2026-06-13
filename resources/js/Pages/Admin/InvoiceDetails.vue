@@ -1,33 +1,33 @@
 <script setup>
-import { defineProps } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import AdminDashboard from '@/Layouts/AdminDashboard.vue';
-import DialogModal from '@/Components/DialogModal.vue';
-import StatusChip from '@/Components/StatusChip.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
+import DialogModal from '@Components/DialogModal.vue';
+import StatusChip from '@Components/StatusChip.vue';
+import PrimaryButton from '@Components/PrimaryButton.vue';
+import SecondaryButton from '@Components/SecondaryButton.vue';
+import { useResendInvoice } from '@/composables/invoice/useResendInvoice';
 import { capitalize } from '@/utils/capitalize';
 import { formatDate } from '@/utils/dateFormat';
-import { useInvoice } from '@/composables/useInvoice';
 
-const props = defineProps({
+defineProps({
   invoice: Object
 })
 
 const { t } = useI18n();
 const {
-  invoiceToResend,
-  openInvoiceResendModal,
-  closeInvoiceResendModal,
+  resendInvoiceTarget,
+  isResendInvoiceModalOpen,
+  openResendInvoiceModal,
+  closeResendInvoiceModal,
   resendInvoice,
-} = useInvoice();
+} = useResendInvoice();
 
 </script>
 
 <template>
 
-  <Head title="Invoice" />
+  <Head :title="t('page.admin.invoiceDetails')" />
   <AdminDashboard>
     <div>
       <div class="flex flex-col gap-2 items-center justify-between py-6 md:gap-6 md:flex-row">
@@ -42,7 +42,7 @@ const {
             true) }}</p>
         </div>
         <div class="flex gap-4">
-          <button @click="openInvoiceResendModal(invoice)" :title="t('common.button.resendInvoiceTitle')"
+          <button @click="openResendInvoiceModal(invoice)" :title="t('common.button.resendInvoiceTitle')"
             class="py-1 px-4 rounded-md transition-all text-white bg-black border border-black hover:cursor-pointer hover:bg-slate-700">
             {{ t('common.button.resendInvoice') }}
           </button>
@@ -146,24 +146,24 @@ const {
         </div>
       </div>
     </div>
-    <DialogModal :show="invoiceToResend !== null" @close="closeInvoiceResendModal">
+    <DialogModal :show="isResendInvoiceModalOpen" @close="closeResendInvoiceModal">
       <template #title>
         {{ t('common.modal.invoice.resendInvoice.title', {
-          invoice: invoiceToResend?.invoice_number, user:
-            invoiceToResend?.user.name
+          invoice: resendInvoiceTarget?.invoice_number, user:
+            resendInvoiceTarget?.user?.name
         }) }}?
       </template>
       <template #content>
         {{ t('common.modal.invoice.resendInvoice.content', {
-          invoice: invoiceToResend?.invoice_number, user:
-            invoiceToResend?.user.name
+          invoice: resendInvoiceTarget?.invoice_number, user:
+            resendInvoiceTarget?.user?.name
         }) }}?
       </template>
       <template #footer>
-        <SecondaryButton @click="closeInvoiceResendModal" :title="t('common.button.cancelResendInvoiceTitle')">
+        <SecondaryButton @click="closeResendInvoiceModal" :title="t('common.button.cancelResendInvoiceTitle')">
           {{ t('common.button.cancel') }}
         </SecondaryButton>
-        <PrimaryButton class="ms-3" @click="resendInvoice(invoiceToResend)"
+        <PrimaryButton class="ms-3" @click="resendInvoice(resendInvoiceTarget)"
           :title="t('common.button.resendInvoiceTitle')">
           {{ t('common.button.resendInvoice') }}
         </PrimaryButton>

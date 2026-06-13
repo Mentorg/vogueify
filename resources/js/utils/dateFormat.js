@@ -49,3 +49,7 @@ export function toDatetimeLocalFormat(isoString) {
 
   return d.toISOString().slice(0, 16);
 }
+
+export const formatShippingDate = (date, t) => {
+  return date ? formatDate(date, '.', true) : t('page.orderDetails.undetermined')
+}

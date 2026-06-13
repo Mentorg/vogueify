@@ -1,150 +1,89 @@
 <script setup>
-import { useForm } from '@inertiajs/vue3';
-import { useToast } from 'vue-toast-notification';
+import { inject } from 'vue';
 import { useI18n } from 'vue-i18n';
 import InputLabel from '@Components/InputLabel.vue';
 import TextInput from '@Components/TextInput.vue';
 import SelectInput from '@Components/SelectInput.vue';
 import MultiSelectInput from '@Components/MultiSelectInput.vue';
 import Checkbox from '@Components/Checkbox.vue';
-import ErrorMessage from '@Components/ErrorMessage.vue';
-import { toDatetimeLocalFormat } from '@/utils/dateFormat';
+import InputError from '@Components/InputError.vue';
+import RadioInput from '@Components/RadioInput.vue';
+import ProgressBar from '@Components/ProgressBar.vue';
+import SubmitButton from '@Components/SubmitButton.vue';
 
 const props = defineProps({
-  isCouponModalOpen: Boolean,
-  entities: Object,
-  coupon: Object,
-  formType: String,
-  close: Function,
+  entities: {
+    type: Object,
+    required: true,
+  },
 });
 
-const categories = props.entities.categories;
-const products = props.entities.products;
-const productVariations = props.entities.productVariations;
-const users = props.entities.users;
-
-const toast = useToast();
 const { t } = useI18n();
-
-const form = useForm({
-  couponType: props.formType === 'update' ? props.coupon.couponType : 'categories',
-  code: props.formType === 'update' ? props.coupon.code : '',
-  type: props.formType === 'update' ? props.coupon.type : '',
-  value: props.formType === 'update' ? props.coupon.value : '',
-  starts_at: props.formType === 'update' ? toDatetimeLocalFormat(props.coupon.starts_at) : '',
-  expires_at: props.formType === 'update' ? toDatetimeLocalFormat(props.coupon.expires_at) : '',
-  status: props.formType === 'update' ? props.coupon.status : 'active',
-  max_uses: props.formType === 'update' ? props.coupon.max_uses : '',
-  max_uses_per_user: props.formType === 'update' ? props.coupon.max_uses_per_user : '',
-  sendNotification: false,
-  categories: props.formType === 'update' ? props.coupon.categories.map(category => category) : [],
-  products: props.formType === 'update' ? props.coupon.products.map(product => product) : [],
-  productVariations: props.formType === 'update' ? props.coupon.product_variations.map(variation => variation) : [],
-  users: props.formType === 'update' ? props.coupon.users.map(user => user) : [],
-});
-
-const submitForm = () => {
-  form.categories = form.categories.map(category => category.id);
-  form.products = form.products.map(product => product.id);
-  form.productVariations = form.productVariations.map(variation => variation.id);
-  form.users = form.users.map(user => user.id);
-
-  if (props.formType === 'update') {
-    form.put(route('coupon.update', props.coupon), {
-      data: { ...form },
-      preserveScroll: true,
-      onSuccess: () => {
-        props.close();
-        toast.open({
-          message: `${t('common.toast.coupon.couponUpdate.successMessage')}.`,
-          type: 'success',
-          position: 'top',
-          duration: 4000
-        });
-      },
-      onError: () => {
-        toast.open({
-          message: `${t('common.toast.coupon.couponUpdate.errorMessage')}.`,
-          type: 'error',
-          position: 'top',
-          duration: 4000
-        });
-      }
-    });
-  } else {
-    form.post(route('coupon.store'), {
-      data: { ...form },
-      preserveScroll: true,
-      onSuccess: () => {
-        props.close();
-        toast.open({
-          message: `${t('common.toast.coupon.couponCreate.successMessage')}.`,
-          type: 'success',
-          position: 'top',
-          duration: 4000
-        });
-      },
-      onError: () => {
-        toast.open({
-          message: `${t('common.toast.coupon.couponCreate.errorMessage')}!`,
-          type: 'error',
-          position: 'top',
-          duration: 4000
-        });
-      }
-    });
-  }
-};
+const {
+  form,
+  isUpdateMode,
+  modalTitle,
+  submitText,
+  loadingText,
+  upsertCoupon,
+} = inject('couponManager');
 
 </script>
 
 <template>
   <div class="p-6">
     <div>
-      <h2 class="text-xl font-medium mb-4">{{ formType === 'create' ? t('page.admin.createCoupon') :
-        t('page.admin.updateCoupon', { coupon: coupon.code }) }}</h2>
+      <h2 class="text-xl font-medium mb-4">{{ modalTitle }}</h2>
     </div>
-    <form @submit.prevent="submitForm">
+    <form @submit.prevent="upsertCoupon">
       <div>
         <p>{{ t('common.form.coupon.couponType') }}:</p>
         <div class="flex gap-4 my-4">
           <div class="flex items-center gap-2">
-            <input type="radio" name="couponType" id="categories" value="categories" v-model="form.couponType" />
+            <RadioInput name="couponType" id="categories" value="categories" v-model="form.couponType" />
             <InputLabel for="categories" :value="t('common.form.coupon.category', 1)" />
+            <InputError :message="form.errors.couponType" class="mt-2" />
           </div>
           <div class="flex items-center gap-2">
-            <input type="radio" name="couponType" id="products" value="products" v-model="form.couponType" />
+            <RadioInput name="couponType" id="products" value="products" v-model="form.couponType" />
             <InputLabel for="products" :value="t('common.form.coupon.product', 1)" />
+            <InputError :message="form.errors.couponType" class="mt-2" />
           </div>
           <div class="flex items-center gap-2">
-            <input type="radio" name="couponType" id="variations" value="variations" v-model="form.couponType" />
+            <RadioInput name="couponType" id="variations" value="variations" v-model="form.couponType" />
             <InputLabel for="variations" :value="t('common.form.coupon.productVariation', 1)" />
+            <InputError :message="form.errors.couponType" class="mt-2" />
           </div>
         </div>
       </div>
       <div class="flex gap-4">
         <div class="flex flex-col">
-          <label>{{ t('common.form.coupon.user', 2) }}</label>
-          <MultiSelectInput :entity="users" entityType="users" v-model:selectedEntity="form.users" />
+          <InputLabel for="user" :value="t('common.form.coupon.user', 2)" />
+          <MultiSelectInput :entity="entities.users" entityType="users" v-model:selectedEntity="form.users" />
+          <InputError :message="form.errors.users" class="mt-2" />
         </div>
         <div v-if="form.couponType === 'categories'" class="flex flex-col">
-          <label>{{ t('common.form.coupon.category', 2) }}</label>
-          <MultiSelectInput :entity="categories" entityType="categories" v-model:selectedEntity="form.categories" />
+          <InputLabel for="category" :value="t('common.form.coupon.category', 2)" />
+          <MultiSelectInput :entity="entities.categories" entityType="categories"
+            v-model:selectedEntity="form.categories" />
+          <InputError :message="form.errors.categories" class="mt-2" />
         </div>
         <div v-if="form.couponType === 'products'" class="flex flex-col">
-          <label>{{ t('common.form.coupon.product', 2) }}</label>
-          <MultiSelectInput :entity="products" entityType="products" v-model:selectedEntity="form.products" />
+          <InputLabel for="product" :value="t('common.form.coupon.product', 2)" />
+          <MultiSelectInput :entity="entities.products" entityType="products" v-model:selectedEntity="form.products" />
+          <InputError :message="form.errors.products" class="mt-2" />
         </div>
         <div v-if="form.couponType === 'variations'" class="flex flex-col">
-          <label>{{ t('common.form.coupon.productVariation', 2) }}</label>
-          <MultiSelectInput :entity="productVariations" entityType="product variations"
+          <InputLabel for="productVariation" :value="t('common.form.coupon.productVariation', 2)" />
+          <MultiSelectInput :entity="entities.productVariations" entityType="product variations"
             v-model:selectedEntity="form.productVariations" />
+          <InputError :message="form.errors.productVariations" class="mt-2" />
         </div>
       </div>
       <div>
         <InputLabel for="code" :value="t('common.form.coupon.code')" class="mt-4" />
-        <TextInput id="code" type="text" name="code" v-model="form.code" class="mt-1 block w-full" />
-        <ErrorMessage :message="form.errors.code" class="mt-2" />
+        <TextInput name="code" id="code" type="text" v-model="form.code" class="mt-1 block w-full" />
+        <InputError :message="form.errors.code" class="mt-2" />
       </div>
       <div class="flex flex-col gap-4 md:flex-row">
         <div class="w-full">
@@ -153,38 +92,40 @@ const submitForm = () => {
             <option value="percentage">{{ t('common.form.coupon.percentage') }}</option>
             <option value="fixed">{{ t('common.form.coupon.fixedAmount') }}</option>
           </SelectInput>
-          <ErrorMessage :message="form.errors.type" class="mt-2" />
+          <InputError :message="form.errors.type" class="mt-2" />
         </div>
         <div class="w-full">
           <InputLabel for="value" :value="t('common.form.coupon.value')" class="mt-4" />
-          <TextInput id="value" type="number" name="value" v-model="form.value" min="0" class="mt-1 block w-full" />
-          <ErrorMessage :message="form.errors.value" class="mt-2" />
+          <TextInput name="value" id="value" type="number" v-model="form.value" min="0" class="mt-1 block w-full" />
+          <InputError :message="form.errors.value" class="mt-2" />
         </div>
       </div>
       <div class="flex flex-col gap-4 md:flex-row">
         <div class="w-full">
           <InputLabel for="starts_at" :value="t('common.form.coupon.startsAt')" class="mt-4" />
-          <TextInput id="starts_at" type="datetime-local" name="starts_at" v-model="form.starts_at"
+          <TextInput name="starts_at" id="starts_at" type="datetime-local" v-model="form.starts_at"
             class="mt-1 block w-full" />
-          <ErrorMessage :message="form.errors.starts_at" class="mt-2" />
+          <InputError :message="form.errors.starts_at" class="mt-2" />
         </div>
         <div class="w-full">
           <InputLabel for="expires_at" :value="t('common.form.coupon.expiresAt')" class="mt-4" />
-          <TextInput id="expires_at" type="datetime-local" name="expires_at" v-model="form.expires_at"
+          <TextInput name="expires_at" id="expires_at" type="datetime-local" v-model="form.expires_at"
             class="mt-1 block w-full" />
-          <ErrorMessage :message="form.errors.expires_at" class="mt-2" />
+          <InputError :message="form.errors.expires_at" class="mt-2" />
         </div>
       </div>
       <div class="flex flex-col gap-4 md:flex-row">
         <div class="w-full">
           <InputLabel for="max_uses" :value="t('common.form.coupon.maxUses')" class="mt-4" />
-          <TextInput id="max_uses" type="number" name="max_uses" v-model="form.max_uses" min="0"
+          <TextInput name="max_uses" id="max_uses" type="number" v-model="form.max_uses" min="0"
             class="mt-1 block w-full" />
+          <InputError :message="form.errors.max_uses" class="mt-2" />
         </div>
         <div class="w-full">
           <InputLabel for="max_uses_per_user" :value="t('common.form.coupon.maxUsesPerUser')" class="mt-4" />
-          <TextInput id="max_uses_per_user" type="number" name="max_uses_per_user" v-model="form.max_uses_per_user"
+          <TextInput name="max_uses_per_user" id="max_uses_per_user" type="number" v-model="form.max_uses_per_user"
             min="0" class="mt-1 block w-full" />
+          <InputError :message="form.errors.max_uses_per_user" class="mt-2" />
         </div>
       </div>
       <div>
@@ -193,17 +134,17 @@ const submitForm = () => {
           <option value="active">{{ t('common.form.coupon.active') }}</option>
           <option value="inactive">{{ t('common.form.coupon.inactive') }}</option>
         </SelectInput>
-        <ErrorMessage :message="form.errors.status" class="mt-2" />
+        <InputError :message="form.errors.status" class="mt-2" />
       </div>
-      <div v-if="formType === 'create' && form.status === 'active'" class="flex items-center gap-4 mt-4">
-        <Checkbox id="sendNotification" v-model="form.sendNotification" />
+      <div v-if="!isUpdateMode && form.status === 'active'" class="flex items-center gap-4 mt-4">
+        <Checkbox name="sendNotification" id="sendNotification" v-model="form.sendNotification" />
         <InputLabel for="sendNotification" :value="t('common.form.coupon.sendNotification')" />
+        <InputError :message="form.errors.sendNotification" class="mt-2" />
       </div>
       <div class="flex justify-center mt-4">
-        <button @click="isCouponModalOpen = null"
-          :title="formType === 'create' ? t('common.button.create') : t('common.button.update')"
-          class="bg-black text-white px-4 py-2 rounded hover:bg-slate-600 transition">{{
-            formType === 'create' ? t('common.button.create') : t('common.button.update') }}</button>
+        <ProgressBar v-if="form.progress" :percentage="form.progress.percentage" />
+        <SubmitButton :processing="form.processing" :idle-text="submitText" :loading-text="loadingText"
+          :title="isUpdateMode ? t('common.button.updateCouponFormSubmitTitle') : t('common.button.createCouponFormSubmitTitle')" />
       </div>
     </form>
   </div>

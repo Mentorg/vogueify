@@ -1,8 +1,14 @@
 <script setup>
+import { toRef } from 'vue';
+import { Link } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
-import { Link, useForm } from '@inertiajs/vue3';
-import { computed } from 'vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
+import SecondaryButton from '@/Components/SecondaryButton.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import DialogModal from '@/Components/DialogModal.vue';
+import { ORDER_EXCEPTION_STATUS_MAP, ORDER_STATUS_STEPS } from '@/constants/orderStatuses';
+import { useOrderStatus } from '@/composables/order/useOrderStatus';
+import { useContinueOrder } from '@/composables/order/useContinueOrder';
 import { formatDate } from '@/utils/dateFormat';
 
 const props = defineProps({
@@ -11,67 +17,30 @@ const props = defineProps({
 });
 
 const { t } = useI18n();
-const form = useForm({});
 
-const statusSteps = [
-  'pending',
-  'paid',
-  'confirmed',
-  'processing',
-  'shipped',
-  'in-transit',
-  'out-for-delivery',
-  'delivered'
-];
-
-const exceptionStatusMap = {
-  'attempted-delivery': 'Attempted Delivery',
-  'awaiting-pickup': 'Awaiting Pickup',
-  'delayed': 'Delayed',
-  'held-at-customs': 'Held at Customs',
-  'canceled': 'Canceled'
-};
-
-const isExceptional = computed(() => {
-  if (!props.orderDetails?.order) return false;
-  return Object.keys(exceptionStatusMap).includes(props.orderDetails.order.order_status);
-});
-const isLost = computed(() => {
-  if (!props.orderDetails?.order) return false;
-  return props.orderDetails.order.order_status === 'lost';
-});
-
-const dynamicBranchFromIndex = computed(() => {
-  if (!props.orderDetails?.order) return -1;
-  if (props.orderDetails.order.order_status === 'canceled') {
-    return statusSteps.indexOf('pending');
-  }
-  return statusSteps.indexOf('out-for-delivery');
-});
-
-const currentIndex = computed(() => {
-  if (!props.orderDetails?.order) return -1;
-  const currentStatus = props.orderDetails.order.order_status;
-  if (isExceptional.value || isLost.value) {
-    return dynamicBranchFromIndex.value;
-  }
-  return statusSteps.indexOf(currentStatus);
-});
-
-const continueOrder = () => {
-  form.post(route('order.continueOrder', props.orderDetails.order.id));
-}
+const orderDetails = toRef(props, 'orderDetails');
+const {
+  isExceptional,
+  isLost,
+  dynamicBranchFromIndex,
+  currentIndex,
+} = useOrderStatus({ orderDetails });
+const {
+  isOrderModalOpen,
+  openOrderModal,
+  closeOrderModal,
+  continueOrder
+} = useContinueOrder({ orderDetails });
 
 </script>
 
 <template>
-  <DashboardLayout :title="`${t('page.user.orders.singleOrder.label', { order: orderDetails?.order?.order_number })}`">
+  <DashboardLayout :title="t('page.user.orders.singleOrder.label', { order: orderDetails?.order?.order_number })">
     <div v-if="orderDetails.order.order_status === 'pending'" class="flex justify-center mb-6">
-      <form @submit="continueOrder">
-        <button class="flex bg-indigo-600 py-2 px-6 text-white transition-all hover:bg-indigo-700">
-          {{ t('page.user.orders.singleOrder.continueOrder') }}
-        </button>
-      </form>
+      <button @click="openOrderModal" :title="t('common.button.confirmOrderContinuationTitle')"
+        class="flex bg-indigo-600 py-2 px-6 text-white transition-all hover:bg-indigo-700">
+        {{ t('page.user.orders.singleOrder.continueOrder') }}
+      </button>
     </div>
     <div v-if="orderDetails && orderDetails.order"
       class="bg-white flex flex-col py-8 px-4 rounded-2xl w-auto justify-self-auto lg:justify-self-center lg:w-fit">
@@ -87,7 +56,7 @@ const continueOrder = () => {
       </div>
       <ul
         class="flex flex-nowrap justify-start overflow-x-auto overflow-y-hidden mt-4 text-xs text-gray-900 font-medium sm:text-base space-x-4 relative lg:justify-center lg:w-auto">
-        <li v-for="(status, index) in statusSteps" :key="index" :class="[
+        <li v-for="(status, index) in ORDER_STATUS_STEPS" :key="index" :class="[
           'relative flex-shrink-0 flex flex-col items-center',
           index < currentIndex ? 'text-indigo-600' : '',
           index === currentIndex ? 'text-indigo-600' : ''
@@ -95,7 +64,7 @@ const continueOrder = () => {
           <div class="relative flex flex-col items-center z-10">
             <div :class="[
               'whitespace-nowrap text-center min-w-[80px] flex flex-col items-center',
-              index !== statusSteps.length - 1 && !(index === dynamicBranchFromIndex && (isExceptional || isLost))
+              index !== ORDER_STATUS_STEPS.length - 1 && !(index === dynamicBranchFromIndex && (isExceptional || isLost))
                 ? 'after:content-[\'\'] after:absolute after:left-[70%] after:top-[20px] after:w-full sm:after:w-full after:h-0.5 after:translate-y-[-50%]'
                 : '',
               index < currentIndex ? 'after:bg-indigo-600' : 'after:bg-gray-200',
@@ -121,7 +90,7 @@ const continueOrder = () => {
                 'bg-yellow-500': !isLost && orderDetails.order.order_status !== 'canceled'
               }" />
               <p class="text-[10px] sm:text-xs mt-1 text-center max-w-[80px]">
-                {{ isLost ? 'Lost' : exceptionStatusMap[orderDetails.order.order_status] }}
+                {{ isLost ? 'Lost' : ORDER_EXCEPTION_STATUS_MAP[orderDetails.order.order_status] }}
               </p>
             </div>
           </div>
@@ -132,12 +101,14 @@ const continueOrder = () => {
       <div class="bg-white border rounded-md p-4 h-fit">
         <h2 class="text-2xl border-b pb-2">{{ t('page.user.orders.singleOrder.orderProducts') }}</h2>
         <div v-for="item in orderDetails.order.items" :key="item.id" class="flex items-center gap-4 py-2 my-2">
-          <img v-if="item.product_variation.image" :src="item.product_variation.image" alt=""
+          <img v-if="item.product_variation.image" :src="item.product_variation.image"
+            :alt="t('page.user.orders.orderImage', { order: orderDetails.order.order_number })"
             class="w-[20%] md:w-[10%] lg:w-[5%]">
           <div class="flex flex-col justify-center">
             <Link
               :href="route('product.show', { product: item.product_variation.product.slug, variation: item.product_variation.sku })"
-              class="text-lg">{{ item.product_variation.product.name }}</Link>
+              :title="t('common.button.goToProductTitle')" class="text-lg">{{ item.product_variation.product.name }}
+            </Link>
             <p class="text-sm">{{ t('page.user.orders.singleOrder.quantity') }}: {{ item.quantity }}</p>
           </div>
           <p class="ml-auto">${{ item.price_at_time }}</p>
@@ -197,5 +168,24 @@ const continueOrder = () => {
       </div>
     </div>
     <div v-else class="text-center py-8">{{ t('page.user.orders.singleOrder.loadingOrders') }}...</div>
+    <DialogModal :show="isOrderModalOpen" @close="closeOrderModal">
+      <template #title>
+        {{ t('common.modal.order.user.orderContinuation.title', {
+          order: orderDetails.order.order_number
+        }) }}?
+      </template>
+      <template #content>
+        {{ t('common.modal.order.user.orderContinuation.content', { order: orderDetails.order.order_number })
+        }}?
+      </template>
+      <template #footer>
+        <SecondaryButton @click="closeOrderModal" :title="t('common.button.cancelOrderContinuationTitle')">
+          {{ t('common.button.cancel') }}
+        </SecondaryButton>
+        <PrimaryButton @click="continueOrder(orderDetails.order)"
+          :title="t('common.button.confirmOrderContinuationTitle')" class="ms-3">{{ t('common.button.continue') }}
+        </PrimaryButton>
+      </template>
+    </DialogModal>
   </DashboardLayout>
 </template>

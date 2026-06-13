@@ -10,7 +10,7 @@ defineEmits(['update:modelValue']);
 
 <template>
   <select :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"
-    class="mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+    class="mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm disabled:bg-gray-100 disabled:cursor-not-allowed">
     <slot />
   </select>
 </template>

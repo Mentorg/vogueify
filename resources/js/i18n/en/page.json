@@ -17,7 +17,8 @@
     "menSeasonal": "Men Seasonal"
   },
   "products": {
-    "label": "Browse {productGender} {productType}"
+    "label": "Browse {productGender} {productType}",
+    "productImage": "{product}'s image"
   },
   "product": {
     "alsoAvailable": "Also available in",
@@ -28,6 +29,7 @@
     "outOfStock": "Out of Stock",
     "button": {
       "placeInCart": "Place in Cart",
+      "placingInCart": "Adding to Cart",
       "viewBag": "View your shopping bag"
     }
   },
@@ -38,7 +40,6 @@
     "couponApplied": "Coupon applied",
     "couponPrompt": "Have a coupon? {action} to enter your code",
     "button": {
-      "addToWishlist": "Add to Wishlist",
       "proceedToCheckout": "Proceed to Checkout"
     }
   },
@@ -72,16 +73,25 @@
   },
   "admin": {
     "overview": "Overview",
+    "overviewTitle": "Go to overview",
     "products": "Products",
+    "productsTitle": "View products",
     "orders": "Orders",
+    "ordersTitle": "View orders",
     "orderDetails": "Order Details",
     "createProduct": "Create Product",
+    "createProductTitle": "Create a new product",
     "updateProduct": "Update {product}",
     "invoices": "Invoices",
+    "invoicesTitle": "View invoices",
+    "invoiceDetails": "Invoice Details",
     "coupons": "Coupons",
+    "couponsTitle": "Manage coupons",
+    "couponDetails": "Coupon Details",
     "createCoupon": "Create Coupon",
     "updateCoupon": "Update {coupon}",
-    "users": "Users"
+    "users": "Users",
+    "usersTitle": "Manage users"
   },
   "user": {
     "overview": "Overview",
@@ -90,6 +100,7 @@
       "saved": "Saved",
       "password": "Password",
       "basicInfo": {
+        "picture": "{user}'s profile picture",
         "title": "Title",
         "titleMr": "Mr.",
         "titleMs": "Ms.",
@@ -138,6 +149,7 @@
       "noCurrentOrders": "There are no current orders",
       "purchaseHistory": "My Purchase History",
       "noPastOrders": "No past orders available",
+      "orderImage": "{order}'s order image",
       "singleOrder": {
         "label": "Order {order}",
         "continueOrder": "Continue with the order",
@@ -163,6 +175,7 @@
     "email": "Email",
     "password": "Password",
     "login": {
+      "testingCredentials": "Testing Credentials",
       "label": "Log in",
       "rememberMe": "Remember me",
       "forgotPassword": "Forgot your password",
@@ -187,6 +200,7 @@
   },
   "orderDetails": {
     "orderItems": "Order Item(s)",
+    "productImage": "{product}'s image",
     "size": "Size {size}",
     "shippingDate": "Shipping date",
     "undetermined": "Undetermined",
@@ -249,7 +263,6 @@
     "redemptions": "Redemptions",
     "used": "Used",
     "user": "User | Users",
-    "userPicture": "{user}'s profile picture",
     "productVariation": "Product Variation | Product Variations",
     "productImage": "{product}'s image",
     "sku": "SKU",

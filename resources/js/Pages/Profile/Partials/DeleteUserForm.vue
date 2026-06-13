@@ -1,60 +1,23 @@
 <script setup>
-import { ref } from 'vue';
-import { useForm } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
-import ActionSection from '@/Components/ActionSection.vue';
-import DangerButton from '@/Components/DangerButton.vue';
-import DialogModal from '@/Components/DialogModal.vue';
-import InputError from '@/Components/InputError.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { useToast } from 'vue-toast-notification';
+import ActionSection from '@Components/ActionSection.vue';
+import DangerButton from '@Components/DangerButton.vue';
+import DialogModal from '@Components/DialogModal.vue';
+import InputError from '@Components/InputError.vue';
+import SecondaryButton from '@Components/SecondaryButton.vue';
+import TextInput from '@Components/TextInput.vue';
+import { useDeleteAccount } from '@/composables/user/useDeleteAccount';
 
 const { t } = useI18n();
-const toast = useToast();
-const confirmingUserDeletion = ref(false);
-const passwordInput = ref(null);
 
-const form = useForm({
-  password: '',
-});
+const {
+  confirmingUserDeletion,
+  form,
+  confirmUserDeletion,
+  deleteUser,
+  closeModal
+} = useDeleteAccount();
 
-const confirmUserDeletion = () => {
-  confirmingUserDeletion.value = true;
-
-  setTimeout(() => passwordInput.value.focus(), 250);
-};
-
-const deleteUser = () => {
-  form.delete(route('current-user.destroy'), {
-    preserveScroll: true,
-    onSuccess: () => {
-      toast.open({
-        message: `${t('common.toast.user.accountDelete.successMessage')}.`,
-        type: 'success',
-        position: 'top',
-        duration: 4000,
-      });
-      closeModal()
-    },
-    onError: () => {
-      toast.open({
-        message: `{${t('common.toast.user.accountDelete.errorMessage')}}! ` + errors.error,
-        type: 'error',
-        position: 'top',
-        duration: 4000,
-      });
-      passwordInput.value.focus()
-    },
-    onFinish: () => form.reset(),
-  });
-};
-
-const closeModal = () => {
-  confirmingUserDeletion.value = false;
-
-  form.reset();
-};
 </script>
 
 <template>
@@ -73,7 +36,7 @@ const closeModal = () => {
       </div>
 
       <div class="mt-5">
-        <DangerButton @click="confirmUserDeletion">
+        <DangerButton @click="confirmUserDeletion" :title="t('common.button.deleteAccountTitle')">
           {{ t('common.button.deleteAccount') }}
         </DangerButton>
       </div>
@@ -96,12 +59,12 @@ const closeModal = () => {
         </template>
 
         <template #footer>
-          <SecondaryButton @click="closeModal">
+          <SecondaryButton @click="closeModal" :title="t('common.button.cancelDeleteAccountTitle')">
             {{ t('common.button.cancel') }}
           </SecondaryButton>
 
-          <DangerButton class="ms-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
-            @click="deleteUser">
+          <DangerButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="deleteUser"
+            :title="t('common.button.confirmDeleteAccountTitle')" class="ms-3">
             {{ t('common.button.deleteAccount') }}
           </DangerButton>
         </template>

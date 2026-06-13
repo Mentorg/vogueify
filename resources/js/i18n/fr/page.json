@@ -17,7 +17,8 @@
     "menSeasonal": "Homme - Saisonnier"
   },
   "products": {
-    "label": "Parcourir les {productType} {productGender}"
+    "label": "Parcourir les {productType} {productGender}",
+    "productImage": "Image de {product}"
   },
   "product": {
     "alsoAvailable": "Également disponible en",
@@ -28,6 +29,7 @@
     "outOfStock": "Rupture de stock",
     "button": {
       "placeInCart": "Ajouter au panier",
+      "placingInCart": "Ajout au panier",
       "viewBag": "Voir votre panier"
     }
   },
@@ -38,7 +40,6 @@
     "couponApplied": "Coupon appliqué",
     "couponPrompt": "Vous avez un coupon ? {action} pour saisir votre code",
     "button": {
-      "addToWishlist": "Ajouter à la liste de souhaits",
       "proceedToCheckout": "Passer à la caisse"
     }
   },
@@ -72,16 +73,25 @@
   },
   "admin": {
     "overview": "Aperçu",
+    "overviewTitle": "Accéder à la vue d'ensemble",
     "products": "Produits",
+    "productsTitle": "Afficher les produits",
     "orders": "Commandes",
+    "ordersTitle": "Afficher les commandes",
     "orderDetails": "Détails de la commande",
     "createProduct": "Créer un produit",
+    "createProductTitle": "Créer un nouveau produit",
     "updateProduct": "Mettre à jour {product}",
     "invoices": "Factures",
+    "invoicesTitle": "Afficher les factures",
+    "invoiceDetails": "Détails de la facture",
     "coupons": "Bons de réduction",
+    "couponsTitle": "Gérer les codes promotionnels",
+    "couponDetails": "Détails du coupon",
     "createCoupon": "Créer un coupon",
     "updateCoupon": "Mettre à jour {coupon}",
-    "users": "Utilisateurs"
+    "users": "Utilisateurs",
+    "usersTitle": "Gérer les utilisateurs"
   },
   "user": {
     "overview": "Aperçu",
@@ -90,6 +100,7 @@
       "saved": "Enregistré",
       "password": "Mot de passe",
       "basicInfo": {
+        "picture": "Photo de profil de {user}",
         "title": "Titre",
         "titleMr": "M.",
         "titleMs": "Mme",
@@ -138,6 +149,7 @@
       "noCurrentOrders": "Aucune commande en cours",
       "purchaseHistory": "Mon historique d'achats",
       "noPastOrders": "Aucune commande précédente disponible",
+      "orderImage": "Image de commande de {order}",
       "singleOrder": {
         "label": "Commande {order}",
         "continueOrder": "Continuer la commande",
@@ -163,6 +175,7 @@
     "email": "Email",
     "password": "Mot de passe",
     "login": {
+      "testingCredentials": "Test des identifiants",
       "label": "Se connecter",
       "rememberMe": "Se souvenir de moi",
       "forgotPassword": "Mot de passe oublié",
@@ -187,6 +200,7 @@
   },
   "orderDetails": {
     "orderItems": "Articles de commande",
+    "productImage": "Image de {product}",
     "size": "Taille",
     "shippingDate": "Date d'expédition",
     "undetermined": "Indéterminé",
@@ -249,7 +263,6 @@
     "redemptions": "Utilisations",
     "used": "Utilisé",
     "user": "Utilisateur | Utilisateurs",
-    "userPicture": "Photo de profil de {user}",
     "productVariation": "Variation de produit | Variations de produit",
     "productImage": "Image de {product}",
     "sku": "SKU",

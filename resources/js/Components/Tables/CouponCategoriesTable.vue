@@ -3,13 +3,11 @@ import { useI18n } from 'vue-i18n';
 import { capitalize } from '@/utils/capitalize';
 import { formatDate } from '@/utils/dateFormat';
 
-const props = defineProps({
+defineProps({
   coupon: Object,
 })
 
 const { t } = useI18n();
-
-const categories = props.coupon.categories;
 
 </script>
 
@@ -27,7 +25,7 @@ const categories = props.coupon.categories;
           </tr>
         </thead>
         <tbody>
-          <tr v-for="category in categories" :key="category.id"
+          <tr v-for="category in coupon.categories" :key="category.id"
             class="grid grid-cols-[1fr,2fr,4fr,3fr] border-b dark:border-neutral-200 even:bg-slate-100">
             <th class="px-6 py-4 w-24">{{ category.id }}</th>
             <th class="px-6 py-4 w-28">
