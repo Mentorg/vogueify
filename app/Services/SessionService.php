@@ -3,22 +3,27 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class SessionService
 {
-    public function create ($request)
+    public function create(Request $request): bool
     {
-        $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
-        if (Auth::attempt($validated)) {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            return true;
         }
+
+        return false;
     }
 
-    public function delete($request)
+    public function delete(Request $request): void
     {
         Auth::logout();
 

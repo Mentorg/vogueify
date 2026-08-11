@@ -3,29 +3,35 @@ import { useForm } from "@inertiajs/vue3";
 import { useI18n } from "vue-i18n";
 import { useToast } from "vue-toast-notification";
 
-export function useDeleteAccount() {
+export function useDeactivateAccount() {
   const { t } = useI18n();
   const toast = useToast();
 
-  const confirmingUserDeletion = ref(false);
+  const confirmingUserDeactivation = ref(false);
   const passwordInput = ref(null);
 
   const form = useForm({
     password: '',
   });
 
-  const confirmUserDeletion = () => {
-    confirmingUserDeletion.value = true;
+  const confirmUserDeactivation = () => {
+    confirmingUserDeactivation.value = true;
 
     setTimeout(() => passwordInput.value.focus(), 250);
   };
 
-  const deleteUser = () => {
+  const closeModal = () => {
+    confirmingUserDeactivation.value = false;
+
+    form.reset();
+  };
+
+  const deactivateUser = () => {
     form.delete(route('current-user.destroy'), {
       preserveScroll: true,
       onSuccess: () => {
         toast.open({
-          message: t('common.toast.user.accountDelete.successMessage'),
+          message: t('common.toast.user.accountDeactivate.successMessage'),
           type: 'success',
           position: 'top',
           duration: 4000,
@@ -33,8 +39,9 @@ export function useDeleteAccount() {
         closeModal()
       },
       onError: (errors) => {
+        closeModal()
         toast.open({
-          message: Object.values(errors)?.[0] || t('common.toast.user.accountDelete.errorMessage'),
+          message: Object.values(errors)?.[0] || t('common.toast.user.accountDeactivate.errorMessage'),
           type: 'error',
           position: 'top',
           duration: 4000,
@@ -45,18 +52,12 @@ export function useDeleteAccount() {
     });
   };
 
-  const closeModal = () => {
-    confirmingUserDeletion.value = false;
-
-    form.reset();
-  };
-
   return {
-    confirmingUserDeletion,
+    confirmingUserDeactivation,
     passwordInput,
     form,
-    confirmUserDeletion,
-    deleteUser,
+    confirmUserDeactivation,
+    deactivateUser,
     closeModal
   }
 }

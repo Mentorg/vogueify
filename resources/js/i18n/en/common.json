@@ -75,8 +75,22 @@
       "subContent": "You can also delete the entire product, including all its variations"
     },
     "user": {
-      "title": "Delete {userToDelete}",
-      "content": "Are you sure you want to delete {userToDelete}"
+      "deactivate": {
+        "title": "Deactivate {userToDeactivate}",
+        "content": "The user will no longer be able to log in. Personal information will be anonymized. Orders and invoices will be preserved"
+      },
+      "delete": {
+        "title": "Permanently {userToDelete} #{userID}?",
+        "warning": "This action cannot be undone.",
+        "onlyFor": "Permanent deletion should only be used for:",
+        "testAccounts": "Test accounts",
+        "duplicateAccounts": "Duplicate accounts",
+        "spamAccounts": "Spam accounts without transactional history",
+        "transactionWarning": "Users with orders or other transactional history cannot be permanently deleted.",
+        "confirmationPrompt": "Type {keyword} to continue:",
+        "cancel": "Cancel",
+        "confirm": "Permanently Delete"
+      }
     },
     "order": {
       "user": {
@@ -276,6 +290,10 @@
       }
     },
     "user": {
+      "userDeactivate": {
+        "successMessage": "User deactivated successfully",
+        "errorMessage": "Failed to deactivate user"
+      },
       "userDelete": {
         "successMessage": "User deleted successfully",
         "errorMessage": "Failed to delete user"
@@ -284,9 +302,9 @@
         "successMessage": "Your information updated successfully",
         "errorMessage": "Failed to update your information"
       },
-      "accountDelete": {
-        "successMessage": "Account deleted successfully",
-        "errorMessage": "Failed to delete account"
+      "accountDeactivate": {
+        "successMessage": "Account deactivated successfully",
+        "errorMessage": "Failed to deactivate account"
       },
       "twoFactor": {
         "enabled": {
@@ -307,6 +325,8 @@
     "continueShopping": "Continue Shopping",
     "remove": "Remove",
     "delete": "Delete",
+    "permanentlyDelete": "Permanently Delete",
+    "deactivate": "Deactivate",
     "cancel": "Cancel",
     "continue": "Continue",
     "create": "Create",
@@ -364,6 +384,7 @@
     "showRecoveryCodes": "Show Recovery Codes",
     "disable": "Disable",
     "deleteAccount": "Delete Account",
+    "deactivateAccount": "Deactivate Account",
     "startShopping": "Start Shopping",
     "cancelOrder": "Cancel Order",
     "editProfile": "Edit My Profile",
@@ -408,9 +429,6 @@
     "sendUserCouponNotificationTitle": "Send coupon notification to user",
     "cancelCouponDeletionTitle": "Cancel deleting this coupon",
     "confirmCouponDeletionTitle": "Delete this coupon",
-    "deleteUserTitle": "Delete this user",
-    "cancelUserDeletionTitle": "Cancel deleting this user",
-    "confirmUserDeletionTitle": "Delete this user",
     "clickHere": "Click here",
     "updateProfile": "Update Profile",
     "updateProfileTitle": "Update your profile information",
@@ -436,9 +454,15 @@
     "confirmDeleteCartItemTitle": "Remove item from cart",
     "cancelOrderDismissTitle": "Keep this order",
     "cancelOrderConfirmTitle": "Cancel this order",
-    "deleteAccountTitle": "Open account deletion dialog",
-    "confirmDeleteAccountTitle": "Delete your account",
-    "cancelDeleteAccountTitle": "Keep your account",
+    "deactivateAccountTitle": "Open account deactivation dialog",
+    "confirmDeactivateAccountTitle": "Deactivate your account",
+    "cancelDeactivateAccountTitle": "Keep your account",
+    "deleteUserTitle": "Delete this user",
+    "deactivateUserTitle": "Deactivate this user",
+    "cancelUserDeactivationTitle": "Cancel deactivating this user",
+    "confirmUserDeactivationTitle": "Deactivate this user",
+    "cancelUserDeletionTitle": "Cancel deleting this user",
+    "confirmUserDeletionTitle": "Delete this user",
     "cancelResendOrderConfirmationEmailTitle": "Do not resend the order confirmation email",
     "confirmResendOrderConfirmationEmailTitle": "Resend the order confirmation email",
     "loginTitle": "Sign in to your account",

@@ -75,8 +75,22 @@
       "subContent": "Sie können auch das gesamte Produkt einschließlich aller Varianten löschen"
     },
     "user": {
-      "title": "{userToDelete} löschen",
-      "content": "Möchten Sie {userToDelete} wirklich löschen"
+      "deactivate": {
+        "title": "{userToDeactivate} deaktivieren",
+        "content": "Der Benutzer kann sich nicht mehr anmelden. Personenbezogene Daten werden anonymisiert. Bestellungen und Rechnungen bleiben erhalten"
+      },
+      "delete": {
+        "title": "Benutzer dauerhaft löschen",
+        "warning": "Diese Aktion kann nicht rückgängig gemacht werden.",
+        "onlyFor": "Die dauerhafte Löschung sollte nur verwendet werden für:",
+        "testAccounts": "Testkonten",
+        "duplicateAccounts": "Doppelte Konten",
+        "spamAccounts": "Spam-Konten ohne Transaktionsverlauf",
+        "transactionWarning": "Benutzer mit Bestellungen oder einer anderen Transaktionshistorie können nicht dauerhaft gelöscht werden.",
+        "confirmationPrompt": "Geben Sie {keyword} ein, um fortzufahren:",
+        "cancel": "Abbrechen",
+        "confirm": "Dauerhaft löschen"
+      }
     },
     "order": {
       "user": {
@@ -276,17 +290,21 @@
       }
     },
     "user": {
+      "userDeactivate": {
+        "successMessage": "Benutzer erfolgreich deaktiviert",
+        "errorMessage": "Benutzer konnte nicht deaktiviert werden"
+      },
       "userDelete": {
         "successMessage": "Benutzer erfolgreich gelöscht",
-        "errorMessage": "Löschen des Benutzers fehlgeschlagen"
+        "errorMessage": "Benutzer konnte nicht gelöscht werden"
       },
       "profileUpdate": {
         "successMessage": "Ihre Informationen wurden erfolgreich aktualisiert",
         "errorMessage": "Aktualisierung Ihrer Informationen fehlgeschlagen"
       },
-      "accountDelete": {
-        "successMessage": "Konto erfolgreich gelöscht",
-        "errorMessage": "Konto konnte nicht gelöscht werden"
+      "accountDeactivate": {
+        "successMessage": "Konto erfolgreich deaktiviert",
+        "errorMessage": "Konto konnte nicht deaktiviert werden"
       },
       "twoFactor": {
         "enabled": {
@@ -307,6 +325,8 @@
     "continueShopping": "Weiter einkaufen",
     "remove": "Entfernen",
     "delete": "Löschen",
+    "permanentlyDelete": "Dauerhaft löschen",
+    "deactivate": "Deaktivieren",
     "cancel": "Abbrechen",
     "continue": "Weiter",
     "create": "Erstellen",
@@ -364,6 +384,7 @@
     "showRecoveryCodes": "Wiederherstellungscodes anzeigen",
     "disable": "Deaktivieren",
     "deleteAccount": "Konto löschen",
+    "deactivateAccount": "Konto deaktivieren",
     "startShopping": "Jetzt einkaufen",
     "cancelOrder": "Bestellung stornieren",
     "editProfile": "Mein Profil bearbeiten",
@@ -408,9 +429,6 @@
     "sendUserCouponNotificationTitle": "Gutscheinbenachrichtigung an den Benutzer senden",
     "cancelCouponDeletionTitle": "Das Löschen dieses Gutscheins abbrechen",
     "confirmCouponDeletionTitle": "Diesen Gutschein löschen",
-    "deleteUserTitle": "Benutzer löschen",
-    "cancelUserDeletionTitle": "Das Löschen dieses Benutzers abbrechen",
-    "confirmUserDeletionTitle": "Diesen Benutzer löschen",
     "clickHere": "Hier klicken",
     "updateProfile": "Profil aktualisieren",
     "updateProfileTitle": "Ihre Profilinformationen aktualisieren",
@@ -436,6 +454,15 @@
     "confirmDeleteCartItemTitle": "Artikel aus dem Warenkorb entfernen",
     "cancelOrderDismissTitle": "Diese Bestellung beibehalten",
     "cancelOrderConfirmTitle": "Diese Bestellung stornieren",
+    "deactivateAccountTitle": "Dialog zur Kontodeaktivierung öffnen",
+    "confirmDeactivateAccountTitle": "Deaktivieren Sie Ihr Konto",
+    "cancelDeactivateAccountTitle": "Konto behalten",
+    "deleteUserTitle": "Benutzer löschen",
+    "deactivateUserTitle": "Diesen Benutzer deaktivieren",
+    "cancelUserDeactivationTitle": "Deaktivierung dieses Benutzers abbrechen",
+    "confirmUserDeactivationTitle": "Diesen Benutzer deaktivieren",
+    "cancelUserDeletionTitle": "Das Löschen dieses Benutzers abbrechen",
+    "confirmUserDeletionTitle": "Diesen Benutzer löschen",
     "cancelResendOrderConfirmationEmailTitle": "Bestellbestätigungs-E-Mail nicht erneut senden",
     "confirmResendOrderConfirmationEmailTitle": "Bestellbestätigungs-E-Mail erneut senden",
     "loginTitle": "Bei Ihrem Konto anmelden",

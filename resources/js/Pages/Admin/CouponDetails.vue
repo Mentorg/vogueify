@@ -10,12 +10,12 @@ import StatusChip from '@Components/StatusChip.vue';
 import { capitalize } from '@/utils/capitalize';
 import { formatDate } from '@/utils/dateFormat';
 
-defineProps({
+const props = defineProps({
   coupon: Object,
 })
 
 const { t } = useI18n();
-
+console.log(props.coupon)
 </script>
 
 <template>
@@ -55,7 +55,7 @@ const { t } = useI18n();
           <div class="flex flex-col mt-2">
             <div class="mt-2">
               <p class="font-medium">{{ t('page.couponDetails.code') }}: <span class="font-normal">{{ coupon.code
-                  }}</span></p>
+              }}</span></p>
             </div>
             <div class="mt-2">
               <p class="font-medium">{{ t('page.couponDetails.type') }}: <span class="font-normal">{{

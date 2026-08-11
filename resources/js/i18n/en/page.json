@@ -138,9 +138,9 @@
         "tfCode": "Code",
         "tfRecoveryCodeInstruction": "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost"
       },
-      "deleteUser": {
-        "accountDeletionWarning": "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain",
-        "accountDeletionConfirm": "Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account"
+      "deactivateAccount": {
+        "accountDeactivationWarning": "Once your account is deactivated, you will no longer be able to access it. Your account and its data may be permanently deleted. Before deactivating your account, please download any data or information that you wish to retain",
+        "accountDeactivationConfirm": "Are you sure you want to deactivate your account? You will no longer be able to access your account after it has been deactivated. Please enter your password to confirm that you want to deactivate your account"
       }
     },
     "orders": {

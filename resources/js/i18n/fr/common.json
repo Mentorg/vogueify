@@ -75,8 +75,22 @@
       "subContent": "Vous pouvez également supprimer l'ensemble du produit, y compris toutes ses variantes"
     },
     "user": {
-      "title": "Supprimer {userToDelete}",
-      "content": "Êtes-vous sûr de vouloir supprimer {userToDelete}"
+      "deactivate": {
+        "title": "Désactiver {userToDeactivate}",
+        "content": "L'utilisateur ne pourra plus se connecter. Les informations personnelles seront anonymisées. Les commandes et les factures seront conservées"
+      },
+      "delete": {
+        "title": "Supprimer définitivement l'utilisateur",
+        "warning": "Cette action est irréversible.",
+        "onlyFor": "La suppression définitive doit être utilisée uniquement pour :",
+        "testAccounts": "Comptes de test",
+        "duplicateAccounts": "Comptes en double",
+        "spamAccounts": "Comptes de spam sans historique transactionnel",
+        "transactionWarning": "Les utilisateurs ayant des commandes ou un autre historique transactionnel ne peuvent pas être supprimés définitivement.",
+        "confirmationPrompt": "Tapez {keyword} pour continuer :",
+        "cancel": "Annuler",
+        "confirm": "Supprimer définitivement"
+      }
     },
     "order": {
       "user": {
@@ -276,6 +290,10 @@
       }
     },
     "user": {
+      "userDeactivate": {
+        "successMessage": "Utilisateur désactivé avec succès",
+        "errorMessage": "Échec de la désactivation de l'utilisateur"
+      },
       "userDelete": {
         "successMessage": "Utilisateur supprimé avec succès",
         "errorMessage": "Échec de la suppression de l'utilisateur"
@@ -284,9 +302,9 @@
         "successMessage": "Vos informations ont été mises à jour avec succès",
         "errorMessage": "Échec de la mise à jour de vos informations"
       },
-      "accountDelete": {
-        "successMessage": "Compte supprimé avec succès",
-        "errorMessage": "Échec de la suppression du compte"
+      "accountDeactivate": {
+        "successMessage": "Compte désactivé avec succès",
+        "errorMessage": "Échec de la désactivation du compte"
       },
       "twoFactor": {
         "enabled": {
@@ -307,6 +325,8 @@
     "continueShopping": "Continuer vos achats",
     "remove": "Supprimer",
     "delete": "Supprimer",
+    "permanentlyDelete": "Supprimer définitivement",
+    "deactivate": "Désactiver",
     "cancel": "Annuler",
     "continue": "Continuer",
     "create": "Créer",
@@ -364,6 +384,7 @@
     "showRecoveryCodes": "Afficher les codes de récupération",
     "disable": "Désactiver",
     "deleteAccount": "Supprimer le compte",
+    "deactivateAccount": "Désactiver le compte",
     "startShopping": "Commencer vos achats",
     "cancelOrder": "Annuler la commande",
     "editProfile": "Modifier mon profil",
@@ -408,9 +429,6 @@
     "sendUserCouponNotificationTitle": "Envoyer la notification de coupon à l'utilisateur",
     "cancelCouponDeletionTitle": "Annuler la suppression de ce coupon",
     "confirmCouponDeletionTitle": "Supprimer ce coupon",
-    "deleteUserTitle": "Supprimer l'utilisateur",
-    "cancelUserDeletionTitle": "Annuler la suppression de cet utilisateur",
-    "confirmUserDeletionTitle": "Supprimer cet utilisateur",
     "clickHere": "Cliquez ici",
     "updateProfile": "Mettre à jour le profil",
     "updateProfileTitle": "Mettre à jour les informations de votre profil",
@@ -436,6 +454,15 @@
     "confirmDeleteCartItemTitle": "Retirer l'article du panier",
     "cancelOrderDismissTitle": "Conserver cette commande",
     "cancelOrderConfirmTitle": "Annuler cette commande",
+    "deactivateAccountTitle": "Ouvrir la boîte de dialogue de désactivation du compte",
+    "confirmDeactivateAccountTitle": "Désactiver votre compte",
+    "cancelDeactivateAccountTitle": "Conserver votre compte",
+    "deleteUserTitle": "Supprimer l'utilisateur",
+    "deactivateUserTitle": "Désactiver cet utilisateur",
+    "cancelUserDeactivationTitle": "Annuler la désactivation de cet utilisateur",
+    "confirmUserDeactivationTitle": "Désactiver cet utilisateur",
+    "cancelUserDeletionTitle": "Annuler la suppression de cet utilisateur",
+    "confirmUserDeletionTitle": "Supprimer cet utilisateur",
     "cancelResendOrderConfirmationEmailTitle": "Ne pas renvoyer l'e-mail de confirmation de commande",
     "confirmResendOrderConfirmationEmailTitle": "Renvoyer l'e-mail de confirmation de commande",
     "loginTitle": "Se connecter à votre compte",

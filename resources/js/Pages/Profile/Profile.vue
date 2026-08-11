@@ -4,7 +4,7 @@ import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm.vue';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm.vue';
 import TwoFactorAuthenticationForm from './Partials/TwoFactorAuthenticationForm.vue';
-import DeleteUserForm from './Partials/DeleteUserForm.vue';
+import DeactivateUserForm from './Partials/DeactivateUserForm.vue';
 
 defineProps({
   confirmsTwoFactorAuthentication: Boolean,
@@ -23,7 +23,7 @@ const { t } = useI18n();
       <div class="flex flex-col gap-4 md:gap-6">
         <UpdatePasswordForm />
         <TwoFactorAuthenticationForm :requires-confirmation="confirmsTwoFactorAuthentication" />
-        <DeleteUserForm />
+        <DeactivateUserForm />
       </div>
     </div>
   </DashboardLayout>

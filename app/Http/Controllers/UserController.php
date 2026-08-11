@@ -7,6 +7,7 @@ use App\Services\OrderService;
 use App\Services\UserService;
 use App\Services\WishlistService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -33,11 +34,24 @@ class UserController extends Controller
         ]);
     }
 
-    public function destroy(User $user)
+    public function destroy(Request $request, User $user): RedirectResponse
     {
-        $this->authorize('modify', $user);
+        $this->authorize('forceDelete', $user);
 
-        $this->userService->delete($user);
+        $request->validate([
+            'confirmation' => ['required', 'in:DELETE'],
+        ]);
+
+        $this->userService->forceDelete($user);
+
+        return redirect()->route('admin.users');
+    }
+
+    public function deactivate(User $user): RedirectResponse
+    {
+        $this->authorize('delete', $user);
+
+        $this->userService->deactivate($user);
 
         return redirect()->route('admin.users');
     }

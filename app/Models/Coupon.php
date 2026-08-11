@@ -30,7 +30,8 @@ class Coupon extends Model
     {
         return $this->belongsToMany(User::class)
             ->withPivot('uses')
-            ->withTimestamps();
+            ->withTimestamps()
+            ->withTrashed();
     }
 
     public function orders()
@@ -103,7 +104,7 @@ class Coupon extends Model
 
     public function author()
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(User::class, 'created_by')->withTrashed();
     }
 
     public function updatedBy()

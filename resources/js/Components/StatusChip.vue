@@ -15,7 +15,7 @@ const props = defineProps({
       'bg-yellow-100': status === 'pending',
       'bg-green-100': status === 'paid' || status === 'active' || status === 'issued',
       'bg-blue-100': status === 'confirmed',
-      'bg-red-200': status === 'canceled' || status === 'cancelled' || status === 'archived',
+      'bg-red-200': status === 'canceled' || status === 'cancelled' || status === 'archived' || status === 'deactivated',
       'bg-gray-200': status === 'processing' || status === 'inactive',
       'bg-sky-100': status === 'shipped',
       'bg-sky-200': status === 'in-transit',

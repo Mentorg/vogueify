@@ -7,14 +7,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AdminDeletedUserAccountNotification extends Notification implements ShouldQueue
+class AdminDeactivatedUserAccountNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(public string $userName)
     {
         //
     }
@@ -35,11 +35,12 @@ class AdminDeletedUserAccountNotification extends Notification implements Should
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Your account has been deleted')
-            ->line('Hello,')
-            ->line('Your Vogueify account has been deleted by an administrator.')
-            ->line('If you believe this was a mistake or want more information, please contact our support team.')
-            ->line('Thank you for using our platform');
+            ->subject('Your account has been deactivated')
+            ->greeting("Hello {$this->userName},")
+            ->line('Your account has been deactivated by an administrator.')
+            ->line('You can no longer access your account.')
+            ->line('If you believe this was done in error, please contact our support team.')
+            ->salutation('Regards, ' . config('app.name'));
     }
 
     /**

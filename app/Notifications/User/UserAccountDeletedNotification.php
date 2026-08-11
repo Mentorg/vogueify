@@ -35,9 +35,9 @@ class UserAccountDeletedNotification extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Your Vogueify Account Has Been Successfully Deleted')
+            ->subject('Your Vogueify Account Has Been Successfully Deactivated')
             ->greeting('Hello, ' . $notifiable->name . ', ')
-            ->line('This email confirms that your Vougeify account has been successfully deleted.')
+            ->line('This email confirms that your Vougeify account has been successfully deactivated.')
             ->line('If you ever decide to return, your\'re always welcome to create a new account.')
             ->line('Thank you for using our platform.');
     }

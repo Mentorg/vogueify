@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\SessionService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,9 +16,13 @@ class SessionController extends Controller
         $this->sessionService = $sessionService;
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $this->sessionService->create($request);
+        if (!$this->sessionService->create($request)) {
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ])->onlyInput('email');
+        }
 
         $user = Auth::user();
 
@@ -25,12 +30,10 @@ class SessionController extends Controller
             return redirect()->route('verification.notice');
         }
 
-        return redirect('/')->withErrors([
-            'email' => 'The provided credentials do not match our records'
-        ]);
+        return redirect()->intended('/');
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request): RedirectResponse
     {
         $this->sessionService->delete($request);
 

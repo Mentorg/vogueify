@@ -4,20 +4,61 @@ namespace App\Services;
 
 use App\Models\Country;
 use App\Models\User;
+use App\Notifications\User\AdminDeactivatedUserAccountNotification;
 use App\Notifications\User\AdminDeletedUserAccountNotification;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Validation\ValidationException;
 
 class UserService
 {
     public function getUsers($paginate = false)
     {
-        return $paginate ? User::paginate(15, ['*'], 'users_page') : User::all();
+        return $paginate ? User::withTrashed()->paginate(15, ['*'], 'users_page') : User::withTrashed()->get();
     }
 
-    public function delete($user)
+    public function forceDelete(User $user): void
     {
-        $user->notify(new AdminDeletedUserAccountNotification($user));
+        if (!$user->trashed()) {
+            throw ValidationException::withMessages([
+                'user' => 'Only deactivated accounts can be permanently deleted.',
+            ]);
+        }
 
-        return $user->delete();
+        if ($user->orders()->exists() || $user->invoices()->exists()) {
+            throw ValidationException::withMessages([
+                'user' => 'Users with existing transactions cannot be permanently deleted.',
+            ]);
+        }
+
+        $originalEmail = $user->email;
+
+        $user->forceDelete();
+
+        Notification::route('mail', $originalEmail)->notify(new AdminDeletedUserAccountNotification());
+    }
+
+    public function deactivate(User $user): void
+    {
+        $originalName = $user->name;
+        $originalEmail = $user->email;
+
+        DB::transaction(function () use ($user) {
+            $user->forceFill([
+                'name' => 'Deleted User',
+                'date_of_birth' => null,
+                'email' => "deleted+{$user->id}@deleted.invalid",
+                'email_verified_at' => null,
+            ]);
+
+            $user->save();
+
+            $user->deleteProfilePhoto();
+            $user->tokens->each->delete();
+            $user->delete();
+        });
+
+        Notification::route('mail', $originalEmail)->notify(new AdminDeactivatedUserAccountNotification($originalName));
     }
 
     public function getProfile()
@@ -25,7 +66,7 @@ class UserService
         return Country::all(['id', 'name', 'iso_code']);
     }
 
-    public function updateFirstTimeLogin($user)
+    public function updateFirstTimeLogin(User $user)
     {
         $user->update(['is_first_login' => false]);
     }

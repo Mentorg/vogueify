@@ -64,16 +64,27 @@ const {
           <h2 class="font-medium">{{ t('page.invoiceDetails.orderID') }}</h2>
           <p>{{ invoice.order.order_number }}</p>
           <h2 class="font-medium">{{ t('page.invoiceDetails.billingAddress') }}</h2>
-          <p>{{ `${invoice.order.billing_address_line_1 + ', ' + invoice.order.billing_city + ', ' +
-            invoice.order.shipping_state
-            || ''}` }}</p>
+          <p>
+            {{
+              invoice.order.billing_address_line_1 +
+              ', ' +
+              invoice.order.billing_city +
+              (invoice.order.shipping_state ? ', ' + invoice.order.shipping_state : '')
+            }}
+          </p>
         </div>
         <div class="pt-6 md:pl-12">
           <h2 class="font-medium">{{ t('page.invoiceDetails.invoiceID') }}</h2>
           <p>{{ invoice.invoice_number }}</p>
           <h2 class="font-medium">{{ t('page.invoiceDetails.shippingAddress') }}</h2>
-          <p>{{ `${invoice.order.shipping_address_line_1 + ', ' + invoice.order.shipping_city + ', ' +
-            invoice.order.billing_state || ''}` }}</p>
+          <p>
+            {{
+              invoice.order.shipping_address_line_1 +
+              ', ' +
+              invoice.order.shipping_city +
+              (invoice.order.billing_state ? ', ' + invoice.order.billing_state : '')
+            }}
+          </p>
         </div>
       </div>
       <div v-if="invoice.internal_note" class="flex flex-col gap-y-2 my-6 lg:w-1/2">

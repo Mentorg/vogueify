@@ -1,26 +1,45 @@
 import { computed, ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
-import { useToast } from "vue-toast-notification";
 import { useI18n } from "vue-i18n";
+import { useToast } from "vue-toast-notification";
 
-export function useDeleteUser() {
+export function usePermanentlyDeleteUser() {
   const { t } = useI18n();
   const toast = useToast();
 
   const deleteUserTarget = ref(null);
+  const confirmationInput = ref(null);
 
   const isDeleteUserModalOpen = computed(
     () => deleteUserTarget.value !== null
   );
 
-  const deleteUserForm = useForm({});
+  const canDeleteUser = computed(
+    () => deleteUserForm.confirmation === 'DELETE'
+  );
 
-  const openDeleteUserModal = (targetUser) => deleteUserTarget.value = targetUser;
+  const deleteUserForm = useForm({
+    confirmation: ''
+  });
 
-  const closeDeleteUserModal = () => deleteUserTarget.value = null;
+  const openDeleteUserModal = (targetUser) => {
+    deleteUserForm.reset();
+    deleteUserForm.clearErrors();
 
-  const deleteUser = (user) => {
-    if (!deleteUserTarget.value) return;
+    deleteUserTarget.value = targetUser;
+
+    setTimeout(() => confirmationInput.value.focus(), 250);
+  }
+
+  const closeDeleteUserModal = () => {
+    deleteUserTarget.value = null;
+
+    deleteUserForm.reset();
+    deleteUserForm.clearErrors();
+  }
+
+  const deleteUser = () => {
+    if (!deleteUserTarget.value || !canDeleteUser.value) return;
 
     deleteUserForm.delete(route('user.destroy', deleteUserTarget.value), {
       preserveScroll: true,
@@ -34,18 +53,23 @@ export function useDeleteUser() {
         closeDeleteUserModal()
       },
       onError: (errors) => {
+        closeDeleteUserModal();
         toast.open({
           message: Object.values(errors)?.[0] || t('common.toast.user.userDelete.errorMessage'),
           type: 'error',
           position: 'top',
           duration: 4000,
         });
+        setTimeout(() => confirmationInput.value?.focus(), 250);
       },
     });
   };
 
   return {
     deleteUserTarget,
+    deleteUserForm,
+    confirmationInput,
+    canDeleteUser,
     isDeleteUserModalOpen,
     openDeleteUserModal,
     closeDeleteUserModal,

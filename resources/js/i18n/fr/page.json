@@ -138,9 +138,9 @@
         "tfCode": "Code",
         "tfRecoveryCodeInstruction": "Enregistrez ces codes de récupération dans un gestionnaire de mots de passe sécurisé. Ils peuvent être utilisés pour récupérer l'accès à votre compte si vous perdez votre appareil d'authentification"
       },
-      "deleteUser": {
-        "accountDeletionWarning": "Une fois votre compte supprimé, toutes ses ressources et données seront définitivement supprimées. Avant de continuer, téléchargez les données que vous souhaitez conserver",
-        "accountDeletionConfirm": "Êtes-vous sûr de vouloir supprimer votre compte ? Une fois supprimé, toutes ses ressources et données seront définitivement perdues. Veuillez saisir votre mot de passe pour confirmer la suppression définitive de votre compte"
+      "deactivateAccount": {
+        "accountDeactivationWarning": "Une fois votre compte désactivé, vous ne pourrez plus y accéder. Votre compte et ses données pourront être définitivement supprimés. Avant de désactiver votre compte, veuillez télécharger toutes les données ou informations que vous souhaitez conserver",
+        "accountDeactivationConfirm": "Êtes-vous sûr de vouloir désactiver votre compte ? Vous ne pourrez plus accéder à votre compte une fois celui-ci désactivé. Veuillez saisir votre mot de passe pour confirmer que vous souhaitez désactiver votre compte"
       }
     },
     "orders": {

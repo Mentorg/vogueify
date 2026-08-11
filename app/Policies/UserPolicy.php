@@ -16,4 +16,18 @@ class UserPolicy
     {
         return $user->hasRole(RoleName::ADMIN);
     }
+
+    public function delete(User $user, User $target): bool
+    {
+        return $user->hasRole(RoleName::ADMIN)
+            && ! $target->hasRole(RoleName::ADMIN)
+            && $user->isNot($target);
+    }
+
+    public function forceDelete(User $user, User $target): bool
+    {
+        return $user->hasRole(RoleName::ADMIN)
+            && ! $target->hasRole(RoleName::ADMIN)
+            && $user->isNot($target);
+    }
 }
