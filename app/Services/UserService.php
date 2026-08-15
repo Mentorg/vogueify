@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Country;
 use App\Models\User;
+use App\Models\UserDeactivationSnapshot;
 use App\Notifications\User\AdminDeactivatedUserAccountNotification;
 use App\Notifications\User\AdminDeletedUserAccountNotification;
 use Illuminate\Support\Facades\DB;
@@ -40,10 +41,23 @@ class UserService
 
     public function deactivate(User $user): void
     {
+        if ($user->trashed()) {
+            throw ValidationException::withMessages([
+                'user' => 'User is already deactivated!'
+            ]);
+        }
+
         $originalName = $user->name;
         $originalEmail = $user->email;
 
         DB::transaction(function () use ($user) {
+            UserDeactivationSnapshot::create([
+                'user_id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'date_of_birth' => $user->date_of_birth,
+            ]);
+
             $user->forceFill([
                 'name' => 'Deleted User',
                 'date_of_birth' => null,

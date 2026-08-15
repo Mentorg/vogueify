@@ -62,6 +62,15 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('user_deactivation_snapshots', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
+            $table->string('email');
+            $table->date('date_of_birth')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

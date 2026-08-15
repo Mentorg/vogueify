@@ -8,6 +8,7 @@ use App\Enums\RoleName;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -143,5 +144,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function invoices()
     {
         return $this->hasMany(Invoice::class);
+    }
+
+    public function deactivationSnapshot(): HasOne
+    {
+        return $this->hasOne(UserDeactivationSnapshot::class);
     }
 }
