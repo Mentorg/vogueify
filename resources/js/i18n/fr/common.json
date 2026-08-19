@@ -90,6 +90,10 @@
         "confirmationPrompt": "Tapez {keyword} pour continuer :",
         "cancel": "Annuler",
         "confirm": "Supprimer définitivement"
+      },
+      "restore": {
+        "title": "Restaurer l'utilisateur",
+        "content": "Êtes-vous sûr de vouloir restaurer cet utilisateur ?"
       }
     },
     "order": {
@@ -298,6 +302,10 @@
         "successMessage": "Utilisateur supprimé avec succès",
         "errorMessage": "Échec de la suppression de l'utilisateur"
       },
+      "userRestore": {
+        "successMessage": "Utilisateur restauré avec succès.",
+        "errorMessage": "Échec de la restauration de l'utilisateur !"
+      },
       "profileUpdate": {
         "successMessage": "Vos informations ont été mises à jour avec succès",
         "errorMessage": "Échec de la mise à jour de vos informations"
@@ -326,6 +334,10 @@
     "remove": "Supprimer",
     "delete": "Supprimer",
     "permanentlyDelete": "Supprimer définitivement",
+    "restoring": "Restauration...",
+    "restore": "Restaurer",
+    "cancelUserRestoreTitle": "Annuler la restauration de cet utilisateur",
+    "confirmUserRestoreTitle": "Restaurer l'utilisateur",
     "deactivate": "Désactiver",
     "cancel": "Annuler",
     "continue": "Continuer",

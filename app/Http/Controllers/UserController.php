@@ -56,13 +56,24 @@ class UserController extends Controller
         return redirect()->route('admin.users');
     }
 
-    public function getProfile() {
+    public function restore(User $user)
+    {
+        $this->authorize('restore', $user);
+
+        $this->userService->restore($user);
+
+        return redirect()->route('admin.users');
+    }
+
+    public function getProfile()
+    {
         return Inertia::render('Profile/Profile', [
             'countries' => $this->userService->getProfile()
         ]);
     }
 
-    public function updateFirstTimeLogin(Request $request) {
+    public function updateFirstTimeLogin(Request $request)
+    {
         $this->userService->updateFirstTimeLogin($request->user());
         return redirect()->back()->with('success', 'First time login updated successfully.');
     }

@@ -90,6 +90,10 @@
         "confirmationPrompt": "Type {keyword} to continue:",
         "cancel": "Cancel",
         "confirm": "Permanently Delete"
+      },
+      "restore": {
+        "title": "Restore user",
+        "content": "Are you sure you want to restore this user?"
       }
     },
     "order": {
@@ -298,6 +302,10 @@
         "successMessage": "User deleted successfully",
         "errorMessage": "Failed to delete user"
       },
+      "userRestore": {
+        "successMessage": "User restored successfully.",
+        "errorMessage": "Failed to restore user!"
+      },
       "profileUpdate": {
         "successMessage": "Your information updated successfully",
         "errorMessage": "Failed to update your information"
@@ -326,6 +334,10 @@
     "remove": "Remove",
     "delete": "Delete",
     "permanentlyDelete": "Permanently Delete",
+    "restoring": "Restoring...",
+    "restore": "Restore",
+    "cancelUserRestoreTitle": "Cancel restoring this user",
+    "confirmUserRestoreTitle": "Restore user",
     "deactivate": "Deactivate",
     "cancel": "Cancel",
     "continue": "Continue",

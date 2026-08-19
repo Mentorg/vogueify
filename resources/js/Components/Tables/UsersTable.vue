@@ -1,6 +1,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
-import { PhDotsThreeVertical, PhTrash } from '@phosphor-icons/vue';
+import { PhClockClockwise, PhDotsThreeVertical, PhTrash } from '@phosphor-icons/vue';
 import StatusChip from '../StatusChip.vue';
 import ContextMenu from '../ContextMenu.vue';
 import MenuItem from '../MenuItem.vue';
@@ -15,6 +15,7 @@ import { useDeactivateUser } from "@/composables/user/useDeactivateUser.js";
 import { usePermanentlyDeleteUser } from '@/composables/user/usePermanentlyDeleteUser.js';
 import { capitalize } from '@/utils/capitalize';
 import { formatDate } from "@/utils/dateFormat.js";
+import { useRestoreUser } from '@/composables/user/useRestoreUser.js';
 
 defineProps({
   users: Object
@@ -44,6 +45,15 @@ const {
   closeDeleteUserModal,
   deleteUser
 } = usePermanentlyDeleteUser();
+
+const {
+  restoreUserTarget,
+  isRestoreUserModalOpen,
+  restoreUserForm,
+  openRestoreUserModal,
+  closeRestoreUserModal,
+  restoreUser,
+} = useRestoreUser();
 
 </script>
 
@@ -96,6 +106,11 @@ const {
                   :title="t('common.button.deactivateUserTitle')">
                   <PhTrash :size="16" color="red" />
                   {{ t('common.button.deactivate') }}
+                </MenuItem>
+                <MenuItem v-if="user.deleted_at !== null" :action="() => openRestoreUserModal(user)"
+                  :title="t('common.button.confirmUserRestoreTitle')">
+                  <PhClockClockwise :size="16" color="blue" />
+                  {{ t('common.button.restore') }}
                 </MenuItem>
                 <MenuItem v-if="user.deleted_at !== null" :action="() => openDeleteUserModal(user)"
                   :title="t('common.button.deleteUserTitle')">
@@ -155,6 +170,23 @@ const {
             :title="t('common.button.confirmUserDeletionTitle')" class="ms-3 disabled:bg-red-300">
             <PhTrash :size="16" color="white" class="mr-2" />
             {{ t('common.button.permanentlyDelete') }}
+          </DangerButton>
+        </template>
+      </DialogModal>
+      <DialogModal :show="isRestoreUserModalOpen" @close="closeRestoreUserModal">
+        <template #title>
+          {{ t('common.modal.user.restore.title') }}
+        </template>
+        <template #content>
+          {{ t('common.modal.user.restore.content') }}
+        </template>
+        <template #footer>
+          <SecondaryButton @click="closeRestoreUserModal" :title="t('common.button.cancelUserRestoreTitle')">{{
+            t('common.button.cancel') }}</SecondaryButton>
+          <DangerButton @click="restoreUser(restoreUserTarget)" :disabled="restoreUserForm.processing"
+            :title="t('common.button.confirmUserRestoreTitle')" class="ms-3 disabled:bg-red-300">
+            <PhClockClockwise :size="16" color="white" class="mr-2" />
+            {{ restoreUserForm.processing ? t('common.button.restoring') : t('common.button.restore') }}
           </DangerButton>
         </template>
       </DialogModal>

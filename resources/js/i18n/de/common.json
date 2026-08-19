@@ -90,6 +90,10 @@
         "confirmationPrompt": "Geben Sie {keyword} ein, um fortzufahren:",
         "cancel": "Abbrechen",
         "confirm": "Dauerhaft löschen"
+      },
+      "userRestore": {
+        "title": "Benutzer wiederherstellen",
+        "content": "Möchten Sie diesen Benutzer wirklich wiederherstellen?"
       }
     },
     "order": {
@@ -298,6 +302,10 @@
         "successMessage": "Benutzer erfolgreich gelöscht",
         "errorMessage": "Benutzer konnte nicht gelöscht werden"
       },
+      "userRestore": {
+        "successMessage": "Benutzer erfolgreich wiederhergestellt.",
+        "errorMessage": "Benutzer konnte nicht wiederhergestellt werden!"
+      },
       "profileUpdate": {
         "successMessage": "Ihre Informationen wurden erfolgreich aktualisiert",
         "errorMessage": "Aktualisierung Ihrer Informationen fehlgeschlagen"
@@ -326,6 +334,10 @@
     "remove": "Entfernen",
     "delete": "Löschen",
     "permanentlyDelete": "Dauerhaft löschen",
+    "restoring": "Wird wiederhergestellt...",
+    "restore": "Wiederherstellen",
+    "cancelUserRestoreTitle": "Wiederherstellung dieses Benutzers abbrechen",
+    "confirmUserRestoreTitle": "Benutzer wiederherstellen",
     "deactivate": "Deaktivieren",
     "cancel": "Abbrechen",
     "continue": "Weiter",

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\UserDeactivationSnapshot;
 use App\Notifications\User\AdminDeactivatedUserAccountNotification;
 use App\Notifications\User\AdminDeletedUserAccountNotification;
+use App\Notifications\User\AdminRestoredUserAccountNotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\ValidationException;
@@ -73,6 +74,51 @@ class UserService
         });
 
         Notification::route('mail', $originalEmail)->notify(new AdminDeactivatedUserAccountNotification($originalName));
+    }
+
+    public function restore(User $user): void
+    {
+        if (! $user->trashed()) {
+            throw ValidationException::withMessages([
+                'user' => 'User is not deactivated!',
+            ]);
+        }
+
+        $snapshot = $user->deactivationSnapshot;
+
+        if (! $snapshot) {
+            throw ValidationException::withMessages([
+                'user' => 'The user restoration data could not be found.',
+            ]);
+        }
+
+        $originalEmail = $snapshot->email;
+
+        DB::transaction(function () use ($user, $snapshot) {
+            $emailInUse = User::query()
+                ->where('email', $snapshot->email)
+                ->whereKeyNot($user->id)
+                ->exists();
+
+            if ($emailInUse) {
+                throw ValidationException::withMessages([
+                    'email' => 'The original email address is already in use by another user.',
+                ]);
+            }
+
+            $user->forceFill([
+                'name' => $snapshot->name,
+                'email' => $snapshot->email,
+                'date_of_birth' => $snapshot->date_of_birth,
+            ]);
+
+            $user->restore();
+
+            $snapshot->delete();
+        });
+
+        Notification::route('mail', $originalEmail)
+            ->notify(new AdminRestoredUserAccountNotification());
     }
 
     public function getProfile()

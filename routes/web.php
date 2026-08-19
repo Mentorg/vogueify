@@ -55,6 +55,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard', 'index')->middleware(['auth', 'verified'])->name('dashboard');
     Route::delete('/admin/users/{user}/permanent', 'destroy')->middleware(['auth', 'verified'])->withTrashed()->name('user.destroy');
     Route::delete('/admin/users/{user}', 'deactivate')->middleware(['auth', 'verified'])->name('user.deactivate');
+    Route::patch('/admin/users/{user}/restore', 'restore')->withTrashed()->middleware(['auth', 'verified'])->name('user.restore');
     Route::get('/profile', 'getProfile')->middleware(['auth'])->name('profile');
     Route::patch('/profile/{user}', 'updateFirstTimeLogin')->middleware(['auth'])->name('updateFirstTimeLogin');
 });

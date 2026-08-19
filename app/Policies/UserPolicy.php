@@ -24,6 +24,11 @@ class UserPolicy
             && $user->isNot($target);
     }
 
+    public function restore(User $user): bool
+    {
+        return $user->hasRole(RoleName::ADMIN);
+    }
+
     public function forceDelete(User $user, User $target): bool
     {
         return $user->hasRole(RoleName::ADMIN)
