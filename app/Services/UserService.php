@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\AggregatedOrderStatus;
 use App\Models\Country;
 use App\Models\User;
 use App\Models\UserDeactivationSnapshot;
@@ -17,6 +18,19 @@ class UserService
     public function getUsers($paginate = false)
     {
         return $paginate ? User::withTrashed()->paginate(15, ['*'], 'users_page') : User::withTrashed()->get();
+    }
+
+    public function getUser(User $user, string $tab = 'personal-information'): array
+    {
+        $user->load('deactivationSnapshot');
+
+        return [
+            'user' => $user,
+            'orders' => $tab === 'orders' ? $user->orders()->latest()->paginate(5, ['*'], 'orders_page')->withQueryString() : null,
+            'invoices' => $tab === 'invoices' ? $user->invoices()->with('user:id,name')->latest()->paginate(5, ['*'], 'invoices_page')->withQueryString() : null,
+            'coupons' => $tab === 'coupons' ? $user->coupons()->latest()->paginate(5, ['*'], 'coupons_page')->withQueryString() : null,
+            'orderStatuses' => AggregatedOrderStatus::values(),
+        ];
     }
 
     public function forceDelete(User $user): void

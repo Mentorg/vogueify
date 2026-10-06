@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class UserController extends Controller
 {
@@ -31,6 +32,24 @@ class UserController extends Controller
         return Inertia::render('Dashboard', [
             'orders' => $this->orderService->getUserOrders($request),
             'wishlist' => $this->wishlistService->getWishlist($request),
+        ]);
+    }
+
+    public function show(Request $request, User $user): Response
+    {
+        $this->authorize('view', $user);
+
+        $userData = $this->userService->getUser(
+            $user,
+            $request->query('tab', 'personal-information')
+        );
+
+        return Inertia::render('Admin/User/UserDetails', [
+            'user' => $userData['user'],
+            'orders' => $userData['orders'],
+            'invoices' => $userData['invoices'],
+            'coupons' => $userData['coupons'],
+            'orderStatuses' => $userData['orderStatuses'],
         ]);
     }
 

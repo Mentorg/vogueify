@@ -88,6 +88,7 @@
         "spamAccounts": "Spam accounts without transactional history",
         "transactionWarning": "Users with orders or other transactional history cannot be permanently deleted.",
         "confirmationPrompt": "Type {keyword} to continue:",
+        "deleteKeyword": "DELETE",
         "cancel": "Cancel",
         "confirm": "Permanently Delete"
       },
@@ -518,7 +519,8 @@
     "browseWomenTitle": "Browse Women",
     "goToProductTitle": "View product",
     "goToCategoryProductsTitle": "View products",
-    "goToProductVariationTitle": "View variation"
+    "goToProductVariationTitle": "View variation",
+    "viewUserTitle": "View this user"
   },
   "menuLabel": {
     "for": "For",
@@ -679,6 +681,7 @@
       "name": "Name",
       "email": "Email",
       "role": "Role",
+      "status": "Status",
       "createdAt": "Created"
     },
     "coupon": {

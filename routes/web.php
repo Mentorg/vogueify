@@ -53,6 +53,7 @@ Route::controller(ProductController::class)->group(function () {
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard', 'index')->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/admin/users/{user}', 'show')->middleware(['auth', 'verified'])->withTrashed()->name('user.show');
     Route::delete('/admin/users/{user}/permanent', 'destroy')->middleware(['auth', 'verified'])->withTrashed()->name('user.destroy');
     Route::delete('/admin/users/{user}', 'deactivate')->middleware(['auth', 'verified'])->name('user.deactivate');
     Route::patch('/admin/users/{user}/restore', 'restore')->withTrashed()->middleware(['auth', 'verified'])->name('user.restore');

@@ -12,6 +12,11 @@ class UserPolicy
         return $user->hasRole(RoleName::ADMIN);
     }
 
+    public function view(User $user)
+    {
+        return $user->hasRole(RoleName::ADMIN);
+    }
+
     public function modify(User $user)
     {
         return $user->hasRole(RoleName::ADMIN);

@@ -1,21 +1,22 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
+import { Link } from '@inertiajs/vue3';
 import { PhClockClockwise, PhDotsThreeVertical, PhTrash } from '@phosphor-icons/vue';
-import StatusChip from '../StatusChip.vue';
-import ContextMenu from '../ContextMenu.vue';
-import MenuItem from '../MenuItem.vue';
+import StatusChip from '@/Components/StatusChip.vue';
+import ContextMenu from '@/Components/ContextMenu.vue';
+import MenuItem from '@/Components/MenuItem.vue';
 import DialogModal from "@/Components/DialogModal.vue";
-import TextInput from '../TextInput.vue';
-import InputError from '../InputError.vue';
+import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Components/InputError.vue';
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import DangerButton from "@/Components/DangerButton.vue";
 import TableFooter from "@/Components/Tables/TableFooter.vue";
 import { useContextMenu } from '@/composables/useContextMenu.js';
 import { useDeactivateUser } from "@/composables/user/useDeactivateUser.js";
 import { usePermanentlyDeleteUser } from '@/composables/user/usePermanentlyDeleteUser.js';
+import { useRestoreUser } from '@/composables/user/useRestoreUser.js';
 import { capitalize } from '@/utils/capitalize';
 import { formatDate } from "@/utils/dateFormat.js";
-import { useRestoreUser } from '@/composables/user/useRestoreUser.js';
 
 defineProps({
   users: Object
@@ -69,7 +70,7 @@ const {
             <th scope="col" class="px-6 py-4">{{ t('common.table.user.name') }}</th>
             <th scope="col" class="px-6 py-4">{{ t('common.table.user.email') }}</th>
             <th scope="col" class="px-6 py-4">{{ t('common.table.user.role') }}</th>
-            <th scope="col" class="px-6 py-4">Status</th>
+            <th scope="col" class="px-6 py-4">{{ t('common.table.user.status') }}</th>
             <th scope="col" class="px-6 py-4">{{ t('common.table.user.createdAt') }}</th>
             <th scope="col" class="px-6 py-4"></th>
           </tr>
@@ -83,14 +84,15 @@ const {
               <img v-if="user.profile_photo_url" :src="user.profile_photo_url"
                 :alt="t('page.user.profile.basicInfo.picture', { user: user.name })"
                 class="w-8 h-8 rounded-full inline-block mr-2">
-              {{ user.name }}
+              <Link :href="route('user.show', { user: user.id })" :title="t('common.button.viewUserTitle')"
+                class="hover:underline">{{ user.name }}</Link>
             </th>
             <td class="px-6 py-4">{{ user.email }}</td>
             <td class="px-6 py-4">{{ capitalize(user.role) }}</td>
             <td class="px-6 py-4">
               <StatusChip :status="user.deleted_at === null ? 'active' : 'deactivated'">{{ capitalize(user.deleted_at
-                === null ? 'Active' : 'Deactivated')
-                }}</StatusChip>
+                === null ? t('page.userDetails.statusActive') : t('page.userDetails.statusDeactivated'))
+              }}</StatusChip>
             </td>
             <td class=" px-6 py-4">{{ formatDate(user.created_at, '.') }}
             </td>
@@ -156,7 +158,7 @@ const {
           <p class="my-4">{{ t('common.modal.user.delete.transactionWarning') }}</p>
           <i18n-t keypath="common.modal.user.delete.confirmationPrompt" tag="p">
             <template #keyword>
-              <strong>DELETE</strong>
+              <strong>{{ t('common.modal.user.delete.deleteKeyword') }}</strong>
             </template>
           </i18n-t>
           <TextInput ref="confirmationInput" v-model="deleteUserForm.confirmation" type="text"

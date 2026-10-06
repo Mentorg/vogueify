@@ -88,6 +88,7 @@
         "spamAccounts": "Comptes de spam sans historique transactionnel",
         "transactionWarning": "Les utilisateurs ayant des commandes ou un autre historique transactionnel ne peuvent pas être supprimés définitivement.",
         "confirmationPrompt": "Tapez {keyword} pour continuer :",
+        "deleteKeyword": "SUPPRIMER",
         "cancel": "Annuler",
         "confirm": "Supprimer définitivement"
       },
@@ -518,7 +519,8 @@
     "browseWomenTitle": "Parcourir les femmes",
     "goToProductTitle": "Voir le produit",
     "goToCategoryProductsTitle": "Voir les produits",
-    "goToProductVariationTitle": "Voir la variante"
+    "goToProductVariationTitle": "Voir la variante",
+    "viewUserTitle": "Voir cet utilisateur"
   },
   "menuLabel": {
     "for": "Pour",
@@ -679,6 +681,7 @@
       "name": "Nom",
       "email": "E-mail",
       "role": "Rôle",
+      "status": "Statut",
       "createdAt": "Créé"
     },
     "coupon": {

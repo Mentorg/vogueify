@@ -88,6 +88,7 @@
         "spamAccounts": "Spam-Konten ohne Transaktionsverlauf",
         "transactionWarning": "Benutzer mit Bestellungen oder einer anderen Transaktionshistorie können nicht dauerhaft gelöscht werden.",
         "confirmationPrompt": "Geben Sie {keyword} ein, um fortzufahren:",
+        "deleteKeyword": "LÖSCHEN",
         "cancel": "Abbrechen",
         "confirm": "Dauerhaft löschen"
       },
@@ -518,7 +519,8 @@
     "browseWomenTitle": "Damen ansehen",
     "goToProductTitle": "Produkt ansehen",
     "goToCategoryProductsTitle": "Produkte ansehen",
-    "goToProductVariationTitle": "Variante ansehen"
+    "goToProductVariationTitle": "Variante ansehen",
+    "viewUserTitle": "Diesen Benutzer anzeigen"
   },
   "menuLabel": {
     "for": "Für",
@@ -679,6 +681,7 @@
       "name": "Name",
       "email": "E-Mail",
       "role": "Rolle",
+      "status": "Status",
       "createdAt": "Erstellt"
     },
     "coupon": {

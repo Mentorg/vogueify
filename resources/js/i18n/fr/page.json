@@ -91,7 +91,8 @@
     "createCoupon": "Créer un coupon",
     "updateCoupon": "Mettre à jour {coupon}",
     "users": "Utilisateurs",
-    "usersTitle": "Gérer les utilisateurs"
+    "usersTitle": "Gérer les utilisateurs",
+    "userDetails": "Détails de l'utilisateur"
   },
   "user": {
     "overview": "Aperçu",
@@ -273,5 +274,21 @@
     "product": "Produit | Produits",
     "category": "Catégorie | Catégories",
     "categoryImage": "Image de {category}"
+  },
+  "userDetails": {
+    "personalInformation": "Informations personnelles",
+    "personalInformationTitle": "Informations personnelles de l'utilisateur",
+    "ordersTitle": "Voir les commandes de l'utilisateur",
+    "invoicesTitle": "Voir les factures de l'utilisateur",
+    "couponsTitle": "Voir les coupons de l'utilisateur",
+    "emailVerified": "Vérifié",
+    "emailUnverified": "Non vérifié",
+    "statusActive": "Actif",
+    "statusDeactivated": "Désactivé",
+    "accountCreatedAt": "Compte créé le",
+    "administrativeInformation": "Informations administratives",
+    "originalName": "Nom d'origine",
+    "originalEmail": "Adresse e-mail d'origine",
+    "deactivatedAt": "Date de désactivation"
   }
 }

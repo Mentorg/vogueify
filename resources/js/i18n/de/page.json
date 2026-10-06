@@ -91,7 +91,8 @@
     "createCoupon": "Gutschein erstellen",
     "updateCoupon": "Aktualisiere {coupon}",
     "users": "Benutzer",
-    "usersTitle": "Benutzer verwalten"
+    "usersTitle": "Benutzer verwalten",
+    "userDetails": "Benutzerdetails"
   },
   "user": {
     "overview": "Übersicht",
@@ -273,5 +274,21 @@
     "product": "Produkt | Produkte",
     "category": "Kategorie | Kategorien",
     "categoryImage": "Bild von {category}"
+  },
+  "userDetails": {
+    "personalInformation": "Persönliche Informationen",
+    "personalInformationTitle": "Persönliche Informationen des Benutzers",
+    "ordersTitle": "Bestellungen des Benutzers anzeigen",
+    "invoicesTitle": "Rechnungen des Benutzers anzeigen",
+    "couponsTitle": "Gutscheine des Benutzers anzeigen",
+    "emailVerified": "Verifiziert",
+    "emailUnverified": "Nicht verifiziert",
+    "statusActive": "Aktiv",
+    "statusDeactivated": "Deaktiviert",
+    "accountCreatedAt": "Konto erstellt am",
+    "administrativeInformation": "Administrative Informationen",
+    "originalName": "Ursprünglicher Name",
+    "originalEmail": "Ursprüngliche E-Mail-Adresse",
+    "deactivatedAt": "Deaktivierungsdatum"
   }
 }
